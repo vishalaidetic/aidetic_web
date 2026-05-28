@@ -57,7 +57,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className="scroll-smooth">
+    <html lang="en" suppressHydrationWarning className="scroll-smooth snap-y snap-mandatory">
       <body className="bg-background text-foreground font-sans antialiased">
         <Providers>
           <div className="mx-auto max-w-[1920px]">

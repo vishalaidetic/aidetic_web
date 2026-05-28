@@ -1,114 +1,105 @@
 import { SITE_DESCRIPTION, SITE_NAME } from '@/lib/utils/constants'
 import Link from 'next/link'
+import { Linkedin, Twitter } from 'lucide-react'
 
 /**
  * Footer component
- * Displays site information, links, and copyright
- * Theme: Deep Navy (#1B2340) background, white text, Brand Red (#DC2626) accents
+ * Light Theme: matches navbar with slate-50 background and deep navy text.
  */
 export function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="w-full bg-[#1B2340]">
-      <div className="w-full px-4 sm:px-6 lg:px-8 pt-12 pb-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
-          {/* Brand Info */}
-          <div className="flex flex-col space-y-4">
+    <footer className="relative w-full bg-slate-50 overflow-hidden border-t border-slate-200">
+      <div className="w-full max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-28 relative z-10">
+        <div className="flex flex-col lg:flex-row justify-between gap-12 lg:gap-20">
+          
+          {/* Left Column - Brand & Info */}
+          <div className="flex flex-col space-y-5 max-w-sm">
+            {/* Logo */}
             <div className="flex items-center gap-2">
-              <div className="flex h-9 w-9 items-center justify-center rounded-md bg-[#DC2626] text-white font-bold text-sm italic shadow-md">
+              <div className="flex h-9 w-9 items-center justify-center rounded bg-gradient-to-br from-[#1B2340] to-[#DC2626] text-white font-bold text-sm italic shadow-md">
                 Aj
               </div>
-              <span className="font-bold text-white text-lg tracking-wide">{SITE_NAME}</span>
+              <span className="font-bold text-[#1B2340] text-xl tracking-tight">{SITE_NAME}</span>
             </div>
-            <p className="text-sm text-white/60 leading-relaxed max-w-xs">
+            
+            {/* Description */}
+            <p className="text-sm text-slate-500 leading-relaxed">
               {SITE_DESCRIPTION}
             </p>
-            {/* Brand Red accent line */}
-            <div className="w-10 h-0.5 bg-[#DC2626] rounded-full" />
+            
+            {/* Badges */}
+            <div className="flex gap-3">
+              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-[11px] font-semibold text-slate-600 shadow-sm">
+                <div className="w-2 h-2 rounded-full bg-[#1B2340]"></div> SOC 2
+              </div>
+              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-[11px] font-semibold text-slate-600 shadow-sm">
+                <div className="w-2 h-2 rounded-full bg-[#1B2340]"></div> ISO 27001
+              </div>
+            </div>
+
+            {/* Copyright */}
+            <p className="text-xs text-slate-400 pt-4">
+              © {currentYear} {SITE_NAME} All rights reserved.
+            </p>
           </div>
 
-          {/* Navigation Links */}
-          <div className="flex flex-col space-y-3">
-            <h3 className="font-semibold text-white text-sm uppercase tracking-wider">Navigation</h3>
-            <nav className="flex flex-col space-y-2.5">
-              <Link
-                href="/"
-                className="text-sm text-white/60 hover:text-[#DC2626] transition-colors duration-200"
-              >
-                Home
-              </Link>
-              <Link
-                href="/blog"
-                className="text-sm text-white/60 hover:text-[#DC2626] transition-colors duration-200"
-              >
-                Blog
-              </Link>
-              <Link
-                href="/case-studies"
-                className="text-sm text-white/60 hover:text-[#DC2626] transition-colors duration-200"
-              >
-                Case Studies
-              </Link>
-              <Link
-                href="/dashboard"
-                className="text-sm text-white/60 hover:text-[#DC2626] transition-colors duration-200"
-              >
-                Admin Dashboard
-              </Link>
-            </nav>
-          </div>
+          {/* Right Columns - Links */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 flex-1 lg:max-w-3xl">
+            {/* Resources */}
+            <div className="flex flex-col space-y-4">
+              <h3 className="font-semibold text-[#1B2340] text-sm">Resources</h3>
+              <nav className="flex flex-col space-y-3">
+                <Link href="/case-studies" className="text-sm text-slate-500 hover:text-[#DC2626] transition-colors">Case Studies</Link>
+                <Link href="/blog" className="text-sm text-slate-500 hover:text-[#DC2626] transition-colors">Blogs</Link>
+                <a href="#" className="text-sm text-slate-500 hover:text-[#DC2626] transition-colors">Documentation</a>
+              </nav>
+            </div>
 
-          {/* Resources Links */}
-          <div className="flex flex-col space-y-3">
-            <h3 className="font-semibold text-white text-sm uppercase tracking-wider">Resources</h3>
-            <nav className="flex flex-col space-y-2.5">
-              <a
-                href="#"
-                className="text-sm text-white/60 hover:text-[#DC2626] transition-colors duration-200"
-              >
-                Documentation
-              </a>
-              <a
-                href="#"
-                className="text-sm text-white/60 hover:text-[#DC2626] transition-colors duration-200"
-              >
-                GitHub
-              </a>
-              <a
-                href="#"
-                className="text-sm text-white/60 hover:text-[#DC2626] transition-colors duration-200"
-              >
-                Twitter
-              </a>
-            </nav>
-          </div>
-        </div>
+            {/* Contact */}
+            <div className="flex flex-col space-y-4">
+              <h3 className="font-semibold text-[#1B2340] text-sm">Contact</h3>
+              <nav className="flex flex-col space-y-3">
+                <a href="#" className="text-sm text-slate-500 hover:text-[#DC2626] transition-colors">Schedule a Demo</a>
+                <a href="#" className="text-sm text-[#1B2340] font-semibold hover:text-[#DC2626] transition-colors">Technology Partner</a>
+                <span className="text-[10px] font-bold bg-[#1B2340] text-white px-2 py-0.5 rounded w-fit uppercase tracking-wider">Aidetic</span>
+              </nav>
+            </div>
 
-        {/* Divider */}
-        <div className="w-full h-px bg-white/10 my-6" />
+            {/* Legal */}
+            <div className="flex flex-col space-y-4">
+              <h3 className="font-semibold text-[#1B2340] text-sm">Legal</h3>
+              <nav className="flex flex-col space-y-3">
+                <a href="#" className="text-sm text-slate-500 hover:text-[#DC2626] transition-colors">Privacy Policy</a>
+                <a href="#" className="text-sm text-slate-500 hover:text-[#DC2626] transition-colors">Terms of Service</a>
+                <a href="#" className="text-sm text-slate-500 hover:text-[#DC2626] transition-colors">Refund Policy</a>
+              </nav>
+            </div>
 
-        {/* Copyright */}
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-white/40">
-            © {currentYear} {SITE_NAME}. All rights reserved.
-          </p>
-          <div className="flex gap-6">
-            <a
-              href="#"
-              className="text-sm text-white/40 hover:text-white/80 transition-colors duration-200"
-            >
-              Privacy Policy
-            </a>
-            <a
-              href="#"
-              className="text-sm text-white/40 hover:text-white/80 transition-colors duration-200"
-            >
-              Terms of Service
-            </a>
+            {/* Social */}
+            <div className="flex flex-col space-y-4">
+              <h3 className="font-semibold text-[#1B2340] text-sm">Social</h3>
+              <nav className="flex flex-col space-y-3">
+                <a href="#" className="flex items-center gap-2 text-sm text-slate-500 hover:text-[#DC2626] transition-colors">
+                  <Linkedin size={16} /> LinkedIn
+                </a>
+                <a href="#" className="flex items-center gap-2 text-sm text-slate-500 hover:text-[#DC2626] transition-colors">
+                  <Twitter size={16} /> Twitter
+                </a>
+              </nav>
+            </div>
           </div>
         </div>
+      </div>
+
+      {/* Big Watermark Text */}
+      <div className="absolute bottom-0 left-0 w-full flex justify-center pointer-events-none select-none z-0">
+        <span className="text-[18vw] font-black text-[#1B2340]/5 tracking-tighter leading-none translate-y-[45%]">
+          aidetic
+        </span>
       </div>
     </footer>
   )
 }
+

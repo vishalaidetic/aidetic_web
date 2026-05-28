@@ -139,7 +139,7 @@ export function Navigation({ adminEmail: adminEmailProp }: NavigationProps = {})
             ) : (
               /* Guest */
               <Link href="/dashboard">
-                <button className="text-sm font-bold px-6 py-2.5 rounded-full bg-[#1B2340] hover:bg-slate-800 text-white border-none shadow-md transition-all duration-200 hover:shadow-lg hover:scale-[1.02]">
+                <button className="text-sm font-bold px-6 py-2.5 rounded-lg bg-gradient-to-r from-[#1B2340] to-[#DC2626] hover:opacity-90 text-white border-none shadow-md transition-all duration-200 hover:shadow-lg hover:scale-[1.02]">
                   Book a Demo
                 </button>
               </Link>
@@ -200,7 +200,7 @@ export function Navigation({ adminEmail: adminEmailProp }: NavigationProps = {})
               ) : (
                 /* Guest */
                 <Link href="/dashboard" onClick={() => setMobileMenuOpen(false)}>
-                  <button className="w-full text-sm font-bold px-5 py-3 rounded-xl bg-[#1B2340] hover:bg-slate-800 text-white border-none shadow-md transition-all duration-200">
+                  <button className="w-full text-sm font-bold px-5 py-3 rounded-lg bg-gradient-to-r from-[#1B2340] to-[#DC2626] hover:opacity-90 text-white border-none shadow-md transition-all duration-200">
                     Book a Demo
                   </button>
                 </Link>
