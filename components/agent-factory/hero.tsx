@@ -19,7 +19,7 @@ export function Hero() {
           maxWidth: '700px',
           maxHeight: '700px',
           borderRadius: '50%',
-          background: 'linear-gradient(to right, rgba(204,233,248,0) 0%, rgba(204,233,248,0) 30%, rgba(204,233,248,0.6) 50%, #cce9f8 65%, #cce9f8 100%)',
+          background: 'linear-gradient(to right, rgba(204,233,248,0) 0%, rgba(204,233,248,0) 30%, rgba(204,233,248,0.6) 50%, #e3e8ee 65%, #e3e8ee 100%)',
           opacity: 0.85,
         }}
       />
@@ -40,7 +40,7 @@ export function Hero() {
                 className="font-semibold tracking-widest text-sm uppercase"
                 style={{
                   fontFamily: 'var(--font-inter)',
-                  background: 'linear-gradient(to right, #06b6d4, #2563eb)',
+                  background: 'linear-gradient(to right, #533afd, #ea2261)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
@@ -57,7 +57,7 @@ export function Hero() {
               transition={{ duration: 0.6, delay: 0.08 }}
             >
               <h1
-                className="text-[2rem] sm:text-[2.25rem] lg:text-[2.5rem] xl:text-[2.75rem] font-semibold text-slate-900 leading-[1.15]"
+                className="text-[2rem] sm:text-[2.25rem] lg:text-[2.5rem] xl:text-[2.75rem] font-semibold text-[#0d253d] leading-[1.15]"
                 style={{ fontFamily: 'var(--font-inter)' }}
               >
                 AI Agents that Answer<br />
@@ -67,7 +67,7 @@ export function Hero() {
 
             {/* Body */}
             <motion.p
-              className="text-lg md:text-xl text-slate-700 leading-relaxed max-w-lg"
+              className="text-lg md:text-xl text-[#0d253d] leading-relaxed max-w-lg"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.16 }}
@@ -85,7 +85,7 @@ export function Hero() {
               <button
                 id="hero-cta-demo"
                 className="px-6 py-2.5 rounded-md font-bold text-sm text-white tracking-widest uppercase transition-all duration-200 hover:opacity-90 hover:-translate-y-px"
-                style={{ background: '#06b6d4', fontFamily: 'var(--font-inter)' }}
+                style={{ background: '#533afd', fontFamily: 'var(--font-inter)' }}
               >
                 REQUEST A DEMO
               </button>
@@ -139,7 +139,7 @@ export function Hero() {
                   className="text-base tracking-wide"
                   style={{ fontFamily: 'var(--font-inter)' }}
                 >
-                  <span className="text-cyan-400 font-bold">Book</span>
+                  <span className="text-[#665efd] font-bold">Book</span>
                   <span className="text-white/80"> a demo today</span>
                 </p>
               </div>
@@ -157,7 +157,7 @@ export function Hero() {
             className="font-semibold tracking-[0.2em] text-xs uppercase mb-6 text-center"
             style={{
               fontFamily: 'var(--font-inter)',
-              background: 'linear-gradient(to right, #06b6d4, #2563eb)',
+              background: 'linear-gradient(to right, #533afd, #ea2261)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
@@ -168,7 +168,7 @@ export function Hero() {
 
           {/* Marquee wrapper with fade-edge mask */}
           <div
-            className="relative overflow-hidden border-t border-b border-slate-200 py-5"
+            className="relative overflow-hidden border-t border-[#533afd] border-slate-200 py-5"
             style={{
               maskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)',
               WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)',
@@ -204,7 +204,7 @@ export function Hero() {
               ].map((brand, i) => (
                 <span
                   key={i}
-                  className={`flex items-center gap-1.5 whitespace-nowrap select-none text-cyan-600/80 tracking-wide ${
+                  className={`flex items-center gap-1.5 whitespace-nowrap select-none text-[#533afd]/80 tracking-wide ${
                     brand.bold ? 'text-xl font-black italic' : 'text-base font-semibold'
                   }`}
                   style={{ fontFamily: 'var(--font-inter)' }}

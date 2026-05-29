@@ -93,7 +93,7 @@ export function StatsSection() {
             height: '55vw',
             maxWidth: '700px',
             maxHeight: '700px',
-            background: '#cce9f8',
+            background: '#e3e8ee',
             borderRadius: '50%',
             opacity: 0.55,
             filter: 'blur(2px)',
@@ -116,7 +116,7 @@ export function StatsSection() {
               className="text-2xl sm:text-3xl lg:text-4xl xl:text-[2.5rem] font-bold leading-tight"
               style={{
                 fontFamily: 'var(--font-inter)',
-                background: 'linear-gradient(to right, #06b6d4, #2563eb)',
+                background: 'linear-gradient(to right, #533afd, #ea2261)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
@@ -124,7 +124,7 @@ export function StatsSection() {
             >
               What Agent Factory Brings to the Table
             </h2>
-            <p className="text-slate-600 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+            <p className="text-[#64748d] text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
               No dashboards. No waiting. No guesswork. Just decisions backed by your data.
             </p>
           </div>
@@ -142,7 +142,7 @@ export function StatsSection() {
               >
                 {/* Big number */}
                 <div
-                  className="text-5xl md:text-6xl font-bold text-cyan-600 leading-none tracking-wide"
+                  className="text-5xl md:text-6xl font-bold text-[#533afd] leading-none tracking-wide"
                   style={{ fontFamily: 'var(--font-inter)' }}
                 >
                   {typeof stat.value === 'string' ? (
@@ -163,7 +163,7 @@ export function StatsSection() {
                 </div>
 
                 {/* Label */}
-                <p className="text-slate-700 text-sm leading-snug whitespace-pre-line px-2">
+                <p className="text-[#0d253d] text-sm leading-snug whitespace-pre-line px-2">
                   {stat.label}
                 </p>
               </motion.div>

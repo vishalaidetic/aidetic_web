@@ -52,13 +52,13 @@ export function FaqSection() {
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage:
-            'linear-gradient(rgba(6,182,212,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(6,182,212,0.03) 1px, transparent 1px)',
+            'linear-gradient(rgba(83,58,253,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(83,58,253,0.03) 1px, transparent 1px)',
           backgroundSize: '60px 60px',
         }}
       />
 
       {/* Top accent line */}
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-300/60 to-transparent" />
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#533afd]/60 to-transparent" />
 
       <div className="relative z-10 max-w-3xl mx-auto">
 
@@ -75,7 +75,7 @@ export function FaqSection() {
             className="inline-block text-xs font-bold tracking-widest uppercase mb-2"
             style={{
               fontFamily: 'var(--font-inter)',
-              background: 'linear-gradient(to right, #06b6d4, #2563eb)',
+              background: 'linear-gradient(to right, #533afd, #ea2261)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
@@ -85,12 +85,12 @@ export function FaqSection() {
           </span>
 
           <h2
-            className="text-3xl sm:text-4xl xl:text-[2.5rem] font-bold leading-tight text-slate-900"
+            className="text-3xl sm:text-4xl xl:text-[2.5rem] font-bold leading-tight text-[#0d253d]"
             style={{ fontFamily: 'var(--font-inter)' }}
           >
             Frequently Asked Questions
           </h2>
-          <p className="text-base md:text-lg text-slate-500 max-w-xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg text-[#64748d] max-w-xl mx-auto leading-relaxed">
             Everything you need to know about Agent Factory before you get started.
           </p>
         </motion.div>
@@ -110,9 +110,9 @@ export function FaqSection() {
                 key={i}
                 className="rounded-2xl border overflow-hidden"
                 style={{
-                  borderColor: isOpen ? 'rgba(6,182,212,0.45)' : 'rgba(226,232,240,0.9)',
+                  borderColor: isOpen ? 'rgba(83,58,253,0.45)' : 'rgba(226,232,240,0.9)',
                   boxShadow: isOpen
-                    ? '0 8px 32px -4px rgba(6,182,212,0.18), 0 2px 8px 0 rgba(0,0,0,0.04)'
+                    ? '0 8px 32px -4px rgba(83,58,253,0.18), 0 2px 8px 0 rgba(0,0,0,0.04)'
                     : '0 1px 4px 0 rgba(0,0,0,0.04)',
                   transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
                 }}
@@ -124,7 +124,7 @@ export function FaqSection() {
                   className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left transition-colors duration-200"
                   style={{
                     background: isOpen
-                      ? 'linear-gradient(135deg, #ecfeff 0%, #eff6ff 100%)'
+                      ? 'linear-gradient(135deg, #f6f9fc 0%, #f6f9fc 100%)'
                       : 'white',
                     fontFamily: 'var(--font-inter)',
                   }}
@@ -133,7 +133,7 @@ export function FaqSection() {
                   <span
                     className="text-base font-semibold leading-snug transition-colors duration-200"
                     style={{
-                      color: isOpen ? '#0891b2' : '#1e293b',
+                      color: isOpen ? '#533afd' : '#1e293b',
                     }}
                   >
                     {faq.q}
@@ -144,7 +144,7 @@ export function FaqSection() {
                     className="shrink-0 w-7 h-7 rounded-full flex items-center justify-center"
                     style={{
                       background: isOpen
-                        ? 'linear-gradient(135deg, #06b6d4, #2563eb)'
+                        ? 'linear-gradient(135deg, #533afd, #ea2261)'
                         : 'transparent',
                       border: isOpen ? 'none' : '1.5px solid #cbd5e1',
                     }}
@@ -154,7 +154,7 @@ export function FaqSection() {
                     {isOpen ? (
                       <Minus className="w-3.5 h-3.5 text-white" strokeWidth={2.5} />
                     ) : (
-                      <Plus className="w-3.5 h-3.5 text-slate-400" strokeWidth={2.5} />
+                      <Plus className="w-3.5 h-3.5 text-[#64748d]" strokeWidth={2.5} />
                     )}
                   </motion.div>
                 </button>
@@ -173,16 +173,16 @@ export function FaqSection() {
                       {/* Thin gradient divider */}
                       <div
                         className="w-full h-px"
-                        style={{ background: 'linear-gradient(to right, #06b6d4 0%, #2563eb 100%)', opacity: 0.25 }}
+                        style={{ background: 'linear-gradient(to right, #533afd 0%, #ea2261 100%)', opacity: 0.25 }}
                       />
                       <div
                         className="px-6 py-5"
                         style={{
-                          background: 'linear-gradient(135deg, #f0fdff 0%, #f0f6ff 100%)',
+                          background: 'linear-gradient(135deg, #f6f9fc 0%, #f6f9fc 100%)',
                         }}
                       >
                         <p
-                          className="text-sm md:text-base text-slate-600 leading-relaxed"
+                          className="text-sm md:text-base text-[#64748d] leading-relaxed"
                           style={{ fontFamily: 'var(--font-inter)' }}
                         >
                           {faq.a}
@@ -204,14 +204,14 @@ export function FaqSection() {
           transition={{ duration: 0.6, delay: 0.3 }}
           viewport={{ once: true }}
         >
-          <p className="text-slate-500 text-sm mb-4" style={{ fontFamily: 'var(--font-inter)' }}>
+          <p className="text-[#64748d] text-sm mb-4" style={{ fontFamily: 'var(--font-inter)' }}>
             Still have questions? Talk to our team.
           </p>
           <button
             id="faq-cta-book-demo"
             className="px-8 py-3 rounded-xl font-bold text-sm text-white tracking-wide uppercase transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5 shadow-lg shadow-cyan-500/20"
             style={{
-              background: 'linear-gradient(to right, #06b6d4, #2563eb)',
+              background: 'linear-gradient(to right, #533afd, #ea2261)',
               fontFamily: 'var(--font-inter)',
             }}
           >
@@ -222,7 +222,7 @@ export function FaqSection() {
       </div>
 
       {/* Bottom accent line */}
-      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-300/60 to-transparent" />
+      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#533afd]/60 to-transparent" />
     </section>
   )
 }

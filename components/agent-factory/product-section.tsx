@@ -35,13 +35,13 @@ export function ProductSection() {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: 'linear-gradient(rgba(6,182,212,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(6,182,212,0.04) 1px, transparent 1px)',
+          backgroundImage: 'linear-gradient(rgba(83,58,253,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(83,58,253,0.04) 1px, transparent 1px)',
           backgroundSize: '60px 60px',
         }}
       />
 
       {/* Top accent line */}
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-300/60 to-transparent" />
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#533afd]/60 to-transparent" />
 
       <div className="relative z-10 max-w-7xl mx-auto">
 
@@ -57,7 +57,7 @@ export function ProductSection() {
             className="text-2xl sm:text-3xl lg:text-4xl xl:text-[2.5rem] font-bold leading-tight"
             style={{
               fontFamily: 'var(--font-inter)',
-              background: 'linear-gradient(to right, #06b6d4, #2563eb)',
+              background: 'linear-gradient(to right, #533afd, #ea2261)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
@@ -67,7 +67,7 @@ export function ProductSection() {
             <br className="hidden md:block" />
             but Poor in Insights
           </h2>
-          <p className="text-base md:text-lg text-slate-500 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-[#64748d] leading-relaxed max-w-2xl mx-auto">
             Data-driven decision-making remains a challenge, even with millions of dollars spent on analytics.
           </p>
         </motion.div>
@@ -88,24 +88,24 @@ export function ProductSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 whileHover={{
                   y: -10,
-                  boxShadow: '0 20px 48px -8px rgba(6,182,212,0.28), 0 8px 24px -4px rgba(37,99,235,0.18)',
+                  boxShadow: '0 20px 48px -8px rgba(83,58,253,0.28), 0 8px 24px -4px rgba(234,34,97,0.18)',
                 }}
                 transition={{ duration: 0.6, delay: i * 0.14 }}
                 viewport={{ once: true, amount: 0.3 }}
               >
                 {/* Hover gradient fill */}
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-50/70 to-blue-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-350 rounded-2xl" />
+                <div className="absolute inset-0 bg-gradient-to-br from-[#f6f9fc]/70 to-blue-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-350 rounded-2xl" />
 
                 {/* Top accent bar — thicker, always visible at low opacity, full on hover */}
                 <div
                   className="absolute top-0 left-0 w-full h-[3px] opacity-20 group-hover:opacity-100 transition-all duration-350"
-                  style={{ background: 'linear-gradient(to right, #06b6d4, #2563eb)' }}
+                  style={{ background: 'linear-gradient(to right, #533afd, #ea2261)' }}
                 />
 
                 {/* Left accent side line on hover */}
                 <div
                   className="absolute top-0 left-0 w-[3px] h-0 group-hover:h-full transition-all duration-500 ease-out rounded-bl-2xl"
-                  style={{ background: 'linear-gradient(to bottom, #06b6d4, #2563eb)' }}
+                  style={{ background: 'linear-gradient(to bottom, #533afd, #ea2261)' }}
                 />
 
                 <div className="relative z-10 space-y-5">
@@ -113,14 +113,14 @@ export function ProductSection() {
                   <div className="flex items-center justify-between">
                     <motion.div
                       className="w-11 h-11 rounded-xl flex items-center justify-center"
-                      style={{ background: 'linear-gradient(135deg, #e0f7ff 0%, #dbeafe 100%)' }}
+                      style={{ background: 'linear-gradient(135deg, #f6f9fc 0%, #f5e9d4 100%)' }}
                       whileHover={{ scale: 1.12, rotate: -4 }}
                       transition={{ type: 'spring', stiffness: 300, damping: 18 }}
                     >
-                      <Icon className="w-5 h-5 text-cyan-600" strokeWidth={1.8} />
+                      <Icon className="w-5 h-5 text-[#533afd]" strokeWidth={1.8} />
                     </motion.div>
                     <span
-                      className="text-4xl font-black text-slate-100 select-none group-hover:text-cyan-200 transition-colors duration-300"
+                      className="text-4xl font-black text-slate-100 select-none group-hover:text-[#665efd] transition-colors duration-300"
                       style={{ fontFamily: 'var(--font-inter)' }}
                     >
                       {p.number}
@@ -129,17 +129,17 @@ export function ProductSection() {
 
                   {/* Title */}
                   <h3
-                    className="text-base font-bold text-slate-800 leading-snug tracking-wide group-hover:text-slate-900 transition-colors duration-200"
+                    className="text-base font-bold text-[#0d253d] leading-snug tracking-wide group-hover:text-[#0d253d] transition-colors duration-200"
                     style={{ fontFamily: 'var(--font-inter)' }}
                   >
                     {p.title}
                   </h3>
 
                   {/* Divider — expands on hover */}
-                  <div className="h-px bg-gradient-to-r from-cyan-400 to-blue-400 w-10 group-hover:w-20 transition-all duration-400 ease-out" />
+                  <div className="h-px bg-gradient-to-r from-[#533afd] to-[#ea2261] w-10 group-hover:w-20 transition-all duration-400 ease-out" />
 
                   {/* Description */}
-                  <p className="text-sm text-slate-500 leading-relaxed group-hover:text-slate-600 transition-colors duration-200">
+                  <p className="text-sm text-[#64748d] leading-relaxed group-hover:text-[#64748d] transition-colors duration-200">
                     {p.description}
                   </p>
                 </div>
@@ -150,7 +150,7 @@ export function ProductSection() {
       </div>
 
       {/* Bottom accent line */}
-      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-300/60 to-transparent" />
+      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#533afd]/60 to-transparent" />
     </section>
   )
 }

@@ -9,22 +9,22 @@ const resources = [
     type: 'E-BOOK',
     title: 'Trust or Bust: How to Deliver Accurate AI-Powered Analytics',
     visual: (
-      <div className="w-full h-full bg-gradient-to-br from-cyan-100 to-blue-200 p-6 flex flex-col relative overflow-hidden group-hover:scale-105 transition-transform duration-500">
+      <div className="w-full h-full bg-gradient-to-br from-[#f6f9fc] to-[#f5e9d4] p-6 flex flex-col relative overflow-hidden group-hover:scale-105 transition-transform duration-500">
         <div className="flex items-center gap-2 mb-3">
           <div className="w-4 h-4 rounded bg-slate-900/10 flex items-center justify-center">
             <div className="w-2 h-2 bg-slate-900 rounded-sm"></div>
           </div>
-          <span className="text-slate-700 text-[8px] font-bold" style={{ fontFamily: 'var(--font-inter)' }}>ThoughtSpot</span>
+          <span className="text-[#0d253d] text-[8px] font-bold" style={{ fontFamily: 'var(--font-inter)' }}>ThoughtSpot</span>
         </div>
-        <div className="text-slate-600 text-[8px] font-bold tracking-wider mb-1" style={{ fontFamily: 'var(--font-inter)' }}>EBOOK</div>
-        <div className="text-slate-800 text-lg sm:text-xl font-bold leading-tight z-10 w-3/4" style={{ fontFamily: 'var(--font-inter)' }}>
+        <div className="text-[#64748d] text-[8px] font-bold tracking-wider mb-1" style={{ fontFamily: 'var(--font-inter)' }}>EBOOK</div>
+        <div className="text-[#0d253d] text-lg sm:text-xl font-bold leading-tight z-10 w-3/4" style={{ fontFamily: 'var(--font-inter)' }}>
           Trust or Bust<br/>
-          <span className="text-[10px] sm:text-xs font-normal text-slate-600">How to Deliver Accurate<br/>AI-Powered Analytics</span>
+          <span className="text-[10px] sm:text-xs font-normal text-[#64748d]">How to Deliver Accurate<br/>AI-Powered Analytics</span>
         </div>
         <div className="mt-auto z-10 pt-4">
           <div className="bg-slate-900 text-white text-[7px] px-3 py-1.5 rounded w-fit uppercase font-bold tracking-wider">GET THE GUIDE</div>
         </div>
-        <div className="absolute right-4 top-1/2 -translate-y-1/2 w-16 h-16 bg-blue-600 rounded-2xl rotate-12 flex items-center justify-center shadow-xl">
+        <div className="absolute right-4 top-1/2 -translate-y-1/2 w-16 h-16 bg-[#ea2261] rounded-2xl rotate-12 flex items-center justify-center shadow-xl">
            <ShieldCheck className="w-8 h-8 text-white" />
         </div>
         <div className="absolute right-0 top-0 w-32 h-32 bg-white/20 rounded-full blur-2xl"></div>
@@ -42,19 +42,19 @@ const resources = [
           </div>
           <span className="text-slate-300 text-[8px] font-bold" style={{ fontFamily: 'var(--font-inter)' }}>ThoughtSpot</span>
         </div>
-        <div className="text-cyan-400 text-[8px] font-bold tracking-wider mb-1" style={{ fontFamily: 'var(--font-inter)' }}>WEBINAR</div>
+        <div className="text-[#665efd] text-[8px] font-bold tracking-wider mb-1" style={{ fontFamily: 'var(--font-inter)' }}>WEBINAR</div>
         <div className="text-white text-lg sm:text-xl font-bold leading-tight z-10 w-2/3" style={{ fontFamily: 'var(--font-inter)' }}>
           The Fastest<br/>Path from Data<br/>to Insight
         </div>
         <div className="mt-auto z-10 pt-4">
-          <div className="bg-cyan-500 text-white text-[7px] px-3 py-1.5 rounded w-fit uppercase font-bold tracking-wider">REGISTER NOW</div>
+          <div className="bg-[#533afd] text-white text-[7px] px-3 py-1.5 rounded w-fit uppercase font-bold tracking-wider">REGISTER NOW</div>
         </div>
         <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center">
-           <div className="w-12 h-12 bg-cyan-500/20 rounded-full border border-cyan-500/50 flex items-center justify-center -mr-2 z-10 backdrop-blur-sm">
-             <Zap className="w-5 h-5 text-cyan-400" />
+           <div className="w-12 h-12 bg-[#533afd]/20 rounded-full border border-[#533afd]/50 flex items-center justify-center -mr-2 z-10 backdrop-blur-sm">
+             <Zap className="w-5 h-5 text-[#665efd]" />
            </div>
            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg">
-             <span className="text-slate-900 font-bold text-lg">T</span>
+             <span className="text-[#0d253d] font-bold text-lg">T</span>
            </div>
         </div>
       </div>
@@ -71,18 +71,18 @@ const resources = [
           </div>
           <span className="text-slate-300 text-[8px] font-bold" style={{ fontFamily: 'var(--font-inter)' }}>ThoughtSpot</span>
         </div>
-        <div className="text-cyan-400 text-[8px] font-bold tracking-wider mb-1" style={{ fontFamily: 'var(--font-inter)' }}>ANALYST REPORT</div>
+        <div className="text-[#665efd] text-[8px] font-bold tracking-wider mb-1" style={{ fontFamily: 'var(--font-inter)' }}>ANALYST REPORT</div>
         <div className="text-white text-lg sm:text-xl font-bold leading-tight z-10 w-2/3" style={{ fontFamily: 'var(--font-inter)' }}>
-          Build with<br/>the Best in<br/><span className="text-cyan-400">Embedded<br/>Analytics</span>
+          Build with<br/>the Best in<br/><span className="text-[#665efd]">Embedded<br/>Analytics</span>
         </div>
         <div className="mt-auto z-10 pt-4">
-          <div className="bg-cyan-500 text-white text-[7px] px-3 py-1.5 rounded w-fit uppercase font-bold tracking-wider">LEARN MORE</div>
+          <div className="bg-[#533afd] text-white text-[7px] px-3 py-1.5 rounded w-fit uppercase font-bold tracking-wider">LEARN MORE</div>
         </div>
         <div className="absolute right-4 top-4 bottom-4 w-[45%] bg-white rounded flex items-center justify-center p-2">
-          <div className="w-full h-full border-l border-b border-slate-200 relative flex items-center justify-center">
+          <div className="w-full h-full border-l border-[#533afd] border-slate-200 relative flex items-center justify-center">
              <BarChart2 className="w-8 h-8 text-slate-200" />
-             <div className="absolute w-1.5 h-1.5 rounded-full bg-cyan-500 top-2 left-2"></div>
-             <div className="absolute w-1.5 h-1.5 rounded-full bg-blue-500 top-6 left-6"></div>
+             <div className="absolute w-1.5 h-1.5 rounded-full bg-[#533afd] top-2 left-2"></div>
+             <div className="absolute w-1.5 h-1.5 rounded-full bg-[#ea2261] top-6 left-6"></div>
              <div className="absolute w-1.5 h-1.5 rounded-full bg-indigo-500 bottom-4 right-4"></div>
              <div className="absolute w-1.5 h-1.5 rounded-full bg-violet-500 top-4 right-8"></div>
              <div className="absolute w-1.5 h-1.5 rounded-full bg-rose-500 bottom-6 left-4"></div>
@@ -97,7 +97,7 @@ const resources = [
 
 export function LearnMoreSection() {
   return (
-    <section className="relative w-full bg-gradient-to-br from-white via-[#f0f8ff] to-cyan-50/60 py-24 px-6 overflow-hidden">
+    <section className="relative w-full bg-gradient-to-br from-white via-[#f6f9fc] to-[#f6f9fc]/60 py-24 px-6 overflow-hidden">
 
       {/* ── Half-bubble blob — LEFT ── */}
       <div
@@ -110,7 +110,7 @@ export function LearnMoreSection() {
           height: '55vw',
           maxWidth: '680px',
           maxHeight: '680px',
-          background: '#cce9f8',
+          background: '#e3e8ee',
           borderRadius: '50%',
           opacity: 0.48,
           filter: 'blur(2px)',
@@ -131,7 +131,7 @@ export function LearnMoreSection() {
             className="text-2xl sm:text-3xl lg:text-4xl xl:text-[2.5rem] font-bold leading-tight"
             style={{
               fontFamily: 'var(--font-inter)',
-              background: 'linear-gradient(to right, #06b6d4, #2563eb)',
+              background: 'linear-gradient(to right, #533afd, #ea2261)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
@@ -143,7 +143,7 @@ export function LearnMoreSection() {
 
         {/* ── Cards + pagination border box ── */}
         <motion.div
-          className="border border-[#38bdf8] rounded-xl p-8 bg-transparent space-y-10"
+          className="border border-[#e3e8ee] rounded-xl p-8 bg-transparent space-y-10"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
@@ -168,12 +168,12 @@ export function LearnMoreSection() {
                 {/* Label */}
                 <div className="space-y-1.5 px-1 mt-2">
                   <span
-                    className="text-[10px] font-semibold uppercase text-slate-500"
+                    className="text-[10px] font-semibold uppercase text-[#64748d]"
                     style={{ fontFamily: 'var(--font-inter)' }}
                   >
                     {r.type}
                   </span>
-                  <h3 className="text-[13px] font-medium text-slate-700 leading-snug">
+                  <h3 className="text-[13px] font-medium text-[#0d253d] leading-snug">
                     {r.title}
                   </h3>
                 </div>
@@ -185,11 +185,11 @@ export function LearnMoreSection() {
         {/* Pagination arrows and line */}
         <div className="relative mt-12 flex items-center justify-center max-w-4xl mx-auto">
           <div className="absolute left-0 right-0 h-px bg-slate-300" />
-          <div className="relative bg-[#f6fbff] px-4 flex gap-3">
-            <button className="w-8 h-8 rounded-full border border-slate-400 flex items-center justify-center text-slate-600 hover:bg-slate-200 transition-colors">
+          <div className="relative bg-[#f6f9fc] px-4 flex gap-3">
+            <button className="w-8 h-8 rounded-full border border-slate-400 flex items-center justify-center text-[#64748d] hover:bg-slate-200 transition-colors">
               <ChevronLeft className="w-4 h-4" />
             </button>
-            <button className="w-8 h-8 rounded-full border border-slate-400 flex items-center justify-center text-slate-600 hover:bg-slate-200 transition-colors">
+            <button className="w-8 h-8 rounded-full border border-slate-400 flex items-center justify-center text-[#64748d] hover:bg-slate-200 transition-colors">
               <ChevronRight className="w-4 h-4" />
             </button>
           </div>
