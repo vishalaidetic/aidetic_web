@@ -32,16 +32,6 @@ export function Footer() {
             <p className="text-sm text-slate-500 leading-relaxed">
               {SITE_DESCRIPTION}
             </p>
-            
-            {/* Badges */}
-            <div className="flex gap-3">
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-[11px] font-semibold text-slate-600 shadow-sm">
-                <div className="w-2 h-2 rounded-full bg-[#1B2340]"></div> SOC 2
-              </div>
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-[11px] font-semibold text-slate-600 shadow-sm">
-                <div className="w-2 h-2 rounded-full bg-[#1B2340]"></div> ISO 27001
-              </div>
-            </div>
 
             {/* Copyright */}
             <p className="text-xs text-slate-400 pt-4">

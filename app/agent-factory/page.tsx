@@ -8,6 +8,7 @@ import { ProductSection } from '@/components/agent-factory/product-section'
 import { ScaleSection } from '@/components/agent-factory/scale-section'
 import { LearnMoreSection } from '@/components/agent-factory/learn-more-section'
 import { FaqSection } from '@/components/agent-factory/faq-section'
+import { CtaSection } from '@/components/agent-factory/cta-section'
 
 export const metadata = {
   title: 'Agent Factory | Aidetic',
@@ -26,6 +27,7 @@ export default function AgentFactoryPage() {
         <CmoSection />
         {/* <ScaleSection /> */}
         <LearnMoreSection />
+        <CtaSection />
         <FaqSection />
       </main>
       <Footer />

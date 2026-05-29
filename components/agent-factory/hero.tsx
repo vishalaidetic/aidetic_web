@@ -28,26 +28,23 @@ export function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
           {/* ── Left: Copy ── */}
-          <div className="space-y-7 lg:col-span-7">
+          <div className="flex flex-col lg:col-span-7">
 
             {/* Eyebrow */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
+              className="mb-2"
             >
-              <span
-                className="font-semibold tracking-widest text-sm uppercase"
-                style={{
-                  fontFamily: 'var(--font-inter)',
-                  background: 'linear-gradient(to right, #533afd, #ea2261)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                }}
-              >
-                AGENT FACTORY
-              </span>
+              <Image
+                src="/agent-fac-logo.png"
+                alt="Agent Factory Logo"
+                width={180}
+                height={60}
+                className="h-12 sm:h-14 w-auto object-contain object-left"
+                priority
+              />
             </motion.div>
 
             {/* Headline */}
@@ -55,6 +52,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.08 }}
+              className="mb-6"
             >
               <h1
                 className="text-[2rem] sm:text-[2.25rem] lg:text-[2.5rem] xl:text-[2.75rem] font-semibold text-[#0d253d] leading-[1.15]"
@@ -67,7 +65,8 @@ export function Hero() {
 
             {/* Body */}
             <motion.p
-              className="text-lg md:text-xl text-[#0d253d] leading-relaxed max-w-lg"
+              className="text-lg md:text-xl text-[#0d253d] leading-relaxed max-w-lg mb-8"
+              style={{ fontFamily: 'var(--font-quicksand)' }}
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.16 }}

@@ -196,29 +196,6 @@ export function FaqSection() {
           })}
         </motion.div>
 
-        {/* ── Bottom CTA ── */}
-        <motion.div
-          className="mt-14 text-center"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-        >
-          <p className="text-[#64748d] text-sm mb-4" style={{ fontFamily: 'var(--font-inter)' }}>
-            Still have questions? Talk to our team.
-          </p>
-          <button
-            id="faq-cta-book-demo"
-            className="px-8 py-3 rounded-xl font-bold text-sm text-white tracking-wide uppercase transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5 shadow-lg shadow-cyan-500/20"
-            style={{
-              background: 'linear-gradient(to right, #533afd, #ea2261)',
-              fontFamily: 'var(--font-inter)',
-            }}
-          >
-            Book a Demo
-          </button>
-        </motion.div>
-
       </div>
 
       {/* Bottom accent line */}

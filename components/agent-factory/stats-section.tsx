@@ -22,7 +22,7 @@ const stats = [
   {
     value: 80,
     suffix: '%',
-    label: 'Reduction in time your data\nteam spends on repetitive reporting',
+    label: 'Reduction in time your data\nteam spends on reporting',
   },
 ]
 
