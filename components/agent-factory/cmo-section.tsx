@@ -49,7 +49,7 @@ export function CmoSection() {
             >
               Hi! I am Anurag, CMO at Aidetic.
             </h4>
-            <p className="text-sm md:text-base text-[#64748d]">
+            <p className="text-sm md:text-base text-[#64748d]" style={{ fontFamily: 'var(--font-quicksand)' }}>
               Curious how Agent Factory will help your business?
             </p>
           </div>

@@ -90,7 +90,7 @@ export function FaqSection() {
           >
             Frequently Asked Questions
           </h2>
-          <p className="text-base md:text-lg text-[#64748d] max-w-xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg text-[#64748d] max-w-xl mx-auto leading-relaxed" style={{ fontFamily: 'var(--font-quicksand)' }}>
             Everything you need to know about Agent Factory before you get started.
           </p>
         </motion.div>
@@ -183,7 +183,7 @@ export function FaqSection() {
                       >
                         <p
                           className="text-sm md:text-base text-[#64748d] leading-relaxed"
-                          style={{ fontFamily: 'var(--font-inter)' }}
+                          style={{ fontFamily: 'var(--font-quicksand)' }}
                         >
                           {faq.a}
                         </p>

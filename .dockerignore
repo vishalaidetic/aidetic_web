@@ -7,6 +7,10 @@ out
 # ─── Dependencies (copied fresh inside Docker) ──
 node_modules
 
+# Exclude pnpm lockfile — Docker uses npm (package-lock.json)
+# Without this, Next.js detects pnpm-lock.yaml and tries to invoke pnpm which is not installed
+pnpm-lock.yaml
+
 # ─── Version control ────────────────────────────
 .git
 .gitignore

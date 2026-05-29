@@ -60,7 +60,7 @@ export function FeatureCard({
           >
             {title}
           </h2>
-          <p className="text-base text-[#64748d] leading-relaxed max-w-lg">{description}</p>
+          <p className="text-base text-[#64748d] leading-relaxed max-w-lg" style={{ fontFamily: 'var(--font-quicksand)' }}>{description}</p>
         </motion.div>
 
         {/* Visual side — white card */}

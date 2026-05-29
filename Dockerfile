@@ -1,5 +1,5 @@
 # ──────────────────────────────────────────────
-# Stage 1 – deps: install production deps only
+# Stage 1 – deps: install dependencies with npm
 # ──────────────────────────────────────────────
 FROM node:22-alpine AS deps
 
@@ -8,10 +8,10 @@ RUN apk add --no-cache libc6-compat
 
 WORKDIR /app
 
-# Copy lock file and package.json first to leverage layer caching
-COPY package.json package-lock.json* ./
+# Copy package files to leverage Docker layer caching
+COPY package.json package-lock.json ./
 
-# Use npm ci for a clean, reproducible install
+# Clean install — uses package-lock.json for reproducible builds
 RUN npm ci
 
 # ──────────────────────────────────────────────
@@ -52,10 +52,10 @@ RUN addgroup --system --gid 1001 nodejs && \
 # Copy public assets
 COPY --from=builder /app/public ./public
 
-# Create .next directory and set correct ownership
+# Create .next directory with correct ownership
 RUN mkdir -p .next && chown nextjs:nodejs .next
 
-# Copy the standalone Next.js server (smallest possible runtime)
+# Copy only the minimal standalone output (no raw source, no devDependencies)
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static    ./.next/static
 
@@ -67,5 +67,5 @@ EXPOSE 3000
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
-# Start the standalone server
+# Start the standalone Next.js server
 CMD ["node", "server.js"]

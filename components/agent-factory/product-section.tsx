@@ -67,7 +67,7 @@ export function ProductSection() {
             <br className="hidden md:block" />
             but Poor in Insights
           </h2>
-          <p className="text-base md:text-lg text-[#64748d] leading-relaxed max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-[#64748d] leading-relaxed max-w-2xl mx-auto" style={{ fontFamily: 'var(--font-quicksand)' }}>
             Data-driven decision-making remains a challenge, even with millions of dollars spent on analytics.
           </p>
         </motion.div>
@@ -139,7 +139,7 @@ export function ProductSection() {
                   <div className="h-px bg-gradient-to-r from-[#533afd] to-[#ea2261] w-10 group-hover:w-20 transition-all duration-400 ease-out" />
 
                   {/* Description */}
-                  <p className="text-sm text-[#64748d] leading-relaxed group-hover:text-[#64748d] transition-colors duration-200">
+                  <p className="text-sm text-[#64748d] leading-relaxed group-hover:text-[#64748d] transition-colors duration-200" style={{ fontFamily: 'var(--font-quicksand)' }}>
                     {p.description}
                   </p>
                 </div>
