@@ -2,11 +2,17 @@ import { Providers } from '@/components/layout/providers'
 import { SITE_DESCRIPTION, SITE_NAME } from '@/lib/utils/constants'
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Geist, Geist_Mono, Plus_Jakarta_Sans } from 'next/font/google'
 import './globals.css'
 
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  weight: ['300', '400', '500', '600', '700', '800'],
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: {
@@ -58,7 +64,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className="scroll-smooth snap-y snap-mandatory">
-      <body className="bg-background text-foreground font-sans antialiased">
+      <body className={`bg-background text-foreground font-sans antialiased ${plusJakartaSans.variable}`}>
         <Providers>
           <div className="mx-auto max-w-[1920px]">
             {children}

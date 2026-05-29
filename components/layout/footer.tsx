@@ -1,5 +1,6 @@
 import { SITE_DESCRIPTION, SITE_NAME } from '@/lib/utils/constants'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Linkedin, Twitter } from 'lucide-react'
 
 /**
@@ -17,11 +18,14 @@ export function Footer() {
           {/* Left Column - Brand & Info */}
           <div className="flex flex-col space-y-5 max-w-sm">
             {/* Logo */}
-            <div className="flex items-center gap-2">
-              <div className="flex h-9 w-9 items-center justify-center rounded bg-gradient-to-br from-[#1B2340] to-[#DC2626] text-white font-bold text-sm italic shadow-md">
-                Aj
-              </div>
-              <span className="font-bold text-[#1B2340] text-xl tracking-tight">{SITE_NAME}</span>
+            <div className="flex items-center">
+              <Image
+                src="/Aideticlogo.png"
+                alt="Aidetic Logo"
+                width={260}
+                height={100}
+                className="h-36 w-auto object-contain"
+              />
             </div>
             
             {/* Description */}

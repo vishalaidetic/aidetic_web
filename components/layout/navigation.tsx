@@ -3,6 +3,7 @@
 import { cn } from '@/lib/utils'
 import { LayoutDashboard, Menu, X } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
@@ -71,19 +72,14 @@ export function Navigation({ adminEmail: adminEmailProp }: NavigationProps = {})
 
           {/* Logo / Brand */}
           <Link href="/" className="flex items-center gap-3 group shrink-0">
-            <div className="flex flex-col items-start">
-              <div className="flex items-center gap-2">
-                <div className="flex h-8 w-8 items-center justify-center rounded-md bg-[#DC2626] text-white font-bold text-sm italic shadow-md group-hover:bg-[#B91C1C] transition-colors duration-200">
-                  Aj
-                </div>
-                <span className="font-bold text-[#1B2340] text-lg tracking-wide group-hover:text-[#DC2626] transition-colors duration-200">
-                  AIDETIC
-                </span>
-              </div>
-              <span className="text-[10px] text-slate-500 leading-none tracking-wider pl-10">
-                Simplifying AI Adoption
-              </span>
-            </div>
+            <Image
+              src="/Aideticlogo.png"
+              alt="Aidetic Logo"
+              width={200}
+              height={64}
+              className="h-14 w-auto object-contain"
+              priority
+            />
           </Link>
 
           {/* ── Desktop navigation (Center) ── */}
