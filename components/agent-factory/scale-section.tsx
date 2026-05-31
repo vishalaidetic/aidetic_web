@@ -51,10 +51,9 @@ export function ScaleSection() {
           height: '55vw',
           maxWidth: '680px',
           maxHeight: '680px',
-          background: '#e3e8ee',
+          background: 'linear-gradient(to left, transparent 0%, transparent 40%, rgba(234,34,97,0.55) 52%, rgba(234,34,97,0.35) 65%, rgba(83,58,253,0.35) 82%, rgba(204,233,248,0.70) 100%)',
           borderRadius: '50%',
-          opacity: 0.48,
-          filter: 'blur(2px)',
+          opacity: 0.65,
         }}
       />
 

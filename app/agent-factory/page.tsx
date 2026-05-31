@@ -21,8 +21,8 @@ export default function AgentFactoryPage() {
       <Navigation />
       <main className="w-full">
         <Hero />
-        <StatsSection />
         <ProductSection />
+        <StatsSection />
         <FeaturesSection />
         <CmoSection />
         {/* <ScaleSection /> */}

@@ -35,25 +35,21 @@ export function CtaSection() {
           </div>
 
           <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center gap-8">
-            <h2 
-              className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#0d253d] leading-tight max-w-4xl tracking-tight" 
-              style={{ fontFamily: 'var(--font-inter)' }}
+            <h2
+              className="text-[2rem] sm:text-[2.25rem] lg:text-[2.5rem] xl:text-[2.75rem] font-semibold leading-[1.15]"
+              style={{
+                fontFamily: 'var(--font-inter)',
+                background: 'linear-gradient(to right, #533afd, #ea2261)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}
             >
-              <span 
-                style={{
-                  background: 'linear-gradient(to right, #533afd, #ea2261)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                }}
-              >
-                It's not 2016 anymore.
-              </span>
-              <br />
-              <span className="text-2xl md:text-3xl lg:text-4xl mt-2 block text-[#0d253d]">
-                You shouldn't need a week, a dashboard, or a data team to make one decision.
-              </span>
+              It's not 2016 anymore.
             </h2>
+            <p className="text-lg md:text-xl text-[#0d253d] leading-relaxed max-w-2xl mx-auto" style={{ fontFamily: 'var(--font-quicksand)' }}>
+              You shouldn't need a week, a dashboard, or a data team to make one decision.
+            </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-4 mt-2">
               <Link
@@ -61,7 +57,7 @@ export function CtaSection() {
                 className="px-8 py-3.5 rounded-xl bg-[#533afd] text-white font-bold shadow-lg shadow-[#533afd]/20 hover:bg-[#4434d4] hover:-translate-y-0.5 transition-all text-sm uppercase tracking-wider"
                 style={{ fontFamily: 'var(--font-inter)' }}
               >
-                Book a Demo
+                Book a Call
               </Link>
 
             </div>

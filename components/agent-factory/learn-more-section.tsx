@@ -110,10 +110,9 @@ export function LearnMoreSection() {
           height: '55vw',
           maxWidth: '680px',
           maxHeight: '680px',
-          background: '#e3e8ee',
+          background: 'linear-gradient(to right, transparent 0%, transparent 40%, rgba(234,34,97,0.55) 52%, rgba(234,34,97,0.35) 65%, rgba(83,58,253,0.35) 82%, rgba(204,233,248,0.70) 100%)',
           borderRadius: '50%',
-          opacity: 0.48,
-          filter: 'blur(2px)',
+          opacity: 0.65,
         }}
       />
 
@@ -128,7 +127,7 @@ export function LearnMoreSection() {
           viewport={{ once: true, amount: 0.4 }}
         >
           <h2
-            className="text-2xl sm:text-3xl lg:text-4xl xl:text-[2.5rem] font-bold leading-tight"
+            className="text-[2rem] sm:text-[2.25rem] lg:text-[2.5rem] xl:text-[2.75rem] font-semibold leading-[1.15]"
             style={{
               fontFamily: 'var(--font-inter)',
               background: 'linear-gradient(to right, #533afd, #ea2261)',

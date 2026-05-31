@@ -1,16 +1,16 @@
 'use client'
 
-import { motion, useInView } from 'framer-motion'
-import { useRef, useEffect, useState } from 'react'
+import { motion, useInView } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
 
 const stats = [
   {
-    value: 30,
-    suffix: '%',
+    value: '1/3',
+    suffix: '',
     label: 'Reduction in\nyour analytics cost',
   },
   {
-    value: 2,
+    value: 6,
     suffix: 'x',
     label: 'Faster Decision\nMaking and Actions',
   },
@@ -66,9 +66,9 @@ function NetworkMesh() {
           <line x1="80" y1="0" x2="0" y2="80" stroke="#7dd3f0" strokeWidth="0.4" strokeOpacity="0.2" />
           {/* Node dots at intersections */}
           <circle cx="40" cy="40" r="1.5" fill="#4fc3e8" fillOpacity="0.4" />
-          <circle cx="0"  cy="0"  r="1.2" fill="#4fc3e8" fillOpacity="0.3" />
-          <circle cx="80" cy="0"  r="1.2" fill="#4fc3e8" fillOpacity="0.3" />
-          <circle cx="0"  cy="80" r="1.2" fill="#4fc3e8" fillOpacity="0.3" />
+          <circle cx="0" cy="0" r="1.2" fill="#4fc3e8" fillOpacity="0.3" />
+          <circle cx="80" cy="0" r="1.2" fill="#4fc3e8" fillOpacity="0.3" />
+          <circle cx="0" cy="80" r="1.2" fill="#4fc3e8" fillOpacity="0.3" />
           <circle cx="80" cy="80" r="1.2" fill="#4fc3e8" fillOpacity="0.3" />
         </pattern>
       </defs>
@@ -82,21 +82,20 @@ export function StatsSection() {
     <section className="relative py-16 px-6 overflow-hidden bg-white">
 
       <div className="max-w-6xl mx-auto">
-        {/* ── Half-bubble blob — RIGHT ── */}
+        {/* ── Half-bubble blob — LEFT ── */}
         <div
           className="absolute pointer-events-none"
           style={{
             top: '50%',
-            right: '-28%',
+            left: '-28%',
             transform: 'translateY(-50%)',
             width: '55vw',
             height: '55vw',
             maxWidth: '700px',
             maxHeight: '700px',
-            background: '#e3e8ee',
+            background: 'linear-gradient(to right, transparent 0%, transparent 40%, rgba(234,34,97,0.55) 52%, rgba(234,34,97,0.35) 65%, rgba(83,58,253,0.35) 82%, rgba(204,233,248,0.70) 100%)',
             borderRadius: '50%',
-            opacity: 0.55,
-            filter: 'blur(2px)',
+            opacity: 0.65,
           }}
         />
 
@@ -113,7 +112,7 @@ export function StatsSection() {
           {/* ── Content ── */}
           <div className="relative z-10 text-center space-y-4 mb-12">
             <h2
-              className="text-2xl sm:text-3xl lg:text-4xl xl:text-[2.5rem] font-bold leading-tight"
+              className="text-[2rem] sm:text-[2.25rem] lg:text-[2.5rem] xl:text-[2.75rem] font-semibold leading-[1.15]"
               style={{
                 fontFamily: 'var(--font-inter)',
                 background: 'linear-gradient(to right, #533afd, #ea2261)',
@@ -124,7 +123,7 @@ export function StatsSection() {
             >
               What Agent Factory Brings to the Table
             </h2>
-            <p className="text-[#64748d] text-base md:text-lg max-w-2xl mx-auto leading-relaxed" style={{ fontFamily: 'var(--font-quicksand)' }}>
+            <p className="text-[#0d253d] text-lg md:text-xl max-w-2xl mx-auto leading-relaxed" style={{ fontFamily: 'var(--font-quicksand)' }}>
               No dashboards. No waiting. No guesswork. Just decisions backed by your data.
             </p>
           </div>

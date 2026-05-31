@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Clock, LayoutDashboard, Inbox } from 'lucide-react'
+import { Clock, Inbox, LayoutDashboard } from 'lucide-react'
 
 const pillars = [
   {
@@ -43,7 +43,7 @@ export function ProductSection() {
       {/* Top accent line */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#533afd]/60 to-transparent" />
 
-      <div className="relative z-10 max-w-7xl mx-auto">
+      <div className="relative z-10 max-w-6xl mx-auto px-2">
 
         {/* ── Eyebrow + Headline ── */}
         <motion.div
@@ -54,7 +54,7 @@ export function ProductSection() {
           viewport={{ once: true, amount: 0.4 }}
         >
           <h2
-            className="text-2xl sm:text-3xl lg:text-4xl xl:text-[2.5rem] font-bold leading-tight"
+            className="text-[2rem] sm:text-[2.25rem] lg:text-[2.5rem] xl:text-[2.75rem] font-semibold leading-[1.15]"
             style={{
               fontFamily: 'var(--font-inter)',
               background: 'linear-gradient(to right, #533afd, #ea2261)',
@@ -67,13 +67,13 @@ export function ProductSection() {
             <br className="hidden md:block" />
             but Poor in Insights
           </h2>
-          <p className="text-base md:text-lg text-[#64748d] leading-relaxed max-w-2xl mx-auto" style={{ fontFamily: 'var(--font-quicksand)' }}>
+          <p className="text-lg md:text-xl text-[#0d253d] leading-relaxed max-w-2xl mx-auto" style={{ fontFamily: 'var(--font-quicksand)' }}>
             Data-driven decision-making remains a challenge, even with millions of dollars spent on analytics.
           </p>
         </motion.div>
 
         {/* ── Three Pillar Cards ── */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
           {pillars.map((p, i) => {
             const Icon = p.icon
             return (
@@ -129,7 +129,7 @@ export function ProductSection() {
 
                   {/* Title */}
                   <h3
-                    className="text-base font-bold text-[#0d253d] leading-snug tracking-wide group-hover:text-[#0d253d] transition-colors duration-200"
+                    className="text-base font-semibold text-[#0d253d] leading-snug tracking-wide group-hover:text-[#0d253d] transition-colors duration-200"
                     style={{ fontFamily: 'var(--font-inter)' }}
                   >
                     {p.title}
@@ -139,7 +139,7 @@ export function ProductSection() {
                   <div className="h-px bg-gradient-to-r from-[#533afd] to-[#ea2261] w-10 group-hover:w-20 transition-all duration-400 ease-out" />
 
                   {/* Description */}
-                  <p className="text-sm text-[#64748d] leading-relaxed group-hover:text-[#64748d] transition-colors duration-200" style={{ fontFamily: 'var(--font-quicksand)' }}>
+                  <p className="text-sm text-[#0d253d] leading-relaxed group-hover:text-[#0d253d] transition-colors duration-200" style={{ fontFamily: 'var(--font-quicksand)' }}>
                     {p.description}
                   </p>
                 </div>

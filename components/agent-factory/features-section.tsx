@@ -7,13 +7,13 @@ import {
   BarChart2,
   ChevronDown,
   Cloud,
+  Database,
   FileText,
   Layers,
   MessageSquare,
   Plug,
   Search,
-  Zap,
-  Database
+  Zap
 } from 'lucide-react'
 import { FeatureCard } from './feature-card'
 
@@ -272,7 +272,7 @@ function IntegrationMockup() {
         <div className="flex-1 flex flex-col items-center justify-center relative px-8 py-6">
           {/* Background horizontal line */}
           <div className="absolute left-12 right-12 top-[calc(50%-10px)] h-[2px] bg-slate-100 z-0" />
-          
+
           <div className="flex items-start justify-between w-full z-10">
             {/* Source 1 */}
             <div className="flex flex-col items-center gap-2">
@@ -293,7 +293,7 @@ function IntegrationMockup() {
             {/* Center */}
             <div className="flex flex-col items-center gap-2">
               <div className="px-4 py-3 h-12 rounded-2xl bg-[#533afd] flex items-center justify-center shadow-xl shadow-[#533afd]/20 ring-4 ring-white">
-                <span className="text-white text-[11px] font-bold text-center leading-tight tracking-wider" style={{ fontFamily: 'var(--font-inter)' }}>Agent<br/>Factory</span>
+                <span className="text-white text-[11px] font-bold text-center leading-tight tracking-wider" style={{ fontFamily: 'var(--font-inter)' }}>Agent<br />Factory</span>
               </div>
             </div>
 
@@ -368,7 +368,7 @@ export function FeaturesSection() {
           viewport={{ once: true, amount: 0.4 }}
         >
           <h2
-            className="text-2xl sm:text-3xl lg:text-4xl xl:text-[2.5rem] font-bold leading-tight"
+            className="text-[2rem] sm:text-[2.25rem] lg:text-[2.5rem] xl:text-[2.75rem] font-semibold leading-[1.15]"
             style={{
               fontFamily: 'var(--font-inter)',
               background: 'linear-gradient(to right, #533afd, #ea2261)',
@@ -377,9 +377,9 @@ export function FeaturesSection() {
               backgroundClip: 'text',
             }}
           >
-            Why CXOs and Stakeholders love Agent Factory
+            Why Businesses Love Agent Factory
           </h2>
-          <p className="text-[#64748d] text-base md:text-lg leading-relaxed max-w-2xl mx-auto" style={{ fontFamily: 'var(--font-quicksand)' }}>
+          <p className="text-[#0d253d] text-lg md:text-xl leading-relaxed max-w-2xl mx-auto" style={{ fontFamily: 'var(--font-quicksand)' }}>
             It works the way they think. No SQL. No tickets to the data team. Just plain-English questions and answers they can act on.
           </p>
         </motion.div>

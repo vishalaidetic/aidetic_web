@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden flex flex-col justify-center bg-white pt-28 pb-6">
+    <section className="relative overflow-hidden flex flex-col justify-start bg-white pt-20 pb-10 min-h-screen">
 
       {/* ── Half-circle: center above top edge, left side fades to transparent ── */}
       <div
@@ -13,14 +13,14 @@ export function Hero() {
         style={{
           top: 0,
           left: '48%',
-          transform: 'translate(-50%, -65%)',
+          transform: 'translate(-50%, -68%)',
           width: '65vw',
           height: '65vw',
           maxWidth: '700px',
           maxHeight: '700px',
           borderRadius: '50%',
-          background: 'linear-gradient(to right, rgba(204,233,248,0) 0%, rgba(204,233,248,0) 30%, rgba(204,233,248,0.6) 50%, #e3e8ee 65%, #e3e8ee 100%)',
-          opacity: 0.85,
+          background: 'linear-gradient(to right, transparent 0%, transparent 45%, rgba(234,34,97,0.38) 55%, rgba(83,58,253,0.35) 78%, rgba(204,233,248,0.75) 100%)',
+          opacity: 0.7,
         }}
       />
 
@@ -86,7 +86,7 @@ export function Hero() {
                 className="px-6 py-2.5 rounded-md font-bold text-sm text-white tracking-widest uppercase transition-all duration-200 hover:opacity-90 hover:-translate-y-px"
                 style={{ background: '#533afd', fontFamily: 'var(--font-inter)' }}
               >
-                REQUEST A DEMO
+                BOOK A CALL
               </button>
               <button
                 id="hero-cta-try"
@@ -139,7 +139,7 @@ export function Hero() {
                   style={{ fontFamily: 'var(--font-inter)' }}
                 >
                   <span className="text-[#665efd] font-bold">Book</span>
-                  <span className="text-white/80"> a demo today</span>
+                  <span className="text-white/80"> a call today</span>
                 </p>
               </div>
             </div>
@@ -153,7 +153,7 @@ export function Hero() {
           transition={{ duration: 0.7, delay: 0.5 }}
         >
           <p
-            className="font-semibold tracking-[0.2em] text-xs uppercase mb-6 text-center"
+            className="font-bold tracking-[0.25em] text-sm uppercase mb-8 text-center"
             style={{
               fontFamily: 'var(--font-inter)',
               background: 'linear-gradient(to right, #533afd, #ea2261)',
@@ -167,7 +167,7 @@ export function Hero() {
 
           {/* Marquee wrapper with fade-edge mask */}
           <div
-            className="relative overflow-hidden border-t border-[#533afd] border-slate-200 py-5"
+            className="relative overflow-hidden border-t border-b border-[#533afd]/30 py-8 mb-8"
             style={{
               maskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)',
               WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)',
@@ -203,9 +203,8 @@ export function Hero() {
               ].map((brand, i) => (
                 <span
                   key={i}
-                  className={`flex items-center gap-1.5 whitespace-nowrap select-none text-[#533afd]/80 tracking-wide ${
-                    brand.bold ? 'text-xl font-black italic' : 'text-base font-semibold'
-                  }`}
+                  className={`flex items-center gap-2 whitespace-nowrap select-none text-[#533afd]/80 tracking-wide ${brand.bold ? 'text-2xl font-black italic' : 'text-lg font-semibold'
+                    }`}
                   style={{ fontFamily: 'var(--font-inter)' }}
                 >
                   {brand.prefix && <span className="text-sm">{brand.prefix}</span>}

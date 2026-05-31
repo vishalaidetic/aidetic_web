@@ -37,14 +37,15 @@ export function FeatureCard({
           height: '50vw',
           maxWidth: '620px',
           maxHeight: '620px',
-          background: '#e3e8ee',
+          background: reversed
+            ? 'linear-gradient(to right, transparent 0%, transparent 40%, rgba(234,34,97,0.55) 52%, rgba(234,34,97,0.35) 65%, rgba(83,58,253,0.35) 82%, rgba(204,233,248,0.70) 100%)'
+            : 'linear-gradient(to left, transparent 0%, transparent 40%, rgba(234,34,97,0.55) 52%, rgba(234,34,97,0.35) 65%, rgba(83,58,253,0.35) 82%, rgba(204,233,248,0.70) 100%)',
           borderRadius: '50%',
-          opacity: 0.48,
-          filter: 'blur(2px)',
+          opacity: 0.65,
         }}
       />
 
-      <div className="relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div className="relative max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
         {/* Text side */}
         <motion.div
@@ -55,12 +56,12 @@ export function FeatureCard({
           viewport={viewport}
         >
           <h2
-            className="text-3xl md:text-4xl font-bold leading-tight tracking-wide text-[#0d253d]"
+            className="text-lg md:text-xl font-bold leading-tight tracking-wide text-[#0d253d]"
             style={{ fontFamily: 'var(--font-inter)' }}
           >
             {title}
           </h2>
-          <p className="text-base text-[#64748d] leading-relaxed max-w-lg" style={{ fontFamily: 'var(--font-quicksand)' }}>{description}</p>
+          <p className="text-md text-[#0d253d] leading-relaxed max-w-lg" style={{ fontFamily: 'var(--font-quicksand)' }}>{description}</p>
         </motion.div>
 
         {/* Visual side — white card */}

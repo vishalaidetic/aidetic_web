@@ -70,9 +70,9 @@ export function FaqSection() {
           transition={{ duration: 0.7 }}
           viewport={{ once: true, amount: 0.4 }}
         >
-          {/* Eyebrow */}
-          <span
-            className="inline-block text-xs font-bold tracking-widest uppercase mb-2"
+
+          <h2
+            className="text-[2rem] sm:text-[2.25rem] lg:text-[2.5rem] xl:text-[2.75rem] font-semibold leading-[1.15]"
             style={{
               fontFamily: 'var(--font-inter)',
               background: 'linear-gradient(to right, #533afd, #ea2261)',
@@ -81,16 +81,9 @@ export function FaqSection() {
               backgroundClip: 'text',
             }}
           >
-            Got Questions?
-          </span>
-
-          <h2
-            className="text-3xl sm:text-4xl xl:text-[2.5rem] font-bold leading-tight text-[#0d253d]"
-            style={{ fontFamily: 'var(--font-inter)' }}
-          >
             Frequently Asked Questions
           </h2>
-          <p className="text-base md:text-lg text-[#64748d] max-w-xl mx-auto leading-relaxed" style={{ fontFamily: 'var(--font-quicksand)' }}>
+          <p className="text-lg md:text-xl text-[#0d253d] leading-relaxed max-w-2xl mx-auto" style={{ fontFamily: 'var(--font-quicksand)' }}>
             Everything you need to know about Agent Factory before you get started.
           </p>
         </motion.div>

@@ -14,26 +14,37 @@ export function CmoSection() {
           transition={{ duration: 0.6, ease: 'easeOut' }}
           viewport={{ once: true, amount: 0.4 }}
         >
-          {/* Soft bubble background inside the card */}
+          {/* Brand gradient background bubbles */}
           <div
             className="absolute pointer-events-none"
             style={{
               top: '50%',
-              right: '-10%',
+              right: '-8%',
               transform: 'translateY(-50%)',
-              width: '350px',
-              height: '350px',
-              background: '#e3e8ee',
+              width: '320px',
+              height: '320px',
+              background: 'radial-gradient(circle, rgba(83,58,253,0.18) 0%, rgba(234,34,97,0.10) 60%, transparent 80%)',
               borderRadius: '50%',
-              opacity: 0.5,
-              filter: 'blur(60px)',
+              filter: 'blur(32px)',
+            }}
+          />
+          <div
+            className="absolute pointer-events-none"
+            style={{
+              top: '10%',
+              right: '20%',
+              width: '160px',
+              height: '160px',
+              background: 'radial-gradient(circle, rgba(234,34,97,0.14) 0%, transparent 70%)',
+              borderRadius: '50%',
+              filter: 'blur(24px)',
             }}
           />
           {/* Avatar */}
           <div className="shrink-0 relative w-20 h-20 md:w-24 md:h-24 rounded-full p-1 bg-gradient-to-br from-[#533afd] to-blue-500">
             <div className="w-full h-full rounded-full overflow-hidden border-2 border-white relative bg-slate-200">
-              <Image 
-                src="/placeholder-user.jpg"
+              <Image
+                src="/anurag.jpeg"
                 alt="Anurag - CMO"
                 fill
                 className="object-cover"
@@ -63,7 +74,7 @@ export function CmoSection() {
                 fontFamily: 'var(--font-inter)',
               }}
             >
-              BOOK A DEMO
+              BOOK A CALL
             </button>
           </div>
         </motion.div>
