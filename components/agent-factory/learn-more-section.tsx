@@ -1,8 +1,7 @@
 'use client'
 
-import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { ChevronLeft, ChevronRight, ShieldCheck, Zap, BarChart2 } from 'lucide-react'
+import { BarChart2, ShieldCheck, Zap } from 'lucide-react'
 
 const resources = [
   {
@@ -18,14 +17,14 @@ const resources = [
         </div>
         <div className="text-[#64748d] text-[8px] font-bold tracking-wider mb-1" style={{ fontFamily: 'var(--font-inter)' }}>EBOOK</div>
         <div className="text-[#0d253d] text-lg sm:text-xl font-bold leading-tight z-10 w-3/4" style={{ fontFamily: 'var(--font-inter)' }}>
-          Trust or Bust<br/>
-          <span className="text-[10px] sm:text-xs font-normal text-[#64748d]">How to Deliver Accurate<br/>AI-Powered Analytics</span>
+          Trust or Bust<br />
+          <span className="text-[10px] sm:text-xs font-normal text-[#64748d]">How to Deliver Accurate<br />AI-Powered Analytics</span>
         </div>
         <div className="mt-auto z-10 pt-4">
           <div className="bg-slate-900 text-white text-[7px] px-3 py-1.5 rounded w-fit uppercase font-bold tracking-wider">GET THE GUIDE</div>
         </div>
         <div className="absolute right-4 top-1/2 -translate-y-1/2 w-16 h-16 bg-[#ea2261] rounded-2xl rotate-12 flex items-center justify-center shadow-xl">
-           <ShieldCheck className="w-8 h-8 text-white" />
+          <ShieldCheck className="w-8 h-8 text-white" />
         </div>
         <div className="absolute right-0 top-0 w-32 h-32 bg-white/20 rounded-full blur-2xl"></div>
       </div>
@@ -44,18 +43,18 @@ const resources = [
         </div>
         <div className="text-[#665efd] text-[8px] font-bold tracking-wider mb-1" style={{ fontFamily: 'var(--font-inter)' }}>WEBINAR</div>
         <div className="text-white text-lg sm:text-xl font-bold leading-tight z-10 w-2/3" style={{ fontFamily: 'var(--font-inter)' }}>
-          The Fastest<br/>Path from Data<br/>to Insight
+          The Fastest<br />Path from Data<br />to Insight
         </div>
         <div className="mt-auto z-10 pt-4">
           <div className="bg-[#533afd] text-white text-[7px] px-3 py-1.5 rounded w-fit uppercase font-bold tracking-wider">REGISTER NOW</div>
         </div>
         <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center">
-           <div className="w-12 h-12 bg-[#533afd]/20 rounded-full border border-[#533afd]/50 flex items-center justify-center -mr-2 z-10 backdrop-blur-sm">
-             <Zap className="w-5 h-5 text-[#665efd]" />
-           </div>
-           <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg">
-             <span className="text-[#0d253d] font-bold text-lg">T</span>
-           </div>
+          <div className="w-12 h-12 bg-[#533afd]/20 rounded-full border border-[#533afd]/50 flex items-center justify-center -mr-2 z-10 backdrop-blur-sm">
+            <Zap className="w-5 h-5 text-[#665efd]" />
+          </div>
+          <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg">
+            <span className="text-[#0d253d] font-bold text-lg">T</span>
+          </div>
         </div>
       </div>
     )
@@ -73,21 +72,21 @@ const resources = [
         </div>
         <div className="text-[#665efd] text-[8px] font-bold tracking-wider mb-1" style={{ fontFamily: 'var(--font-inter)' }}>ANALYST REPORT</div>
         <div className="text-white text-lg sm:text-xl font-bold leading-tight z-10 w-2/3" style={{ fontFamily: 'var(--font-inter)' }}>
-          Build with<br/>the Best in<br/><span className="text-[#665efd]">Embedded<br/>Analytics</span>
+          Build with<br />the Best in<br /><span className="text-[#665efd]">Embedded<br />Analytics</span>
         </div>
         <div className="mt-auto z-10 pt-4">
           <div className="bg-[#533afd] text-white text-[7px] px-3 py-1.5 rounded w-fit uppercase font-bold tracking-wider">LEARN MORE</div>
         </div>
         <div className="absolute right-4 top-4 bottom-4 w-[45%] bg-white rounded flex items-center justify-center p-2">
           <div className="w-full h-full border-l border-[#533afd] border-slate-200 relative flex items-center justify-center">
-             <BarChart2 className="w-8 h-8 text-slate-200" />
-             <div className="absolute w-1.5 h-1.5 rounded-full bg-[#533afd] top-2 left-2"></div>
-             <div className="absolute w-1.5 h-1.5 rounded-full bg-[#ea2261] top-6 left-6"></div>
-             <div className="absolute w-1.5 h-1.5 rounded-full bg-indigo-500 bottom-4 right-4"></div>
-             <div className="absolute w-1.5 h-1.5 rounded-full bg-violet-500 top-4 right-8"></div>
-             <div className="absolute w-1.5 h-1.5 rounded-full bg-rose-500 bottom-6 left-4"></div>
-             <div className="absolute w-1 h-1 rounded-full bg-orange-400 top-2 right-2"></div>
-             <div className="absolute w-1 h-1 rounded-full bg-emerald-400 bottom-2 right-6"></div>
+            <BarChart2 className="w-8 h-8 text-slate-200" />
+            <div className="absolute w-1.5 h-1.5 rounded-full bg-[#533afd] top-2 left-2"></div>
+            <div className="absolute w-1.5 h-1.5 rounded-full bg-[#ea2261] top-6 left-6"></div>
+            <div className="absolute w-1.5 h-1.5 rounded-full bg-indigo-500 bottom-4 right-4"></div>
+            <div className="absolute w-1.5 h-1.5 rounded-full bg-violet-500 top-4 right-8"></div>
+            <div className="absolute w-1.5 h-1.5 rounded-full bg-rose-500 bottom-6 left-4"></div>
+            <div className="absolute w-1 h-1 rounded-full bg-orange-400 top-2 right-2"></div>
+            <div className="absolute w-1 h-1 rounded-full bg-emerald-400 bottom-2 right-6"></div>
           </div>
         </div>
       </div>
@@ -130,7 +129,7 @@ export function LearnMoreSection() {
             className="text-[2rem] sm:text-[2.25rem] lg:text-[2.5rem] xl:text-[2.75rem] font-semibold leading-[1.15]"
             style={{
               fontFamily: 'var(--font-inter)',
-              background: 'linear-gradient(to right, #533afd, #ea2261)',
+              background: 'linear-gradient(to right, #533afd, #000000)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
@@ -180,9 +179,9 @@ export function LearnMoreSection() {
             ))}
           </div>
         </motion.div>
-        
+
         {/* Pagination arrows and line */}
-        <div className="relative mt-12 flex items-center justify-center max-w-4xl mx-auto">
+        {/* <div className="relative mt-12 flex items-center justify-center max-w-4xl mx-auto">
           <div className="absolute left-0 right-0 h-px bg-slate-300" />
           <div className="relative bg-[#f6f9fc] px-4 flex gap-3">
             <button className="w-8 h-8 rounded-full border border-slate-400 flex items-center justify-center text-[#64748d] hover:bg-slate-200 transition-colors">
@@ -192,7 +191,7 @@ export function LearnMoreSection() {
               <ChevronRight className="w-4 h-4" />
             </button>
           </div>
-        </div>
+        </div> */}
 
       </div>
     </section>

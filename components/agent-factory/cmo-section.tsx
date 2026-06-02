@@ -14,32 +14,6 @@ export function CmoSection() {
           transition={{ duration: 0.6, ease: 'easeOut' }}
           viewport={{ once: true, amount: 0.4 }}
         >
-          {/* Brand gradient background bubbles */}
-          <div
-            className="absolute pointer-events-none"
-            style={{
-              top: '50%',
-              right: '-8%',
-              transform: 'translateY(-50%)',
-              width: '320px',
-              height: '320px',
-              background: 'radial-gradient(circle, rgba(83,58,253,0.18) 0%, rgba(234,34,97,0.10) 60%, transparent 80%)',
-              borderRadius: '50%',
-              filter: 'blur(32px)',
-            }}
-          />
-          <div
-            className="absolute pointer-events-none"
-            style={{
-              top: '10%',
-              right: '20%',
-              width: '160px',
-              height: '160px',
-              background: 'radial-gradient(circle, rgba(234,34,97,0.14) 0%, transparent 70%)',
-              borderRadius: '50%',
-              filter: 'blur(24px)',
-            }}
-          />
           {/* Avatar */}
           <div className="shrink-0 relative w-20 h-20 md:w-24 md:h-24 rounded-full p-1 bg-gradient-to-br from-[#533afd] to-blue-500">
             <div className="w-full h-full rounded-full overflow-hidden border-2 border-white relative bg-slate-200">
@@ -68,9 +42,9 @@ export function CmoSection() {
           {/* CTA Button */}
           <div className="shrink-0 mt-4 md:mt-0">
             <button
-              className="px-8 py-3 rounded-lg font-bold text-sm text-white tracking-widest uppercase transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5 shadow-lg shadow-cyan-500/25"
+              className="px-8 py-3 rounded-lg font-bold text-sm text-white tracking-widest uppercase transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5"
               style={{
-                background: 'linear-gradient(to right, #533afd, #ea2261)',
+                background: 'linear-gradient(to right, #533afd',
                 fontFamily: 'var(--font-inter)',
               }}
             >

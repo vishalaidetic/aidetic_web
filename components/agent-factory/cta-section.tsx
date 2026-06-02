@@ -39,7 +39,7 @@ export function CtaSection() {
               className="text-[2rem] sm:text-[2.25rem] lg:text-[2.5rem] xl:text-[2.75rem] font-semibold leading-[1.15]"
               style={{
                 fontFamily: 'var(--font-inter)',
-                background: 'linear-gradient(to right, #533afd, #ea2261)',
+                background: 'linear-gradient(to right, #533afd, #000000)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',

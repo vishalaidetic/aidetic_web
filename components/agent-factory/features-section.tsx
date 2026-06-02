@@ -23,8 +23,8 @@ function MockupShell({ children }: { children: React.ReactNode }) {
       {/* Dark top bar */}
       <div className="flex items-center gap-3 px-4 py-3 bg-[#1c1e54] z-30 relative">
         <Image
-          src="/Aideticlogo.png"
-          alt="Aidetic"
+          src="/agent-fac-logo.png"
+          alt="Agent Factory"
           width={80}
           height={24}
           className="h-5 w-auto object-contain brightness-0 invert"
@@ -371,7 +371,7 @@ export function FeaturesSection() {
             className="text-[2rem] sm:text-[2.25rem] lg:text-[2.5rem] xl:text-[2.75rem] font-semibold leading-[1.15]"
             style={{
               fontFamily: 'var(--font-inter)',
-              background: 'linear-gradient(to right, #533afd, #ea2261)',
+              background: 'linear-gradient(to right, #533afd, #000000)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',

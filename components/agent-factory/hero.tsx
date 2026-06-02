@@ -1,9 +1,26 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import Image from 'next/image'
+import { AnimatePresence, motion } from 'framer-motion';
+import Image from 'next/image';
+import { useRef, useState } from 'react';
 
 export function Hero() {
+  const [showInput, setShowInput] = useState(false);
+  const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleMouseEnter = () => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+      hoverTimeoutRef.current = null;
+    }
+    setShowInput(true);
+  };
+
+  const handleMouseLeave = () => {
+    hoverTimeoutRef.current = setTimeout(() => {
+      setShowInput(false);
+    }, 2000);
+  };
   return (
     <section className="relative overflow-hidden flex flex-col justify-start bg-white pt-20 pb-10 min-h-screen">
 
@@ -55,8 +72,14 @@ export function Hero() {
               className="mb-6"
             >
               <h1
-                className="text-[2rem] sm:text-[2.25rem] lg:text-[2.5rem] xl:text-[2.75rem] font-semibold text-[#0d253d] leading-[1.15]"
-                style={{ fontFamily: 'var(--font-inter)' }}
+                className="text-[2rem] sm:text-[2.25rem] lg:text-[2.5rem] xl:text-[2.75rem] font-semibold leading-[1.15]"
+                style={{
+                  fontFamily: 'var(--font-inter)',
+                  background: 'linear-gradient(to right, #533afd, #000000)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}
               >
                 AI Agents that Answer<br />
                 Your Business Questions
@@ -76,25 +99,55 @@ export function Hero() {
 
             {/* CTA Buttons */}
             <motion.div
-              className="flex flex-wrap gap-4 pt-2"
+              className="flex flex-wrap gap-4 pt-2 min-h-[44px]"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.24 }}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
             >
-              <button
-                id="hero-cta-demo"
-                className="px-6 py-2.5 rounded-md font-bold text-sm text-white tracking-widest uppercase transition-all duration-200 hover:opacity-90 hover:-translate-y-px"
-                style={{ background: '#533afd', fontFamily: 'var(--font-inter)' }}
-              >
-                BOOK A CALL
-              </button>
-              <button
-                id="hero-cta-try"
-                className="px-6 py-2.5 rounded-md font-bold text-sm text-white tracking-widest uppercase bg-slate-900 hover:bg-slate-800 transition-all duration-200 hover:-translate-y-px"
-                style={{ fontFamily: 'var(--font-inter)' }}
-              >
-                TRY IT NOW
-              </button>
+              <AnimatePresence mode="wait">
+                {!showInput ? (
+                  <motion.button
+                    key="btn"
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 30 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                    id="hero-cta-demo"
+                    className="px-6 py-2.5 rounded-md font-bold text-sm text-white tracking-widest uppercase transition-all duration-200 hover:opacity-90 hover:-translate-y-px"
+                    style={{ background: '#533afd', fontFamily: 'var(--font-inter)' }}
+                  >
+                    BOOK A CALL
+                  </motion.button>
+                ) : (
+                  <motion.form
+                    key="form"
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 30 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                    className="flex flex-wrap sm:flex-nowrap items-center gap-2 w-full max-w-sm"
+                    onSubmit={(e) => { e.preventDefault(); setShowInput(false); }}
+                  >
+                    <input
+                      type="email"
+                      placeholder="Enter your email ID"
+                      required
+                      autoFocus
+                      className="flex-1 px-4 py-2.5 rounded-md border border-slate-200 text-sm focus:outline-none focus:border-[#533afd] focus:ring-1 focus:ring-[#533afd] transition-all bg-white text-[#0d253d] shadow-sm w-full"
+                      style={{ fontFamily: 'var(--font-inter)' }}
+                    />
+                    <button
+                      type="submit"
+                      className="px-6 py-2.5 rounded-md font-bold text-sm text-white tracking-widest uppercase transition-all duration-200 hover:opacity-90 hover:-translate-y-px shadow-sm shrink-0"
+                      style={{ background: '#533afd', fontFamily: 'var(--font-inter)' }}
+                    >
+                      SEND
+                    </button>
+                  </motion.form>
+                )}
+              </AnimatePresence>
             </motion.div>
           </div>
 
@@ -125,8 +178,8 @@ export function Hero() {
                 {/* Logo row */}
                 <div className="flex items-center gap-3">
                   <Image
-                    src="/Aideticlogo.png"
-                    alt="Aidetic"
+                    src="/agent-fac-logo.png"
+                    alt="Agent Factory"
                     width={140}
                     height={40}
                     className="h-8 w-auto object-contain brightness-0 invert"
@@ -156,7 +209,7 @@ export function Hero() {
             className="font-bold tracking-[0.25em] text-sm uppercase mb-8 text-center"
             style={{
               fontFamily: 'var(--font-inter)',
-              background: 'linear-gradient(to right, #533afd, #ea2261)',
+              background: 'linear-gradient(to right, #533afd, #000000)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
