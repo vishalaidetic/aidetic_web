@@ -8,6 +8,7 @@ import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 import { adminLogoutAction } from '@/app/admin/actions'
+import { BookCallDialog } from '@/components/shared/book-call-dialog'
 
 interface NavLink {
   href: string
@@ -200,11 +201,11 @@ export function Navigation({ adminEmail: adminEmailProp }: NavigationProps = {})
               </div>
             ) : (
               /* Guest */
-              <Link href="/dashboard">
+              <BookCallDialog>
                 <button className="text-sm font-bold px-6 py-2.5 rounded-lg bg-gradient-to-r from-[#1B2340] to-[#DC2626] hover:opacity-90 text-white border-none shadow-md transition-all duration-200 hover:shadow-lg hover:scale-[1.02]">
-                  Book a Call
+                  Request a Call
                 </button>
-              </Link>
+              </BookCallDialog>
             )}
           </div>
 
@@ -273,11 +274,11 @@ export function Navigation({ adminEmail: adminEmailProp }: NavigationProps = {})
                 </>
               ) : (
                 /* Guest */
-                <Link href="/dashboard" onClick={() => setMobileMenuOpen(false)}>
+                <BookCallDialog>
                   <button className="w-full text-sm font-bold px-5 py-3 rounded-lg bg-gradient-to-r from-[#1B2340] to-[#DC2626] hover:opacity-90 text-white border-none shadow-md transition-all duration-200">
-                    Book a Call
+                    Request a Call
                   </button>
-                </Link>
+                </BookCallDialog>
               )}
             </div>
           </div>

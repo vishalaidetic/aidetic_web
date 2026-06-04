@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { BookCallDialog } from '@/components/shared/book-call-dialog'
 
 export function CtaSection() {
   return (
@@ -52,13 +53,14 @@ export function CtaSection() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-4 mt-2">
-              <Link
-                href="/demo"
-                className="px-8 py-3.5 rounded-xl bg-[#533afd] text-white font-bold shadow-lg shadow-[#533afd]/20 hover:bg-[#4434d4] hover:-translate-y-0.5 transition-all text-sm uppercase tracking-wider"
-                style={{ fontFamily: 'var(--font-inter)' }}
-              >
-                Book a Call
-              </Link>
+              <BookCallDialog>
+                <button
+                  className="px-8 py-3.5 rounded-xl bg-[#533afd] text-white font-bold shadow-lg shadow-[#533afd]/20 hover:bg-[#4434d4] hover:-translate-y-0.5 transition-all text-sm uppercase tracking-wider"
+                  style={{ fontFamily: 'var(--font-inter)' }}
+                >
+                  Request a Call
+                </button>
+              </BookCallDialog>
 
             </div>
           </div>

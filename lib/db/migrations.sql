@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS public.blogs (
   author         TEXT        NOT NULL,
   featured_image TEXT,
   published      BOOLEAN     DEFAULT FALSE,
+  is_featured    BOOLEAN     DEFAULT FALSE,
   tag_type       TEXT,
   created_by     TEXT,
   updated_by     TEXT,
@@ -23,6 +24,7 @@ CREATE TABLE IF NOT EXISTS public.blogs (
 --    (safe to run multiple times — ADD COLUMN IF NOT EXISTS)
 ALTER TABLE public.blogs
   ADD COLUMN IF NOT EXISTS tag_type   TEXT,
+  ADD COLUMN IF NOT EXISTS is_featured BOOLEAN DEFAULT FALSE,
   ADD COLUMN IF NOT EXISTS created_by TEXT,
   ADD COLUMN IF NOT EXISTS updated_by TEXT;
 
@@ -111,3 +113,18 @@ CREATE TRIGGER case_studies_updated_at_trigger
   BEFORE UPDATE ON public.case_studies
   FOR EACH ROW EXECUTE FUNCTION update_case_studies_updated_at();
 
+
+-- ============================================================
+-- Meeting Requests table
+-- ============================================================
+
+CREATE TABLE IF NOT EXISTS public.meeting_requests (
+  id             UUID        PRIMARY KEY DEFAULT gen_random_uuid(),
+  name           TEXT        NOT NULL,
+  email          TEXT        NOT NULL,
+  organization   TEXT        NOT NULL,
+  purpose        TEXT        NOT NULL,
+  created_at     TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_meeting_requests_created_at ON public.meeting_requests(created_at DESC);

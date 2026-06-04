@@ -125,6 +125,11 @@
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* Guarantee cursor pointer for all clickable elements */
+  button, a, [role="button"] {
+    cursor: pointer !important;
+  }
 }
 
 

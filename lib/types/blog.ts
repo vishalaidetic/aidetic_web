@@ -37,6 +37,7 @@ export const BlogSchema = z.object({
   featured_image: z.string().url('Invalid image URL').nullable(),
   published: z.boolean().default(false),
   tag_type: z.string().nullable(),
+  is_featured: z.boolean().default(false),
   created_by: z.string().max(255).nullable(),
   updated_by: z.string().max(255).nullable(),
   created_at: z.string(),
@@ -57,6 +58,7 @@ export const BlogCreateInputSchema = z.object({
   featured_image: z.string().url('Invalid image URL').optional().nullable(),
   published: z.boolean().default(false),
   tag_type: z.string().optional().nullable(),
+  is_featured: z.boolean().default(false).optional(),
   created_by: z.string().max(255).optional().nullable(),
   updated_by: z.string().max(255).optional().nullable(),
 })

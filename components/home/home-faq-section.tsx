@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Plus, X, ChevronRight } from 'lucide-react'
+import { BookCallDialog } from '@/components/shared/book-call-dialog'
 import Link from 'next/link'
 
 const homeFaqs = [
@@ -79,15 +80,15 @@ export function HomeFaqSection() {
               transition={{ duration: 0.6, delay: 0.3 }} 
               viewport={{ once: true }}
             >
-              <Link href="/dashboard/blogs/create">
+              <BookCallDialog>
                 <button
                   id="hero-cta-demo"
                   className="inline-flex items-center gap-2 px-6 py-2.5 rounded-md font-bold text-sm text-white tracking-widest uppercase transition-all duration-200 hover:opacity-90 hover:-translate-y-px"
                   style={{ background: '#533afd', fontFamily: 'var(--font-inter)' }}
                 >
-                  Book a Call
+                  Request a Call
                 </button>
-              </Link>
+              </BookCallDialog>
             </motion.div>
           </div>
 

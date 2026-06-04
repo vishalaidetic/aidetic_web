@@ -1,4 +1,4 @@
-import { DeleteBlogButton } from '@/components/admin/delete-blog-button'
+import { BlogActionsMenu } from '@/components/admin/blog-actions-menu'
 import { DeleteCaseStudyButton } from '@/components/admin/delete-case-study-button'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -6,7 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { getBlogRepository } from '@/lib/db/blog_queries'
 import { getCaseStudyRepository } from '@/lib/db/case_study_queries'
 import { formatDate } from '@/lib/utils/formatting'
-import { BookOpen, Calendar, Edit, Eye, EyeOff, FileText, Plus, TrendingUp } from 'lucide-react'
+import { BookOpen, Calendar, Edit, Eye, EyeOff, FileText, Plus, TrendingUp, ChevronDown, ChevronUp } from 'lucide-react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
@@ -15,14 +15,25 @@ export const metadata: Metadata = {
   description: 'Manage blog posts and case studies',
 }
 
-export default async function DashboardPage() {
+export default async function DashboardPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}) {
   try {
+    const resolvedParams = await searchParams
+    const sortOrder = resolvedParams.sort === 'asc' ? 'asc' : 'desc'
+
     const blogRepo = getBlogRepository()
     const caseStudyRepo = getCaseStudyRepository()
 
     const { blogs: publishedBlogs } = await blogRepo.listBlogs({ page: 1, limit: 100, published: 'true' })
     const { blogs: draftBlogs } = await blogRepo.listBlogs({ page: 1, limit: 100, published: 'false' })
-    const allBlogs = [...publishedBlogs, ...draftBlogs]
+    const allBlogs = [...publishedBlogs, ...draftBlogs].sort((a, b) => {
+      const timeA = new Date(a.created_at).getTime()
+      const timeB = new Date(b.created_at).getTime()
+      return sortOrder === 'asc' ? timeA - timeB : timeB - timeA
+    })
 
     const { case_studies: publishedCaseStudies } = await caseStudyRepo.listCaseStudies({ page: 1, limit: 100, published: 'true' })
     const { case_studies: draftCaseStudies } = await caseStudyRepo.listCaseStudies({ page: 1, limit: 100, published: 'false' })
@@ -118,8 +129,14 @@ export default async function DashboardPage() {
                   <thead>
                     <tr className="bg-[#F5F5F5] text-[#6B7280]">
                       <th className="text-left py-3.5 px-6 font-semibold text-xs uppercase tracking-wider">Title</th>
+                      <th className="text-left py-3.5 px-6 font-semibold text-xs uppercase tracking-wider">Featured</th>
                       <th className="text-left py-3.5 px-6 font-semibold text-xs uppercase tracking-wider">Status</th>
-                      <th className="text-left py-3.5 px-6 font-semibold text-xs uppercase tracking-wider">Created</th>
+                      <th className="text-left py-3.5 px-6 font-semibold text-xs uppercase tracking-wider">
+                        <Link href={`/dashboard?sort=${sortOrder === 'asc' ? 'desc' : 'asc'}`} className="flex items-center gap-1 hover:text-[#1A1A1A] w-fit transition-colors">
+                          Created
+                          {sortOrder === 'asc' ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+                        </Link>
+                      </th>
                       <th className="text-left py-3.5 px-6 font-semibold text-xs uppercase tracking-wider">Actions</th>
                     </tr>
                   </thead>
@@ -133,6 +150,13 @@ export default async function DashboardPage() {
                             </div>
                             <span className="font-medium text-[#1A1A1A] line-clamp-1 group-hover:text-[#DC2626] transition-colors">{blog.title}</span>
                           </div>
+                        </td>
+                        <td className="py-4 px-6">
+                          {blog.is_featured ? (
+                            <span className="text-[#533afd] font-semibold text-xs bg-[#533afd]/10 px-2 py-1 rounded-md">True</span>
+                          ) : (
+                            <span className="text-[#6B7280] font-medium text-xs">False</span>
+                          )}
                         </td>
                         <td className="py-4 px-6">
                           {blog.published ? (
@@ -152,14 +176,7 @@ export default async function DashboardPage() {
                           </div>
                         </td>
                         <td className="py-4 px-6">
-                          <div className="flex gap-2">
-                            <Link href={`/dashboard/blogs/${blog.id}/edit`}>
-                              <Button size="sm" variant="outline" className="border-[#1B2340]/20 text-[#1B2340] hover:bg-[#1B2340] hover:text-white gap-1.5 h-8 px-3 transition-all duration-200">
-                                <Edit size={13} /> Edit
-                              </Button>
-                            </Link>
-                            <DeleteBlogButton id={blog.id} />
-                          </div>
+                          <BlogActionsMenu blog={blog} />
                         </td>
                       </tr>
                     )) : (

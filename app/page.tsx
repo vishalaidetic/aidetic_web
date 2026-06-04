@@ -3,11 +3,13 @@ import { Footer } from '@/components/layout/footer';
 import { Navigation } from '@/components/layout/navigation';
 import { DashboardMock } from '@/components/home/dashboard-mock';
 import { HomeFaqSection } from '@/components/home/home-faq-section';
+import { BookCallDialog } from '@/components/shared/book-call-dialog';
 
 import { AnimatePresence, motion, useInView } from "framer-motion";
 import { Activity, ArrowRight, Bot, Brain, ChevronDown, ChevronRight, Database, FileText, Layers, MousePointer2, Plug, RefreshCw, Send, ShieldCheck, Upload, Zap } from "lucide-react";
 import { Outfit, Playfair_Display } from 'next/font/google';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
 const outfit = Outfit({ subsets: ['latin'] })
@@ -920,10 +922,11 @@ export default function HomePage() {
                         transition={{ duration: 0.4 }}
                         className="absolute left-1/2 -translate-x-1/2 whitespace-nowrap"
                         style={{
-                          background: 'linear-gradient(to right, #533afd, #1c1e54)',
+                          background: 'linear-gradient(to right, #533afd, #2563eb)',
                           WebkitBackgroundClip: 'text',
                           WebkitTextFillColor: 'transparent',
                           backgroundClip: 'text',
+                          fontFamily: 'var(--font-quicksand)'
                         }}
                       >
                         {heroTextIndex === 0 ? 'Agentic AI Solutions' : 'Data Migration Solutions'}
@@ -945,20 +948,20 @@ export default function HomePage() {
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
-                  <Link href="/dashboard/blogs/create" className="w-full sm:w-auto">
+                  <BookCallDialog>
                     <button
                       id="hero-cta-demo"
                       className="px-6 py-2.5 rounded-md font-bold text-sm text-white tracking-widest uppercase transition-all duration-200 hover:opacity-90 hover:-translate-y-px"
                       style={{ background: '#533afd', fontFamily: 'var(--font-inter)' }}
                     >
-                      Book a Call
+                      Request a Call
                     </button>
-                  </Link>
+                  </BookCallDialog>
                   <Link href="/#products" className="w-full sm:w-auto">
                     <button className="w-full sm:w-auto px-6 py-2.5 rounded-md font-bold text-sm text-white tracking-widest uppercase bg-slate-900 hover:bg-slate-800 transition-all duration-200 hover:-translate-y-px"
                       style={{ fontFamily: 'var(--font-inter)' }}
                     >
-                      Know More
+                      Our Products
                     </button>
                   </Link>
                 </div>
@@ -980,7 +983,7 @@ export default function HomePage() {
                     backgroundClip: "text",
                   }}
                 >
-                  TRUSTED BY DATA-DRIVEN ENTERPRISES
+                  TRUSTED BY AI-FIRST ENTERPRISES
                 </p>
 
                 {/* Marquee wrapper with fade-edge mask */}
@@ -1254,30 +1257,53 @@ export default function HomePage() {
         </section>
 
         {/* ── Full-Width CTA Section - Hi, I am Anurag ── */}
-        <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 border-t border-slate-200 snap-start scroll-mt-24">
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} viewport={{ once: true, amount: 0.2 }} className="relative bg-white border border-slate-200 rounded-3xl p-8 flex flex-col md:flex-row items-center justify-between gap-8 transition-all duration-300 hover:border-slate-300 hover:shadow-lg max-w-none">
-            <div className="flex items-center gap-8">
-              {/* Avatar */}
-              <div className="w-24 h-24 rounded-full border border-slate-200 flex-shrink-0 shadow-md overflow-hidden">
-                <img
+        <section className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 border-t border-slate-200 snap-start scroll-mt-24 overflow-hidden">
+          <motion.div
+            className="relative overflow-hidden bg-white rounded-3xl border border-slate-200 shadow-xl shadow-slate-200/50 p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 md:gap-8 transition-all duration-300 hover:border-slate-300"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            viewport={{ once: true, amount: 0.4 }}
+          >
+            {/* Avatar */}
+            <div className="shrink-0 relative w-20 h-20 md:w-24 md:h-24 rounded-full p-1 bg-gradient-to-br from-[#533afd] to-blue-500">
+              <div className="w-full h-full rounded-full overflow-hidden border-2 border-white relative bg-slate-200">
+                <Image
                   src="/anurag.jpeg"
-                  alt="Anurag"
-                  className="w-full h-full object-cover"
+                  alt="Anurag - CMO"
+                  fill
+                  className="object-cover"
                 />
-              </div>
-
-              <div className="text-left space-y-1">
-                <h2 className="text-2xl md:text-3xl font-semibold text-[#0d253d]" style={{ fontFamily: "var(--font-inter)" }}>Hi, I am Anurag.</h2>
-                <h3 className="text-lg md:text-xl text-[#64748d]" style={{ fontFamily: "var(--font-quicksand)" }}>Curious how our products can help you?</h3>
-                <p className="text-lg md:text-xl font-semibold text-[#0d253d] tracking-tight" style={{ fontFamily: "var(--font-inter)" }}>Let&apos;s Talk</p>
               </div>
             </div>
 
-            <Link href="/dashboard">
-              <button className="px-10 py-4 bg-[#533afd] rounded-2xl font-bold text-xl text-white hover:opacity-90 transition-all hover:scale-105 active:scale-95 whitespace-nowrap">
-                Book a Call
-              </button>
-            </Link>
+            {/* Text Content */}
+            <div className="flex flex-col flex-1 text-center md:text-left space-y-1.5 md:space-y-1">
+              <h4
+                className="text-xl md:text-2xl font-bold text-[#0d253d]"
+                style={{ fontFamily: 'var(--font-inter)' }}
+              >
+                Hi! I am Anurag, CMO at Aidetic.
+              </h4>
+              <p className="text-sm md:text-base text-[#64748d]" style={{ fontFamily: 'var(--font-quicksand)' }}>
+                Curious how our products will help your business? Let's Talk.
+              </p>
+            </div>
+
+            {/* CTA Button */}
+            <div className="shrink-0 mt-4 md:mt-0">
+              <BookCallDialog>
+                <button
+                  className="px-8 py-3 rounded-lg font-bold text-sm text-white tracking-widest uppercase transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5"
+                  style={{
+                    background: 'linear-gradient(to right, #533afd, #2563eb)',
+                    fontFamily: 'var(--font-inter)',
+                  }}
+                >
+                  Request a Call
+                </button>
+              </BookCallDialog>
+            </div>
           </motion.div>
         </section>
 
@@ -1321,41 +1347,41 @@ export default function HomePage() {
                       className="h-12 w-auto object-contain"
                     />
                   </div>
-                  <h3 className="text-base font-semibold text-[#0d253d] leading-snug tracking-wide mb-6" style={{ fontFamily: "var(--font-inter)" }}>
+                  <h3 className="text-[2rem] lg:text-[2.5rem] font-semibold text-[#0d253d] leading-[1.2] tracking-tight mb-6" style={{ fontFamily: "var(--font-inter)" }}>
                     Ask your business anything.
                   </h3>
-                  <p className="text-base text-[#64748d] leading-relaxed mb-8" style={{ fontFamily: "var(--font-quicksand)" }}>
+                  <p className="text-lg text-[#64748d] leading-relaxed mb-8" style={{ fontFamily: "var(--font-quicksand)" }}>
                     AI agents that answer questions across marketing, sales, finance and ops — straight from your own data, with citations on every answer.
                   </p>
 
-                  {/* 1x4 Feature Grid */}
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10 w-full">
+                  {/* 2x2 Feature Grid */}
+                  <div className="grid grid-cols-2 gap-4 mb-10 w-full">
                     <div className="bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] hover:-translate-y-1.5 hover:shadow-[0_12px_24px_-8px_rgba(0,0,0,0.15)] transition-all duration-300">
                       <div className="w-10 h-10 shrink-0 rounded-full bg-[#533afd]/10 flex items-center justify-center text-[#533afd]">
                         <Bot size={20} />
                       </div>
-                      <span className="text-[11px] lg:text-[12px] font-semibold text-[#0d253d] leading-snug" style={{ fontFamily: "var(--font-inter)" }}>One Agent per Function. Each one an Expert.</span>
+                      <span className="text-sm font-semibold text-[#0d253d] leading-snug" style={{ fontFamily: "var(--font-inter)" }}>One Agent per Function. Each one an Expert.</span>
                     </div>
 
                     <div className="bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] hover:-translate-y-1.5 hover:shadow-[0_12px_24px_-8px_rgba(0,0,0,0.15)] transition-all duration-300">
                       <div className="w-10 h-10 shrink-0 rounded-full bg-[#ea2261]/10 flex items-center justify-center text-[#ea2261]">
                         <Brain size={20} />
                       </div>
-                      <span className="text-[11px] lg:text-[12px] font-semibold text-[#0d253d] leading-snug" style={{ fontFamily: "var(--font-inter)" }}>Answers that Explain Themselves.</span>
+                      <span className="text-sm font-semibold text-[#0d253d] leading-snug" style={{ fontFamily: "var(--font-inter)" }}>Answers that Explain Themselves.</span>
                     </div>
 
                     <div className="bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] hover:-translate-y-1.5 hover:shadow-[0_12px_24px_-8px_rgba(0,0,0,0.15)] transition-all duration-300">
                       <div className="w-10 h-10 shrink-0 rounded-full bg-[#f59e0b]/10 flex items-center justify-center text-[#f59e0b]">
                         <FileText size={20} />
                       </div>
-                      <span className="text-[11px] lg:text-[12px] font-semibold text-[#0d253d] leading-snug" style={{ fontFamily: "var(--font-inter)" }}>Charts and Trend Lines on Demand.</span>
+                      <span className="text-sm font-semibold text-[#0d253d] leading-snug" style={{ fontFamily: "var(--font-inter)" }}>Charts and Trend Lines on Demand.</span>
                     </div>
 
                     <div className="bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] hover:-translate-y-1.5 hover:shadow-[0_12px_24px_-8px_rgba(0,0,0,0.15)] transition-all duration-300">
                       <div className="w-10 h-10 shrink-0 rounded-full bg-[#10b981]/10 flex items-center justify-center text-[#10b981]">
                         <ShieldCheck size={20} />
                       </div>
-                      <span className="text-[11px] lg:text-[12px] font-semibold text-[#0d253d] leading-snug" style={{ fontFamily: "var(--font-inter)" }}>Agents that Get Smarter Every Week</span>
+                      <span className="text-sm font-semibold text-[#0d253d] leading-snug" style={{ fontFamily: "var(--font-inter)" }}>Agents that Get Smarter Every Week</span>
                     </div>
                   </div>
 
@@ -1364,7 +1390,7 @@ export default function HomePage() {
                     className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg font-bold text-xs text-white tracking-widest uppercase transition-all duration-200 hover:opacity-90 hover:-translate-y-px w-fit shadow-md"
                     style={{ background: '#533afd', fontFamily: 'var(--font-inter)' }}
                   >
-                    KNOW MORE
+                    Explore Agent Factory
                     <ChevronRight size={14} strokeWidth={3} className="translate-y-[1px]" />
                   </Link>
                 </motion.div>
@@ -1396,41 +1422,41 @@ export default function HomePage() {
                     <div className="w-2 h-2 rounded-full bg-[#533afd]" />
                     <span className="text-xs font-bold text-[#533afd] uppercase tracking-widest">DATA FLASH</span>
                   </div>
-                  <h3 className="text-base font-semibold text-[#0d253d] leading-snug tracking-wide mb-6" style={{ fontFamily: "var(--font-inter)" }}>
+                  <h3 className="text-[2rem] lg:text-[2.5rem] font-semibold text-[#0d253d] leading-[1.2] tracking-tight mb-6" style={{ fontFamily: "var(--font-inter)" }}>
                     Move data. Skip the pipeline.
                   </h3>
-                  <p className="text-base text-[#64748d] leading-relaxed mb-8" style={{ fontFamily: "var(--font-quicksand)" }}>
+                  <p className="text-lg text-[#64748d] leading-relaxed mb-8" style={{ fontFamily: "var(--font-quicksand)" }}>
                     Automated migration from any source to any platform. Config-driven, validated, and audit-ready. No pipelines to build. No code to write.
                   </p>
 
-                  {/* 1x4 Feature Grid for Data Flash */}
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10 w-full">
+                  {/* 2x2 Feature Grid for Data Flash */}
+                  <div className="grid grid-cols-2 gap-4 mb-10 w-full">
                     <div className="bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] hover:-translate-y-1.5 hover:shadow-[0_12px_24px_-8px_rgba(0,0,0,0.15)] transition-all duration-300">
                       <div className="w-10 h-10 shrink-0 rounded-full bg-[#533afd]/10 flex items-center justify-center text-[#533afd]">
                         <Database size={20} />
                       </div>
-                      <span className="text-[11px] lg:text-[12px] font-semibold text-[#0d253d] leading-snug" style={{ fontFamily: "var(--font-inter)" }}>Automated Migration</span>
+                      <span className="text-sm font-semibold text-[#0d253d] leading-snug" style={{ fontFamily: "var(--font-inter)" }}>Automated Migration</span>
                     </div>
 
                     <div className="bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] hover:-translate-y-1.5 hover:shadow-[0_12px_24px_-8px_rgba(0,0,0,0.15)] transition-all duration-300">
                       <div className="w-10 h-10 shrink-0 rounded-full bg-[#ea2261]/10 flex items-center justify-center text-[#ea2261]">
                         <RefreshCw size={20} />
                       </div>
-                      <span className="text-[11px] lg:text-[12px] font-semibold text-[#0d253d] leading-snug" style={{ fontFamily: "var(--font-inter)" }}>Config-Driven & Validated</span>
+                      <span className="text-sm font-semibold text-[#0d253d] leading-snug" style={{ fontFamily: "var(--font-inter)" }}>Config-Driven & Validated</span>
                     </div>
 
                     <div className="bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] hover:-translate-y-1.5 hover:shadow-[0_12px_24px_-8px_rgba(0,0,0,0.15)] transition-all duration-300">
                       <div className="w-10 h-10 shrink-0 rounded-full bg-[#f59e0b]/10 flex items-center justify-center text-[#f59e0b]">
                         <ShieldCheck size={20} />
                       </div>
-                      <span className="text-[11px] lg:text-[12px] font-semibold text-[#0d253d] leading-snug" style={{ fontFamily: "var(--font-inter)" }}>Audit-Ready</span>
+                      <span className="text-sm font-semibold text-[#0d253d] leading-snug" style={{ fontFamily: "var(--font-inter)" }}>Audit-Ready</span>
                     </div>
 
                     <div className="bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] hover:-translate-y-1.5 hover:shadow-[0_12px_24px_-8px_rgba(0,0,0,0.15)] transition-all duration-300">
                       <div className="w-10 h-10 shrink-0 rounded-full bg-[#10b981]/10 flex items-center justify-center text-[#10b981]">
                         <Upload size={20} />
                       </div>
-                      <span className="text-[11px] lg:text-[12px] font-semibold text-[#0d253d] leading-snug" style={{ fontFamily: "var(--font-inter)" }}>No pipelines to build</span>
+                      <span className="text-sm font-semibold text-[#0d253d] leading-snug" style={{ fontFamily: "var(--font-inter)" }}>No pipelines to build</span>
                     </div>
                   </div>
 
@@ -1439,7 +1465,7 @@ export default function HomePage() {
                     className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg font-bold text-xs text-white tracking-widest uppercase transition-all duration-200 hover:opacity-90 hover:-translate-y-px w-fit shadow-md"
                     style={{ background: '#533afd', fontFamily: 'var(--font-inter)' }}
                   >
-                    KNOW MORE <ChevronRight size={14} strokeWidth={3} className="translate-y-[1px]" />
+                    Explore Data Flash <ChevronRight size={14} strokeWidth={3} className="translate-y-[1px]" />
                   </Link>
                 </motion.div>
               </div>

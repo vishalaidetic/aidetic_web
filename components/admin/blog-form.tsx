@@ -90,6 +90,7 @@ export function BlogForm({ initialData, isEditing = false }: BlogFormProps) {
         author: initialData.author,
         featured_image: initialData.featured_image ?? '',
         published: initialData.published,
+        is_featured: initialData.is_featured ?? false,
         tag_type: initialData.tag_type ?? undefined,
         created_by: initialData.created_by ?? '',
         updated_by: initialData.updated_by ?? '',
@@ -102,6 +103,7 @@ export function BlogForm({ initialData, isEditing = false }: BlogFormProps) {
         author: '',
         featured_image: '',
         published: false,
+        is_featured: false,
         tag_type: undefined,
         created_by: '',
         updated_by: '',
@@ -483,21 +485,40 @@ export function BlogForm({ initialData, isEditing = false }: BlogFormProps) {
                       )}
                     </div>
 
-                    <div className="flex items-center space-x-2 pt-2">
-                      <Controller
-                        name="published"
-                        control={control}
-                        render={({ field }) => (
-                          <Switch
-                            id="published"
-                            checked={field.value}
-                            onCheckedChange={field.onChange}
-                          />
-                        )}
-                      />
-                      <Label htmlFor="published" className="font-normal cursor-pointer">
-                        Publish this post immediately
-                      </Label>
+                    <div className="flex flex-col gap-4 pt-2">
+                      <div className="flex items-center space-x-2">
+                        <Controller
+                          name="published"
+                          control={control}
+                          render={({ field }) => (
+                            <Switch
+                              id="published"
+                              checked={field.value}
+                              onCheckedChange={field.onChange}
+                            />
+                          )}
+                        />
+                        <Label htmlFor="published" className="font-normal cursor-pointer">
+                          Publish this post immediately
+                        </Label>
+                      </div>
+
+                      <div className="flex items-center space-x-2">
+                        <Controller
+                          name="is_featured"
+                          control={control}
+                          render={({ field }) => (
+                            <Switch
+                              id="is_featured"
+                              checked={field.value}
+                              onCheckedChange={field.onChange}
+                            />
+                          )}
+                        />
+                        <Label htmlFor="is_featured" className="font-normal cursor-pointer">
+                          Mark as Featured post
+                        </Label>
+                      </div>
                     </div>
                   </div>
                 </div>

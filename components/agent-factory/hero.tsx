@@ -1,26 +1,10 @@
 'use client'
 
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { useRef, useState } from 'react';
+import { BookCallDialog } from '@/components/shared/book-call-dialog';
 
 export function Hero() {
-  const [showInput, setShowInput] = useState(false);
-  const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-  const handleMouseEnter = () => {
-    if (hoverTimeoutRef.current) {
-      clearTimeout(hoverTimeoutRef.current);
-      hoverTimeoutRef.current = null;
-    }
-    setShowInput(true);
-  };
-
-  const handleMouseLeave = () => {
-    hoverTimeoutRef.current = setTimeout(() => {
-      setShowInput(false);
-    }, 2000);
-  };
   return (
     <section className="relative overflow-hidden flex flex-col justify-start bg-white pt-20 pb-10 min-h-screen">
 
@@ -99,55 +83,20 @@ export function Hero() {
 
             {/* CTA Buttons */}
             <motion.div
-              className="flex flex-wrap gap-4 pt-2 min-h-[44px]"
+              className="flex flex-wrap gap-4 pt-2"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.24 }}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
             >
-              <AnimatePresence mode="wait">
-                {!showInput ? (
-                  <motion.button
-                    key="btn"
-                    initial={{ opacity: 0, x: -30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: 30 }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
-                    id="hero-cta-demo"
-                    className="px-6 py-2.5 rounded-md font-bold text-sm text-white tracking-widest uppercase transition-all duration-200 hover:opacity-90 hover:-translate-y-px"
-                    style={{ background: '#533afd', fontFamily: 'var(--font-inter)' }}
-                  >
-                    BOOK A CALL
-                  </motion.button>
-                ) : (
-                  <motion.form
-                    key="form"
-                    initial={{ opacity: 0, x: -30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: 30 }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
-                    className="flex flex-wrap sm:flex-nowrap items-center gap-2 w-full max-w-sm"
-                    onSubmit={(e) => { e.preventDefault(); setShowInput(false); }}
-                  >
-                    <input
-                      type="email"
-                      placeholder="Enter your email ID"
-                      required
-                      autoFocus
-                      className="flex-1 px-4 py-2.5 rounded-md border border-slate-200 text-sm focus:outline-none focus:border-[#533afd] focus:ring-1 focus:ring-[#533afd] transition-all bg-white text-[#0d253d] shadow-sm w-full"
-                      style={{ fontFamily: 'var(--font-inter)' }}
-                    />
-                    <button
-                      type="submit"
-                      className="px-6 py-2.5 rounded-md font-bold text-sm text-white tracking-widest uppercase transition-all duration-200 hover:opacity-90 hover:-translate-y-px shadow-sm shrink-0"
-                      style={{ background: '#533afd', fontFamily: 'var(--font-inter)' }}
-                    >
-                      SEND
-                    </button>
-                  </motion.form>
-                )}
-              </AnimatePresence>
+              <BookCallDialog>
+                <button
+                  id="hero-cta-demo"
+                  className="px-6 py-2.5 rounded-md font-bold text-sm text-white tracking-widest uppercase transition-all duration-200 hover:opacity-90 hover:-translate-y-px"
+                  style={{ background: '#533afd', fontFamily: 'var(--font-inter)' }}
+                >
+                  Request A CALL
+                </button>
+              </BookCallDialog>
             </motion.div>
           </div>
 
@@ -215,7 +164,7 @@ export function Hero() {
               backgroundClip: 'text',
             }}
           >
-            TRUSTED BY DATA-DRIVEN ENTERPRISES
+            TRUSTED BY AI-FIRST ENTERPRISES
           </p>
 
           {/* Marquee wrapper with fade-edge mask */}

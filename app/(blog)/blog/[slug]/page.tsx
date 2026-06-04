@@ -80,17 +80,21 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
 
     return (
       <div className="bg-background min-h-screen relative">
-        {/* Blurry dual-gradient backdrop glow - overflow-hidden scoped here to clip blurs without breaking sticky */}
+        {/* Subtle background grid */}
+        <div
+          className="absolute inset-0 pointer-events-none z-0"
+          style={{
+            backgroundImage: 'linear-gradient(rgba(83,58,253,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(83,58,253,0.04) 1px, transparent 1px)',
+            backgroundSize: '60px 60px',
+          }}
+        />
         <div className="absolute top-0 left-0 w-full h-[100vh] pointer-events-none z-0 overflow-hidden">
-          <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[80%] bg-[#1B2340]/6 rounded-full blur-[100px]" />
-          <div className="absolute top-[-20%] right-[-10%] w-[50%] h-[80%] bg-[#DC2626]/5 rounded-full blur-[100px]" />
           {blog.featured_image && (
             <div
-              className="absolute inset-[-10%] opacity-15 dark:opacity-15 blur-[120px] bg-cover bg-center"
+              className="absolute inset-[-10%] opacity-[0.08] dark:opacity-[0.08] blur-[120px] bg-cover bg-center"
               style={{ backgroundImage: `url(${blog.featured_image})` }}
             />
           )}
-          {/* Fade out seamlessly into the standard background color at the bottom */}
           <div className="absolute bottom-0 left-0 right-0 h-[50vh] bg-gradient-to-b from-transparent to-background" />
         </div>
 
@@ -99,26 +103,52 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
             {/* Breadcrumb / Back Link */}
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 text-sm text-[#6B7280] hover:text-[#DC2626] transition-colors group mb-4"
+              className="inline-flex items-center gap-2 text-sm text-[#64748d] hover:text-[#533afd] transition-colors group mb-4"
+              style={{ fontFamily: 'var(--font-inter)' }}
             >
-              <ChevronLeft size={16} className="transition-transform group-hover:-translate-x-1 text-[#DC2626]" />
+              <ChevronLeft size={16} className="transition-transform group-hover:-translate-x-1 text-[#533afd]" />
               Back to Blog
             </Link>
 
             {/* Title Section - Top Full Width */}
             <div className="space-y-6">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground leading-[1.15]">
+              <h1 
+                className="text-[2rem] sm:text-[2.25rem] lg:text-[2.5rem] xl:text-[2.75rem] font-semibold leading-[1.15]" 
+                style={{ 
+                  fontFamily: 'var(--font-inter)',
+                  background: 'linear-gradient(to right, #533afd, #000000)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}
+              >
                 {blog.title}
               </h1>
+
+              {/* Tags */}
+              {(blog.is_featured || blog.tag_type) && (
+                <div className="flex flex-wrap items-center gap-2">
+                  {blog.is_featured && (
+                    <span className="bg-[#533afd] text-white text-[10px] sm:text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full" style={{ fontFamily: 'var(--font-inter)' }}>
+                      Featured
+                    </span>
+                  )}
+                  {blog.tag_type && (
+                    <span className="bg-[#533afd]/10 text-[#533afd] text-[10px] sm:text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full" style={{ fontFamily: 'var(--font-inter)' }}>
+                      {blog.tag_type}
+                    </span>
+                  )}
+                </div>
+              )}
 
               {/* Metadata */}
               <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
                 {blog.author && (
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-[#1B2340] flex items-center justify-center text-white font-bold shadow-md">
+                    <div className="w-8 h-8 rounded-full bg-[#533afd] flex items-center justify-center text-white font-bold shadow-md">
                       {blog.author.charAt(0)}
                     </div>
-                    <span className="font-medium text-foreground">{blog.author}</span>
+                    <span className="font-medium text-[#0d253d]">{blog.author}</span>
                   </div>
                 )}
                 <div className="flex items-center gap-2">
@@ -157,15 +187,15 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                 <div className="space-y-12">
                   {/* Description / TL;DR Section */}
                   {blog.description && (
-                    <div className="p-8 rounded-2xl bg-white border border-slate-200 shadow-sm border-l-4 border-l-[#DC2626]">
-                      <p className="text-xl text-[#1B2340] leading-relaxed font-medium italic">
-                        &ldquo;{blog.description}&rdquo;
+                    <div className="p-8 rounded-2xl bg-[#533afd]/[0.02] border border-[#533afd]/10 shadow-sm border-l-4 border-l-[#533afd]">
+                      <p className="text-lg md:text-xl text-[#0d253d] leading-relaxed" style={{ fontFamily: 'var(--font-quicksand)' }}>
+                        {blog.description}
                       </p>
                     </div>
                   )}
 
                   {/* Rendered Markdown */}
-                  <div className="prose prose-lg max-w-none prose-headings:text-[#1B2340] prose-headings:font-bold prose-a:text-[#DC2626] prose-a:font-medium hover:prose-a:underline prose-strong:text-[#1B2340] prose-blockquote:border-l-[#DC2626] prose-code:text-[#DC2626]">
+                  <div className="prose prose-lg max-w-none prose-headings:text-[#0d253d] prose-headings:font-bold prose-headings:font-sans prose-a:text-[#533afd] prose-a:font-medium hover:prose-a:text-[#ea2261] hover:prose-a:underline prose-strong:text-[#0d253d] prose-blockquote:border-l-[#533afd] prose-blockquote:bg-[#533afd]/[0.02] prose-blockquote:py-1 prose-blockquote:px-6 prose-blockquote:rounded-r-xl prose-code:text-[#ea2261]">
                     <BlogContent content={blog.content} />
                   </div>
 

@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import { BookCallDialog } from '@/components/shared/book-call-dialog'
 
 export function CmoSection() {
   return (
@@ -41,15 +42,17 @@ export function CmoSection() {
 
           {/* CTA Button */}
           <div className="shrink-0 mt-4 md:mt-0">
-            <button
-              className="px-8 py-3 rounded-lg font-bold text-sm text-white tracking-widest uppercase transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5"
-              style={{
-                background: 'linear-gradient(to right, #533afd',
-                fontFamily: 'var(--font-inter)',
-              }}
-            >
-              BOOK A CALL
-            </button>
+            <BookCallDialog>
+              <button
+                className="px-8 py-3 rounded-lg font-bold text-sm text-white tracking-widest uppercase transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5"
+                style={{
+                  background: 'linear-gradient(to right, #533afd, #2563eb)',
+                  fontFamily: 'var(--font-inter)',
+                }}
+              >
+                Request a Call
+              </button>
+            </BookCallDialog>
           </div>
         </motion.div>
       </div>
