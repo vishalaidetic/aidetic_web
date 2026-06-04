@@ -11,6 +11,8 @@ export const siteConfig = {
   ogImage: '/og-image.png',
   
   // Navigation
+  // Note: Admin link is intentionally excluded — its path is UUID-obfuscated
+  // and resolved at runtime via NEXT_PUBLIC_ADMIN_ROUTE_UUID.
   navMain: [
     {
       title: 'Home',
@@ -19,10 +21,6 @@ export const siteConfig = {
     {
       title: 'Blog',
       href: '/blog',
-    },
-    {
-      title: 'Admin',
-      href: '/dashboard',
     },
   ],
   
@@ -36,10 +34,6 @@ export const siteConfig = {
       {
         title: 'Blog',
         href: '/blog',
-      },
-      {
-        title: 'Admin Dashboard',
-        href: '/dashboard',
       },
     ],
     resources: [

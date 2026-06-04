@@ -11,7 +11,7 @@ interface AdminLayoutProps {
 }
 
 /**
- * Layout for the admin route group (/dashboard/*).
+ * Layout for the admin route group (/admin/[uuid]/*).
  *
  * Server-side auth guard — reads the signed admin_session cookie.
  * Unauthenticated visitors are redirected to /admin/login.
@@ -22,7 +22,8 @@ export default async function AdminLayout({ children }: AdminLayoutProps) {
   const adminEmail = sessionCookie ? await verifySessionToken(sessionCookie) : null
 
   if (!adminEmail) {
-    redirect('/admin/login')
+    const adminUuid = process.env.NEXT_PUBLIC_ADMIN_ROUTE_UUID
+    redirect(`/admin/${adminUuid}/login`)
   }
 
   return (

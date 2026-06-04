@@ -8,8 +8,19 @@ const supabase = createClient(supabaseUrl, supabaseKey)
 export interface MeetingRequestInput {
   name: string
   email: string
+  phone?: string
   organization: string
   purpose: string
+}
+
+export interface MeetingRequest {
+  id: string
+  name: string
+  email: string
+  phone?: string | null
+  organization: string
+  purpose: string
+  created_at: string
 }
 
 export async function insertMeetingRequest(data: MeetingRequestInput) {
@@ -25,4 +36,18 @@ export async function insertMeetingRequest(data: MeetingRequestInput) {
   }
 
   return result
+}
+
+export async function getMeetingRequests(): Promise<MeetingRequest[]> {
+  const { data, error } = await supabase
+    .from('meeting_requests')
+    .select('*')
+    .order('created_at', { ascending: false })
+
+  if (error) {
+    console.error('Error fetching meeting requests:', error)
+    throw new Error(error.message)
+  }
+
+  return data || []
 }

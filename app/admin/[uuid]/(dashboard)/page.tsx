@@ -3,10 +3,11 @@ import { DeleteCaseStudyButton } from '@/components/admin/delete-case-study-butt
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { getAdminBasePath } from '@/lib/admin-path'
 import { getBlogRepository } from '@/lib/db/blog_queries'
 import { getCaseStudyRepository } from '@/lib/db/case_study_queries'
 import { formatDate } from '@/lib/utils/formatting'
-import { BookOpen, Calendar, Edit, Eye, EyeOff, FileText, Plus, TrendingUp, ChevronDown, ChevronUp } from 'lucide-react'
+import { BookOpen, Calendar, ChevronDown, ChevronUp, Edit, Eye, EyeOff, FileText, Plus, TrendingUp } from 'lucide-react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
@@ -48,13 +49,13 @@ export default async function DashboardPage({
             <p className="text-sm text-[#6B7280] mt-0.5">Welcome to your content management hub</p>
           </div>
           <div className="flex gap-3">
-            <Link href="/dashboard/blogs/create">
+            <Link href={`${getAdminBasePath()}/blogs/create`}>
               <Button className="gap-2 bg-[#DC2626] hover:bg-[#B91C1C] text-white border-none shadow-md hover:shadow-lg transition-all duration-200 h-10 px-5">
                 <Plus size={16} />
                 New Blog
               </Button>
             </Link>
-            <Link href="/dashboard/case-studies/create">
+            <Link href={`${getAdminBasePath()}/case-studies/create`}>
               <Button variant="outline" className="gap-2 border-[#DC2626] text-[#DC2626] hover:bg-[#DC2626] hover:text-white transition-all duration-200 h-10 px-5">
                 <Plus size={16} />
                 New Case Study
@@ -132,7 +133,7 @@ export default async function DashboardPage({
                       <th className="text-left py-3.5 px-6 font-semibold text-xs uppercase tracking-wider">Featured</th>
                       <th className="text-left py-3.5 px-6 font-semibold text-xs uppercase tracking-wider">Status</th>
                       <th className="text-left py-3.5 px-6 font-semibold text-xs uppercase tracking-wider">
-                        <Link href={`/dashboard?sort=${sortOrder === 'asc' ? 'desc' : 'asc'}`} className="flex items-center gap-1 hover:text-[#1A1A1A] w-fit transition-colors">
+                        <Link href={`${getAdminBasePath()}?sort=${sortOrder === 'asc' ? 'desc' : 'asc'}`} className="flex items-center gap-1 hover:text-[#1A1A1A] w-fit transition-colors">
                           Created
                           {sortOrder === 'asc' ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
                         </Link>
@@ -244,7 +245,7 @@ export default async function DashboardPage({
                         </td>
                         <td className="py-4 px-6">
                           <div className="flex gap-2">
-                            <Link href={`/dashboard/case-studies/${study.id}/edit`}>
+                            <Link href={`${getAdminBasePath()}/case-studies/${study.id}/edit`}>
                               <Button size="sm" variant="outline" className="border-[#1B2340]/20 text-[#1B2340] hover:bg-[#1B2340] hover:text-white gap-1.5 h-8 px-3 transition-all duration-200">
                                 <Edit size={13} /> Edit
                               </Button>

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useTransition } from 'react'
-import { adminLoginAction } from '../actions'
+import { adminLoginAction } from '@/app/admin/actions'
 import { Eye, EyeOff, Lock, Mail, ShieldCheck } from 'lucide-react'
 
 export default function AdminLoginPage() {

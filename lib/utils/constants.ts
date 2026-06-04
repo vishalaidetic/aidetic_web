@@ -43,7 +43,7 @@ export const PAGINATION = {
 export const NAV_LINKS = [
   { href: '/', label: 'Home' },
   { href: '/blog', label: 'Blog' },
-  { href: '/dashboard', label: 'Admin' },
+  // Admin link is resolved dynamically via NEXT_PUBLIC_ADMIN_ROUTE_UUID at runtime
 ] as const
 
 /**

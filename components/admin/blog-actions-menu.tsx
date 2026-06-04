@@ -13,6 +13,7 @@ import { MoreHorizontal, Edit, Eye, Trash2, Star, StarOff, CheckCircle, XCircle 
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
+import { getAdminBasePath } from '@/lib/admin-path'
 import { getAdminHeaders } from '@/lib/middleware/auth'
 
 interface Blog {
@@ -119,7 +120,7 @@ export function BlogActionsMenu({ blog }: BlogActionsMenuProps) {
 
         {/* Edit */}
         <DropdownMenuItem asChild className="cursor-pointer">
-          <Link href={`/dashboard/blogs/${blog.id}/edit`}>
+          <Link href={`${getAdminBasePath()}/blogs/${blog.id}/edit`}>
             <Edit className="mr-2 h-4 w-4" />
             <span>Edit</span>
           </Link>

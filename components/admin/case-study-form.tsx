@@ -21,6 +21,7 @@ import {
   X,
 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
+import { getAdminBasePath } from '@/lib/admin-path'
 import { useRef, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import type { z } from 'zod'
@@ -194,7 +195,7 @@ export function CaseStudyForm({ initialData, isEditing = false }: CaseStudyFormP
         return
       }
 
-      router.push('/dashboard')
+      router.push(getAdminBasePath())
       router.refresh()
     } catch (err) {
       setError('An error occurred while saving the case study')

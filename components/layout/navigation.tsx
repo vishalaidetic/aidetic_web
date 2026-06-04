@@ -1,9 +1,9 @@
 'use client'
 
 import { cn } from '@/lib/utils'
-import { ChevronDown, LayoutDashboard, Menu, X } from 'lucide-react'
-import Link from 'next/link'
+import { ChevronDown, LayoutDashboard, Menu, ShieldCheck, X } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
@@ -42,14 +42,14 @@ interface NavigationProps {
  * Main navigation component — Responsive header with mobile menu support.
  *
  * Auth detection strategy:
- *  • Server layouts that know the admin (e.g. /dashboard) pass `adminEmail` as prop.
+ *  • Server layouts that know the admin (e.g. /admin/[uuid]) pass `adminEmail` as prop.
  *  • Public client-side pages can't read httpOnly cookies, so on login we also set
  *    a readable `admin_hint` cookie containing the email. This component reads that
  *    cookie via useEffect so the Admin button appears everywhere after login.
  *
  * Behaviour:
  *  - Public pages + guest        → "Book a Demo" button
- *  - Public pages + admin auth   → "Admin" button (→ /dashboard) + email + Sign out
+ *  - Public pages + admin auth   → "Admin" button (→ /admin/[uuid]) + email + Sign out
  *  - Dashboard/admin pages       → email + Sign out only (no Book a Demo)
  */
 export function Navigation({ adminEmail: adminEmailProp }: NavigationProps = {}) {
@@ -75,8 +75,10 @@ export function Navigation({ adminEmail: adminEmailProp }: NavigationProps = {})
   }
 
   // Are we inside the admin / dashboard area?
-  const isInDashboard =
-    pathname.startsWith('/dashboard') || pathname.startsWith('/admin')
+  // NEXT_PUBLIC_ prefix allows client components to read this env var
+  const adminUuid = process.env.NEXT_PUBLIC_ADMIN_ROUTE_UUID
+  const adminBasePath = adminUuid ? `/admin/${adminUuid}` : '/admin'
+  const isInDashboard = pathname.startsWith('/admin')
 
   return (
     <nav className="sticky top-0 z-50 w-full bg-white shadow-sm border-b border-slate-200">
@@ -177,14 +179,11 @@ export function Navigation({ adminEmail: adminEmailProp }: NavigationProps = {})
               <div className="flex items-center gap-3">
                 {/* Admin shortcut — only on public pages */}
                 {!isInDashboard && (
-                  <Link href="/dashboard">
-                    <button className="inline-flex items-center gap-1.5 text-sm font-semibold px-4 py-2 rounded-lg bg-[#DC2626] hover:bg-[#B91C1C] text-white border-none shadow-md transition-all duration-200 hover:shadow-lg">
-                      <LayoutDashboard size={14} />
-                      Admin
-                    </button>
+                  <Link href={adminBasePath} className="flex items-center gap-2 px-4 py-2 hover:bg-slate-50 transition-colors rounded-lg border border-slate-200 shadow-sm">
+                    <LayoutDashboard size={16} className="text-[#533afd]" />
+                    <span className="text-sm font-medium text-slate-700">Dashboard</span>
                   </Link>
                 )}
-                {/* Email badge */}
                 <span className="flex items-center gap-2 text-sm text-slate-500 font-medium bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-full">
                   <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
                   <span>{adminEmail}</span>
@@ -255,10 +254,9 @@ export function Navigation({ adminEmail: adminEmailProp }: NavigationProps = {})
                 <>
                   {/* Admin button — only on public pages */}
                   {!isInDashboard && (
-                    <Link href="/dashboard" onClick={() => setMobileMenuOpen(false)}>
-                      <button className="w-full inline-flex items-center justify-center gap-1.5 text-sm font-bold px-4 py-3 rounded-lg bg-[#DC2626] hover:bg-[#B91C1C] text-white border-none shadow-sm transition-all duration-200">
-                        <LayoutDashboard size={14} />
-                        Admin
+                    <Link href={adminBasePath} onClick={() => setMobileMenuOpen(false)}>
+                      <button className="w-full flex items-center justify-center gap-2 text-sm font-bold px-5 py-3 rounded-lg bg-gradient-to-r from-[#1B2340] to-[#533afd] hover:opacity-90 text-white border-none shadow-md transition-all duration-200">
+                        <ShieldCheck size={16} /> Admin Dashboard
                       </button>
                     </Link>
                   )}

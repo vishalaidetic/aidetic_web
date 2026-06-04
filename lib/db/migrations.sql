@@ -122,9 +122,14 @@ CREATE TABLE IF NOT EXISTS public.meeting_requests (
   id             UUID        PRIMARY KEY DEFAULT gen_random_uuid(),
   name           TEXT        NOT NULL,
   email          TEXT        NOT NULL,
+  phone          TEXT,
   organization   TEXT        NOT NULL,
   purpose        TEXT        NOT NULL,
   created_at     TIMESTAMPTZ DEFAULT NOW()
 );
+
+-- Migration: add phone to existing meeting_requests table
+ALTER TABLE public.meeting_requests
+  ADD COLUMN IF NOT EXISTS phone TEXT;
 
 CREATE INDEX IF NOT EXISTS idx_meeting_requests_created_at ON public.meeting_requests(created_at DESC);

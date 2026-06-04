@@ -15,9 +15,11 @@ const SESSION_MAX_AGE = 60 * 60 * 8
  *
  * Compares the submitted email + password against the values stored in
  * ADMIN_EMAIL and ADMIN_PASSWORD environment variables (from .env.local).
- * On success, sets a signed httpOnly session cookie and redirects to /dashboard.
+ * On success, sets a signed httpOnly session cookie and redirects to the secure admin route.
  */
 export async function adminLoginAction(formData: FormData) {
+  const adminUuid = process.env.NEXT_PUBLIC_ADMIN_ROUTE_UUID
+  const adminBasePath = `/admin/${adminUuid}`
   const email = (formData.get('email') as string | null)?.trim() ?? ''
   const password = (formData.get('password') as string | null) ?? ''
 
@@ -57,7 +59,7 @@ export async function adminLoginAction(formData: FormData) {
     path: '/',
   })
 
-  redirect('/dashboard')
+  redirect(adminBasePath)
 }
 
 /**
@@ -65,8 +67,11 @@ export async function adminLoginAction(formData: FormData) {
  * Clears the session cookie and redirects to the login page.
  */
 export async function adminLogoutAction() {
+  const adminUuid = process.env.NEXT_PUBLIC_ADMIN_ROUTE_UUID
+  const adminBasePath = `/admin/${adminUuid}`
+
   const cookieStore = await cookies()
   cookieStore.delete(ADMIN_SESSION_COOKIE)
   cookieStore.delete(ADMIN_HINT_COOKIE)
-  redirect('/admin/login')
+  redirect(`${adminBasePath}/login`)
 }
