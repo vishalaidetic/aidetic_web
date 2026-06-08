@@ -44,11 +44,8 @@ export function CmoSection() {
           <div className="shrink-0 mt-4 md:mt-0">
             <BookCallDialog>
               <button
-                className="px-8 py-3 rounded-lg font-bold text-sm text-white tracking-widest uppercase transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5"
-                style={{
-                  background: 'linear-gradient(to right, #533afd, #2563eb)',
-                  fontFamily: 'var(--font-inter)',
-                }}
+                className="px-8 py-3.5 rounded-full bg-[#533afd] text-white font-medium shadow-lg hover:opacity-90 hover:-translate-y-0.5 transition-all text-[15px]"
+                style={{ fontFamily: 'var(--font-inter)' }}
               >
                 Request a Call
               </button>

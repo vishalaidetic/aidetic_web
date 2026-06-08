@@ -6,6 +6,7 @@ import { FeaturesSection } from '@/components/agent-factory/features-section'
 import { CmoSection } from '@/components/agent-factory/cmo-section'
 import { ProductSection } from '@/components/agent-factory/product-section'
 import { ScaleSection } from '@/components/agent-factory/scale-section'
+import { UseCasesSection } from '@/components/agent-factory/use-cases-section'
 import { LearnMoreSection } from '@/components/agent-factory/learn-more-section'
 import { FaqSection } from '@/components/agent-factory/faq-section'
 import { CtaSection } from '@/components/agent-factory/cta-section'
@@ -21,6 +22,7 @@ export default function AgentFactoryPage() {
       <Navigation />
       <main className="w-full">
         <Hero />
+        <UseCasesSection />
         <ProductSection />
         <StatsSection />
         <FeaturesSection />

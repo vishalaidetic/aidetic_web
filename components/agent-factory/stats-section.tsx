@@ -5,11 +5,6 @@ import { useEffect, useRef, useState } from 'react';
 
 const stats = [
   {
-    value: '1/3',
-    suffix: 'rd',
-    label: 'Reduction in\nyour analytics cost',
-  },
-  {
     value: 6,
     suffix: 'x',
     label: 'Faster Decision\nMaking and Actions',
@@ -23,6 +18,11 @@ const stats = [
     value: 80,
     suffix: '%',
     label: 'Reduction in time your data\nteam spends on reporting',
+  },
+  {
+    value: '1/3',
+    suffix: 'rd',
+    label: 'Reduction in\nyour analytics cost',
   },
 ]
 
@@ -141,7 +141,7 @@ export function StatsSection() {
               >
                 {/* Big number */}
                 <div
-                  className="text-5xl md:text-6xl font-bold text-[#533afd] leading-none tracking-wide"
+                  className="text-4xl md:text-5xl font-bold text-[#533afd] leading-none tracking-wide"
                   style={{ fontFamily: 'var(--font-inter)' }}
                 >
                   {typeof stat.value === 'string' ? (

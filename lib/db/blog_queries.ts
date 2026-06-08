@@ -180,6 +180,22 @@ export class BlogRepository {
 
     return count || 0
   }
+
+  /**
+   * Get total count of featured blogs
+   */
+  async getFeaturedCount(): Promise<number> {
+    const { count, error } = await this.client
+      .from('blogs')
+      .select('id', { count: 'exact' })
+      .eq('is_featured', true)
+
+    if (error) {
+      throw new Error(`Failed to get featured count: ${error.message}`)
+    }
+
+    return count || 0
+  }
 }
 
 /**

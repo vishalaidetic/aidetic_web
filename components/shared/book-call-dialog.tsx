@@ -123,9 +123,17 @@ export function BookCallDialog({ children }: BookCallDialogProps) {
 
         {/* Header gradient bar */}
         <div
-          className="px-7 pt-7 pb-5"
+          className="px-7 pt-7 pb-5 relative"
           style={{ background: 'linear-gradient(135deg, #533afd 0%, #1B2340 100%)' }}
         >
+          {/* Aidetic Logo */}
+          <div className="absolute top-5 right-6 opacity-30 pointer-events-none">
+            <img 
+              src="/Aideticlogo.png" 
+              alt="Aidetic" 
+              className="h-7 w-auto object-contain brightness-0 invert" 
+            />
+          </div>
           <div className="flex items-center gap-3 mb-1">
             <div className="w-9 h-9 rounded-xl bg-white/15 flex items-center justify-center">
               <Phone size={17} className="text-white" />

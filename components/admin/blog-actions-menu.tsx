@@ -43,7 +43,8 @@ export function BlogActionsMenu({ blog }: BlogActionsMenuProps) {
       if (response.ok) {
         router.refresh()
       } else {
-        alert('Failed to update featured status.')
+        const data = await response.json()
+        alert(data.error?.message || 'Failed to update featured status.')
       }
     } catch (error) {
       console.error(error)
@@ -111,7 +112,7 @@ export function BlogActionsMenu({ blog }: BlogActionsMenuProps) {
         <DropdownMenuSeparator />
         
         {/* View */}
-        <DropdownMenuItem asChild className="cursor-pointer">
+        <DropdownMenuItem asChild className="cursor-pointer focus:bg-slate-100 focus:text-[#1B2340]">
           <Link href={`/blog/${blog.slug}`} target="_blank">
             <Eye className="mr-2 h-4 w-4" />
             <span>View</span>
@@ -119,7 +120,7 @@ export function BlogActionsMenu({ blog }: BlogActionsMenuProps) {
         </DropdownMenuItem>
 
         {/* Edit */}
-        <DropdownMenuItem asChild className="cursor-pointer">
+        <DropdownMenuItem asChild className="cursor-pointer focus:bg-slate-100 focus:text-[#1B2340]">
           <Link href={`${getAdminBasePath()}/blogs/${blog.id}/edit`}>
             <Edit className="mr-2 h-4 w-4" />
             <span>Edit</span>
@@ -132,12 +133,12 @@ export function BlogActionsMenu({ blog }: BlogActionsMenuProps) {
         <DropdownMenuItem 
           onClick={handleToggleFeatured} 
           disabled={isUpdating}
-          className="cursor-pointer"
+          className="cursor-pointer focus:bg-slate-100 focus:text-[#1B2340]"
         >
           {blog.is_featured ? (
             <StarOff className="mr-2 h-4 w-4 text-[#6B7280]" />
           ) : (
-            <Star className="mr-2 h-4 w-4 text-[#533afd]" />
+            <Star className="mr-2 h-4 w-4 text-[#1B2340]" />
           )}
           <span>{blog.is_featured ? 'Omit Featured' : 'Make Featured'}</span>
         </DropdownMenuItem>
@@ -146,7 +147,7 @@ export function BlogActionsMenu({ blog }: BlogActionsMenuProps) {
         <DropdownMenuItem 
           onClick={handleTogglePublish} 
           disabled={isUpdating}
-          className="cursor-pointer"
+          className="cursor-pointer focus:bg-slate-100 focus:text-[#1B2340]"
         >
           {blog.published ? (
             <XCircle className="mr-2 h-4 w-4 text-orange-500" />

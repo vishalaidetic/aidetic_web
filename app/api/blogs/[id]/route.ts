@@ -47,7 +47,19 @@ export async function PATCH(
     const repository = getBlogRepository()
 
     // Check if blog exists
-    await repository.getBlogById(id)
+    const existingBlog = await repository.getBlogById(id)
+
+    // Enforce 4 featured blogs constraint
+    if (updateInput.is_featured === true && !existingBlog.is_featured) {
+      const featuredCount = await repository.getFeaturedCount()
+      if (featuredCount >= 4) {
+        return formatErrorResponse(
+          new ValidationError('Only 4 blogs can be featured. Please remove a blog from featured first.', {
+            field: 'is_featured',
+          })
+        )
+      }
+    }
 
     // If slug is being updated, check uniqueness
     if (updateInput.slug) {

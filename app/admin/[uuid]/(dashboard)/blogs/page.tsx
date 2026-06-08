@@ -1,9 +1,9 @@
-import { DeleteBlogButton } from '@/components/admin/delete-blog-button'
+import { BlogActionsMenu } from '@/components/admin/blog-actions-menu'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { getBlogRepository } from '@/lib/db/blog_queries'
 import { formatDate } from '@/lib/utils/formatting'
-import { BookOpen, Calendar, Edit, Eye, EyeOff, Plus } from 'lucide-react'
+import { BookOpen, Calendar, Eye, EyeOff, Plus, Star } from 'lucide-react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { BlogTabFilter } from '@/components/admin/blog-tab-filter'
@@ -91,6 +91,9 @@ export default async function AdminBlogsPage({ searchParams }: PageProps) {
               <thead>
                 <tr className="bg-[#F5F5F5] text-[#6B7280]">
                   <th className="text-left py-3.5 px-6 font-semibold text-xs uppercase tracking-wider">Title</th>
+                  <th className="text-left py-3.5 px-6 font-semibold text-xs uppercase tracking-wider">
+                    <div className="flex items-center gap-1.5"> Featured</div>
+                  </th>
                   <th className="text-left py-3.5 px-6 font-semibold text-xs uppercase tracking-wider">Status</th>
                   <th className="text-left py-3.5 px-6 font-semibold text-xs uppercase tracking-wider">Created</th>
                   <th className="text-left py-3.5 px-6 font-semibold text-xs uppercase tracking-wider">Actions</th>
@@ -106,6 +109,13 @@ export default async function AdminBlogsPage({ searchParams }: PageProps) {
                         </div>
                         <span className="font-medium text-[#1A1A1A] line-clamp-1 group-hover:text-[#DC2626] transition-colors">{blog.title}</span>
                       </div>
+                    </td>
+                    <td className="py-4 px-6">
+                      {blog.is_featured ? (
+                        <span className="text-blue-700 font-semibold text-xs bg-blue-50 px-2 py-1 rounded-md border border-blue-200">True</span>
+                      ) : (
+                        <span className="text-[#6B7280] font-medium text-xs">False</span>
+                      )}
                     </td>
                     <td className="py-4 px-6">
                       {blog.published ? (
@@ -125,19 +135,12 @@ export default async function AdminBlogsPage({ searchParams }: PageProps) {
                       </div>
                     </td>
                     <td className="py-4 px-6">
-                      <div className="flex gap-2">
-                        <Link href={`${getAdminBasePath()}/blogs/${blog.id}/edit`}>
-                          <Button size="sm" variant="outline" className="border-[#1B2340]/20 text-[#1B2340] hover:bg-[#1B2340] hover:text-white gap-1.5 h-8 px-3 transition-all duration-200">
-                            <Edit size={13} /> Edit
-                          </Button>
-                        </Link>
-                        <DeleteBlogButton id={blog.id} />
-                      </div>
+                      <BlogActionsMenu blog={blog} />
                     </td>
                   </tr>
                 )) : (
                   <tr>
-                    <td colSpan={4} className="py-16 text-center text-[#6B7280]">
+                    <td colSpan={5} className="py-16 text-center text-[#6B7280]">
                       <BookOpen size={40} className="mx-auto mb-3 opacity-20" />
                       <p className="font-medium">No blog posts found</p>
                       <p className="text-sm mt-1 opacity-70">Try changing the filter or create a new post.</p>

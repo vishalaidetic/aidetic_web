@@ -12,19 +12,19 @@ const pillars = [
       'Heavy reliance on analytics teams creates bottlenecks, slowing down access to the data needed for timely and informed decision-making.',
   },
   {
-    icon: LayoutDashboard,
-    number: '02',
-    title: "Just Dashboards aren't Enough for Actionable Insights",
-    description:
-      'Most dashboards are static, offering only BAU metrics for health checks. They rarely empower stakeholders to extract meaningful insights for strategic decision-making.',
-  },
-  {
     icon: Inbox,
-    number: '03',
+    number: '02',
     title: 'Data Analysts Stuck in a Sea of Ad-Hoc Requests',
     description:
       'Flooded with low-impact requests, analysts spend their time handling routine tasks, leaving little room for high-value strategic analysis.',
   },
+  {
+    icon: LayoutDashboard,
+    number: '03',
+    title: "Just Dashboards aren't Enough for Actionable Insights",
+    description:
+      'Most dashboards are static, offering only BAU metrics for health checks. They rarely empower stakeholders to extract meaningful insights for strategic decision-making.',
+  }
 ]
 
 export function ProductSection() {
@@ -63,12 +63,10 @@ export function ProductSection() {
               backgroundClip: 'text',
             }}
           >
-            Businesses are Rich in Data
-            <br className="hidden md:block" />
-            but Poor in Insights
+            But, Why are Business Slow in Decision Making?
           </h2>
           <p className="text-lg md:text-xl text-[#0d253d] leading-relaxed max-w-2xl mx-auto" style={{ fontFamily: 'var(--font-quicksand)' }}>
-            Data-driven decision-making remains a challenge, even with millions of dollars spent on analytics.
+            Millions of dollars are spent every year on data initiatives, yet insights take more than a week to arrive.
           </p>
         </motion.div>
 

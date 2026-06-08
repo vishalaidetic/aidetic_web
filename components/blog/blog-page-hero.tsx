@@ -34,7 +34,7 @@ export function BlogPageHero() {
           Aidetic Blogs
         </h1>
         <p
-          className="text-lg md:text-xl text-[#64748d] leading-relaxed mt-6 max-w-3xl mx-auto font-medium"
+          className="text-lg text-[#64748d] leading-relaxed mt-6 max-w-3xl mx-auto"
           style={{ fontFamily: 'var(--font-quicksand)' }}
         >
           Stay updated with the latest trends and insights in AI, Data-Science, and modern Generative AI technologies.

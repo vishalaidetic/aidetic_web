@@ -1,15 +1,16 @@
 'use client'
+import { DashboardMock } from '@/components/home/dashboard-mock';
+import { FinalCtaSection } from '@/components/home/final-cta-section';
+import { HomeFaqSection } from '@/components/home/home-faq-section';
 import { Footer } from '@/components/layout/footer';
 import { Navigation } from '@/components/layout/navigation';
-import { DashboardMock } from '@/components/home/dashboard-mock';
-import { HomeFaqSection } from '@/components/home/home-faq-section';
 import { BookCallDialog } from '@/components/shared/book-call-dialog';
 
 import { AnimatePresence, motion, useInView } from "framer-motion";
 import { Activity, ArrowRight, Bot, Brain, ChevronDown, ChevronRight, Database, FileText, Layers, MousePointer2, Plug, RefreshCw, Send, ShieldCheck, Upload, Zap } from "lucide-react";
 import { Outfit, Playfair_Display } from 'next/font/google';
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 
 const outfit = Outfit({ subsets: ['latin'] })
@@ -156,10 +157,16 @@ function MigrationDemo() {
   }, [isInView]);
 
   return (
-    <div
+    <motion.div
       ref={containerRef}
       onMouseEnter={runSequence}
-      className="flex flex-col w-full bg-white rounded-3xl overflow-hidden shadow-[0_8px_32px_-6px_rgba(0,0,0,.05)] border border-slate-200 h-[620px] relative"
+      className="flex flex-col w-full bg-white rounded-3xl overflow-hidden border border-slate-200 h-[620px] relative cursor-pointer"
+      style={{ boxShadow: '0 8px 32px -4px rgba(83,58,253,0.18), 0 2px 8px 0 rgba(0,0,0,0.06)' }}
+      whileHover={{
+        boxShadow: '0 24px 56px -8px rgba(83,58,253,0.38), 0 8px 24px -4px rgba(234,34,97,0.22), 0 0 0 1px rgba(83,58,253,0.5)',
+        y: -8
+      }}
+      transition={{ duration: 0.35, ease: 'easeOut' }}
     >
       {/* Dark top bar */}
       <div className="flex items-center gap-3 px-4 py-3 bg-[#1c1e54] z-30 relative shrink-0">
@@ -328,7 +335,7 @@ function MigrationDemo() {
                           exit={{ opacity: 0, y: -10 }}
                           className="absolute top-full left-0 right-0 mt-2 bg-white border border-slate-200 rounded-xl shadow-xl overflow-hidden z-50 text-[#0d253d]"
                         >
-                            {['MongoDB', 'Snowflake', 'PostgreSQL', 'MSSQL', 'MySQL'].map(opt => (
+                          {['MongoDB', 'Snowflake', 'PostgreSQL', 'MSSQL', 'MySQL'].map(opt => (
                             <div key={opt} className={`px-3 py-2 text-xs cursor-pointer ${opt === 'Snowflake' ? 'bg-slate-50 font-semibold text-[#533afd]' : 'hover:bg-slate-50'}`}>
                               {opt}
                             </div>
@@ -356,7 +363,7 @@ function MigrationDemo() {
                           exit={{ opacity: 0, y: -10 }}
                           className="absolute top-full left-0 right-0 mt-2 bg-white border border-slate-200 rounded-xl shadow-xl overflow-hidden z-50 text-[#0d253d]"
                         >
-                            {['AWS', 'Azure', 'Databricks'].map(opt => (
+                          {['AWS', 'Azure', 'Databricks'].map(opt => (
                             <div key={opt} className={`px-3 py-2 text-xs cursor-pointer ${opt === 'Databricks' ? 'bg-slate-50 font-semibold text-[#533afd]' : 'hover:bg-slate-50'}`}>
                               {opt}
                             </div>
@@ -485,7 +492,7 @@ function MigrationDemo() {
           </AnimatePresence>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
@@ -526,10 +533,16 @@ function AIChatDemo() {
   }, [isInView]);
 
   return (
-    <div
+    <motion.div
       ref={containerRef}
       onMouseEnter={runSequence}
-      className="flex flex-col w-full bg-white rounded-3xl overflow-hidden shadow-[0_8px_32px_-6px_rgba(0,0,0,.05)] border border-slate-200 h-[630px] relative"
+      className="flex flex-col w-full bg-white rounded-3xl overflow-hidden border border-slate-200 h-[630px] relative cursor-pointer"
+      style={{ boxShadow: '0 8px 32px -4px rgba(83,58,253,0.18), 0 2px 8px 0 rgba(0,0,0,0.06)' }}
+      whileHover={{
+        boxShadow: '0 24px 56px -8px rgba(83,58,253,0.38), 0 8px 24px -4px rgba(234,34,97,0.22), 0 0 0 1px rgba(83,58,253,0.5)',
+        y: -8
+      }}
+      transition={{ duration: 0.35, ease: 'easeOut' }}
     >
       {/* Dark top bar */}
       <div className="flex items-center gap-3 px-4 py-3 bg-[#1c1e54] z-30 relative shrink-0">
@@ -777,14 +790,14 @@ function AIChatDemo() {
           </motion.div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState('prebuilt')
   const [activeIndustryTab, setActiveIndustryTab] = useState('banking')
-    const [heroTextIndex, setHeroTextIndex] = useState(0)
+  const [heroTextIndex, setHeroTextIndex] = useState(0)
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -922,7 +935,7 @@ export default function HomePage() {
                         transition={{ duration: 0.4 }}
                         className="absolute left-1/2 -translate-x-1/2 whitespace-nowrap"
                         style={{
-                          background: 'linear-gradient(to right, #533afd, #2563eb)',
+                          background: 'linear-gradient(to right, #533afd, #0d253d)',
                           WebkitBackgroundClip: 'text',
                           WebkitTextFillColor: 'transparent',
                           backgroundClip: 'text',
@@ -951,14 +964,15 @@ export default function HomePage() {
                   <BookCallDialog>
                     <button
                       id="hero-cta-demo"
-                      className="px-6 py-2.5 rounded-md font-bold text-sm text-white tracking-widest uppercase transition-all duration-200 hover:opacity-90 hover:-translate-y-px"
-                      style={{ background: '#533afd', fontFamily: 'var(--font-inter)' }}
+                      className="px-8 py-3.5 rounded-full bg-[#533afd] text-white font-medium shadow-lg hover:opacity-90 hover:-translate-y-0.5 transition-all text-[15px]"
+                      style={{ fontFamily: 'var(--font-inter)' }}
                     >
                       Request a Call
                     </button>
                   </BookCallDialog>
                   <Link href="/#products" className="w-full sm:w-auto">
-                    <button className="w-full sm:w-auto px-6 py-2.5 rounded-md font-bold text-sm text-white tracking-widest uppercase bg-slate-900 hover:bg-slate-800 transition-all duration-200 hover:-translate-y-px"
+                    <button
+                      className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-white text-[#533afd] font-medium border border-[#533afd]/30 shadow-sm hover:border-[#533afd] hover:bg-slate-50 hover:-translate-y-0.5 transition-all text-[15px]"
                       style={{ fontFamily: 'var(--font-inter)' }}
                     >
                       Our Products
@@ -1043,7 +1057,7 @@ export default function HomePage() {
         {/* ── About Section ── */}
         <section className="relative w-full bg-slate-50 pb-20 px-6 overflow-hidden snap-start">
           <div className="relative z-10 max-w-7xl mx-auto text-center space-y-6">
-            <motion.h2 
+            <motion.h2
               className="text-[2rem] sm:text-[2.25rem] lg:text-[2.5rem] xl:text-[2.75rem] font-semibold leading-[1.15] pb-2 max-w-4xl mx-auto text-center"
               style={{
                 fontFamily: 'var(--font-inter)',
@@ -1059,7 +1073,7 @@ export default function HomePage() {
             >
               A boutique AI studio shipping production systems.
             </motion.h2>
-            <motion.h3 
+            <motion.h3
               className="text-[1rem] sm:text-[1.1rem] lg:text-[1.2rem] xl:text-[1.3rem] text-[#0d253d] leading-relaxed max-w-3xl mx-auto mb-8 text-center"
               style={{ fontFamily: 'var(--font-quicksand)' }}
               initial={{ opacity: 0, y: 20 }}
@@ -1071,7 +1085,7 @@ export default function HomePage() {
             </motion.h3>
           </div>
 
-          <motion.div 
+          <motion.div
             className="relative z-10 max-w-7xl mx-auto mt-16 lg:mt-24 w-full"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1113,7 +1127,7 @@ export default function HomePage() {
               </div>
 
               {/* ── Stats row ── */}
-              <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {homeStats.map((stat, i) => (
                   <motion.div
                     key={i}
@@ -1172,25 +1186,35 @@ export default function HomePage() {
             </motion.div>
 
             {/* Analytics Section - Layered Design (Agent Factory) */}
-            <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.1 }} viewport={{ once: true, amount: 0.2 }} className="relative rounded-2xl overflow-hidden shadow-sm bg-white border border-slate-200 p-5 lg:p-8 min-h-[280px] flex flex-col lg:flex-row items-center gap-6 lg:gap-10">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }} 
+              whileInView={{ opacity: 1, scale: 1 }} 
+              whileHover={{
+                boxShadow: '0 24px 56px -8px rgba(83,58,253,0.38), 0 8px 24px -4px rgba(234,34,97,0.22), 0 0 0 1px rgba(83,58,253,0.5)',
+                y: -8
+              }}
+              transition={{ duration: 0.4 }} 
+              viewport={{ once: true, amount: 0.2 }} 
+              className="relative rounded-2xl overflow-hidden shadow-sm bg-white border border-slate-200 p-4 lg:p-6 flex flex-col lg:flex-row items-center gap-4 lg:gap-8 cursor-pointer"
+            >
               {/* Left - Purple Card (Smaller, Contained) */}
-              <div className="flex-shrink-0 w-full lg:w-[360px] bg-gradient-to-br from-[#533afd] to-[#8278E6] rounded-xl p-5 lg:p-7 space-y-5 shadow-xl border border-white/10">
+              <div className="flex-shrink-0 w-full lg:w-[300px] bg-gradient-to-br from-[#533afd] to-[#8278E6] rounded-xl p-4 lg:p-5 space-y-2 shadow-xl border border-white/10">
                 <div className="flex items-center justify-between">
-                  <h4 className="text-[13px] font-bold text-white tracking-wide" style={{ fontFamily: "var(--font-inter)" }}>AGENT FACTORY</h4>
-                  <button className="w-7 h-7 rounded-full flex items-center justify-center transition-colors flex-shrink-0 hover:bg-white/10 border border-white/20">
-                    <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <h4 className="text-[11px] font-bold text-white tracking-wide" style={{ fontFamily: "var(--font-inter)" }}>AGENT FACTORY</h4>
+                  <button className="w-6 h-6 rounded-full flex items-center justify-center transition-colors flex-shrink-0 hover:bg-white/10 border border-white/20">
+                    <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7m0 0H8m9 0v9" />
                     </svg>
                   </button>
                 </div>
 
-                <div className="space-y-2 pt-1">
-                  <h3 className="text-[3.5rem] leading-none tracking-tighter font-black text-white" style={{ fontFamily: "var(--font-inter)" }}>6x</h3>
-                  <p className="text-[15px] font-bold text-white/95 leading-snug" style={{ fontFamily: "var(--font-quicksand)" }}>Faster Data-Driven<br />Decision Making</p>
+                <div className="space-y-0.5">
+                  <h3 className="text-[2.5rem] leading-none tracking-tighter font-black text-white" style={{ fontFamily: "var(--font-inter)" }}>6x</h3>
+                  <p className="text-[13px] font-bold text-white/95 leading-snug" style={{ fontFamily: "var(--font-quicksand)" }}>Faster Data-Driven<br />Decision Making</p>
                 </div>
 
-                <div className="flex items-center gap-2 text-[11px] font-semibold text-white/80 pt-4 border-t border-white/20">
-                  <svg className="w-3.5 h-3.5 text-white/90 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                <div className="flex items-center gap-2 text-[10px] font-semibold text-white/80 pt-2 border-t border-white/20">
+                  <svg className="w-3 h-3 text-white/90 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
                   <span>AI Data Analyst Integration</span>
@@ -1214,7 +1238,17 @@ export default function HomePage() {
             </motion.div>
 
             {/* Analytics Section - Layered Design (Reversed) */}
-            <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.2 }} viewport={{ once: true, amount: 0.2 }} className="relative rounded-2xl overflow-hidden shadow-sm bg-white border border-slate-200 p-5 lg:p-8 min-h-[280px] flex flex-col lg:flex-row items-center gap-6 lg:gap-10">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }} 
+              whileInView={{ opacity: 1, scale: 1 }} 
+              whileHover={{
+                boxShadow: '0 24px 56px -8px rgba(83,58,253,0.38), 0 8px 24px -4px rgba(234,34,97,0.22), 0 0 0 1px rgba(83,58,253,0.5)',
+                y: -8
+              }}
+              transition={{ duration: 0.4 }} 
+              viewport={{ once: true, amount: 0.2 }} 
+              className="relative rounded-2xl overflow-hidden shadow-sm bg-white border border-slate-200 p-4 lg:p-6 flex flex-col lg:flex-row items-center gap-4 lg:gap-8 cursor-pointer mt-8"
+            >
               {/* Left - Text Overlay on Background */}
               <div className="flex-1 flex flex-col justify-center text-[#0d253d] space-y-3 lg:pl-4">
                 <h3 className="text-base font-bold leading-snug tracking-wide text-[#0d253d]" style={{ fontFamily: "var(--font-inter)" }}>
@@ -1230,23 +1264,23 @@ export default function HomePage() {
               </div>
 
               {/* Right - Purple Analytics Card (Smaller, Contained) */}
-              <div className="flex-shrink-0 w-full lg:w-[360px] bg-gradient-to-br from-[#533afd] to-[#8278E6] rounded-xl p-5 lg:p-7 space-y-5 shadow-xl border border-white/10">
+              <div className="flex-shrink-0 w-full lg:w-[300px] bg-gradient-to-br from-[#533afd] to-[#8278E6] rounded-xl p-4 lg:p-5 space-y-2 shadow-xl border border-white/10">
                 <div className="flex items-center justify-between">
-                  <h4 className="text-[13px] font-bold text-white tracking-wide" style={{ fontFamily: "var(--font-inter)" }}>DATA FLASH</h4>
-                  <button className="w-7 h-7 rounded-full flex items-center justify-center transition-colors flex-shrink-0 hover:bg-white/10 border border-white/20">
-                    <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <h4 className="text-[11px] font-bold text-white tracking-wide" style={{ fontFamily: "var(--font-inter)" }}>DATA FLASH</h4>
+                  <button className="w-6 h-6 rounded-full flex items-center justify-center transition-colors flex-shrink-0 hover:bg-white/10 border border-white/20">
+                    <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M12 5l7 7-7 7" />
                     </svg>
                   </button>
                 </div>
 
-                <div className="space-y-2 pt-1">
-                  <h3 className="text-[3.5rem] leading-none tracking-tighter font-black text-white" style={{ fontFamily: "var(--font-inter)" }}>100+</h3>
-                  <p className="text-[15px] font-bold text-white/95 leading-snug" style={{ fontFamily: "var(--font-quicksand)" }}>hours of efforts saved<br />in Data Migration</p>
+                <div className="space-y-0.5">
+                  <h3 className="text-[2.5rem] leading-none tracking-tighter font-black text-white" style={{ fontFamily: "var(--font-inter)" }}>100+</h3>
+                  <p className="text-[13px] font-bold text-white/95 leading-snug" style={{ fontFamily: "var(--font-quicksand)" }}>hours of efforts saved<br />in Data Migration</p>
                 </div>
 
-                <div className="flex items-center gap-2 text-[11px] font-semibold text-white/80 pt-4 border-t border-white/20">
-                  <svg className="w-3.5 h-3.5 text-white/90 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex items-center gap-2 text-[10px] font-semibold text-white/80 pt-2 border-t border-white/20">
+                  <svg className="w-3 h-3 text-white/90 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                   </svg>
                   <span>Automated Database Migration</span>
@@ -1294,11 +1328,8 @@ export default function HomePage() {
             <div className="shrink-0 mt-4 md:mt-0">
               <BookCallDialog>
                 <button
-                  className="px-8 py-3 rounded-lg font-bold text-sm text-white tracking-widest uppercase transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5"
-                  style={{
-                    background: 'linear-gradient(to right, #533afd, #2563eb)',
-                    fontFamily: 'var(--font-inter)',
-                  }}
+                  className="px-8 py-3.5 rounded-full bg-[#533afd] text-white font-medium shadow-lg hover:opacity-90 hover:-translate-y-0.5 transition-all text-[15px]"
+                  style={{ fontFamily: 'var(--font-inter)' }}
                 >
                   Request a Call
                 </button>
@@ -1364,7 +1395,7 @@ export default function HomePage() {
                     </div>
 
                     <div className="bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] hover:-translate-y-1.5 hover:shadow-[0_12px_24px_-8px_rgba(0,0,0,0.15)] transition-all duration-300">
-                      <div className="w-10 h-10 shrink-0 rounded-full bg-[#ea2261]/10 flex items-center justify-center text-[#ea2261]">
+                      <div className="w-10 h-10 shrink-0 rounded-full bg-[#533afd]/10 flex items-center justify-center text-[#533afd]">
                         <Brain size={20} />
                       </div>
                       <span className="text-sm font-semibold text-[#0d253d] leading-snug" style={{ fontFamily: "var(--font-inter)" }}>Answers that Explain Themselves.</span>
@@ -1387,17 +1418,17 @@ export default function HomePage() {
 
                   <Link
                     href="/agent-factory"
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg font-bold text-xs text-white tracking-widest uppercase transition-all duration-200 hover:opacity-90 hover:-translate-y-px w-fit shadow-md"
-                    style={{ background: '#533afd', fontFamily: 'var(--font-inter)' }}
+                    className="inline-flex items-center gap-1.5 px-6 py-3 rounded-full font-medium text-[15px] text-white hover:opacity-90 hover:-translate-y-0.5 transition-all w-fit shadow-lg bg-[#533afd]"
+                    style={{ fontFamily: 'var(--font-inter)' }}
                   >
                     Explore Agent Factory
-                    <ChevronRight size={14} strokeWidth={3} className="translate-y-[1px]" />
+                    <ChevronRight size={15} strokeWidth={2.5} className="translate-y-[1px]" />
                   </Link>
                 </motion.div>
 
                 {/* Right Component Demo */}
                 <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="order-1 lg:order-2 flex items-center justify-center relative">
-                  <div className="w-full max-w-[550px] relative z-10 rounded-xl shadow-[0_20px_50px_rgba(83,58,253,0.15)]">
+                  <div className="w-full max-w-[550px] relative z-10">
                     <AIChatDemo />
                   </div>
                   {/* Decorative background blob */}
@@ -1409,7 +1440,7 @@ export default function HomePage() {
               <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
                 {/* Left Component Demo */}
                 <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="order-1 lg:order-1 flex items-center justify-center relative">
-                  <div className="w-full max-w-[550px] relative z-10 rounded-xl shadow-[0_20px_50px_rgba(83,58,253,0.15)]">
+                  <div className="w-full max-w-[550px] relative z-10">
                     <MigrationDemo />
                   </div>
                   {/* Decorative background blob */}
@@ -1439,7 +1470,7 @@ export default function HomePage() {
                     </div>
 
                     <div className="bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] hover:-translate-y-1.5 hover:shadow-[0_12px_24px_-8px_rgba(0,0,0,0.15)] transition-all duration-300">
-                      <div className="w-10 h-10 shrink-0 rounded-full bg-[#ea2261]/10 flex items-center justify-center text-[#ea2261]">
+                      <div className="w-10 h-10 shrink-0 rounded-full bg-[#533afd]/10 flex items-center justify-center text-[#533afd]">
                         <RefreshCw size={20} />
                       </div>
                       <span className="text-sm font-semibold text-[#0d253d] leading-snug" style={{ fontFamily: "var(--font-inter)" }}>Config-Driven & Validated</span>
@@ -1462,10 +1493,10 @@ export default function HomePage() {
 
                   <Link
                     href="/#products"
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg font-bold text-xs text-white tracking-widest uppercase transition-all duration-200 hover:opacity-90 hover:-translate-y-px w-fit shadow-md"
-                    style={{ background: '#533afd', fontFamily: 'var(--font-inter)' }}
+                    className="inline-flex items-center gap-1.5 px-6 py-3 rounded-full font-medium text-[15px] text-white hover:opacity-90 hover:-translate-y-0.5 transition-all w-fit shadow-lg bg-[#533afd]"
+                    style={{ fontFamily: 'var(--font-inter)' }}
                   >
-                    Explore Data Flash <ChevronRight size={14} strokeWidth={3} className="translate-y-[1px]" />
+                    Explore Data Flash <ChevronRight size={15} strokeWidth={2.5} className="translate-y-[1px]" />
                   </Link>
                 </motion.div>
               </div>
@@ -1508,7 +1539,7 @@ export default function HomePage() {
 
             {/* ── Features grid ── */}
             <motion.div
-              className="border-2 border-[#533afd] rounded-3xl overflow-hidden bg-white/60 backdrop-blur-sm shadow-sm shadow-cyan-100"
+              className="border-2 border-[#533afd] rounded-3xl bg-white/60 backdrop-blur-sm shadow-sm shadow-cyan-100"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
@@ -1536,10 +1567,15 @@ export default function HomePage() {
                   return (
                     <motion.div
                       key={i}
-                      className="p-8 space-y-4 hover:bg-[#f6f9fc]/40 transition-colors duration-300"
+                      className="p-8 space-y-4 transition-all duration-300 cursor-pointer relative z-0 hover:z-10 rounded-2xl"
                       initial={{ opacity: 0, y: 16 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: i * 0.1 }}
+                      whileHover={{
+                        y: -8,
+                        boxShadow: '0 24px 56px -8px rgba(83,58,253,0.38), 0 8px 24px -4px rgba(234,34,97,0.22), 0 0 0 1px rgba(83,58,253,0.5)',
+                        backgroundColor: '#ffffff'
+                      }}
+                      transition={{ duration: 0.4 }}
                       viewport={{ once: true }}
                     >
                       <div className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-[#f6f9fc] border border-[#665efd]">
@@ -1582,10 +1618,15 @@ export default function HomePage() {
                   return (
                     <motion.div
                       key={i + 3}
-                      className="p-8 space-y-4 hover:bg-[#f6f9fc]/40 transition-colors duration-300"
+                      className="p-8 space-y-4 transition-all duration-300 cursor-pointer relative z-0 hover:z-10 rounded-2xl"
                       initial={{ opacity: 0, y: 16 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
+                      whileHover={{
+                        y: -8,
+                        boxShadow: '0 24px 56px -8px rgba(83,58,253,0.38), 0 8px 24px -4px rgba(234,34,97,0.22), 0 0 0 1px rgba(83,58,253,0.5)',
+                        backgroundColor: '#ffffff'
+                      }}
+                      transition={{ duration: 0.4 }}
                       viewport={{ once: true }}
                     >
                       <div className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-[#f6f9fc] border border-[#665efd]">
@@ -1613,7 +1654,7 @@ export default function HomePage() {
 
               {/* Left Sticky Sidebar */}
               <div className="lg:col-span-3 lg:sticky lg:top-24 space-y-8 pt-8">
-                <div className="flex items-center gap-2 text-muted-foreground text-sm font-medium">
+                <div className="flex items-center gap-2 text-[#64748d] text-sm font-medium">
                   <span>Scroll to explore</span>
                   <svg className="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
@@ -1630,7 +1671,7 @@ export default function HomePage() {
                       key={i}
                       onClick={() => scrollToSection(tab.id)}
                       className={`w-full px-5 py-4 rounded-[14px] font-bold text-[11px] tracking-wider transition-all duration-300 text-left ${activeTab === tab.id
-                        ? 'bg-gradient-to-br from-[#533afd] to-[#ea2261] text-white shadow-lg'
+                        ? 'bg-gradient-to-br from-[#533afd] to-[#0d253d] text-white shadow-lg'
                         : 'bg-white/60 text-[#3a4752] hover:bg-white border border-white/50 hover:border-black/5'
                         }`}
                     >
@@ -1656,7 +1697,7 @@ export default function HomePage() {
                   >
                     Use purpose-built agentic AI applications
                   </h2>
-                  <p className="text-lg text-foreground/70 leading-relaxed font-medium" style={{ fontFamily: "var(--font-quicksand)" }}>
+                  <p className="text-lg text-[#0d253d]/70 leading-relaxed font-medium" style={{ fontFamily: "var(--font-quicksand)" }}>
                     We solve the most urgent industry and enterprise challenges with regulation-approved applications.
                   </p>
                 </div>
@@ -1735,11 +1776,11 @@ export default function HomePage() {
                       {/* Card Content (Top) */}
                       <div className="flex flex-col space-y-6">
                         <div className="space-y-3">
-                          <h3 className="text-2xl font-medium text-foreground" style={{ fontFamily: "var(--font-inter)" }}>
+                          <h3 className="text-2xl font-medium text-[#0d253d]" style={{ fontFamily: "var(--font-inter)" }}>
                             {card.title}
-                            <span className="text-[#ea2261]">{card.titleHighlight}</span>
+                            <span className="text-[#533afd]">{card.titleHighlight}</span>
                           </h3>
-                          <p className="text-muted-foreground leading-relaxed text-[14px]" style={{ fontFamily: "var(--font-quicksand)" }}>
+                          <p className="text-[#64748d] leading-relaxed text-[14px]" style={{ fontFamily: "var(--font-quicksand)" }}>
                             {card.desc}
                           </p>
                         </div>
@@ -1750,8 +1791,8 @@ export default function HomePage() {
                             <button
                               key={j}
                               className={`px-4 py-2 rounded-lg font-bold text-[10px] tracking-widest transition-all border ${j === 0
-                                ? 'bg-gradient-to-br from-[#533afd] to-[#ea2261] text-white border-transparent hover:opacity-90'
-                                : 'bg-transparent text-foreground border-[#ea2261]/30 hover:border-[#ea2261]'
+                                ? 'bg-[#533afd] text-white border-transparent hover:opacity-90'
+                                : 'bg-transparent text-[#0d253d] border-[#533afd]/30 hover:border-[#533afd]'
                                 }`}
                             >
                               {btn} {j === 0 && <span className="ml-1 opacity-50">•</span>}
@@ -1784,18 +1825,18 @@ export default function HomePage() {
                           {card.conversations.map((msg, j) => (
                             <div key={j} className={`flex gap-2 items-start ${msg.type === 'user' ? 'justify-end' : ''}`}>
                               {msg.type === 'ai' && (
-                                <div className="w-4 h-4 rounded-full border-[3px] border-[#ea2261]/40 flex-shrink-0 mt-1" />
+                                <div className="w-4 h-4 rounded-full border-[3px] border-[#533afd]/40 flex-shrink-0 mt-1" />
                               )}
 
                               <div className={`text-[11px] leading-relaxed px-3 py-2 rounded-2xl max-w-[90%] shadow-sm ${msg.type === 'user'
-                                ? 'bg-white border border-border/30 text-foreground font-medium rounded-tr-sm'
-                                : 'bg-transparent text-muted-foreground'
+                                ? 'bg-white border border-border/30 text-[#0d253d] font-medium rounded-tr-sm'
+                                : 'bg-transparent text-[#64748d]'
                                 }`}>
                                 {msg.text}
                               </div>
 
                               {msg.type === 'user' && (
-                                <div className="w-5 h-5 rounded-full bg-blue-100 flex-shrink-0 flex items-center justify-center overflow-hidden border border-border mt-1">
+                                <div className="w-5 h-5 rounded-full bg-[#533afd]/10 flex-shrink-0 flex items-center justify-center overflow-hidden border border-[#533afd]/20 mt-1">
                                   <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="User" className="w-full h-full object-cover" />
                                 </div>
                               )}
@@ -1830,22 +1871,26 @@ export default function HomePage() {
                   >
                     We&apos;ve built our business by serving global enterprises
                   </h2>
-                  <p className="text-muted-foreground text-lg" style={{ fontFamily: "var(--font-quicksand)" }}>
+                  <p className="text-[#64748d] text-lg" style={{ fontFamily: "var(--font-quicksand)" }}>
                     Trust us, we&apos;ve learned from the best.
                   </p>
                 </motion.div>
 
-                <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.15 }} viewport={{ once: true }} className="text-muted-foreground leading-relaxed">
+                <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.15 }} viewport={{ once: true }} className="text-[#64748d] leading-relaxed">
                   <p style={{ fontFamily: "var(--font-quicksand)" }}>Discover why hundreds of enterprises use our platform.</p>
                 </motion.div>
 
                 <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.3 }} viewport={{ once: true }} className="flex gap-4 flex-wrap">
-                  <button className="px-6 py-3 bg-gradient-to-br from-[#533afd] to-[#ea2261] text-white font-semibold rounded-lg hover:opacity-90 transition-all hover:scale-105 active:scale-95">
-                    REQUEST A DEMO
-                  </button>
-                  <button className="px-6 py-3 border-2 border-border text-foreground font-semibold rounded-lg hover:border-[#ea2261] hover:text-[#ea2261] transition-all hover:scale-105 active:scale-95">
-                    LET&apos;S TALK
-                  </button>
+                  <BookCallDialog>
+                    <button className="px-8 py-3.5 rounded-full bg-[#533afd] text-white font-medium shadow-lg hover:opacity-90 hover:-translate-y-0.5 transition-all text-[15px]" style={{ fontFamily: 'var(--font-inter)' }}>
+                      REQUEST A DEMO
+                    </button>
+                  </BookCallDialog>
+                  <BookCallDialog>
+                    <button className="px-8 py-3.5 rounded-full bg-white text-[#533afd] font-medium border border-[#533afd]/30 shadow-sm hover:border-[#533afd] hover:bg-slate-50 hover:-translate-y-0.5 transition-all text-[15px]" style={{ fontFamily: 'var(--font-inter)' }}>
+                      LET&apos;S TALK
+                    </button>
+                  </BookCallDialog>
                 </motion.div>
               </div>
 
@@ -1859,8 +1904,8 @@ export default function HomePage() {
                         key={i}
                         onClick={() => setActiveIndustryTab(tab.toLowerCase().replace(/\s/g, ''))}
                         className={`px-4 py-2 rounded-full font-semibold text-sm transition-all ${activeIndustryTab === tab.toLowerCase().replace(/\s/g, '')
-                          ? 'bg-gradient-to-br from-[#533afd] to-[#ea2261] text-white'
-                          : 'bg-muted text-muted-foreground hover:text-foreground'
+                          ? 'bg-[#533afd] text-white'
+                          : 'bg-muted text-[#64748d] hover:text-[#0d253d]'
                           }`}
                       >
                         {tab}
@@ -1986,7 +2031,7 @@ export default function HomePage() {
                 >
                   Customer testimonials
                 </h2>
-                <p className="text-lg text-muted-foreground" style={{ fontFamily: "var(--font-quicksand)" }}>
+                <p className="text-lg text-[#64748d]" style={{ fontFamily: "var(--font-quicksand)" }}>
                   Discover how organizations deliver AI value with our platform.
                 </p>
               </div>
@@ -2000,7 +2045,7 @@ export default function HomePage() {
                       carousel.scrollBy({ left: -400, behavior: 'smooth' })
                     }
                   }}
-                  className="w-12 h-12 rounded-full bg-gradient-to-br from-[#533afd] to-[#ea2261] text-white flex items-center justify-center hover:opacity-80 transition-all hover:scale-110 active:scale-95 shadow-md hover:shadow-lg"
+                  className="w-12 h-12 rounded-full bg-[#533afd] text-white flex items-center justify-center hover:opacity-80 transition-all hover:scale-110 active:scale-95 shadow-md hover:shadow-lg"
                   aria-label="Previous testimonial"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -2014,7 +2059,7 @@ export default function HomePage() {
                       carousel.scrollBy({ left: 400, behavior: 'smooth' })
                     }
                   }}
-                  className="w-12 h-12 rounded-full bg-gradient-to-br from-[#533afd] to-[#ea2261] text-white flex items-center justify-center hover:opacity-80 transition-all hover:scale-110 active:scale-95 shadow-md hover:shadow-lg"
+                  className="w-12 h-12 rounded-full bg-[#533afd] text-white flex items-center justify-center hover:opacity-80 transition-all hover:scale-110 active:scale-95 shadow-md hover:shadow-lg"
                   aria-label="Next testimonial"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -2058,12 +2103,12 @@ export default function HomePage() {
               ].map((testimonial, i) => (
                 <motion.div key={i} initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.2 + (i % 3) * 0.1 }} viewport={{ once: true }} className="flex-shrink-0 w-80 rounded-2xl bg-white border border-slate-200 p-8 shadow-md hover:shadow-xl transition-all duration-300 snap-start">
                   {/* Company Name */}
-                  <h3 className="text-xl font-semibold text-foreground mb-6" style={{ fontFamily: "var(--font-inter)" }}>
+                  <h3 className="text-xl font-semibold text-[#0d253d] mb-6" style={{ fontFamily: "var(--font-inter)" }}>
                     {testimonial.company}
                   </h3>
 
                   {/* Quote */}
-                  <p className="text-muted-foreground leading-relaxed" style={{ fontFamily: "var(--font-quicksand)" }}>
+                  <p className="text-[#64748d] leading-relaxed" style={{ fontFamily: "var(--font-quicksand)" }}>
                     "{testimonial.quote}"
                   </p>
                 </motion.div>
@@ -2072,7 +2117,7 @@ export default function HomePage() {
 
             {/* Call to Action */}
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="">
-              {/* <button className="px-6 py-3 bg-foreground text-primary-foreground font-semibold rounded-lg hover:bg-foreground/90 transition-all hover:scale-105 active:scale-95 shadow-md hover:shadow-lg">
+              {/* <button className="px-6 py-3 bg-[#0d253d] text-white font-semibold rounded-lg hover:bg-[#0d253d]/90 transition-all hover:scale-105 active:scale-95 shadow-md hover:shadow-lg">
                 MORE CUSTOMER STORIES →
               </button> */}
             </motion.div>
@@ -2080,6 +2125,8 @@ export default function HomePage() {
         </section>
 
         <HomeFaqSection />
+
+        <FinalCtaSection />
 
       </main>
       <div className="snap-start w-full">

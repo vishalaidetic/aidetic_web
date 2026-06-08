@@ -4,9 +4,9 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { BookCallDialog } from '@/components/shared/book-call-dialog'
 
-export function CtaSection() {
+export function FinalCtaSection() {
   return (
-    <section className="py-24 px-4 sm:px-6 bg-white flex items-center justify-center w-full">
+    <section className="snap-start py-24 px-4 sm:px-6 bg-white flex items-center justify-center w-full min-h-[60vh]">
       <div className="w-full max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -18,13 +18,13 @@ export function CtaSection() {
             background: 'linear-gradient(to right, #fcf2e3 0%, #fde2f3 40%, #e6e2fd 100%)'
           }}
         >
-          {/* Subtle overlay */}
-          <div className="absolute inset-0 pointer-events-none mix-blend-overlay opacity-40">
+          {/* Background Gradient & Effects overlay if needed */}
+          <div className="absolute inset-0 pointer-events-none mix-blend-overlay opacity-50">
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/60 via-transparent to-transparent" />
           </div>
 
           <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-10">
-
+            
             {/* Left Content */}
             <div className="flex-1 text-left space-y-6">
               <h2
@@ -37,17 +37,17 @@ export function CtaSection() {
                   backgroundClip: 'text',
                 }}
               >
-                It's not 2016 anymore.
+                Ready to put AI to work —<br/>for real?
               </h2>
-              <p
-                className="text-lg text-[#64748d] leading-relaxed max-w-xl"
+              <p 
+                className="text-lg md:text-xl text-[#64748d] leading-relaxed max-w-xl" 
                 style={{ fontFamily: 'var(--font-quicksand)' }}
               >
-                You shouldn't need a week, a dashboard, or a data team to make one decision.
+                Tell us about the use case. We'll come back in 48 hours with a scoped plan, a fixed timeline and a working demo two weeks in.
               </p>
             </div>
 
-            {/* Right Buttons */}
+            {/* Right Content / Buttons */}
             <div className="flex flex-col sm:flex-row items-center gap-4 shrink-0">
               <BookCallDialog>
                 <button

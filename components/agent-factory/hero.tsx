@@ -65,8 +65,9 @@ export function Hero() {
                   backgroundClip: 'text',
                 }}
               >
-                AI Agents that Answer<br />
-                Your Business Questions
+                AI Agents that Turn<br />
+                Customer Insights<br />
+                into Margin
               </h1>
             </motion.div>
 
@@ -78,7 +79,7 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.16 }}
             >
-              Agent Factory deploys domain-tuned AI agents across marketing, sales, finance, and operations built on your data, trained on your KPIs, configured by our engineers, so your team doesn't have to.
+              Agent Factory deploys domain-tuned AI agents on your customer data, category trends, and business KPIs. Fetches insight within seconds for CMOs, CFOs, and Sales Heads. So that every decision they make drives profit.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -91,10 +92,10 @@ export function Hero() {
               <BookCallDialog>
                 <button
                   id="hero-cta-demo"
-                  className="px-6 py-2.5 rounded-md font-bold text-sm text-white tracking-widest uppercase transition-all duration-200 hover:opacity-90 hover:-translate-y-px"
-                  style={{ background: '#533afd', fontFamily: 'var(--font-inter)' }}
+                  className="px-8 py-3.5 rounded-full bg-[#533afd] text-white font-medium shadow-lg hover:opacity-90 hover:-translate-y-0.5 transition-all text-[15px]"
+                  style={{ fontFamily: 'var(--font-inter)' }}
                 >
-                  Request A CALL
+                  Request a Call
                 </button>
               </BookCallDialog>
             </motion.div>

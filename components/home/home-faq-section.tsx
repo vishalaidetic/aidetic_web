@@ -39,12 +39,12 @@ export function HomeFaqSection() {
   const toggle = (i: number) => setOpenIndex(prev => (prev === i ? null : i))
 
   return (
-    <section className="relative w-full bg-white py-24 px-6 overflow-hidden snap-start">
-      <div className="max-w-7xl mx-auto">
+    <section className="relative w-full bg-white py-24 px-6 snap-start min-h-[60vh] flex items-center">
+      <div className="max-w-7xl mx-auto w-full">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
           
           {/* ── Left Column: Header & CTA ── */}
-          <div className="lg:col-span-5 space-y-8 sticky top-24">
+          <div className="lg:col-span-5 space-y-8 lg:sticky lg:top-24">
             <motion.div 
               initial={{ opacity: 0, x: -30 }} 
               whileInView={{ opacity: 1, x: 0 }} 
@@ -56,8 +56,14 @@ export function HomeFaqSection() {
                 FAQ
               </div>
               <h2
-                className="text-[2.25rem] sm:text-[2.5rem] lg:text-[3rem] font-medium leading-[1.15] text-[#0d253d] tracking-tight"
-                style={{ fontFamily: 'var(--font-inter)' }}
+                className="text-[2.25rem] sm:text-[2.5rem] lg:text-[3rem] font-medium leading-[1.15] tracking-tight"
+                style={{
+                  fontFamily: 'var(--font-inter)',
+                  background: 'linear-gradient(to right, #533afd, #000000)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}
               >
                 Common questions from data leaders.
               </h2>
@@ -83,8 +89,8 @@ export function HomeFaqSection() {
               <BookCallDialog>
                 <button
                   id="hero-cta-demo"
-                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-md font-bold text-sm text-white tracking-widest uppercase transition-all duration-200 hover:opacity-90 hover:-translate-y-px"
-                  style={{ background: '#533afd', fontFamily: 'var(--font-inter)' }}
+                  className="px-8 py-3.5 rounded-full bg-[#533afd] text-white font-medium shadow-lg hover:opacity-90 hover:-translate-y-0.5 transition-all text-[15px]"
+                  style={{ fontFamily: 'var(--font-inter)' }}
                 >
                   Request a Call
                 </button>

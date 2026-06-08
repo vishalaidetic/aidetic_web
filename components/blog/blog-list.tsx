@@ -83,7 +83,7 @@ export function BlogList({ blogs }: BlogListProps) {
                 className="text-3xl sm:text-4xl font-semibold mb-2 tracking-tight"
                 style={{
                   fontFamily: 'var(--font-inter)',
-                  background: 'linear-gradient(to right, #533afd, #000000)',
+                  background: 'linear-gradient(to right, #000000)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
@@ -91,7 +91,7 @@ export function BlogList({ blogs }: BlogListProps) {
               >
                 Featured Blog Posts
               </h2>
-              <p className="text-[#64748d] text-lg sm:text-xl" style={{ fontFamily: 'var(--font-quicksand)' }}>
+              <p className="text-lg text-[#64748d] leading-relaxed max-w-md" style={{ fontFamily: 'var(--font-quicksand)' }}>
                 Read our most popular blogs in one place
               </p>
             </div>

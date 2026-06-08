@@ -113,7 +113,7 @@ export function Navigation({ adminEmail: adminEmailProp }: NavigationProps = {})
                       'flex items-center gap-1 text-sm font-semibold transition-colors relative py-1',
                       isActive(link.href)
                         ? 'text-[#533afd]'
-                        : 'text-slate-600 hover:text-[#1B2340]'
+                        : 'text-slate-600 hover:text-[#0d253d]'
                     )}
                   >
                     {link.label}
@@ -160,7 +160,7 @@ export function Navigation({ adminEmail: adminEmailProp }: NavigationProps = {})
                     'text-sm font-semibold transition-colors relative py-1',
                     isActive(link.href)
                       ? 'text-[#533afd]'
-                      : 'text-slate-600 hover:text-[#1B2340]'
+                      : 'text-slate-600 hover:text-[#0d253d]'
                   )}
                 >
                   {link.label}
@@ -201,7 +201,7 @@ export function Navigation({ adminEmail: adminEmailProp }: NavigationProps = {})
             ) : (
               /* Guest */
               <BookCallDialog>
-                <button className="text-sm font-bold px-6 py-2.5 rounded-lg bg-gradient-to-r from-[#1B2340] to-[#DC2626] hover:opacity-90 text-white border-none shadow-md transition-all duration-200 hover:shadow-lg hover:scale-[1.02]">
+                <button className="text-[15px] font-medium px-6 py-2.5 rounded-full bg-[#533afd] hover:opacity-90 hover:-translate-y-0.5 text-white shadow-md transition-all duration-200">
                   Request a Call
                 </button>
               </BookCallDialog>
@@ -229,7 +229,7 @@ export function Navigation({ adminEmail: adminEmailProp }: NavigationProps = {})
                     'block px-4 py-3 text-sm font-bold rounded-lg transition-colors',
                     isActive(link.href)
                       ? 'bg-slate-50 text-[#533afd]'
-                      : 'text-slate-600 hover:bg-slate-50 hover:text-[#1B2340]'
+                      : 'text-slate-600 hover:bg-slate-50 hover:text-[#0d253d]'
                   )}
                   onClick={() => setMobileMenuOpen(false)}
                 >
@@ -255,7 +255,7 @@ export function Navigation({ adminEmail: adminEmailProp }: NavigationProps = {})
                   {/* Admin button — only on public pages */}
                   {!isInDashboard && (
                     <Link href={adminBasePath} onClick={() => setMobileMenuOpen(false)}>
-                      <button className="w-full flex items-center justify-center gap-2 text-sm font-bold px-5 py-3 rounded-lg bg-gradient-to-r from-[#1B2340] to-[#533afd] hover:opacity-90 text-white border-none shadow-md transition-all duration-200">
+                      <button className="w-full flex items-center justify-center gap-2 text-sm font-bold px-5 py-3 rounded-lg bg-gradient-to-r from-[#0d253d] to-[#533afd] hover:opacity-90 text-white border-none shadow-md transition-all duration-200">
                         <ShieldCheck size={16} /> Admin Dashboard
                       </button>
                     </Link>
@@ -272,11 +272,11 @@ export function Navigation({ adminEmail: adminEmailProp }: NavigationProps = {})
                 </>
               ) : (
                 /* Guest */
-                <BookCallDialog>
-                  <button className="w-full text-sm font-bold px-5 py-3 rounded-lg bg-gradient-to-r from-[#1B2340] to-[#DC2626] hover:opacity-90 text-white border-none shadow-md transition-all duration-200">
-                    Request a Call
-                  </button>
-                </BookCallDialog>
+              <BookCallDialog>
+                <button className="w-full text-[15px] font-medium px-6 py-3 rounded-full bg-[#533afd] hover:opacity-90 hover:-translate-y-0.5 text-white shadow-md transition-all duration-200">
+                  Request a Call
+                </button>
+              </BookCallDialog>
               )}
             </div>
           </div>

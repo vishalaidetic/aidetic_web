@@ -154,7 +154,7 @@ export default async function DashboardPage({
                         </td>
                         <td className="py-4 px-6">
                           {blog.is_featured ? (
-                            <span className="text-[#533afd] font-semibold text-xs bg-[#533afd]/10 px-2 py-1 rounded-md">True</span>
+                            <span className="text-blue-700 font-semibold text-xs bg-blue-50 px-2 py-1 rounded-md border border-blue-200">True</span>
                           ) : (
                             <span className="text-[#6B7280] font-medium text-xs">False</span>
                           )}
