@@ -65,7 +65,7 @@ export function ProductSection() {
           >
             But, Why are Business Slow in Decision Making?
           </h2>
-          <p className="text-lg md:text-xl text-[#0d253d] leading-relaxed max-w-2xl mx-auto" style={{ fontFamily: 'var(--font-quicksand)' }}>
+          <p className="text-base md:text-lg text-[#0d253d] leading-relaxed max-w-2xl mx-auto" style={{ fontFamily: 'var(--font-quicksand)' }}>
             Millions of dollars are spent every year on data initiatives, yet insights take more than a week to arrive.
           </p>
         </motion.div>

@@ -379,7 +379,7 @@ export function FeaturesSection() {
           >
             Why Businesses Love Agent Factory
           </h2>
-          <p className="text-[#0d253d] text-lg md:text-xl leading-relaxed max-w-2xl mx-auto" style={{ fontFamily: 'var(--font-quicksand)' }}>
+          <p className="text-base md:text-lg text-[#0d253d] leading-relaxed max-w-2xl mx-auto" style={{ fontFamily: 'var(--font-quicksand)' }}>
             It works the way they think. No SQL. No tickets to the data team. Just plain-English questions and answers they can act on.
           </p>
         </motion.div>

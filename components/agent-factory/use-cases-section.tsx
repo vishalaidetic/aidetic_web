@@ -64,7 +64,7 @@ export function UseCasesSection() {
               >
                 Stale Insights will Never Give You Margin
               </h2>
-              <p className="text-lg md:text-xl text-[#0d253d] leading-relaxed max-w-2xl mx-auto" style={{ fontFamily: "var(--font-quicksand)" }}>
+              <p className="text-base md:text-lg text-[#0d253d] leading-relaxed max-w-2xl mx-auto" style={{ fontFamily: "var(--font-quicksand)" }}>
                 McKinsey says, businesses that take fast data-driven decisions are 19x more likely to be profitable.
               </p>
             </motion.div>

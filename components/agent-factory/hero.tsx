@@ -73,7 +73,7 @@ export function Hero() {
 
             {/* Body */}
             <motion.p
-              className="text-lg md:text-xl text-[#0d253d] leading-relaxed max-w-lg mb-8"
+              className="text-base md:text-lg text-[#0d253d] leading-relaxed max-w-lg mb-8"
               style={{ fontFamily: 'var(--font-quicksand)' }}
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}

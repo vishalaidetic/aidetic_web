@@ -123,7 +123,7 @@ export function StatsSection() {
             >
               What Agent Factory Brings to the Table
             </h2>
-            <p className="text-[#0d253d] text-lg md:text-xl max-w-2xl mx-auto leading-relaxed" style={{ fontFamily: 'var(--font-quicksand)' }}>
+            <p className="text-base md:text-lg text-[#0d253d] max-w-2xl mx-auto leading-relaxed" style={{ fontFamily: 'var(--font-quicksand)' }}>
               No dashboards. No waiting. No guesswork. Just decisions backed by your data.
             </p>
           </div>
