@@ -1384,28 +1384,28 @@ export default function HomePage() {
 
                   {/* 2x2 Feature Grid */}
                   <div className="grid grid-cols-2 gap-4 mb-6 w-full">
-                    <div className="m-3 bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] hover:-translate-y-2 hover:shadow-[0_24px_56px_-8px_rgba(83,58,253,0.38),0_8px_24px_-4px_rgba(234,34,97,0.22),0_0_0_1px_rgba(83,58,253,0.5)] transition-all duration-300">
+                    <div className="m-3 bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] border border-slate-200 hover:-translate-y-2 transition-all duration-300">
                       <div className="w-10 h-10 shrink-0 rounded-full bg-[#533afd]/10 flex items-center justify-center text-[#533afd]">
                         <Bot size={20} />
                       </div>
                       <span className="text-sm font-semibold text-[#0d253d] leading-snug" style={{ fontFamily: "var(--font-inter)" }}>One Agent per Function. Each one an Expert.</span>
                     </div>
 
-                    <div className="m-3 bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] hover:-translate-y-2 hover:shadow-[0_24px_56px_-8px_rgba(83,58,253,0.38),0_8px_24px_-4px_rgba(234,34,97,0.22),0_0_0_1px_rgba(83,58,253,0.5)] transition-all duration-300">
+                    <div className="m-3 bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] border border-slate-200 hover:-translate-y-2 transition-all duration-300">
                       <div className="w-10 h-10 shrink-0 rounded-full bg-[#533afd]/10 flex items-center justify-center text-[#533afd]">
                         <Brain size={20} />
                       </div>
                       <span className="text-sm font-semibold text-[#0d253d] leading-snug" style={{ fontFamily: "var(--font-inter)" }}>Answers that Explain Themselves.</span>
                     </div>
 
-                    <div className="m-3 bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] hover:-translate-y-2 hover:shadow-[0_24px_56px_-8px_rgba(83,58,253,0.38),0_8px_24px_-4px_rgba(234,34,97,0.22),0_0_0_1px_rgba(83,58,253,0.5)] transition-all duration-300">
+                    <div className="m-3 bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] border border-slate-200 hover:-translate-y-2 transition-all duration-300">
                       <div className="w-10 h-10 shrink-0 rounded-full bg-[#f59e0b]/10 flex items-center justify-center text-[#f59e0b]">
                         <FileText size={20} />
                       </div>
                       <span className="text-sm font-semibold text-[#0d253d] leading-snug" style={{ fontFamily: "var(--font-inter)" }}>Charts and Trend Lines on Demand.</span>
                     </div>
 
-                    <div className="m-3 bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] hover:-translate-y-2 hover:shadow-[0_24px_56px_-8px_rgba(83,58,253,0.38),0_8px_24px_-4px_rgba(234,34,97,0.22),0_0_0_1px_rgba(83,58,253,0.5)] transition-all duration-300">
+                    <div className="m-3 bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] border border-slate-200 hover:-translate-y-2 transition-all duration-300">
                       <div className="w-10 h-10 shrink-0 rounded-full bg-[#10b981]/10 flex items-center justify-center text-[#10b981]">
                         <ShieldCheck size={20} />
                       </div>
@@ -1464,28 +1464,28 @@ export default function HomePage() {
 
                   {/* 2x2 Feature Grid for Data Flash */}
                   <div className="grid grid-cols-2 gap-4 mb-6 w-full">
-                    <div className="m-3 bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] hover:-translate-y-2 hover:shadow-[0_24px_56px_-8px_rgba(83,58,253,0.38),0_8px_24px_-4px_rgba(234,34,97,0.22),0_0_0_1px_rgba(83,58,253,0.5)] transition-all duration-300">
+                    <div className="m-3 bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] border border-slate-200 hover:-translate-y-2 transition-all duration-300">
                       <div className="w-10 h-10 shrink-0 rounded-full bg-[#533afd]/10 flex items-center justify-center text-[#533afd]">
                         <Database size={20} />
                       </div>
                       <span className="text-sm font-semibold text-[#0d253d] leading-snug" style={{ fontFamily: "var(--font-inter)" }}>Automated Migration</span>
                     </div>
 
-                    <div className="m-3 bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] hover:-translate-y-2 hover:shadow-[0_24px_56px_-8px_rgba(83,58,253,0.38),0_8px_24px_-4px_rgba(234,34,97,0.22),0_0_0_1px_rgba(83,58,253,0.5)] transition-all duration-300">
+                    <div className="m-3 bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] border border-slate-200 hover:-translate-y-2 transition-all duration-300">
                       <div className="w-10 h-10 shrink-0 rounded-full bg-[#533afd]/10 flex items-center justify-center text-[#533afd]">
                         <RefreshCw size={20} />
                       </div>
                       <span className="text-sm font-semibold text-[#0d253d] leading-snug" style={{ fontFamily: "var(--font-inter)" }}>Config-Driven & Validated</span>
                     </div>
 
-                    <div className="m-3 bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] hover:-translate-y-2 hover:shadow-[0_24px_56px_-8px_rgba(83,58,253,0.38),0_8px_24px_-4px_rgba(234,34,97,0.22),0_0_0_1px_rgba(83,58,253,0.5)] transition-all duration-300">
+                    <div className="m-3 bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] border border-slate-200 hover:-translate-y-2 transition-all duration-300">
                       <div className="w-10 h-10 shrink-0 rounded-full bg-[#f59e0b]/10 flex items-center justify-center text-[#f59e0b]">
                         <ShieldCheck size={20} />
                       </div>
                       <span className="text-sm font-semibold text-[#0d253d] leading-snug" style={{ fontFamily: "var(--font-inter)" }}>Audit-Ready</span>
                     </div>
 
-                    <div className="m-3 bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] hover:-translate-y-2 hover:shadow-[0_24px_56px_-8px_rgba(83,58,253,0.38),0_8px_24px_-4px_rgba(234,34,97,0.22),0_0_0_1px_rgba(83,58,253,0.5)] transition-all duration-300">
+                    <div className="m-3 bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] border border-slate-200 hover:-translate-y-2 transition-all duration-300">
                       <div className="w-10 h-10 shrink-0 rounded-full bg-[#10b981]/10 flex items-center justify-center text-[#10b981]">
                         <Upload size={20} />
                       </div>
@@ -1962,117 +1962,6 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-
-        {/* ── Customer Testimonials Carousel Section ── */}
-        <section className="w-full px-4 sm:px-6 lg:px-8 py-16 sm:py-24 border-t border-slate-200 snap-start">
-          <div className="max-w-7xl mx-auto space-y-12">
-            {/* Header */}
-            <motion.div initial={{ opacity: 0, y: -20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="flex items-start justify-between">
-              <div className="space-y-2">
-                <h2
-                  className="text-[2rem] sm:text-[2.25rem] lg:text-[2.5rem] xl:text-[2.75rem] font-semibold leading-[1.15] pb-2"
-                  style={{
-                    fontFamily: 'var(--font-inter)',
-                    background: 'linear-gradient(to right, #533afd, #000000)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text',
-                  }}
-                >
-                  Customer testimonials
-                </h2>
-                <p className="text-lg text-[#64748d]" style={{ fontFamily: "var(--font-quicksand)" }}>
-                  Discover how organizations deliver AI value with our platform.
-                </p>
-              </div>
-
-              {/* Navigation Buttons */}
-              <div className="flex gap-3">
-                <button
-                  onClick={() => {
-                    const carousel = document.getElementById('testimonials-carousel')
-                    if (carousel) {
-                      carousel.scrollBy({ left: -400, behavior: 'smooth' })
-                    }
-                  }}
-                  className="w-12 h-12 rounded-full bg-[#533afd] text-white flex items-center justify-center hover:opacity-80 transition-all hover:scale-110 active:scale-95 shadow-md hover:shadow-lg"
-                  aria-label="Previous testimonial"
-                >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                  </svg>
-                </button>
-                <button
-                  onClick={() => {
-                    const carousel = document.getElementById('testimonials-carousel')
-                    if (carousel) {
-                      carousel.scrollBy({ left: 400, behavior: 'smooth' })
-                    }
-                  }}
-                  className="w-12 h-12 rounded-full bg-[#533afd] text-white flex items-center justify-center hover:opacity-80 transition-all hover:scale-110 active:scale-95 shadow-md hover:shadow-lg"
-                  aria-label="Next testimonial"
-                >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </button>
-              </div>
-            </motion.div>
-
-            {/* Testimonials Carousel */}
-            <div
-              id="testimonials-carousel"
-              className="flex gap-6 overflow-x-auto pb-4 scroll-smooth snap-x snap-mandatory"
-              style={{ scrollBehavior: 'smooth' }}
-            >
-              {[
-                {
-                  company: 'Morgan Stanley',
-                  quote: 'What I was really trying to solve was how to give 15-20 minutes back each day to our financial advisors. That extra time lets them reach out to customers more quickly, more effectively, or even make one additional phone call — and that\'s a real revenue driver for us.'
-                },
-                {
-                  company: 'Pfizer',
-                  quote: 'Since we started with our platform, we\'ve deployed 60 AI agents across the enterprise—covering research, development, medical, commercial, and manufacturing across global markets and multiple languages. We needed a scalable platform, and these agents will only continue to become more intelligent.'
-                },
-                {
-                  company: 'Mphasis',
-                  quote: 'We are proud to be a strategic implementation partner of our platform, and we feel especially confident knowing that the foundation on AWS, delivering unmatched reliability and scalability.'
-                },
-                {
-                  company: 'Microsoft',
-                  quote: 'Our strategic partnership marks a significant milestone in our mission to accelerate enterprise AI transformation. By integrating advanced conversational and GenAI capabilities with Microsoft\'s robust cloud and AI services, we are enabling enterprises to adopt AI at scale and with enterprise-grade security.'
-                },
-                {
-                  company: 'AMD',
-                  quote: 'In the moments that matter most, of course, employees want to connect with people. Overall, our employees want to engage with the employees they serve and be present in the interactions that deliver higher satisfaction.'
-                },
-                {
-                  company: 'AWS',
-                  quote: 'We are excited to collaborate on shared cloud initiatives and customer solutions. The partnership demonstrates our commitment to providing enterprise customers with the best-in-class AI and cloud solutions.'
-                }
-              ].map((testimonial, i) => (
-                <motion.div key={i} initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.2 + (i % 3) * 0.1 }} viewport={{ once: true }} className="flex-shrink-0 w-80 rounded-2xl bg-white border border-slate-200 p-8 shadow-md hover:shadow-xl transition-all duration-300 snap-start">
-                  {/* Company Name */}
-                  <h3 className="text-xl font-semibold text-[#0d253d] mb-6" style={{ fontFamily: "var(--font-inter)" }}>
-                    {testimonial.company}
-                  </h3>
-
-                  {/* Quote */}
-                  <p className="text-[#64748d] leading-relaxed" style={{ fontFamily: "var(--font-quicksand)" }}>
-                    "{testimonial.quote}"
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Call to Action */}
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="">
-              {/* <button className="px-6 py-3 bg-[#0d253d] text-white font-semibold rounded-lg hover:bg-[#0d253d]/90 transition-all hover:scale-105 active:scale-95 shadow-md hover:shadow-lg">
-                MORE CUSTOMER STORIES →
-              </button> */}
-            </motion.div>
           </div>
         </section>
 

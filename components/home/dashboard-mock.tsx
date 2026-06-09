@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 // ─── Shared micro-components ───────────────────────────────────────────────────
 
-function Badge({ label, variant = 'purple' }) {
+function Badge({label, variant = 'purple' }) {
   const map = {
     purple: 'bg-[#533afd]/10 text-[#533afd]',
     green: 'bg-emerald-50 text-emerald-600 border border-emerald-200',
@@ -21,7 +21,7 @@ function Badge({ label, variant = 'purple' }) {
   );
 }
 
-function SectionHeader({ title, sub, action }) {
+function SectionHeader({title, sub, action }: {title: string; sub?: string; action?: React.ReactNode}) {
   return (
     <div className="flex items-start justify-between mb-6">
       <div>
@@ -33,7 +33,7 @@ function SectionHeader({ title, sub, action }) {
   );
 }
 
-function StatCard({ label, value, delta, deltaColor = 'text-emerald-500', accent = false }) {
+function StatCard({ label, value, delta, deltaColor = 'text-emerald-500', accent = false }:{label: string; value: string; delta?: string; deltaColor?: string; accent?: boolean}) {
   return (
     <div className={`rounded-xl border p-5 transition-all duration-300 hover:shadow-lg cursor-default group/stat ${accent ? 'border-[#533afd]/20 bg-[#533afd]/[0.03]' : 'border-slate-100 bg-white'}`}>
       <div className="text-[10px] uppercase tracking-widest text-slate-400 font-semibold">{label}</div>
@@ -268,7 +268,7 @@ function AgentsTab() {
         {AGENTS.map((a, i) => (
           <motion.div
             key={i}
-            onClick={() => setSelected(selected === i ? null : i)}
+            onClick={() => setSelected(selected === i ? null as any : i)}
             className="rounded-xl border border-slate-100 bg-white p-5 cursor-pointer hover:shadow-lg hover:border-[#533afd]/20 transition-all duration-300"
           >
             <div className="flex justify-between items-start mb-1">
