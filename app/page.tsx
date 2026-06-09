@@ -702,7 +702,7 @@ function AIChatDemo() {
               }`}
             transition={{ duration: 0.6, ease: "easeInOut" }}
           >
-            <div className="relative bg-white border-2 border-slate-200 rounded-full mt-2 px-4 py-3 flex gap-3 justify-between items-center shadow-lg bg-opacity-90 backdrop-blur-sm">
+            <div className="relative bg-white border-2 border-slate-200 rounded-full mt-3 px-4 py-3 flex gap-3 justify-between items-center shadow-lg bg-opacity-90 backdrop-blur-sm">
 
               {/* Select Agent Dropdown */}
               <div className="relative shrink-0">
@@ -1139,7 +1139,7 @@ export default function HomePage() {
                   >
                     {/* Big number */}
                     <div
-                      className="text-5xl md:text-6xl font-bold text-[#533afd] leading-none tracking-wide"
+                      className="text-4xl md:text-5xl font-bold text-[#533afd] leading-none tracking-wide"
                       style={{ fontFamily: 'var(--font-inter)' }}
                     >
                       <CountUp end={stat.value} suffix={stat.suffix} />
@@ -1186,16 +1186,12 @@ export default function HomePage() {
             </motion.div>
 
             {/* Analytics Section - Layered Design (Agent Factory) */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }} 
-              whileInView={{ opacity: 1, scale: 1 }} 
-              whileHover={{
-                boxShadow: '0 24px 56px -8px rgba(83,58,253,0.38), 0 8px 24px -4px rgba(234,34,97,0.22), 0 0 0 1px rgba(83,58,253,0.5)',
-                y: -8
-              }}
-              transition={{ duration: 0.4 }} 
-              viewport={{ once: true, amount: 0.2 }} 
-              className="relative rounded-2xl overflow-hidden shadow-sm bg-white border border-slate-200 p-4 lg:p-6 flex flex-col lg:flex-row items-center gap-4 lg:gap-8 cursor-pointer"
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4 }}
+              viewport={{ once: true, amount: 0.2 }}
+              className="relative rounded-2xl overflow-hidden shadow-sm bg-white border border-slate-200 p-4 lg:p-6 flex flex-col lg:flex-row items-center gap-4 lg:gap-8"
             >
               {/* Left - Purple Card (Smaller, Contained) */}
               <div className="flex-shrink-0 w-full lg:w-[300px] bg-gradient-to-br from-[#533afd] to-[#8278E6] rounded-xl p-4 lg:p-5 space-y-2 shadow-xl border border-white/10">
@@ -1238,16 +1234,12 @@ export default function HomePage() {
             </motion.div>
 
             {/* Analytics Section - Layered Design (Reversed) */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }} 
-              whileInView={{ opacity: 1, scale: 1 }} 
-              whileHover={{
-                boxShadow: '0 24px 56px -8px rgba(83,58,253,0.38), 0 8px 24px -4px rgba(234,34,97,0.22), 0 0 0 1px rgba(83,58,253,0.5)',
-                y: -8
-              }}
-              transition={{ duration: 0.4 }} 
-              viewport={{ once: true, amount: 0.2 }} 
-              className="relative rounded-2xl overflow-hidden shadow-sm bg-white border border-slate-200 p-4 lg:p-6 flex flex-col lg:flex-row items-center gap-4 lg:gap-8 cursor-pointer mt-8"
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4 }}
+              viewport={{ once: true, amount: 0.2 }}
+              className="relative rounded-2xl overflow-hidden shadow-sm bg-white border border-slate-200 p-4 lg:p-6 flex flex-col lg:flex-row items-center gap-4 lg:gap-8 mt-8"
             >
               {/* Left - Text Overlay on Background */}
               <div className="flex-1 flex flex-col justify-center text-[#0d253d] space-y-3 lg:pl-4">
@@ -1371,44 +1363,49 @@ export default function HomePage() {
               <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
                 {/* Left Content */}
                 <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="flex flex-col order-2 lg:order-1">
-                  <div className="mb-6">
+                  <div className="mb-4">
                     <img
                       src="/agent-fac-logo.png"
                       alt="Agent Factory"
                       className="h-12 w-auto object-contain"
                     />
                   </div>
-                  <h3 className="text-[2rem] lg:text-[2.5rem] font-semibold text-[#0d253d] leading-[1.2] tracking-tight mb-6" style={{ fontFamily: "var(--font-inter)" }}>
-                    Ask your business anything.
-                  </h3>
-                  <p className="text-lg text-[#64748d] leading-relaxed mb-8" style={{ fontFamily: "var(--font-quicksand)" }}>
-                    AI agents that answer questions across marketing, sales, finance and ops — straight from your own data, with citations on every answer.
-                  </p>
+                  <div className="space-y-3 mb-6">
+                    <h2
+                      className="text-lg md:text-xl font-bold leading-tight tracking-wide text-[#0d253d]"
+                      style={{ fontFamily: 'var(--font-inter)' }}
+                    >
+                      Ask your business anything.
+                    </h2>
+                    <p className="text-md text-[#0d253d] leading-relaxed max-w-lg" style={{ fontFamily: 'var(--font-quicksand)' }}>
+                      AI agents that answer questions across marketing, sales, finance and ops straight from your own data, with citations on every answer.
+                    </p>
+                  </div>
 
                   {/* 2x2 Feature Grid */}
-                  <div className="grid grid-cols-2 gap-4 mb-10 w-full">
-                    <div className="bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] hover:-translate-y-1.5 hover:shadow-[0_12px_24px_-8px_rgba(0,0,0,0.15)] transition-all duration-300">
+                  <div className="grid grid-cols-2 gap-4 mb-6 w-full">
+                    <div className="m-3 bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] hover:-translate-y-2 hover:shadow-[0_24px_56px_-8px_rgba(83,58,253,0.38),0_8px_24px_-4px_rgba(234,34,97,0.22),0_0_0_1px_rgba(83,58,253,0.5)] transition-all duration-300">
                       <div className="w-10 h-10 shrink-0 rounded-full bg-[#533afd]/10 flex items-center justify-center text-[#533afd]">
                         <Bot size={20} />
                       </div>
                       <span className="text-sm font-semibold text-[#0d253d] leading-snug" style={{ fontFamily: "var(--font-inter)" }}>One Agent per Function. Each one an Expert.</span>
                     </div>
 
-                    <div className="bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] hover:-translate-y-1.5 hover:shadow-[0_12px_24px_-8px_rgba(0,0,0,0.15)] transition-all duration-300">
+                    <div className="m-3 bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] hover:-translate-y-2 hover:shadow-[0_24px_56px_-8px_rgba(83,58,253,0.38),0_8px_24px_-4px_rgba(234,34,97,0.22),0_0_0_1px_rgba(83,58,253,0.5)] transition-all duration-300">
                       <div className="w-10 h-10 shrink-0 rounded-full bg-[#533afd]/10 flex items-center justify-center text-[#533afd]">
                         <Brain size={20} />
                       </div>
                       <span className="text-sm font-semibold text-[#0d253d] leading-snug" style={{ fontFamily: "var(--font-inter)" }}>Answers that Explain Themselves.</span>
                     </div>
 
-                    <div className="bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] hover:-translate-y-1.5 hover:shadow-[0_12px_24px_-8px_rgba(0,0,0,0.15)] transition-all duration-300">
+                    <div className="m-3 bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] hover:-translate-y-2 hover:shadow-[0_24px_56px_-8px_rgba(83,58,253,0.38),0_8px_24px_-4px_rgba(234,34,97,0.22),0_0_0_1px_rgba(83,58,253,0.5)] transition-all duration-300">
                       <div className="w-10 h-10 shrink-0 rounded-full bg-[#f59e0b]/10 flex items-center justify-center text-[#f59e0b]">
                         <FileText size={20} />
                       </div>
                       <span className="text-sm font-semibold text-[#0d253d] leading-snug" style={{ fontFamily: "var(--font-inter)" }}>Charts and Trend Lines on Demand.</span>
                     </div>
 
-                    <div className="bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] hover:-translate-y-1.5 hover:shadow-[0_12px_24px_-8px_rgba(0,0,0,0.15)] transition-all duration-300">
+                    <div className="m-3 bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] hover:-translate-y-2 hover:shadow-[0_24px_56px_-8px_rgba(83,58,253,0.38),0_8px_24px_-4px_rgba(234,34,97,0.22),0_0_0_1px_rgba(83,58,253,0.5)] transition-all duration-300">
                       <div className="w-10 h-10 shrink-0 rounded-full bg-[#10b981]/10 flex items-center justify-center text-[#10b981]">
                         <ShieldCheck size={20} />
                       </div>
@@ -1449,41 +1446,46 @@ export default function HomePage() {
 
                 {/* Right Content */}
                 <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="flex flex-col order-2 lg:order-2">
-                  <div className="flex items-center gap-2 mb-6">
+                  <div className="flex items-center gap-2 mb-4">
                     <div className="w-2 h-2 rounded-full bg-[#533afd]" />
                     <span className="text-xs font-bold text-[#533afd] uppercase tracking-widest">DATA FLASH</span>
                   </div>
-                  <h3 className="text-[2rem] lg:text-[2.5rem] font-semibold text-[#0d253d] leading-[1.2] tracking-tight mb-6" style={{ fontFamily: "var(--font-inter)" }}>
-                    Move data. Skip the pipeline.
-                  </h3>
-                  <p className="text-lg text-[#64748d] leading-relaxed mb-8" style={{ fontFamily: "var(--font-quicksand)" }}>
-                    Automated migration from any source to any platform. Config-driven, validated, and audit-ready. No pipelines to build. No code to write.
-                  </p>
+                  <div className="space-y-3 mb-6">
+                    <h2
+                      className="text-lg md:text-xl font-bold leading-tight tracking-wide text-[#0d253d]"
+                      style={{ fontFamily: 'var(--font-inter)' }}
+                    >
+                      Move data. Skip the pipeline.
+                    </h2>
+                    <p className="text-md text-[#0d253d] leading-relaxed max-w-lg" style={{ fontFamily: 'var(--font-quicksand)' }}>
+                      Automated migration from any source to any platform. Config-driven, validated, and audit-ready. No pipelines to build. No code to write.
+                    </p>
+                  </div>
 
                   {/* 2x2 Feature Grid for Data Flash */}
-                  <div className="grid grid-cols-2 gap-4 mb-10 w-full">
-                    <div className="bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] hover:-translate-y-1.5 hover:shadow-[0_12px_24px_-8px_rgba(0,0,0,0.15)] transition-all duration-300">
+                  <div className="grid grid-cols-2 gap-4 mb-6 w-full">
+                    <div className="m-3 bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] hover:-translate-y-2 hover:shadow-[0_24px_56px_-8px_rgba(83,58,253,0.38),0_8px_24px_-4px_rgba(234,34,97,0.22),0_0_0_1px_rgba(83,58,253,0.5)] transition-all duration-300">
                       <div className="w-10 h-10 shrink-0 rounded-full bg-[#533afd]/10 flex items-center justify-center text-[#533afd]">
                         <Database size={20} />
                       </div>
                       <span className="text-sm font-semibold text-[#0d253d] leading-snug" style={{ fontFamily: "var(--font-inter)" }}>Automated Migration</span>
                     </div>
 
-                    <div className="bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] hover:-translate-y-1.5 hover:shadow-[0_12px_24px_-8px_rgba(0,0,0,0.15)] transition-all duration-300">
+                    <div className="m-3 bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] hover:-translate-y-2 hover:shadow-[0_24px_56px_-8px_rgba(83,58,253,0.38),0_8px_24px_-4px_rgba(234,34,97,0.22),0_0_0_1px_rgba(83,58,253,0.5)] transition-all duration-300">
                       <div className="w-10 h-10 shrink-0 rounded-full bg-[#533afd]/10 flex items-center justify-center text-[#533afd]">
                         <RefreshCw size={20} />
                       </div>
                       <span className="text-sm font-semibold text-[#0d253d] leading-snug" style={{ fontFamily: "var(--font-inter)" }}>Config-Driven & Validated</span>
                     </div>
 
-                    <div className="bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] hover:-translate-y-1.5 hover:shadow-[0_12px_24px_-8px_rgba(0,0,0,0.15)] transition-all duration-300">
+                    <div className="m-3 bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] hover:-translate-y-2 hover:shadow-[0_24px_56px_-8px_rgba(83,58,253,0.38),0_8px_24px_-4px_rgba(234,34,97,0.22),0_0_0_1px_rgba(83,58,253,0.5)] transition-all duration-300">
                       <div className="w-10 h-10 shrink-0 rounded-full bg-[#f59e0b]/10 flex items-center justify-center text-[#f59e0b]">
                         <ShieldCheck size={20} />
                       </div>
                       <span className="text-sm font-semibold text-[#0d253d] leading-snug" style={{ fontFamily: "var(--font-inter)" }}>Audit-Ready</span>
                     </div>
 
-                    <div className="bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] hover:-translate-y-1.5 hover:shadow-[0_12px_24px_-8px_rgba(0,0,0,0.15)] transition-all duration-300">
+                    <div className="m-3 bg-white rounded-2xl p-4 flex flex-col items-center text-center justify-center gap-3 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] hover:-translate-y-2 hover:shadow-[0_24px_56px_-8px_rgba(83,58,253,0.38),0_8px_24px_-4px_rgba(234,34,97,0.22),0_0_0_1px_rgba(83,58,253,0.5)] transition-all duration-300">
                       <div className="w-10 h-10 shrink-0 rounded-full bg-[#10b981]/10 flex items-center justify-center text-[#10b981]">
                         <Upload size={20} />
                       </div>
@@ -1539,13 +1541,13 @@ export default function HomePage() {
 
             {/* ── Features grid ── */}
             <motion.div
-              className="border-2 border-[#533afd] rounded-3xl bg-white/60 backdrop-blur-sm shadow-sm shadow-cyan-100"
+              className="border border-slate-200 rounded-[2rem] bg-white shadow-[0_4px_20px_-8px_rgba(0,0,0,0.05)] overflow-hidden"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
               viewport={{ once: true, amount: 0.2 }}
             >
-              <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-cyan-200/60">
+              <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-slate-100">
                 {[
                   {
                     icon: Bot,
@@ -1567,36 +1569,29 @@ export default function HomePage() {
                   return (
                     <motion.div
                       key={i}
-                      className="p-8 space-y-4 transition-all duration-300 cursor-pointer relative z-0 hover:z-10 rounded-2xl"
-                      initial={{ opacity: 0, y: 16 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      whileHover={{
-                        y: -8,
-                        boxShadow: '0 24px 56px -8px rgba(83,58,253,0.38), 0 8px 24px -4px rgba(234,34,97,0.22), 0 0 0 1px rgba(83,58,253,0.5)',
-                        backgroundColor: '#ffffff'
-                      }}
-                      transition={{ duration: 0.4 }}
-                      viewport={{ once: true }}
+                      className="p-10 space-y-5 transition-colors duration-300 relative bg-white hover:bg-slate-50/50 group"
                     >
-                      <div className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-[#f6f9fc] border border-[#665efd]">
-                        <Icon className="w-5 h-5 text-[#533afd]" strokeWidth={1.5} />
+                      <div className="w-12 h-12 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center group-hover:scale-110 group-hover:shadow-sm transition-all duration-300">
+                        <Icon className="w-5 h-5 text-[#533afd]" strokeWidth={2} />
                       </div>
-                      <h3
-                        className="text-base font-bold text-[#0d253d] tracking-wide"
-                        style={{ fontFamily: 'var(--font-inter)' }}
-                      >
-                        {f.title}
-                      </h3>
-                      <p className="text-sm text-[#64748d] leading-relaxed">{f.description}</p>
+                      <div className="space-y-2">
+                        <h3
+                          className="text-lg font-semibold text-[#0d253d] tracking-wide"
+                          style={{ fontFamily: 'var(--font-inter)' }}
+                        >
+                          {f.title}
+                        </h3>
+                        <p className="text-base text-slate-500 leading-relaxed" style={{ fontFamily: 'var(--font-quicksand)' }}>{f.description}</p>
+                      </div>
                     </motion.div>
                   )
                 })}
               </div>
 
               {/* Horizontal divider between rows */}
-              <div className="border-t-2 border-[#665efd]/60" />
+              <div className="border-t border-slate-100" />
 
-              <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-cyan-200/60">
+              <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-slate-100">
                 {[
                   {
                     icon: Plug,
@@ -1618,27 +1613,20 @@ export default function HomePage() {
                   return (
                     <motion.div
                       key={i + 3}
-                      className="p-8 space-y-4 transition-all duration-300 cursor-pointer relative z-0 hover:z-10 rounded-2xl"
-                      initial={{ opacity: 0, y: 16 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      whileHover={{
-                        y: -8,
-                        boxShadow: '0 24px 56px -8px rgba(83,58,253,0.38), 0 8px 24px -4px rgba(234,34,97,0.22), 0 0 0 1px rgba(83,58,253,0.5)',
-                        backgroundColor: '#ffffff'
-                      }}
-                      transition={{ duration: 0.4 }}
-                      viewport={{ once: true }}
+                      className="p-10 space-y-5 transition-colors duration-300 relative bg-white hover:bg-slate-50/50 group"
                     >
-                      <div className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-[#f6f9fc] border border-[#665efd]">
-                        <Icon className="w-5 h-5 text-[#533afd]" strokeWidth={1.5} />
+                      <div className="w-12 h-12 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center group-hover:scale-110 group-hover:shadow-sm transition-all duration-300">
+                        <Icon className="w-5 h-5 text-[#533afd]" strokeWidth={2} />
                       </div>
-                      <h3
-                        className="text-base font-bold text-[#0d253d] tracking-wide"
-                        style={{ fontFamily: 'var(--font-inter)' }}
-                      >
-                        {f.title}
-                      </h3>
-                      <p className="text-sm text-[#64748d] leading-relaxed">{f.description}</p>
+                      <div className="space-y-2">
+                        <h3
+                          className="text-lg font-semibold text-[#0d253d] tracking-wide"
+                          style={{ fontFamily: 'var(--font-inter)' }}
+                        >
+                          {f.title}
+                        </h3>
+                        <p className="text-base text-slate-500 leading-relaxed" style={{ fontFamily: 'var(--font-quicksand)' }}>{f.description}</p>
+                      </div>
                     </motion.div>
                   )
                 })}
@@ -1663,9 +1651,9 @@ export default function HomePage() {
 
                 <div className="flex flex-col gap-3">
                   {[
-                    { label: 'PRE-BUILT APPLICATIONS', id: 'prebuilt' },
-                    { label: 'APPLICATION ACCELERATORS', id: 'accelerators' },
-                    { label: 'TAILORED APPLICATIONS', id: 'tailored' },
+                    { label: 'E-COMMERCE', id: 'prebuilt' },
+                    { label: 'RETAIL', id: 'accelerators' },
+                    { label: 'FINANCIAL SERVICES', id: 'tailored' },
                   ].map((tab, i) => (
                     <button
                       key={i}
@@ -1695,155 +1683,119 @@ export default function HomePage() {
                       backgroundClip: 'text',
                     }}
                   >
-                    Use purpose-built agentic AI applications
+                    Proven impact across industries
                   </h2>
                   <p className="text-lg text-[#0d253d]/70 leading-relaxed font-medium" style={{ fontFamily: "var(--font-quicksand)" }}>
-                    We solve the most urgent industry and enterprise challenges with regulation-approved applications.
+                    See how leading companies are using our agentic AI platform to drive massive efficiency and growth.
                   </p>
                 </div>
 
-                {/* 6 Cards in a 2-Column Grid */}
-                <div className="grid sm:grid-cols-2 gap-6 relative pb-24">
+                {/* Case Study Cards in a Vertical Stack */}
+                <div className="flex flex-col gap-8 relative pb-24">
                   {[
                     {
                       id: 'prebuilt',
-                      title: 'Banking AI ',
-                      titleHighlight: 'Agents',
-                      desc: 'Automate complex financial workflows with pre-trained agents for fraud detection and customer support.',
-                      buttons: ['EXPLORE BANKING', 'DEMO'],
-                      images: ['https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop'],
-                      conversations: [
-                        { type: 'ai', text: 'Hi Olivia, I see you recently filed a fraud claim for $250. Are you contacting us about this?' },
-                        { type: 'user', text: 'Yes, that\'s right. But I can\'t use my debit card.' }
-                      ]
-                    },
-                    {
-                      id: 'prebuilt',
-                      title: 'Healthcare AI ',
-                      titleHighlight: 'Agents',
-                      desc: 'HIPAA-compliant agents designed for patient triaging, appointment scheduling, and automated verification.',
-                      buttons: ['EXPLORE HEALTH', 'DEMO'],
-                      images: ['https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=600&fit=crop'],
-                      conversations: [
-                        { type: 'ai', text: 'Is the claim for yourself or another person under your plan?' },
-                        { type: 'user', text: 'For myself' },
-                        { type: 'ai', text: 'Understood. I have pulled up your policy details. One moment...' }
-                      ]
+                      company: 'QuickReply.ai',
+                      industry: 'E-COMMERCE SAAS',
+                      shortTitle: "QuickReply's founders save 15 hrs/week with Fabric",
+                      tagline: 'FEATURED STORY',
+                      mainTitle: "How QuickReply's founders reclaimed 15 hours a week by automating tech hiring",
+                      desc: "QuickReply cut founder hiring time by 60% and halved time-to-hire for engineering roles using Fabric's AI screening and interview platform.",
+                      stats: [
+                        { value: '50%', label: 'Faster time-to-hire for tech roles' },
+                        { value: '60%', label: 'Reduction in founder interview hours' },
+                        { value: '2x', label: 'More applications assessed per role' }
+                      ],
+                      link: '#'
                     },
                     {
                       id: 'accelerators',
-                      title: 'Knowledge ',
-                      titleHighlight: 'Accelerator',
-                      desc: 'Instantly ingest entire document repositories and transform them into searchable intelligence for your teams.',
-                      buttons: ['TRY ACCELERATOR', 'DOCS'],
-                      images: ['https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop']
-                    },
-                    {
-                      id: 'accelerators',
-                      title: 'Telecom AI ',
-                      titleHighlight: 'Agents',
-                      desc: 'Scale your customer service with intelligent agents that handle plan upgrades, technical support, and billing queries.',
-                      buttons: ['TELECOM SOLUTIONS', 'DEMO'],
-                      images: ['https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=600&fit=crop'],
-                      conversations: [
-                        { type: 'ai', text: 'I see you\'re looking to upgrade your plan. Would you like to see our latest 5G options?' },
-                        { type: 'user', text: 'Yes, what\'s the best value for 3 lines?' }
-                      ]
+                      company: 'Global Retail Co.',
+                      industry: 'RETAIL',
+                      shortTitle: "Retail giant increases supply chain visibility by 80%",
+                      tagline: 'CASE STUDY',
+                      mainTitle: "Automating inventory tracking across 500+ locations",
+                      desc: "Using intelligent agents to sync inventory databases, the client eliminated stock-outs and reduced manual entry delays from days to seconds.",
+                      stats: [
+                        { value: '80%', label: 'Increase in real-time visibility' },
+                        { value: '30%', label: 'Reduction in stock-outs' },
+                        { value: '99%', label: 'Data accuracy' }
+                      ],
+                      link: '#'
                     },
                     {
                       id: 'tailored',
-                      title: 'Enterprise HR ',
-                      titleHighlight: 'Solution',
-                      desc: 'A bespoke AI agent fully integrated with your HR systems. Handles onboarding and benefits with complete privacy.',
-                      buttons: ['HR SOLUTIONS', 'CASE STUDY'],
-                      images: ['https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&h=600&fit=crop']
-                    },
-                    {
-                      id: 'tailored',
-                      title: 'Custom Retail ',
-                      titleHighlight: 'Intelligence',
-                      desc: 'Deeply integrated retail agents that manage inventory and personalized shopping experiences.',
-                      buttons: ['RETAIL AI', 'PORTFOLIO'],
-                      images: ['https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop']
+                      company: 'FinTech Innovators',
+                      industry: 'FINANCIAL SERVICES',
+                      shortTitle: "Scaling customer support without adding headcount",
+                      tagline: 'CUSTOMER STORY',
+                      mainTitle: "Resolving 75% of tier-1 support tickets autonomously",
+                      desc: "By deploying a customized LLM-powered support agent, FinTech Innovators handled a 3x surge in ticket volume while improving CSAT scores.",
+                      stats: [
+                        { value: '75%', label: 'Autonomous resolution rate' },
+                        { value: '3x', label: 'Volume handled effortlessly' },
+                        { value: '+12', label: 'Point increase in CSAT' }
+                      ],
+                      link: '#'
                     }
                   ].map((card, i) => (
                     <div
                       key={i}
                       id={`purpose-card-${i}`}
                       data-section-id={card.id}
-                      className="flex flex-col gap-6 rounded-[1.5rem] bg-white/90 backdrop-blur-sm border border-white/60 p-6 sm:p-8 shadow-sm hover:shadow-xl transition-all duration-500 scroll-m-32 h-full"
+                      className="flex flex-col xl:flex-row gap-0 rounded-[2rem] bg-white shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden border border-slate-200 scroll-m-32 w-full group"
                     >
-                      {/* Card Content (Top) */}
-                      <div className="flex flex-col space-y-6">
-                        <div className="space-y-3">
-                          <h3 className="text-2xl font-medium text-[#0d253d]" style={{ fontFamily: "var(--font-inter)" }}>
-                            {card.title}
-                            <span className="text-[#533afd]">{card.titleHighlight}</span>
-                          </h3>
-                          <p className="text-[#64748d] leading-relaxed text-[14px]" style={{ fontFamily: "var(--font-quicksand)" }}>
-                            {card.desc}
-                          </p>
-                        </div>
+                      {/* Left Side (Gradient Block) */}
+                      <div className="w-full xl:w-1/2 p-6 lg:p-8 flex flex-col justify-between bg-gradient-to-br from-slate-50 to-slate-100 relative overflow-hidden">
+                         {/* Professional / Business Grid Background */}
+                         <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:32px_32px] opacity-60 pointer-events-none" />
+                         
+                         {/* Subtle gradient glowing effect */}
+                         <div className="absolute top-0 right-0 -translate-y-1/3 translate-x-1/3 w-96 h-96 bg-[#533afd]/5 rounded-full blur-3xl pointer-events-none transition-transform duration-700 group-hover:scale-110" />
 
-                        {/* Action Buttons */}
-                        <div className="flex gap-2 flex-wrap">
-                          {card.buttons.map((btn, j) => (
-                            <button
-                              key={j}
-                              className={`px-4 py-2 rounded-lg font-bold text-[10px] tracking-widest transition-all border ${j === 0
-                                ? 'bg-[#533afd] text-white border-transparent hover:opacity-90'
-                                : 'bg-transparent text-[#0d253d] border-[#533afd]/30 hover:border-[#533afd]'
-                                }`}
-                            >
-                              {btn} {j === 0 && <span className="ml-1 opacity-50">•</span>}
-                            </button>
-                          ))}
-                        </div>
+                         <div className="flex items-start justify-between relative z-10 w-full">
+                           <div className="flex items-center gap-4">
+                              <span className="font-bold text-[#0d253d] text-sm tracking-wide flex items-center gap-2">
+                                <div className="w-5 h-5 bg-[#533afd] rounded-md flex items-center justify-center text-white text-[10px] font-black">{card.company[0]}</div>
+                                {card.company}
+                              </span>
+                              <div className="h-4 w-px bg-slate-300" />
+                              <span className="text-xs font-semibold tracking-widest text-slate-500">{card.industry}</span>
+                           </div>
+                         </div>
+                         
+                         <div className="mt-8 flex items-end relative z-10">
+                            <h3 className="text-2xl lg:text-[1.75rem] font-medium text-[#0d253d] max-w-[90%] leading-tight tracking-tight" style={{ fontFamily: 'var(--font-inter)' }}>
+                              {card.shortTitle}
+                            </h3>
+                         </div>
                       </div>
 
-                      {/* Card Images */}
-                      {card.images && card.images.length > 0 && (
-                        <div className="flex gap-4 pt-2">
-                          {card.images.map((img, j) => (
-                            <div key={j} className="flex-1 rounded-2xl overflow-hidden shadow-sm relative min-h-[140px] border border-border/40">
-                              <img
-                                src={img}
-                                alt="Feature"
-                                className="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                              />
-                            </div>
-                          ))}
-                        </div>
-                      )}
+                      {/* Right Side (Content & Stats) */}
+                      <div className="w-full xl:w-1/2 p-6 lg:p-8 flex flex-col bg-white relative z-10">
+                         <div className="flex items-center justify-between gap-3 mb-3">
+                            <span className="text-xs font-bold text-[#533afd] uppercase tracking-widest">{card.tagline}</span>
+                            {/* Interactive Arrow Link */}
+                            <a href={card.link} className="w-10 h-10 rounded-full bg-slate-50 border border-[#533afd]/10 text-[#533afd] flex items-center justify-center shrink-0 shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:bg-[#533afd] hover:text-white transition-all duration-300 transform group-hover:translate-x-1">
+                               <ChevronRight className="w-4 h-4 translate-x-0.5" strokeWidth={2.5} />
+                            </a>
+                         </div>
+                         <h3 className="text-lg lg:text-xl font-semibold leading-snug tracking-wide text-[#0d253d] mb-2" style={{ fontFamily: 'var(--font-inter)' }}>
+                           {card.mainTitle}
+                         </h3>
+                         <p className="text-[15px] text-[#64748d] leading-relaxed mb-4" style={{ fontFamily: 'var(--font-quicksand)' }}>
+                           {card.desc}
+                         </p>
 
-                      {/* Card Conversations (Bottom - if exists) */}
-                      {card.conversations && card.conversations.length > 0 && (
-                        <div className="mt-auto flex-1 space-y-4 relative bg-muted/30 rounded-2xl p-4 border border-border/40 min-h-[160px]">
-                          {/* Faded bottom overlay */}
-                          <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-muted/30 to-transparent pointer-events-none z-10 rounded-b-2xl" />
-
-                          {card.conversations.map((msg, j) => (
-                            <div key={j} className={`flex gap-2 items-start ${msg.type === 'user' ? 'justify-end' : ''}`}>
-                              {msg.type === 'ai' && (
-                                <div className="w-4 h-4 rounded-full border-[3px] border-[#533afd]/40 flex-shrink-0 mt-1" />
-                              )}
-
-                              <div className={`text-[11px] leading-relaxed px-3 py-2 rounded-2xl max-w-[90%] shadow-sm ${msg.type === 'user'
-                                ? 'bg-white border border-border/30 text-[#0d253d] font-medium rounded-tr-sm'
-                                : 'bg-transparent text-[#64748d]'
-                                }`}>
-                                {msg.text}
-                              </div>
-
-                              {msg.type === 'user' && (
-                                <div className="w-5 h-5 rounded-full bg-[#533afd]/10 flex-shrink-0 flex items-center justify-center overflow-hidden border border-[#533afd]/20 mt-1">
-                                  <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="User" className="w-full h-full object-cover" />
-                                </div>
-                              )}
-                            </div>
-                          ))}
-                        </div>
-                      )}
+                         <div className="grid grid-cols-3 gap-4 border-t border-slate-100 pt-4 mb-0 mt-auto">
+                           {card.stats.map((stat, j) => (
+                             <div key={j} className="flex flex-col gap-1">
+                                <span className="text-[24px] lg:text-[28px] font-semibold text-[#0d253d] leading-none" style={{ fontFamily: 'var(--font-inter)' }}>{stat.value}</span>
+                                <span className="text-[11px] text-[#64748d] leading-tight pr-2">{stat.label}</span>
+                             </div>
+                           ))}
+                         </div>
+                      </div>
                     </div>
                   ))}
                 </div>

@@ -13,7 +13,7 @@ export function Hero() {
         className="absolute pointer-events-none"
         style={{
           top: 0,
-          left: '48%',
+          left: '42%',
           transform: 'translate(-50%, -68%)',
           width: '65vw',
           height: '65vw',

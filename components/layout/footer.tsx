@@ -89,7 +89,15 @@ export function Footer() {
 
       {/* Big Watermark Text */}
       <div className="absolute bottom-0 left-0 w-full flex justify-center pointer-events-none select-none z-0">
-        <span className="text-[18vw] font-black text-[#0d253d]/5 tracking-tighter leading-none translate-y-[45%]">
+        <span 
+          className="text-[18vw] font-black tracking-tighter leading-none translate-y-[40%] opacity-60"
+          style={{
+            background: 'linear-gradient(to right, #ffe1d1, #f4d9fc, #dce1fb)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+          }}
+        >
           aidetic
         </span>
       </div>

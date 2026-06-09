@@ -659,10 +659,6 @@ export function DashboardMock() {
 
       <motion.div 
         className="flex flex-col w-full bg-white rounded-3xl overflow-hidden shadow-[0_8px_32px_-6px_rgba(0,0,0,.06)] border border-slate-200 h-[850px] relative"
-        whileHover={{
-          boxShadow: '0 24px 56px -8px rgba(83,58,253,0.38), 0 8px 24px -4px rgba(234,34,97,0.22), 0 0 0 1px rgba(83,58,253,0.5)',
-        }}
-        transition={{ duration: 0.35, ease: 'easeOut' }}
       >
         {/* Top bar */}
         <div className="flex items-center gap-3 px-4 py-3 bg-[#1c1e54] z-30 shrink-0">
