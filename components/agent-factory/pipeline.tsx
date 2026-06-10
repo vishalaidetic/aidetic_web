@@ -107,7 +107,7 @@ export function AgentFactoryPipeline() {
           viewport={{ once: true, amount: 0.2 }}
         >
           {/* Left Side: Navigation Sidebar */}
-          <div className="w-full lg:w-[45%] bg-slate-50/50 border-r border-slate-100 p-8 flex flex-col gap-10">
+          <div className="w-full lg:w-[35%] bg-slate-50/50 border-r border-slate-100 p-8 flex flex-col gap-10">
 
             {/* Group 1: Prerequisites */}
             <div>
@@ -252,7 +252,7 @@ export function AgentFactoryPipeline() {
           </div>
 
           {/* Right Side: Interactive Display Area */}
-          <div className="w-full lg:w-[55%] p-8 lg:p-16 flex flex-col justify-center relative bg-white overflow-hidden">
+          <div className="w-full lg:w-[65%] p-8 lg:p-16 flex flex-col justify-center relative bg-white overflow-hidden">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-slate-50 via-white to-white opacity-50 pointer-events-none" />
 
             <AnimatePresence mode="wait">
@@ -266,27 +266,16 @@ export function AgentFactoryPipeline() {
               >
                 {/* Visual Mock Element */}
                 <div className={`w-full aspect-video rounded-2xl bg-gradient-to-br ${activeStepData.color} p-1 shadow-2xl shadow-slate-200/60 mb-10 overflow-hidden relative group`}>
-                  <div className="w-full h-full bg-white/95 backdrop-blur-xl rounded-[14px] flex flex-col items-center justify-center relative overflow-hidden">
+                  <div className="w-full h-full bg-slate-50 rounded-[14px] flex flex-col items-center justify-center relative overflow-hidden">
                     {/* Background Image */}
                     {activeStepData.imageUrl ? (
                       <Image
                         src={activeStepData.imageUrl}
                         alt={activeStepData.title}
                         fill
-                        className="object-cover opacity-90 mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-700 group-hover:scale-105"
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
                       />
                     ) : null}
-                    
-                    {/* Gradient Overlay for Text Visibility and Style */}
-                    <div className={`absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent z-10 opacity-60 group-hover:opacity-40 transition-opacity duration-500`} />
-                    <div className={`absolute inset-0 bg-gradient-to-br ${activeStepData.color} mix-blend-overlay opacity-30 z-10 group-hover:opacity-50 transition-opacity duration-500`} />
-
-                    {/* Centered Icon over Image */}
-                    <div className="z-20 relative transform group-hover:-translate-y-2 transition-transform duration-500">
-                      <div className="w-20 h-20 bg-white/20 backdrop-blur-md rounded-3xl border border-white/30 flex items-center justify-center shadow-2xl">
-                         <activeStepData.icon className="w-10 h-10 text-white drop-shadow-md" />
-                      </div>
-                    </div>
                   </div>
                 </div>
 
