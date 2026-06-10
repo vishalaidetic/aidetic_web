@@ -1,0 +1,60 @@
+'use client'
+import { AnimatePresence, motion, useInView } from "framer-motion";
+import { Activity, ArrowRight, Bot, Brain, ChevronDown, ChevronRight, Database, FileText, Layers, MousePointer2, Plug, RefreshCw, Send, ShieldCheck, Upload, Zap } from "lucide-react";
+import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useRef, useState } from 'react';
+import { BookCallDialog } from '@/components/shared/book-call-dialog';
+import { DashboardMock } from '@/components/home/dashboard-mock';
+
+
+export function CmoCtaSection() {
+  return (
+    <section className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 border-t border-slate-200 snap-start scroll-mt-24 overflow-hidden">
+          <motion.div
+            className="relative overflow-hidden bg-white rounded-3xl border border-slate-200 shadow-xl shadow-slate-200/50 p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 md:gap-8 transition-all duration-300 hover:border-slate-300"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            viewport={{ once: true, amount: 0.4 }}
+          >
+            {/* Avatar */}
+            <div className="shrink-0 relative w-20 h-20 md:w-24 md:h-24 rounded-full p-1 bg-gradient-to-br from-[#533afd] to-blue-500">
+              <div className="w-full h-full rounded-full overflow-hidden border-2 border-white relative bg-slate-200">
+                <Image
+                  src="/anurag.jpeg"
+                  alt="Anurag - CMO"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </div>
+
+            {/* Text Content */}
+            <div className="flex flex-col flex-1 text-center md:text-left space-y-1.5 md:space-y-1">
+              <h4
+                className="text-xl md:text-2xl font-bold text-[#0d253d]"
+                style={{ fontFamily: 'var(--font-inter)' }}
+              >
+                Hi! I am Anurag, CMO at Aidetic.
+              </h4>
+              <p className="text-sm md:text-base text-[#64748d]" style={{ fontFamily: 'var(--font-quicksand)' }}>
+                Curious how our products will help your business? Let's Talk.
+              </p>
+            </div>
+
+            {/* CTA Button */}
+            <div className="shrink-0 mt-4 md:mt-0">
+              <BookCallDialog>
+                <button
+                  className="px-8 py-3.5 rounded-full bg-[#533afd] text-white font-medium shadow-lg hover:opacity-90 hover:-translate-y-0.5 transition-all text-[15px]"
+                  style={{ fontFamily: 'var(--font-inter)' }}
+                >
+                  Request a Call
+                </button>
+              </BookCallDialog>
+            </div>
+          </motion.div>
+        </section>
+  );
+}
