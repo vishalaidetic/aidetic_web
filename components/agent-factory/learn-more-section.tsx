@@ -115,7 +115,7 @@ export function LearnMoreSection() {
         }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto">
+      <div className="relative z-10 max-w-6xl mx-auto">
 
         {/* ── Heading ── */}
         <motion.div

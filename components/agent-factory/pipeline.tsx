@@ -25,14 +25,6 @@ const phase1 = [
 
 const phase2 = [
   {
-    id: 'semantics',
-    title: 'Update Business Semantics',
-    icon: Layers,
-    desc: 'Enrich tables with logical definitions and metadata so the AI perfectly understands your business context.',
-    color: 'from-violet-500 to-indigo-500',
-    imageUrl: '/3rd.svg'
-  },
-  {
     id: 'configure',
     title: 'Configure Agent Parameters',
     icon: Activity,
@@ -68,8 +60,8 @@ export function AgentFactoryPipeline() {
   const activeStepData = allSteps.find(s => s.id === activeTab) || allSteps[0];
 
   return (
-    <section className="relative w-full bg-gradient-to-br from-[#f6f9fc] via-white to-[#eaf5fd] py-24 px-6 overflow-hidden border-t border-slate-200">
-      <div className="relative z-10 max-w-7xl mx-auto">
+    <section className="relative w-full bg-gradient-to-br from-[#f6f9fc] via-white to-[#eaf5fd] py-16 px-6 overflow-hidden border-t border-slate-200">
+      <div className="relative z-10 max-w-6xl mx-auto">
         {/* ── Heading ── */}
         <motion.div
           className="text-center space-y-4 mb-16"
@@ -100,56 +92,51 @@ export function AgentFactoryPipeline() {
 
         {/* ── Interactive Pipeline UI ── */}
         <motion.div
-          className="bg-white border border-slate-200 rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.06)] overflow-hidden flex flex-col lg:flex-row min-h-[600px]"
+          className="bg-white border border-slate-200 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.06)] overflow-hidden flex flex-col lg:flex-row"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
           viewport={{ once: true, amount: 0.2 }}
         >
           {/* Left Side: Navigation Sidebar */}
-          <div className="w-full lg:w-[35%] bg-slate-50/50 border-r border-slate-100 p-8 flex flex-col gap-10">
+          <div className="w-full lg:w-[35%] bg-[#fcfdfd] border-r border-slate-100 p-6 lg:p-8 flex flex-col gap-6">
 
             {/* Group 1: Prerequisites */}
-            <div>
-              <div className="flex items-center gap-3 mb-5 px-2">
-                <div className="w-8 h-8 rounded-full bg-[#533afd]/10 flex items-center justify-center shrink-0">
-                  <span className="text-[#533afd] font-bold text-sm">1</span>
+            <div className="relative">
+              <div className="flex items-start gap-4 mb-3">
+                <div className="w-8 h-8 rounded-full bg-[#533afd]/10 flex items-center justify-center shrink-0 mt-0.5">
+                  <span className="text-[#533afd] font-bold text-[15px]">1</span>
                 </div>
                 <div>
-                  <h4 
-                    className="text-[1.25rem] font-semibold leading-[1.15] tracking-wide" 
-                    style={{ 
-                      fontFamily: 'var(--font-inter)',
-                      background: 'linear-gradient(to right, #0d253d, #533afd)',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                      backgroundClip: 'text'
-                    }}
-                  >
+                  <h4 className="text-base font-bold leading-tight tracking-wide text-[#0d253d]" style={{ fontFamily: 'var(--font-inter)' }}>
                     Phase 1: Prerequisites
                   </h4>
-                  <p className="text-[1rem] text-slate-500 mt-1.5" style={{ fontFamily: 'var(--font-quicksand)' }}>Lay the groundwork for your custom AI.</p>
                 </div>
               </div>
-              <div className="space-y-2 relative before:absolute before:inset-y-0 before:left-6 before:-ml-px before:w-0.5 before:bg-slate-200 pl-2">
-                {phase1.map((step, idx) => {
+              <div className="relative ml-4 pl-8 border-l border-slate-200 space-y-1 pb-4">
+                {phase1.map((step) => {
                   const isActive = activeTab === step.id;
                   return (
                     <button
                       key={step.id}
                       onClick={() => setActiveTab(step.id)}
-                      className={`w-full text-left p-4 rounded-2xl transition-all duration-300 flex items-start gap-4 group relative z-10 ${isActive ? 'bg-white shadow-sm border border-slate-200 ring-1 ring-[#533afd]/20' : 'hover:bg-slate-100/80 border border-transparent'
-                        }`}
+                      className={`w-full text-left py-3 px-4 rounded-[14px] transition-all duration-300 flex items-center gap-4 group relative z-10 ${isActive ? 'bg-white shadow-sm border border-slate-200 ring-1 ring-[#533afd]/20' : 'hover:bg-slate-50 border border-transparent'}`}
                     >
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-colors border-4 border-slate-50 ${isActive ? 'bg-[#533afd] text-white shadow-md' : 'bg-white text-slate-400 group-hover:border-slate-100'}`}>
-                        <step.icon className="w-3.5 h-3.5" />
-                      </div>
-                      <div className="flex-1 pt-1.5">
-                        <span className={`text-[15px] font-semibold block transition-colors ${isActive ? 'text-[#0d253d]' : 'text-[#64748d] group-hover:text-[#0d253d]'}`} style={{ fontFamily: 'var(--font-inter)' }}>
+                      {isActive ? (
+                        <div className="w-6 h-6 rounded-full bg-[#533afd] flex items-center justify-center shrink-0 shadow-md">
+                          <step.icon className="w-3.5 h-3.5 text-white" strokeWidth={2.5} />
+                        </div>
+                      ) : (
+                        <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0">
+                          <step.icon className="w-4 h-4 text-slate-400 group-hover:text-slate-500" strokeWidth={1.5} />
+                        </div>
+                      )}
+                      <div className="flex-1">
+                        <span className={`text-sm font-semibold block transition-colors ${isActive ? 'text-[#0d253d]' : 'text-[#64748d] group-hover:text-[#0d253d]'}`} style={{ fontFamily: 'var(--font-inter)' }}>
                           {step.title}
                         </span>
                       </div>
-                      <ChevronRight className={`w-4 h-4 mt-1.5 transition-transform ${isActive ? 'text-[#533afd] translate-x-1' : 'text-transparent group-hover:text-slate-300'}`} />
+                      {isActive && <ChevronRight className="w-4 h-4 text-[#533afd]" strokeWidth={2.5} />}
                     </button>
                   );
                 })}
@@ -157,46 +144,41 @@ export function AgentFactoryPipeline() {
             </div>
 
             {/* Group 2: Connect and configure agent-factory */}
-            <div>
-              <div className="flex items-center gap-3 mb-5 px-2">
-                <div className="w-8 h-8 rounded-full bg-[#8b5cf6]/10 flex items-center justify-center shrink-0">
-                  <span className="text-[#8b5cf6] font-bold text-sm">2</span>
+            <div className="relative">
+              <div className="flex items-start gap-4 mb-3">
+                <div className="w-8 h-8 rounded-full bg-[#8b5cf6]/10 flex items-center justify-center shrink-0 mt-0.5">
+                  <span className="text-[#8b5cf6] font-bold text-[15px]">2</span>
                 </div>
                 <div>
-                  <h4 
-                    className="text-[1.25rem] font-semibold leading-[1.15] tracking-wide" 
-                    style={{ 
-                      fontFamily: 'var(--font-inter)',
-                      background: 'linear-gradient(to right, #0d253d, #8b5cf6)',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                      backgroundClip: 'text'
-                    }}
-                  >
+                  <h4 className="text-base font-bold leading-tight tracking-wide text-[#0d253d]" style={{ fontFamily: 'var(--font-inter)' }}>
                     Phase 2: Connect & Configure
                   </h4>
-                  <p className="text-[1rem] text-slate-500 mt-1.5" style={{ fontFamily: 'var(--font-quicksand)' }}>Configure your agent factory.</p>
                 </div>
               </div>
-              <div className="space-y-2 relative before:absolute before:inset-y-0 before:left-6 before:-ml-px before:w-0.5 before:bg-slate-200 pl-2">
-                {phase2.map((step, idx) => {
+              <div className="relative ml-4 pl-8 border-l border-slate-200 space-y-1 pb-4">
+                {phase2.map((step) => {
                   const isActive = activeTab === step.id;
                   return (
                     <button
                       key={step.id}
                       onClick={() => setActiveTab(step.id)}
-                      className={`w-full text-left p-4 rounded-2xl transition-all duration-300 flex items-start gap-4 group relative z-10 ${isActive ? 'bg-white shadow-sm border border-slate-200 ring-1 ring-[#8b5cf6]/20' : 'hover:bg-slate-100/80 border border-transparent'
-                        }`}
+                      className={`w-full text-left py-3 px-4 rounded-[14px] transition-all duration-300 flex items-center gap-4 group relative z-10 ${isActive ? 'bg-white shadow-sm border border-slate-200 ring-1 ring-[#8b5cf6]/20' : 'hover:bg-slate-50 border border-transparent'}`}
                     >
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-colors border-4 border-slate-50 ${isActive ? 'bg-[#8b5cf6] text-white shadow-md' : 'bg-white text-slate-400 group-hover:border-slate-100'}`}>
-                        <step.icon className="w-3.5 h-3.5" />
-                      </div>
-                      <div className="flex-1 pt-1.5">
-                        <span className={`text-[15px] font-semibold block transition-colors ${isActive ? 'text-[#0d253d]' : 'text-[#64748d] group-hover:text-[#0d253d]'}`} style={{ fontFamily: 'var(--font-inter)' }}>
+                      {isActive ? (
+                        <div className="w-6 h-6 rounded-full bg-[#8b5cf6] flex items-center justify-center shrink-0 shadow-md">
+                          <step.icon className="w-3.5 h-3.5 text-white" strokeWidth={2.5} />
+                        </div>
+                      ) : (
+                        <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0">
+                          <step.icon className="w-4 h-4 text-slate-400 group-hover:text-slate-500" strokeWidth={1.5} />
+                        </div>
+                      )}
+                      <div className="flex-1">
+                        <span className={`text-sm font-semibold block transition-colors ${isActive ? 'text-[#0d253d]' : 'text-[#64748d] group-hover:text-[#0d253d]'}`} style={{ fontFamily: 'var(--font-inter)' }}>
                           {step.title}
                         </span>
                       </div>
-                      <ChevronRight className={`w-4 h-4 mt-1.5 transition-transform ${isActive ? 'text-[#8b5cf6] translate-x-1' : 'text-transparent group-hover:text-slate-300'}`} />
+                      {isActive && <ChevronRight className="w-4 h-4 text-[#8b5cf6]" strokeWidth={2.5} />}
                     </button>
                   );
                 })}
@@ -204,46 +186,41 @@ export function AgentFactoryPipeline() {
             </div>
 
             {/* Group 3: Test and Deploy */}
-            <div>
-              <div className="flex items-center gap-3 mb-5 px-2">
-                <div className="w-8 h-8 rounded-full bg-[#ea2261]/10 flex items-center justify-center shrink-0">
-                  <span className="text-[#ea2261] font-bold text-sm">3</span>
+            <div className="relative">
+              <div className="flex items-start gap-4 mb-3">
+                <div className="w-8 h-8 rounded-full bg-[#9f1239]/10 flex items-center justify-center shrink-0 mt-0.5">
+                  <span className="text-[#9f1239] font-bold text-[15px]">3</span>
                 </div>
                 <div>
-                  <h4 
-                    className="text-[1.25rem] font-semibold leading-[1.15] tracking-wide" 
-                    style={{ 
-                      fontFamily: 'var(--font-inter)',
-                      background: 'linear-gradient(to right, #0d253d, #ea2261)',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                      backgroundClip: 'text'
-                    }}
-                  >
+                  <h4 className="text-base font-bold leading-tight tracking-wide text-[#0d253d]" style={{ fontFamily: 'var(--font-inter)' }}>
                     Phase 3: Test & Deploy
                   </h4>
-                  <p className="text-[1rem] text-slate-500 mt-1.5" style={{ fontFamily: 'var(--font-quicksand)' }}>Refine your agent and deploy to production.</p>
                 </div>
               </div>
-              <div className="space-y-2 relative before:absolute before:inset-y-0 before:left-6 before:-ml-px before:w-0.5 before:bg-slate-200 pl-2">
-                {phase3.map((step, idx) => {
+              <div className="relative ml-4 pl-8 border-l border-slate-200 space-y-1 pb-4">
+                {phase3.map((step) => {
                   const isActive = activeTab === step.id;
                   return (
                     <button
                       key={step.id}
                       onClick={() => setActiveTab(step.id)}
-                      className={`w-full text-left p-4 rounded-2xl transition-all duration-300 flex items-start gap-4 group relative z-10 ${isActive ? 'bg-white shadow-sm border border-slate-200 ring-1 ring-[#ea2261]/20' : 'hover:bg-slate-100/80 border border-transparent'
-                        }`}
+                      className={`w-full text-left py-3 px-4 rounded-[14px] transition-all duration-300 flex items-center gap-4 group relative z-10 ${isActive ? 'bg-white shadow-sm border border-slate-200 ring-1 ring-[#9f1239]/20' : 'hover:bg-slate-50 border border-transparent'}`}
                     >
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-colors border-4 border-slate-50 ${isActive ? 'bg-[#ea2261] text-white shadow-md' : 'bg-white text-slate-400 group-hover:border-slate-100'}`}>
-                        <step.icon className="w-3.5 h-3.5" />
-                      </div>
-                      <div className="flex-1 pt-1.5">
-                        <span className={`text-[15px] font-semibold block transition-colors ${isActive ? 'text-[#0d253d]' : 'text-[#64748d] group-hover:text-[#0d253d]'}`} style={{ fontFamily: 'var(--font-inter)' }}>
+                      {isActive ? (
+                        <div className="w-6 h-6 rounded-full bg-[#9f1239] flex items-center justify-center shrink-0 shadow-md">
+                          <step.icon className="w-3.5 h-3.5 text-white" strokeWidth={2.5} />
+                        </div>
+                      ) : (
+                        <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0">
+                          <step.icon className="w-4 h-4 text-slate-400 group-hover:text-slate-500" strokeWidth={1.5} />
+                        </div>
+                      )}
+                      <div className="flex-1">
+                        <span className={`text-sm font-semibold block transition-colors ${isActive ? 'text-[#0d253d]' : 'text-[#64748d] group-hover:text-[#0d253d]'}`} style={{ fontFamily: 'var(--font-inter)' }}>
                           {step.title}
                         </span>
                       </div>
-                      <ChevronRight className={`w-4 h-4 mt-1.5 transition-transform ${isActive ? 'text-[#ea2261] translate-x-1' : 'text-transparent group-hover:text-slate-300'}`} />
+                      {isActive && <ChevronRight className="w-4 h-4 text-[#9f1239]" strokeWidth={2.5} />}
                     </button>
                   );
                 })}
@@ -265,7 +242,7 @@ export function AgentFactoryPipeline() {
                 className="w-full relative z-10"
               >
                 {/* Visual Mock Element */}
-                <div className={`w-full aspect-video rounded-2xl bg-gradient-to-br ${activeStepData.color} p-1 shadow-2xl shadow-slate-200/60 mb-10 overflow-hidden relative group`}>
+                <div className={`w-full max-w-2xl aspect-[16/9] rounded-2xl bg-gradient-to-br ${activeStepData.color} p-[2px] mb-8 relative group`}>
                   <div className="w-full h-full bg-slate-50 rounded-[14px] flex flex-col items-center justify-center relative overflow-hidden">
                     {/* Background Image */}
                     {activeStepData.imageUrl ? (
@@ -273,37 +250,31 @@ export function AgentFactoryPipeline() {
                         src={activeStepData.imageUrl}
                         alt={activeStepData.title}
                         fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        className="object-cover transition-transform duration-700"
                       />
                     ) : null}
                   </div>
                 </div>
 
                 {/* Content */}
-                <div className="space-y-4 max-w-lg">
+                <div className="space-y-3 max-w-2xl">
                   <h3 
-                    className="text-[1.75rem] lg:text-[2rem] font-semibold leading-[1.15]" 
-                    style={{ 
-                      fontFamily: 'var(--font-inter)',
-                      background: 'linear-gradient(to right, #533afd, #000000)',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                      backgroundClip: 'text'
-                    }}
+                    className="text-lg md:text-xl font-bold leading-tight tracking-wide text-[#0d253d]" 
+                    style={{ fontFamily: 'var(--font-inter)' }}
                   >
                     {activeStepData.title}
                   </h3>
-                  <p className="text-[1.125rem] text-[#64748d] leading-relaxed" style={{ fontFamily: 'var(--font-quicksand)' }}>
+                  <p className="text-base text-[#0d253d] leading-relaxed" style={{ fontFamily: 'var(--font-quicksand)' }}>
                     {activeStepData.desc}
                   </p>
                 </div>
 
                 {/* Progress Indicators */}
-                <div className="mt-10 flex gap-2">
+                <div className="mt-8 flex items-center gap-2">
                   {allSteps.map((s) => (
                     <div
                       key={s.id}
-                      className={`h-1.5 rounded-full transition-all duration-500 ${s.id === activeTab ? `w-12 bg-gradient-to-r ${s.color}` : 'w-3 bg-slate-200'}`}
+                      className={`h-[5px] rounded-full transition-all duration-500 ${s.id === activeTab ? `w-10 bg-[#0ea5e9]` : 'w-4 bg-slate-200'}`}
                     />
                   ))}
                 </div>

@@ -7,7 +7,7 @@ import { BookCallDialog } from '@/components/shared/book-call-dialog'
 export function CmoSection() {
   return (
     <section className="relative w-full py-20 px-6 bg-white overflow-hidden">
-      <div className="relative z-10 max-w-7xl mx-auto">
+      <div className="relative z-10 max-w-6xl mx-auto">
         <motion.div
           className="relative overflow-hidden bg-white rounded-3xl border border-slate-200 shadow-xl shadow-slate-200/50 p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 md:gap-8"
           initial={{ opacity: 0, y: 30 }}

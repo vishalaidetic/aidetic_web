@@ -47,7 +47,7 @@ export function FaqSection() {
 
   return (
     <section className="relative w-full bg-white py-24 px-6">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
           
           {/* ── Left Column: Header & CTA ── */}

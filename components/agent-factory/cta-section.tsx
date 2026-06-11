@@ -7,7 +7,7 @@ import { BookCallDialog } from '@/components/shared/book-call-dialog'
 export function CtaSection() {
   return (
     <section className="py-24 px-4 sm:px-6 bg-white flex items-center justify-center w-full">
-      <div className="w-full max-w-7xl mx-auto">
+      <div className="w-full max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
