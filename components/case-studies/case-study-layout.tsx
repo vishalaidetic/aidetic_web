@@ -11,19 +11,19 @@ function HeroCard({ study }: { study: any }) {
   const accentColor = colors[colorIdx]
 
   return (
-    <div className="relative w-full rounded-2xl overflow-hidden border border-slate-200 bg-white min-h-[360px] flex flex-col justify-between p-8 shadow-sm">
+    <div className="relative w-full rounded-[2rem] overflow-hidden border border-slate-200/80 bg-white min-h-[360px] flex flex-col justify-between p-10 shadow-xl shadow-slate-200/40 group transition-all duration-500 hover:shadow-2xl hover:-translate-y-1">
 
       {/* Subtle dot-grid pattern */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 pointer-events-none transition-opacity duration-700 group-hover:opacity-70"
         style={{
-          backgroundImage: 'radial-gradient(circle, #d1d5db 1px, transparent 1px)',
-          backgroundSize: '28px 28px',
-          opacity: 0.45,
+          backgroundImage: 'radial-gradient(circle, #94a3b8 1.5px, transparent 1.5px)',
+          backgroundSize: '24px 24px',
+          opacity: 0.25,
         }}
       />
       {/* Fade the grid out towards bottom */}
-      <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent via-transparent to-white/90" />
+      <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-white/30 via-white/80 to-white" />
 
       {/* ── Top row: logo/avatar + name | divider | industry ── */}
       <div className="relative z-10 flex items-center gap-3">
@@ -102,7 +102,7 @@ export function CaseStudyLayout({ study, relatedStudies }: { study: any; related
           )}
 
           {/* Title */}
-          <h1 className="text-4xl sm:text-5xl md:text-[3.25rem] font-semibold tracking-tight text-slate-900 leading-[1.1] mb-5">
+          <h1 className="text-4xl sm:text-5xl md:text-[3.5rem] font-bold tracking-tight text-[#0f172a] leading-[1.05] mb-6">
             {study.title}
           </h1>
 
@@ -151,8 +151,8 @@ export function CaseStudyLayout({ study, relatedStudies }: { study: any; related
 
         {/* ── THE PROBLEM ──────────────────────────────────── */}
         {study.problem && (study.problem.heading || study.problem.description || study.problem.cards?.length > 0) && (
-          <section className="mb-20">
-            <div className="inline-flex items-center px-3 py-1 bg-purple-100 text-purple-700 text-[11px] font-bold uppercase tracking-[0.15em] rounded-full mb-6">
+          <section className="mb-24">
+            <div className="inline-flex items-center px-4 py-1.5 bg-gradient-to-r from-purple-50 to-indigo-50 border border-purple-100 shadow-sm text-purple-700 text-[11px] font-bold uppercase tracking-[0.2em] rounded-full mb-8">
               The Problem
             </div>
 
@@ -171,7 +171,7 @@ export function CaseStudyLayout({ study, relatedStudies }: { study: any; related
             {study.problem.cards?.length > 0 && (
               <div className={`grid grid-cols-1 gap-5 ${study.problem.cards.length === 1 ? '' : study.problem.cards.length === 2 ? 'sm:grid-cols-2' : 'sm:grid-cols-3'}`}>
                 {study.problem.cards.map((card: any, i: number) => (
-                  <div key={i} className="bg-white border border-slate-200 rounded-2xl p-7 flex flex-col shadow-sm">
+                  <div key={i} className="bg-white border border-slate-200/70 rounded-[1.5rem] p-8 flex flex-col shadow-sm hover:shadow-lg hover:border-slate-300 transition-all duration-300">
 
                     {/* Stat block */}
                     {card.stat && (
@@ -216,8 +216,8 @@ export function CaseStudyLayout({ study, relatedStudies }: { study: any; related
 
         {/* ── THE SOLUTION ─────────────────────────────────── */}
         {study.solution && (study.solution.heading || study.solution.description || study.solution.steps?.length > 0) && (
-          <section className="mb-20">
-            <div className="inline-flex items-center px-3 py-1 bg-purple-100 text-purple-700 text-[11px] font-bold uppercase tracking-[0.15em] rounded-full mb-6">
+          <section className="mb-24">
+            <div className="inline-flex items-center px-4 py-1.5 bg-gradient-to-r from-purple-50 to-indigo-50 border border-purple-100 shadow-sm text-purple-700 text-[11px] font-bold uppercase tracking-[0.2em] rounded-full mb-8">
               The Solution
             </div>
 
@@ -236,7 +236,7 @@ export function CaseStudyLayout({ study, relatedStudies }: { study: any; related
             {study.solution.steps?.length > 0 && (
               <div className={`grid grid-cols-1 gap-5 ${study.solution.steps.length === 1 ? '' : study.solution.steps.length === 2 ? 'sm:grid-cols-2' : 'sm:grid-cols-3'}`}>
                 {study.solution.steps.map((step: any, i: number) => (
-                  <div key={i} className="bg-purple-50/40 border border-purple-100 rounded-2xl p-7 flex flex-col shadow-sm">
+                  <div key={i} className="bg-gradient-to-b from-purple-50/50 to-white border border-purple-100/80 rounded-[1.5rem] p-8 flex flex-col shadow-sm hover:shadow-md transition-all duration-300">
 
                     {/* Step number */}
                     <span className="text-sm font-bold text-purple-500 mb-5 leading-none">
@@ -301,8 +301,8 @@ export function CaseStudyLayout({ study, relatedStudies }: { study: any; related
 
         {/* ── RESULTS ──────────────────────────────────────── */}
         {study.results && (study.results.title || study.results.items?.length > 0) && (
-          <section className="mb-20 border-t border-slate-100 pt-16">
-            <div className="inline-flex items-center px-3 py-1 bg-purple-100 text-purple-700 text-[11px] font-bold uppercase tracking-[0.15em] rounded-full mb-6">
+          <section className="mb-24 border-t border-slate-100 pt-20">
+            <div className="inline-flex items-center px-4 py-1.5 bg-gradient-to-r from-purple-50 to-indigo-50 border border-purple-100 shadow-sm text-purple-700 text-[11px] font-bold uppercase tracking-[0.2em] rounded-full mb-8">
               Results
             </div>
 
@@ -315,7 +315,7 @@ export function CaseStudyLayout({ study, relatedStudies }: { study: any; related
             {study.results.items?.length > 0 && (
               <div className="space-y-4">
                 {study.results.items.map((item: any, i: number) => (
-                  <div key={i} className="bg-white border border-slate-200 rounded-2xl p-7 shadow-sm flex flex-col md:flex-row md:items-center gap-8 md:gap-12">
+                  <div key={i} className="bg-white border border-slate-200/70 rounded-[1.5rem] p-8 shadow-sm flex flex-col md:flex-row md:items-center gap-8 md:gap-12 hover:shadow-lg hover:border-slate-300 transition-all duration-300">
 
                     {/* Left: category + badge */}
                     <div className="w-full md:w-52 shrink-0">
@@ -360,7 +360,7 @@ export function CaseStudyLayout({ study, relatedStudies }: { study: any; related
                 <Link
                   key={rel.id}
                   href={`/case-studies/${rel.slug}`}
-                  className="bg-white border border-slate-200 rounded-2xl p-8 flex flex-col gap-4 shadow-sm hover:shadow-md hover:border-slate-300 transition-all group"
+                  className="bg-white border border-slate-200/70 rounded-[1.5rem] p-8 flex flex-col gap-4 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-slate-300 transition-all duration-300 group"
                 >
                   {rel.company_logo && (
                     <img src={rel.company_logo} alt={rel.company_name} className="h-5 object-contain self-start grayscale group-hover:grayscale-0 transition-all" />
@@ -381,3 +381,4 @@ export function CaseStudyLayout({ study, relatedStudies }: { study: any; related
     </div>
   )
 }
+
