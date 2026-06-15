@@ -42,11 +42,11 @@ function FeaturedCard({ study, content }: { study: any; content: any }) {
                 {(study.company_name ?? 'C').charAt(0).toUpperCase()}
               </div>
             )}
-            <span className="text-[14px] font-semibold text-[#1a1040]">{study.company_name}</span>
+            <span className="text-[14px] font-semibold text-[#1a1040]" style={{ fontFamily: 'var(--font-inter)' }}>{study.company_name}</span>
             {(study.industry || study.tag_type) && (
               <>
                 <span className="text-[#533afd]/20 select-none">|</span>
-                <span className="text-[12px] font-bold uppercase tracking-[0.12em] text-[#78829d]">
+                <span className="text-[12px] font-bold uppercase tracking-[0.12em] text-[#78829d]" style={{ fontFamily: 'var(--font-inter)' }}>
                   {study.industry || study.tag_type}
                 </span>
               </>
@@ -55,7 +55,7 @@ function FeaturedCard({ study, content }: { study: any; content: any }) {
 
           {/* Bottom: subtitle/title */}
           <div className="relative z-10 mt-auto">
-            <p className="text-2xl sm:text-[1.75rem] font-medium text-[#0f172a] leading-tight tracking-tight max-w-xs">
+            <p className="text-2xl sm:text-[1.75rem] font-medium text-[#0f172a] leading-tight tracking-tight max-w-xs" style={{ fontFamily: 'var(--font-inter)' }}>
               {study.subtitle || study.title}
             </p>
           </div>
@@ -74,13 +74,13 @@ function FeaturedCard({ study, content }: { study: any; content: any }) {
           </div>
 
           {/* Title */}
-          <h2 className="text-xl sm:text-2xl font-bold text-[#0f172a] leading-snug mb-4 tracking-tight">
+          <h2 className="text-xl sm:text-2xl font-bold text-[#0f172a] leading-snug mb-4 tracking-tight" style={{ fontFamily: 'var(--font-inter)' }}>
             {study.title}
           </h2>
 
           {/* Description / subtitle */}
           {(study.description || study.subtitle) && (
-            <p className="text-[14px] text-[#64748b] leading-relaxed mb-5 line-clamp-3">
+            <p className="text-[14px] text-[#64748b] leading-relaxed mb-5 line-clamp-3" style={{ fontFamily: 'var(--font-quicksand)' }}>
               {study.description || study.subtitle}
             </p>
           )}
@@ -105,10 +105,10 @@ function FeaturedCard({ study, content }: { study: any; content: any }) {
             <div className="mt-auto grid grid-cols-3 gap-4 pt-6 border-t border-slate-100">
               {study.metrics.slice(0, 3).map((m: any, i: number) => (
                 <div key={i}>
-                  <div className="text-2xl sm:text-3xl font-bold text-[#0f172a] leading-none mb-1">
+                  <div className="text-2xl sm:text-3xl font-bold text-[#0f172a] leading-none mb-1" style={{ fontFamily: 'var(--font-inter)' }}>
                     {m.metric_value}
                   </div>
-                  <div className="text-[12px] text-[#64748b] leading-snug">
+                  <div className="text-[12px] text-[#64748b] leading-snug" style={{ fontFamily: 'var(--font-quicksand)' }}>
                     {m.metric_label}
                   </div>
                 </div>
@@ -170,12 +170,12 @@ function StudyCard({ study, content }: { study: any; content: any }) {
 
         {/* Body */}
         <div className="flex flex-col flex-1 p-6">
-          <h3 className="text-[1.1rem] font-semibold text-[#0f172a] leading-snug mb-2 group-hover:text-[#533afd] transition-colors tracking-tight">
+          <h3 className="text-[1.1rem] font-semibold text-[#0f172a] leading-snug mb-2 group-hover:text-[#533afd] transition-colors tracking-tight" style={{ fontFamily: 'var(--font-inter)' }}>
             {study.title}
           </h3>
 
           {(study.subtitle || study.description) && (
-            <p className="text-[13px] text-[#64748b] line-clamp-2 mb-5 flex-1 leading-relaxed">
+            <p className="text-[13px] text-[#64748b] line-clamp-2 mb-5 flex-1 leading-relaxed" style={{ fontFamily: 'var(--font-quicksand)' }}>
               {study.subtitle || study.description}
             </p>
           )}
@@ -185,14 +185,14 @@ function StudyCard({ study, content }: { study: any; content: any }) {
             <div className="flex items-center gap-4 mb-5">
               {study.metrics.slice(0, 2).map((m: any, i: number) => (
                 <div key={i}>
-                  <div className="text-lg font-bold text-[#533afd]">{m.metric_value}</div>
-                  <div className="text-[11px] text-[#94a3b8]">{m.metric_label}</div>
+                  <div className="text-lg font-bold text-[#533afd]" style={{ fontFamily: 'var(--font-inter)' }}>{m.metric_value}</div>
+                  <div className="text-[11px] text-[#94a3b8]" style={{ fontFamily: 'var(--font-quicksand)' }}>{m.metric_label}</div>
                 </div>
               ))}
             </div>
           )}
 
-          <div className="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between text-[#533afd] font-semibold text-[13px]">
+          <div className="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between text-[#533afd] font-semibold text-[13px]" style={{ fontFamily: 'var(--font-inter)' }}>
             <span>{content?.labels?.read_more || 'Read Case Study'}</span>
             <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
           </div>
@@ -235,6 +235,7 @@ export function CaseStudyList({ caseStudies, content }: { caseStudies: any[], co
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-[#533afd] focus:ring-1 focus:ring-[#533afd]/30 transition-all text-[15px] bg-white"
+            style={{ fontFamily: 'var(--font-inter)' }}
           />
         </div>
       </div>
@@ -243,12 +244,12 @@ export function CaseStudyList({ caseStudies, content }: { caseStudies: any[], co
       {caseStudies.length === 0 ? (
         <div className="text-center py-24 bg-[#f8fafc] rounded-2xl border border-slate-200">
           <Briefcase className="mx-auto h-12 w-12 text-[#64748d] mb-4 opacity-40" />
-          <h2 className="text-xl font-bold text-[#0d253d] mb-2">{content?.empty_state?.heading || 'No Case Studies Yet'}</h2>
-          <p className="text-[#64748d]">{content?.empty_state?.subheading || 'Check back soon for our latest success stories.'}</p>
+          <h2 className="text-xl font-bold text-[#0d253d] mb-2" style={{ fontFamily: 'var(--font-inter)' }}>{content?.empty_state?.heading || 'No Case Studies Yet'}</h2>
+          <p className="text-[#64748d]" style={{ fontFamily: 'var(--font-quicksand)' }}>{content?.empty_state?.subheading || 'Check back soon for our latest success stories.'}</p>
         </div>
       ) : filteredStudies.length === 0 ? (
         <div className="text-center py-20">
-          <p className="text-[#64748d] text-lg">No case studies found for &ldquo;{searchTerm}&rdquo;.</p>
+          <p className="text-[#64748d] text-lg" style={{ fontFamily: 'var(--font-quicksand)' }}>No case studies found for &ldquo;{searchTerm}&rdquo;.</p>
         </div>
       ) : (
         <>

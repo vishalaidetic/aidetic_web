@@ -197,7 +197,7 @@ export class CaseStudyRepository {
 
   async createCaseStudy(input: CaseStudyCreateInput): Promise<CaseStudy> {
     const now = new Date().toISOString()
-    const { problem, solution, results, metrics, testimonial, ...caseStudyData } = input
+    const { problem, solution, results, metrics, testimonial, highlights, ...caseStudyData } = input
 
     const { data, error } = await this.client
       .from('case_studies')
@@ -223,7 +223,7 @@ export class CaseStudyRepository {
 
   async updateCaseStudy(id: string, input: Partial<CaseStudyCreateInput>): Promise<CaseStudy> {
     const now = new Date().toISOString()
-    const { problem, solution, results, metrics, testimonial, ...caseStudyData } = input
+    const { problem, solution, results, metrics, testimonial, highlights, ...caseStudyData } = input
 
     const { data, error } = await this.client
       .from('case_studies')
