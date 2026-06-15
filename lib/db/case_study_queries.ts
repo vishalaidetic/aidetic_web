@@ -7,12 +7,12 @@ import type { Database } from './types'
 export class CaseStudyRepository {
   constructor(private client: SupabaseClient<Database>) { }
 
-  async listCaseStudies(params: CaseStudyListQuery): Promise<{ case_studies: CaseStudy[]; total: number }> {
+  async listCaseStudies(params: CaseStudyListQuery): Promise<{ case_studies: any[]; total: number }> {
     const { page, limit, published, search, tag } = params
 
     let query = this.client
       .from('case_studies')
-      .select('*', { count: 'exact' })
+      .select('*, metrics:case_study_metrics(metric_value, metric_label, display_order)', { count: 'exact' })
       .order('created_at', { ascending: false })
 
     if (published !== 'all') {
@@ -36,8 +36,16 @@ export class CaseStudyRepository {
       throw new Error(`Failed to fetch case studies: ${error.message}`)
     }
 
+    // Sort metrics by display_order for each study
+    const case_studies = (data || []).map((s: any) => ({
+      ...s,
+      metrics: Array.isArray(s.metrics)
+        ? [...s.metrics].sort((a: any, b: any) => (a.display_order ?? 0) - (b.display_order ?? 0))
+        : [],
+    }))
+
     return {
-      case_studies: (data || []) as any[],
+      case_studies,
       total: count || 0,
     }
   }
