@@ -3,7 +3,7 @@ import { TableOfContents } from '@/components/blog/table-of-contents'
 import { getBlogRepository } from '@/lib/db/blog_queries'
 import { MarkdownService } from '@/lib/services/markdown.service'
 import { formatDate } from '@/lib/utils/formatting'
-import { Calendar, ChevronLeft, Clock } from 'lucide-react'
+import { Calendar, ChevronLeft, Clock, User } from 'lucide-react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -12,38 +12,21 @@ interface BlogDetailPageProps {
   params: Promise<{ slug: string }>
 }
 
-/**
- * Generate static parameters for blog slugs (for static generation)
- */
 export async function generateStaticParams() {
   try {
     const repository = getBlogRepository()
-    const { blogs } = await repository.listBlogs({
-      page: 1,
-      limit: 100,
-      published: 'true',
-    })
-
-    return blogs.map((blog) => ({
-      slug: blog.slug,
-    }))
-  } catch (error) {
-    console.error('[v0] Error generating static params:', error)
+    const { blogs } = await repository.listBlogs({ page: 1, limit: 100, published: 'true' })
+    return blogs.map((blog) => ({ slug: blog.slug }))
+  } catch {
     return []
   }
 }
 
-/**
- * Generate dynamic metadata for each blog post
- */
 export async function generateMetadata({ params }: BlogDetailPageProps): Promise<Metadata> {
   try {
     const { slug } = await params
-    const repository = getBlogRepository()
-    const blog = await repository.getBlogBySlug(slug)
-
+    const blog = await getBlogRepository().getBlogBySlug(slug)
     const { summary } = MarkdownService.getMetadata(blog.content)
-
     return {
       title: blog.title,
       description: blog.description || summary,
@@ -53,22 +36,14 @@ export async function generateMetadata({ params }: BlogDetailPageProps): Promise
         description: blog.description || summary,
         type: 'article',
         publishedTime: new Date(blog.created_at).toISOString(),
-        authors: blog.author ? [blog.author] : undefined,
         images: blog.featured_image ? [{ url: blog.featured_image }] : undefined,
       },
     }
-  } catch (error) {
-    return {
-      title: 'Blog Post',
-      description: 'Read this blog post',
-    }
+  } catch {
+    return { title: 'Blog Post' }
   }
 }
 
-/**
- * Blog detail page - Shows full blog post with markdown rendering
- * Supports SSR and static generation
- */
 export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
   const { slug } = await params
 
@@ -79,152 +54,149 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
     const toc = MarkdownService.generateTableOfContents(blog.content)
 
     return (
-      <div className="bg-background min-h-screen relative">
-        {/* Subtle background grid */}
-        <div
-          className="absolute inset-0 pointer-events-none z-0"
-          style={{
-            backgroundImage: 'linear-gradient(rgba(83,58,253,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(83,58,253,0.04) 1px, transparent 1px)',
-            backgroundSize: '60px 60px',
-          }}
-        />
-        <div className="absolute top-0 left-0 w-full h-[100vh] pointer-events-none z-0 overflow-hidden">
-          {blog.featured_image && (
-            <div
-              className="absolute inset-[-10%] opacity-[0.08] dark:opacity-[0.08] blur-[120px] bg-cover bg-center"
-              style={{ backgroundImage: `url(${blog.featured_image})` }}
-            />
-          )}
-          <div className="absolute bottom-0 left-0 right-0 h-[50vh] bg-gradient-to-b from-transparent to-background" />
-        </div>
+      <div className="bg-white min-h-screen">
 
-        <article className="w-full px-4 sm:px-6 lg:px-8 py-12 sm:py-20 relative z-10">
-          <div className="max-w-7xl mx-auto space-y-12">
-            {/* Breadcrumb / Back Link */}
+        {/* ── Top nav bar ─────────────────────────────────────── */}
+        <div className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-100">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center gap-4">
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 text-sm text-[#64748d] hover:text-[#533afd] transition-colors group mb-4"
-              style={{ fontFamily: 'var(--font-inter)' }}
+              className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-[#533afd] transition-colors group"
             >
-              <ChevronLeft size={16} className="transition-transform group-hover:-translate-x-1 text-[#533afd]" />
-              Back to Blog
+              <ChevronLeft size={15} className="transition-transform group-hover:-translate-x-0.5" />
+              All posts
             </Link>
+            {blog.tag_type && (
+              <>
+                <span className="text-slate-200">/</span>
+                <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  {blog.tag_type}
+                </span>
+              </>
+            )}
+          </div>
+        </div>
 
-            {/* Title Section - Top Full Width */}
-            <div className="space-y-6">
-              <h1 
-                className="text-[2rem] sm:text-[2.25rem] lg:text-[2.5rem] xl:text-[2.75rem] font-semibold leading-[1.15]" 
-                style={{ 
-                  fontFamily: 'var(--font-inter)',
-                  background: 'linear-gradient(to right, #533afd, #000000)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                }}
-              >
-                {blog.title}
-              </h1>
+        <article className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-32">
 
-              {/* Tags */}
-              {(blog.is_featured || blog.tag_type) && (
-                <div className="flex flex-wrap items-center gap-2">
-                  {blog.is_featured && (
-                    <span className="bg-[#533afd] text-white text-[10px] sm:text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full" style={{ fontFamily: 'var(--font-inter)' }}>
-                      Featured
-                    </span>
-                  )}
-                  {blog.tag_type && (
-                    <span className="bg-[#533afd]/10 text-[#533afd] text-[10px] sm:text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full" style={{ fontFamily: 'var(--font-inter)' }}>
-                      {blog.tag_type}
-                    </span>
-                  )}
-                </div>
-              )}
+          {/* ── Hero ──────────────────────────────────────────── */}
+          <header className="max-w-3xl mx-auto text-center mb-12 pt-4">
 
-              {/* Metadata */}
-              <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
-                {blog.author && (
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-[#533afd] flex items-center justify-center text-white font-bold shadow-md">
-                      {blog.author.charAt(0)}
-                    </div>
-                    <span className="font-medium text-[#0d253d]">{blog.author}</span>
-                  </div>
-                )}
-                <div className="flex items-center gap-2">
-                  <Calendar size={16} />
-                  <span>{formatDate(blog.created_at)}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Clock size={16} />
-                  <span>{readingTimeMinutes} min read</span>
-                </div>
+            {/* Tag pill */}
+            {blog.tag_type && (
+              <div className="inline-flex items-center px-3 py-1 bg-[#533afd]/8 text-[#533afd] text-[11px] font-bold uppercase tracking-[0.15em] rounded-full mb-6">
+                {blog.tag_type}
               </div>
-            </div>
-
-            {/* Featured Image */}
-            {blog.featured_image && (
-              <div className="relative w-full rounded-3xl overflow-hidden shadow-2xl border border-border/50 bg-background">
-                <img
-                  src={blog.featured_image}
-                  alt={blog.title}
-                  className="w-full h-auto"
-                />
+            )}
+            {blog.is_featured && (
+              <div className="inline-flex items-center px-3 py-1 bg-[#533afd] text-white text-[11px] font-bold uppercase tracking-[0.15em] rounded-full mb-6 ml-2">
+                Featured
               </div>
             )}
 
-            {/* Main Content Area - 2 Column Layout */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 pt-8">
-              {/* Sidebar TOC - Sticky */}
-              <aside className="lg:col-span-3 order-2 lg:order-1">
-                <div className="sticky top-32">
+            {/* Title */}
+            <h1
+              className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold leading-[1.12] tracking-tight mb-6"
+              style={{ fontFamily: 'var(--font-inter)', color: '#0d253d' }}
+            >
+              {blog.title}
+            </h1>
+
+            {/* Description */}
+            {blog.description && (
+              <p
+                className="text-lg sm:text-xl text-slate-500 leading-relaxed mb-8"
+                style={{ fontFamily: 'var(--font-quicksand)' }}
+              >
+                {blog.description}
+              </p>
+            )}
+
+            {/* Author + meta bar */}
+            <div className="flex flex-wrap items-center justify-center gap-5 text-sm text-slate-500 border-t border-b border-slate-100 py-4">
+              {blog.author && (
+                <div className="flex items-center gap-2">
+                  <div className="w-7 h-7 rounded-full bg-[#533afd] flex items-center justify-center text-white text-[11px] font-bold shadow-sm">
+                    {blog.author.charAt(0).toUpperCase()}
+                  </div>
+                  <span className="font-semibold text-[#0d253d]">{blog.author}</span>
+                </div>
+              )}
+              <div className="flex items-center gap-1.5">
+                <Calendar size={14} className="text-slate-400" />
+                <span>{formatDate(blog.created_at)}</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <Clock size={14} className="text-slate-400" />
+                <span>{readingTimeMinutes} min read</span>
+              </div>
+            </div>
+          </header>
+
+          {/* ── Featured image ────────────────────────────────── */}
+          {blog.featured_image && (
+            <div className="max-w-4xl mx-auto mb-16 rounded-2xl overflow-hidden shadow-lg border border-slate-100">
+              <img
+                src={blog.featured_image}
+                alt={blog.title}
+                className="w-full h-auto object-cover"
+              />
+            </div>
+          )}
+
+          {/* ── Main content grid ─────────────────────────────── */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+
+            {/* Sidebar TOC */}
+            {toc.length > 0 && (
+              <aside className="hidden lg:block lg:col-span-3 order-2 lg:order-1">
+                <div className="sticky top-24">
                   <TableOfContents toc={toc} />
                 </div>
               </aside>
+            )}
 
-              {/* Blog Content - Main Column */}
-              <main className="lg:col-span-9 order-1 lg:order-2">
-                <div className="space-y-12">
-                  {/* Description / TL;DR Section */}
-                  {blog.description && (
-                    <div className="p-8 rounded-2xl bg-[#533afd]/[0.02] border border-[#533afd]/10 shadow-sm border-l-4 border-l-[#533afd]">
-                      <p className="text-lg md:text-xl text-[#0d253d] leading-relaxed" style={{ fontFamily: 'var(--font-quicksand)' }}>
-                        {blog.description}
-                      </p>
-                    </div>
-                  )}
+            {/* Article body */}
+            <main className={toc.length > 0 ? 'lg:col-span-9 order-1 lg:order-2' : 'lg:col-span-12'}>
+              <div
+                className="prose prose-lg max-w-none
+                  prose-headings:font-bold prose-headings:text-[#0d253d] prose-headings:tracking-tight
+                  prose-h2:text-2xl prose-h2:sm:text-3xl prose-h2:mt-12 prose-h2:mb-4 prose-h2:pb-3 prose-h2:border-b prose-h2:border-slate-100
+                  prose-h3:text-xl prose-h3:sm:text-2xl prose-h3:mt-8 prose-h3:mb-3
+                  prose-p:text-[#374151] prose-p:leading-[1.85] prose-p:text-[1.05rem]
+                  prose-a:text-[#533afd] prose-a:font-medium prose-a:no-underline hover:prose-a:underline
+                  prose-strong:text-[#0d253d] prose-strong:font-semibold
+                  prose-blockquote:border-l-4 prose-blockquote:border-[#533afd] prose-blockquote:bg-[#533afd]/[0.03] prose-blockquote:rounded-r-xl prose-blockquote:px-6 prose-blockquote:py-1 prose-blockquote:not-italic prose-blockquote:text-slate-600
+                  prose-code:text-[#ea2261] prose-code:bg-[#ea2261]/[0.06] prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:font-mono prose-code:text-sm prose-code:font-medium
+                  prose-pre:rounded-xl prose-pre:shadow-md
+                  prose-img:rounded-xl prose-img:shadow-sm prose-img:border prose-img:border-slate-100
+                  prose-ul:my-4 prose-ol:my-4 prose-li:text-[#374151] prose-li:leading-relaxed
+                  prose-hr:border-slate-100 prose-hr:my-10
+                  prose-table:text-sm"
+              >
+                <BlogContent content={blog.content} />
+              </div>
 
-                  {/* Rendered Markdown */}
-                  <div className="prose prose-lg max-w-none prose-headings:text-[#0d253d] prose-headings:font-bold prose-headings:font-sans prose-a:text-[#533afd] prose-a:font-medium hover:prose-a:text-[#ea2261] hover:prose-a:underline prose-strong:text-[#0d253d] prose-blockquote:border-l-[#533afd] prose-blockquote:bg-[#533afd]/[0.02] prose-blockquote:py-1 prose-blockquote:px-6 prose-blockquote:rounded-r-xl prose-code:text-[#ea2261]">
-                    <BlogContent content={blog.content} />
-                  </div>
-
-                  {/* Meta Footer */}
-                  <div className="pt-16 border-t border-border">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-sm text-muted-foreground italic">
-                      <p>
-                        Published on <time dateTime={new Date(blog.created_at).toISOString()}>
-                          {formatDate(blog.created_at)}
-                        </time>
-                      </p>
-                      {blog.updated_at !== blog.created_at && (
-                        <p>
-                          Last updated on <time dateTime={new Date(blog.updated_at).toISOString()}>
-                            {formatDate(blog.updated_at)}
-                          </time>
-                        </p>
-                      )}
-                    </div>
-                  </div>
+              {/* Footer */}
+              <div className="mt-16 pt-8 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-sm text-slate-400">
+                <div className="flex items-center gap-2">
+                  <User size={13} />
+                  <span>Written by <span className="font-semibold text-[#0d253d]">{blog.author || 'Team'}</span></span>
                 </div>
-              </main>
-            </div>
+                <div className="flex items-center gap-4">
+                  <span>Published {formatDate(blog.created_at)}</span>
+                  {blog.updated_at !== blog.created_at && (
+                    <span>· Updated {formatDate(blog.updated_at)}</span>
+                  )}
+                </div>
+              </div>
+            </main>
           </div>
         </article>
       </div>
     )
   } catch (error) {
-    console.error('[v0] Error loading blog detail:', error)
+    console.error('[blog] Error loading post:', error)
     notFound()
   }
 }

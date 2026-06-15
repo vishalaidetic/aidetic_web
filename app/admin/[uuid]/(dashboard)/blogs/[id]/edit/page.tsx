@@ -23,20 +23,7 @@ export default async function EditBlogPage({ params }: EditBlogPageProps) {
     const repository = getBlogRepository()
     const blog = await repository.getBlogById(id)
 
-    return (
-      <div className="w-full px-4 sm:px-6 lg:px-8 py-12">
-        <div className="mb-8">
-          <h1 className="text-3xl sm:text-4xl font-bold text-foreground">
-            Edit Blog Post
-          </h1>
-          <p className="text-muted-foreground mt-2">
-            Update the blog post content and metadata
-          </p>
-        </div>
-
-        <BlogForm initialData={blog} isEditing />
-      </div>
-    )
+    return <BlogForm initialData={blog} isEditing />
   } catch (error) {
     console.error('[v0] Error loading blog for edit:', error)
     notFound()

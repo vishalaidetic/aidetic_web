@@ -1,4 +1,3 @@
-'use client'
 import { FinalCtaSection } from '@/components/home/final-cta-section';
 import { HomeFaqSection } from '@/components/home/home-faq-section';
 import { Footer } from '@/components/layout/footer';
@@ -13,56 +12,26 @@ import { ProductsSection } from '@/components/home/products-section';
 import { InfrastructureSection } from '@/components/home/infrastructure-section';
 import { CaseStudiesSection } from '@/components/home/casestudies-section';
 import { IndustrySolutionsSection } from '@/components/home/industrysolutions-section';
+import { getPageContent } from '@/lib/content';
 
-import { useEffect, useState } from 'react';
-
-export default function HomePage() {
-  const [activeTab, setActiveTab] = useState('prebuilt')
-  const [activeIndustryTab, setActiveIndustryTab] = useState('banking')
-
-  // Handle scroll spy for the sidebar
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleCards = entries.filter(entry => entry.isIntersecting && entry.target.hasAttribute('data-section-id'));
-        if (visibleCards.length > 0) {
-          visibleCards.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-          const topVisible = visibleCards[0];
-          const sectionId = topVisible.target.getAttribute('data-section-id');
-          if (sectionId) setActiveTab(sectionId);
-        }
-      },
-      { threshold: 0.3, rootMargin: '-10% 0px -40% 0px' }
-    )
-
-    document.querySelectorAll('[data-section-id]').forEach((el) => observer.observe(el))
-    return () => observer.disconnect()
-  }, [])
-
-  const scrollToSection = (id: string) => {
-    setActiveTab(id)
-    const el = document.querySelector(`[data-section-id="${id}"]`)
-    if (el) {
-      const offsetTop = el.getBoundingClientRect().top + window.scrollY - 150
-      window.scrollTo({ top: offsetTop, behavior: 'smooth' })
-    }
-  }
+export default async function HomePage() {
+  const content = await getPageContent('home');
 
   return (
     <>
       <Navigation />
       <main className="min-h-screen bg-slate-50">
-        <HeroSection />
-        <AboutSection />
-        <StatsSection />
-        <TargetAudienceSection />
-        <CmoCtaSection />
-        <ProductsSection />
-        <InfrastructureSection />
-        <CaseStudiesSection activeTab={activeTab} scrollToSection={scrollToSection} />
-        <IndustrySolutionsSection activeIndustryTab={activeIndustryTab} setActiveIndustryTab={setActiveIndustryTab} />
-        <HomeFaqSection />
-        <FinalCtaSection />
+        <HeroSection content={content?.hero} />
+        <AboutSection content={content?.about} />
+        <StatsSection content={content?.stats} />
+        <TargetAudienceSection content={content?.targetAudience} />
+        <CmoCtaSection content={content?.cmoCta} />
+        <ProductsSection content={content?.products} />
+        <InfrastructureSection content={content?.infrastructure} />
+        <CaseStudiesSection content={content?.case_studies} />
+        <IndustrySolutionsSection content={content?.industrySolutions} />
+        <HomeFaqSection content={content?.faq} />
+        <FinalCtaSection content={content?.finalCta} />
       </main>
       <div className="snap-start w-full">
         <Footer />

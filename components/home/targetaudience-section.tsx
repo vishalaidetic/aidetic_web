@@ -8,7 +8,7 @@ import { BookCallDialog } from '@/components/shared/book-call-dialog';
 import { DashboardMock } from '@/components/home/dashboard-mock';
 
 
-export function TargetAudienceSection() {
+export function TargetAudienceSection({ content }: { content?: any }) {
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 border-t border-slate-200 snap-start">
           <div className="w-full max-w-7xl mx-auto space-y-6">
@@ -24,7 +24,7 @@ export function TargetAudienceSection() {
                   backgroundClip: 'text',
                 }}
               >
-                Here's who we built our products for
+                {content?.heading || "Here's who we built our products for"}
               </h2>
             </motion.div>
 
@@ -39,7 +39,7 @@ export function TargetAudienceSection() {
               {/* Left - Purple Card (Smaller, Contained) */}
               <div className="flex-shrink-0 w-full lg:w-[300px] bg-gradient-to-br from-[#533afd] to-[#8278E6] rounded-xl p-4 lg:p-5 space-y-2 shadow-xl border border-white/10">
                 <div className="flex items-center justify-between">
-                  <h4 className="text-[11px] font-bold text-white tracking-wide" style={{ fontFamily: "var(--font-inter)" }}>AGENT FACTORY</h4>
+                  <h4 className="text-[11px] font-bold text-white tracking-wide" style={{ fontFamily: "var(--font-inter)" }}>{content?.products?.[0]?.name || "AGENT FACTORY"}</h4>
                   <button className="w-6 h-6 rounded-full flex items-center justify-center transition-colors flex-shrink-0 hover:bg-white/10 border border-white/20">
                     <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7m0 0H8m9 0v9" />
@@ -48,30 +48,25 @@ export function TargetAudienceSection() {
                 </div>
 
                 <div className="space-y-0.5">
-                  <h3 className="text-[2.5rem] leading-none tracking-tighter font-black text-white" style={{ fontFamily: "var(--font-inter)" }}>6x</h3>
-                  <p className="text-[13px] font-bold text-white/95 leading-snug" style={{ fontFamily: "var(--font-quicksand)" }}>Faster Data-Driven<br />Decision Making</p>
+                  <h3 className="text-[2.5rem] leading-none tracking-tighter font-black text-white" style={{ fontFamily: "var(--font-inter)" }}>{content?.products?.[0]?.metric || "6x"}</h3>
+                  <p className="text-[13px] font-bold text-white/95 leading-snug whitespace-pre-line" style={{ fontFamily: "var(--font-quicksand)" }}>{content?.products?.[0]?.metricLabel || "Faster Data-Driven\nDecision Making"}</p>
                 </div>
 
                 <div className="flex items-center gap-2 text-[10px] font-semibold text-white/80 pt-2 border-t border-white/20">
                   <svg className="w-3 h-3 text-white/90 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
-                  <span>AI Data Analyst Integration</span>
+                  <span>{content?.products?.[0]?.integrationLabel || "AI Data Analyst Integration"}</span>
                 </div>
               </div>
 
               {/* Right - Text Overlay on Background */}
               <div className="flex-1 flex flex-col justify-center text-[#0d253d] space-y-3">
                 <h3 className="text-base font-bold leading-snug tracking-wide text-[#0d253d]" style={{ fontFamily: "var(--font-inter)" }}>
-                  Who is Agent Factory for:
+                  {content?.products?.[0]?.forTitle || "Who is Agent Factory for:"}
                 </h3>
                 <p className="text-base leading-relaxed max-w-2xl text-[#64748d]" style={{ fontFamily: "var(--font-quicksand)" }}>
-                  Agent Factory is built for business leaders who are tired of
-                  waiting on data teams for answers. If you're in marketing, sales,
-                  finance, or customer success and you've ever waited days for a
-                  report that should've taken minutes. Agent Factory acts as your
-                  AI Data Analyst, sitting on top of your company's data and
-                  answering your business questions directly.
+                  {content?.products?.[0]?.forDesc || "Agent Factory is built for business leaders who are tired of waiting on data teams for answers. If you're in marketing, sales, finance, or customer success and you've ever waited days for a report that should've taken minutes. Agent Factory acts as your AI Data Analyst, sitting on top of your company's data and answering your business questions directly."}
                 </p>
               </div>
             </motion.div>
@@ -87,21 +82,17 @@ export function TargetAudienceSection() {
               {/* Left - Text Overlay on Background */}
               <div className="flex-1 flex flex-col justify-center text-[#0d253d] space-y-3 lg:pl-4">
                 <h3 className="text-base font-bold leading-snug tracking-wide text-[#0d253d]" style={{ fontFamily: "var(--font-inter)" }}>
-                  Who is Data Flash for:
+                  {content?.products?.[1]?.forTitle || "Who is Data Flash for:"}
                 </h3>
                 <p className="text-base leading-relaxed max-w-2xl text-[#64748d]" style={{ fontFamily: "var(--font-quicksand)" }}>
-                  DataFlash is built for CTOs, data engineers, and data leaders who
-                  are tired of spending months writing custom migration code
-                  every time they move to a new platform. If you're migrating
-                  databases, consolidating data sources, dataFlash handles it through configuration, not code with
-                  built-in validation, quality checks, and audit tracking.
+                  {content?.products?.[1]?.forDesc || "DataFlash is built for CTOs, data engineers, and data leaders who are tired of spending months writing custom migration code every time they move to a new platform. If you're migrating databases, consolidating data sources, dataFlash handles it through configuration, not code with built-in validation, quality checks, and audit tracking."}
                 </p>
               </div>
 
               {/* Right - Purple Analytics Card (Smaller, Contained) */}
               <div className="flex-shrink-0 w-full lg:w-[300px] bg-gradient-to-br from-[#533afd] to-[#8278E6] rounded-xl p-4 lg:p-5 space-y-2 shadow-xl border border-white/10">
                 <div className="flex items-center justify-between">
-                  <h4 className="text-[11px] font-bold text-white tracking-wide" style={{ fontFamily: "var(--font-inter)" }}>DATA FLASH</h4>
+                  <h4 className="text-[11px] font-bold text-white tracking-wide" style={{ fontFamily: "var(--font-inter)" }}>{content?.products?.[1]?.name || "DATA FLASH"}</h4>
                   <button className="w-6 h-6 rounded-full flex items-center justify-center transition-colors flex-shrink-0 hover:bg-white/10 border border-white/20">
                     <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M12 5l7 7-7 7" />
@@ -110,15 +101,15 @@ export function TargetAudienceSection() {
                 </div>
 
                 <div className="space-y-0.5">
-                  <h3 className="text-[2.5rem] leading-none tracking-tighter font-black text-white" style={{ fontFamily: "var(--font-inter)" }}>100+</h3>
-                  <p className="text-[13px] font-bold text-white/95 leading-snug" style={{ fontFamily: "var(--font-quicksand)" }}>hours of efforts saved<br />in Data Migration</p>
+                  <h3 className="text-[2.5rem] leading-none tracking-tighter font-black text-white" style={{ fontFamily: "var(--font-inter)" }}>{content?.products?.[1]?.metric || "100+"}</h3>
+                  <p className="text-[13px] font-bold text-white/95 leading-snug whitespace-pre-line" style={{ fontFamily: "var(--font-quicksand)" }}>{content?.products?.[1]?.metricLabel || "hours of efforts saved\nin Data Migration"}</p>
                 </div>
 
                 <div className="flex items-center gap-2 text-[10px] font-semibold text-white/80 pt-2 border-t border-white/20">
                   <svg className="w-3 h-3 text-white/90 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                   </svg>
-                  <span>Automated Database Migration</span>
+                  <span>{content?.products?.[1]?.integrationLabel || "Automated Database Migration"}</span>
                 </div>
               </div>
             </motion.div>

@@ -10,7 +10,6 @@ export const BLOG_TAG_TYPES = [
   'Cloud',
   'DevOps',
   'Product',
-  'Case Study',
   'Tutorial',
   'News',
   'Other',

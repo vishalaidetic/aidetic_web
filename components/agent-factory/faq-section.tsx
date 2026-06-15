@@ -1,46 +1,12 @@
 'use client'
 
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { X } from 'lucide-react'
 import { BookCallDialog } from '@/components/shared/book-call-dialog'
+import { AnimatePresence, motion } from 'framer-motion'
+import { X } from 'lucide-react'
+import { useState } from 'react'
 
-const faqs = [
-  {
-    q: 'Is Agent Factory a SaaS product?',
-    a: 'No. It\'s a productized service. Our engineers deploy and configure it on your data stack, tuned to your business. You get the speed of a product with the precision of a custom build.',
-  },
-  {
-    q: 'What data stack does it work with?',
-    a: 'Databricks, Snowflake, or any cloud data warehouse you already run. Agent Factory sits on top of your existing infrastructure — nothing to migrate, nothing to replace.',
-  },
-  {
-    q: 'How long does it take to go live?',
-    a: '2 to 4 weeks from kickoff. Week one is discovery — mapping your data, KPIs, and business questions. By week four, your first agents are live in production.',
-  },
-  {
-    q: 'Who uses it day to day?',
-    a: 'Business leaders — CMOs, CFOs, VPs of Sales, operations heads. Not your data team. The whole point is that the people making decisions can get to the data themselves, without writing SQL or opening a dashboard.',
-  },
-  {
-    q: 'How is this different from a BI tool?',
-    a: 'BI tools give you dashboards. Agent Factory gives you answers. You ask a question in plain English, and a domain-tuned agent responds with the insight — a chart, a breakdown, a recommendation. No filters, no drag-and-drop, no waiting.',
-  },
-  {
-    q: 'What about data security?',
-    a: 'Your data stays in your warehouse. Agent Factory doesn\'t move it, copy it, or store it. Your existing governance and access controls stay exactly as they are.',
-  },
-  {
-    q: 'What happens after go-live?',
-    a: 'Our engineering team continuously tunes your agents — new KPIs, updated business rules, changing data models. You don\'t maintain it. We do.',
-  },
-  {
-    q: 'How is this different from ChatGPT or a generic AI assistant?',
-    a: 'Generic AI tools don\'t know your data, your KPIs, or your business context. Agent Factory deploys domain-specific agents trained on your actual data stack. The difference is the same as asking a stranger for advice versus asking an analyst who\'s worked at your company for two years.',
-  },
-]
-
-export function FaqSection() {
+export function FaqSection({ content }: { content?: any }) {
+  const faqs = content?.items || [];
   const [openIndex, setOpenIndex] = useState<number | null>(0) // First one open by default
 
   const toggle = (i: number) => setOpenIndex(prev => (prev === i ? null : i))
@@ -49,13 +15,13 @@ export function FaqSection() {
     <section className="relative w-full bg-white py-24 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
-          
+
           {/* ── Left Column: Header & CTA ── */}
           <div className="lg:col-span-5 space-y-8 lg:sticky lg:top-24">
-            <motion.div 
-              initial={{ opacity: 0, x: -30 }} 
-              whileInView={{ opacity: 1, x: 0 }} 
-              transition={{ duration: 0.6 }} 
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
               viewport={{ once: true }}
               className="space-y-4"
             >
@@ -72,25 +38,25 @@ export function FaqSection() {
                   backgroundClip: 'text',
                 }}
               >
-                Everything you need to know about Agent Factory.
+                {content?.heading}
               </h2>
             </motion.div>
 
-            <motion.div 
-              initial={{ opacity: 0, x: -30 }} 
-              whileInView={{ opacity: 1, x: 0 }} 
-              transition={{ duration: 0.6, delay: 0.15 }} 
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.15 }}
               viewport={{ once: true }}
             >
               <p className="text-lg text-[#64748d] leading-relaxed max-w-md" style={{ fontFamily: "var(--font-quicksand)" }}>
-                Architecture, deployment, timelines — the questions we get on every first call before getting started.
+                {content?.subheading}
               </p>
             </motion.div>
 
-            <motion.div 
-              initial={{ opacity: 0, x: -30 }} 
-              whileInView={{ opacity: 1, x: 0 }} 
-              transition={{ duration: 0.6, delay: 0.3 }} 
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
               viewport={{ once: true }}
             >
               <BookCallDialog>
@@ -99,7 +65,7 @@ export function FaqSection() {
                   className="px-8 py-3.5 rounded-full bg-[#533afd] text-white font-medium shadow-lg hover:opacity-90 hover:-translate-y-0.5 transition-all text-[15px]"
                   style={{ fontFamily: 'var(--font-inter)' }}
                 >
-                  Request a Call
+                  {content?.cta}
                 </button>
               </BookCallDialog>
             </motion.div>
@@ -114,7 +80,7 @@ export function FaqSection() {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true, amount: 0.1 }}
             >
-              {faqs.map((faq, i) => {
+              {faqs.map((faq: any, i: any) => {
                 const isOpen = openIndex === i
                 return (
                   <motion.div
@@ -155,7 +121,7 @@ export function FaqSection() {
                           fontFamily: 'var(--font-inter)',
                         }}
                       >
-                        {faq.q}
+                        {faq.question}
                       </span>
                     </button>
 
@@ -175,7 +141,7 @@ export function FaqSection() {
                               className="text-[15px] text-[#64748d] leading-relaxed"
                               style={{ fontFamily: 'var(--font-quicksand)' }}
                             >
-                              {faq.a}
+                              {faq.answer}
                             </p>
                           </div>
                         </motion.div>

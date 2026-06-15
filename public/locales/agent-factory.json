@@ -1,0 +1,320 @@
+{
+  "hero": {
+    "badge": "Agent Factory",
+    "heading": [
+      "The AI Agent Platform",
+      "Built for Enterprise Data."
+    ],
+    "subheading": "Deploy specialist AI agents across every business function — each one trained on your KPIs, your data, and your terminology.",
+    "cta_primary": "Request a Call",
+    "cta_secondary": "See It In Action",
+    "logo_url": "/agent-fac-logo.png",
+    "book_text_1": "Book",
+    "book_text_2": " a call today",
+    "trusted_by": "TRUSTED BY AI-FIRST ENTERPRISES",
+    "logos": [
+      { "name": "LG", "url": "" },
+      { "name": "Brambles", "url": "" },
+      { "name": "TRUIST", "url": "" },
+      { "name": "SEPHORA", "url": "" },
+      { "name": "Huel", "url": "" },
+      { "name": "keyloop", "url": "" },
+      { "name": "worldpay", "url": "" },
+      { "name": "Snowflake", "url": "" },
+      { "name": "Salesforce", "url": "" },
+      { "name": "Databricks", "url": "" }
+    ]
+  },
+  "pipeline": {
+    "badge": "How It Works",
+    "heading": "Build your Agent or a complete AI Application in 3 steps.",
+    "subheading": "Start with a prompt and a connection to your data. We'll handle the rest.",
+    "phases": [
+      {
+        "id": "phase1",
+        "label": "Phase 1: Prerequisites",
+        "steps": [
+          {
+            "id": "gather",
+            "title": "Gather Data Dictionary",
+            "desc": "Align on core data schemas, metrics, and business terminology to establish a unified foundation."
+          },
+          {
+            "id": "medallion",
+            "title": "Integrate Medallion Architecture",
+            "desc": "Organize data into Bronze, Silver, and Gold layers to ensure quality, reliability, and performance."
+          }
+        ]
+      },
+      {
+        "id": "phase2",
+        "label": "Phase 2: Connect & Configure",
+        "steps": [
+          {
+            "id": "configure",
+            "title": "Configure Agent Parameters",
+            "desc": "Set the initial rules, boundaries, and reasoning paths for your custom AI agent."
+          }
+        ]
+      },
+      {
+        "id": "phase3",
+        "label": "Phase 3: Test & Deploy",
+        "steps": [
+          {
+            "id": "guidelines",
+            "title": "Test & Iterate Business Guidelines",
+            "desc": "Validate agent responses against established business rules to ensure strict compliance and accuracy."
+          },
+          {
+            "id": "deploy",
+            "title": "Deploy to Production",
+            "desc": "Launch your custom AI application with full observability, ready to answer questions and fetch data."
+          }
+        ]
+      }
+    ]
+  },
+  "features": {
+    "heading": "Why Businesses Love Agent Factory",
+    "subheading": "It works the way they think. No SQL. No tickets to the data team. Just plain-English questions and answers they can act on.",
+    "items": [
+      {
+        "title": "One Agent per Function. Each one an Expert.",
+        "description": "Agent Factory doesn't throw one generic AI Agent at every business question. It deploys specialist agents trained on each function's KPIs, vocabulary, and decision patterns."
+      },
+      {
+        "title": "Answers that Explain Themselves.",
+        "description": "Every answer shows the reasoning behind it. What was queried, what logic was applied, why the number looks the way it does. Your team sees the work, not just the output."
+      },
+      {
+        "title": "Charts, Breakdowns, and Trend Lines on Demand.",
+        "description": "Agent Factory shows you the insight in every format that makes decision making easier. Ask \"how did revenue trend last quarter\" and get a chart. Ask \"break it down by region\" and the view updates."
+      },
+      {
+        "title": "Agents that Get Smarter Every Week",
+        "description": "Most AI tools stay stagnate. Agent Factory can be continuously tuned with new KPIs, changing business rules, evolving data models so the agents stay relevant as your business changes."
+      }
+    ],
+    "mockups": {
+      "analyst": {
+        "question": "Which top performing products need re-stocking this year?",
+        "analyzing": "Agent Factory is analysing…",
+        "table_headers": [
+          "Product",
+          "Revenue",
+          "Stock"
+        ],
+        "table_rows": [
+          [
+            "1. Apex",
+            "$2.4M",
+            "Low ⚠"
+          ],
+          [
+            "2. Arcana World",
+            "$1.9M",
+            "Critical 🔴"
+          ]
+        ],
+        "chips": [
+          "Show full list",
+          "Export CSV",
+          "Set alert"
+        ],
+        "input_placeholder": "Ask a follow-up question…"
+      },
+      "businessArea": {
+        "label": "Select Agent Domain",
+        "selected": "Marketing & Growth",
+        "dropdown": [
+          "Sales & CRM",
+          "Supply Chain"
+        ],
+        "chat_question": "What's the ROI on our latest campaign?",
+        "chat_answer": "ROI is up 12% MoM. CAC decreased by $4.50.",
+        "input_placeholder": "Ask marketing agent..."
+      },
+      "charts": {
+        "label": "Revenue Trend",
+        "y_axis": [
+          "2M",
+          "1M",
+          "0"
+        ],
+        "monthly": "Monthly",
+        "bar_labels": [
+          "$1M",
+          "$1.5M",
+          "$2.8M",
+          "$3.2M",
+          "$2.1M"
+        ]
+      },
+      "integration": {
+        "hub": "Integration Hub",
+        "sub": "Connect your entire analytics stack",
+        "source_label": "Table Join Injection",
+        "tools": [
+          "Slack",
+          "Tableau",
+          "Claude AI",
+          "dbt Core",
+          "Looker",
+          "Power BI"
+        ],
+        "data_label": "Data Dictionary"
+      }
+    }
+  },
+  "stats": {
+    "heading": "Built for Scale",
+    "subheading": "No dashboards. No waiting. No guesswork. Just decisions backed by your data.",
+    "items": [
+      {
+        "value": 6,
+        "suffix": "x",
+        "label": "Faster Decision\nMaking and Actions"
+      },
+      {
+        "value": "Zero",
+        "suffix": "",
+        "label": "Dashboards your team needs\nto build, maintain, or learn"
+      },
+      {
+        "value": 80,
+        "suffix": "%",
+        "label": "Reduction in time your data\nteam spends on reporting"
+      },
+      {
+        "value": "1/3",
+        "suffix": "rd",
+        "label": "Reduction in\nyour analytics cost"
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Everything you need to know about Agent Factory.",
+    "subheading": "Architecture, deployment, timelines — the questions we get on every first call before getting started.",
+    "cta": "Request a Call",
+    "items": [
+      {
+        "question": "Is Agent Factory a SaaS product?",
+        "answer": "No. It's a productized service. Our engineers deploy and configure it on your data stack, tuned to your business. You get the speed of a product with the precision of a custom build."
+      },
+      {
+        "question": "What data stack does it work with?",
+        "answer": "Databricks, Snowflake, or any cloud data warehouse you already run. Agent Factory sits on top of your existing infrastructure — nothing to migrate, nothing to replace."
+      },
+      {
+        "question": "How long does it take to go live?",
+        "answer": "2 to 4 weeks from kickoff. Week one is discovery — mapping your data, KPIs, and business questions. By week four, your first agents are live in production."
+      },
+      {
+        "question": "Who uses it day to day?",
+        "answer": "Business leaders — CMOs, CFOs, VPs of Sales, operations heads. Not your data team. The whole point is that the people making decisions can get to the data themselves, without writing SQL or opening a dashboard."
+      },
+      {
+        "question": "How is this different from a BI tool?",
+        "answer": "BI tools give you dashboards. Agent Factory gives you answers. You ask a question in plain English, and a domain-tuned agent responds with the insight — a chart, a breakdown, a recommendation. No filters, no drag-and-drop, no waiting."
+      },
+      {
+        "question": "What about data security?",
+        "answer": "Your data stays in your warehouse. Agent Factory doesn't move it, copy it, or store it. Your existing governance and access controls stay exactly as they are."
+      },
+      {
+        "question": "What happens after go-live?",
+        "answer": "Our engineering team continuously tunes your agents — new KPIs, updated business rules, changing data models. You don't maintain it. We do."
+      },
+      {
+        "question": "How is this different from ChatGPT or a generic AI assistant?",
+        "answer": "Generic AI tools don't know your data, your KPIs, or your business context. Agent Factory deploys domain-specific agents trained on your actual data stack. The difference is the same as asking a stranger for advice versus asking an analyst who's worked at your company for two years."
+      }
+    ]
+  },
+  "cta": {
+    "heading": "It's not 2016 anymore.",
+    "subheading": "You shouldn't need a week, a dashboard, or a data team to make one decision.",
+    "cta_primary": "Request a Call",
+    "cta_secondary": "See case studies"
+  },
+  "useCases": {
+    "heading": "Stale Insights will Never Give You Margin",
+    "subheading": "McKinsey says, businesses that take fast data-driven decisions are 19x more likely to be profitable.",
+    "items": [
+      {
+        "title": "A Global F&B Company's Recipe for Profit in the Age of AI",
+        "description": "\"A global F&B conglomerate was over-discounting without realizing it. AI surfaced this insight in real time. They fixed their pricing strategy and revenue jumped 5-10%.\""
+      },
+      {
+        "title": "A Supply Chain Dept. that Got Faster with AI",
+        "description": "“The Supply Chain department of a CPG company was struggling to keep up with demand fluctuations due to slow data insights. AI gave them real-time visibility into their supply chain. Forecasting errors dropped by 30%”"
+      },
+      {
+        "title": "When AI Grows Your Bottom-Line",
+        "description": "\"A leading consulting firm found that CPG companies applying AI for real-time insights across commercial functions unlock 3–5 percentage points of EBITDA growth.\""
+      }
+    ]
+  },
+  "product": {
+    "heading": "But, Why are Business Slow in Decision Making?",
+    "subheading": "Millions of dollars are spent every year on data initiatives, yet insights take more than a week to arrive.",
+    "items": [
+      {
+        "number": "01",
+        "title": "Stakeholders Wait Up to 2 Weeks for Data Insights.",
+        "description": "Heavy reliance on analytics teams creates bottlenecks, slowing down access to the data needed for timely and informed decision-making."
+      },
+      {
+        "number": "02",
+        "title": "Data Analysts Stuck in a Sea of Ad-Hoc Requests",
+        "description": "Flooded with low-impact requests, analysts spend their time handling routine tasks, leaving little room for high-value strategic analysis."
+      },
+      {
+        "number": "03",
+        "title": "Just Dashboards aren't Enough for Actionable Insights",
+        "description": "Most dashboards are static, offering only BAU metrics for health checks. They rarely empower stakeholders to extract meaningful insights for strategic decision-making."
+      }
+    ]
+  },
+  "cmo": {
+    "heading": "Hi! I am Anurag, CMO at Aidetic.",
+    "subheading": "Curious how Agent Factory will help your business?",
+    "cta": "Request a Call"
+  },
+  "learnMore": {
+    "heading": "Learn More About Agentic Analytics",
+    "items": [
+      {
+        "type": "E-BOOK",
+        "title": "Trust or Bust: How to Deliver Accurate AI-Powered Analytics",
+        "brand": "ThoughtSpot",
+        "visual_type": "EBOOK",
+        "visual_title_1": "Trust or Bust",
+        "visual_title_2": "How to Deliver Accurate",
+        "visual_title_3": "AI-Powered Analytics",
+        "button": "GET THE GUIDE"
+      },
+      {
+        "type": "WEBINAR",
+        "title": "The Fastest Path from Data to Insight",
+        "brand": "ThoughtSpot",
+        "visual_type": "WEBINAR",
+        "visual_title_1": "The Fastest",
+        "visual_title_2": "Path from Data",
+        "visual_title_3": "to Insight",
+        "button": "REGISTER NOW"
+      },
+      {
+        "type": "ANALYST REPORT",
+        "title": "Build with the Leader in Embedded Analytics",
+        "brand": "ThoughtSpot",
+        "visual_type": "ANALYST REPORT",
+        "visual_title_1": "Build with",
+        "visual_title_2": "the Best in",
+        "visual_title_3": "Embedded Analytics",
+        "button": "LEARN MORE"
+      }
+    ]
+  }
+}

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { BookCallDialog } from '@/components/shared/book-call-dialog'
 
-export function CmoSection() {
+export function CmoSection({ content }: { content?: any }) {
   return (
     <section className="relative w-full py-20 px-6 bg-white overflow-hidden">
       <div className="relative z-10 max-w-6xl mx-auto">
@@ -33,10 +33,10 @@ export function CmoSection() {
               className="text-xl md:text-2xl font-bold text-[#0d253d]"
               style={{ fontFamily: 'var(--font-inter)' }}
             >
-              Hi! I am Anurag, CMO at Aidetic.
+              {content?.heading}
             </h4>
             <p className="text-sm md:text-base text-[#64748d]" style={{ fontFamily: 'var(--font-quicksand)' }}>
-              Curious how Agent Factory will help your business?
+              {content?.subheading}
             </p>
           </div>
 
@@ -47,7 +47,7 @@ export function CmoSection() {
                 className="px-8 py-3.5 rounded-full bg-[#533afd] text-white font-medium shadow-lg hover:opacity-90 hover:-translate-y-0.5 transition-all text-[15px]"
                 style={{ fontFamily: 'var(--font-inter)' }}
               >
-                Request a Call
+                {content?.cta}
               </button>
             </BookCallDialog>
           </div>

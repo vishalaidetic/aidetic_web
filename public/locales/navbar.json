@@ -1,0 +1,24 @@
+{
+  "cta": "Request a Call",
+  "links": [
+    {
+      "label": "Products",
+      "href": "/#products",
+      "children": [
+        {
+          "label": "Agent Factory",
+          "href": "/agent-factory",
+          "description": "AI agents that answer your business questions instantly."
+        }
+      ]
+    },
+    {
+      "label": "Blogs",
+      "href": "/blog"
+    },
+    {
+      "label": "Case Studies",
+      "href": "/case-studies"
+    }
+  ]
+}

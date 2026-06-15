@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { BookCallDialog } from '@/components/shared/book-call-dialog'
 
-export function FinalCtaSection() {
+export function FinalCtaSection({ content }: { content?: any }) {
   return (
     <section className="snap-start py-24 px-4 sm:px-6 bg-white flex items-center justify-center w-full min-h-[60vh]">
       <div className="w-full max-w-7xl mx-auto">
@@ -37,13 +37,13 @@ export function FinalCtaSection() {
                   backgroundClip: 'text',
                 }}
               >
-                Ready to put AI to work —<br/>for real?
+                <span dangerouslySetInnerHTML={{ __html: content?.heading || "Ready to put AI to work —<br/>for real?" }} />
               </h2>
               <p 
                 className="text-lg md:text-xl text-[#64748d] leading-relaxed max-w-xl" 
                 style={{ fontFamily: 'var(--font-quicksand)' }}
               >
-                Tell us about the use case. We'll come back in 48 hours with a scoped plan, a fixed timeline and a working demo two weeks in.
+                {content?.subheading || "Tell us about the use case. We'll come back in 48 hours with a scoped plan, a fixed timeline and a working demo two weeks in."}
               </p>
             </div>
 
@@ -54,7 +54,7 @@ export function FinalCtaSection() {
                   className="px-8 py-3.5 rounded-full bg-[#533afd] text-white font-medium shadow-lg hover:opacity-90 hover:-translate-y-0.5 transition-all text-[15px]"
                   style={{ fontFamily: 'var(--font-inter)' }}
                 >
-                  Request a Call
+                  {content?.cta_primary || "Request a Call"}
                 </button>
               </BookCallDialog>
               <Link href="/case-studies">
@@ -62,7 +62,7 @@ export function FinalCtaSection() {
                   className="px-8 py-3.5 rounded-full bg-white text-[#533afd] font-medium border border-[#533afd]/30 shadow-sm hover:border-[#533afd] hover:bg-slate-50 hover:-translate-y-0.5 transition-all text-[15px]"
                   style={{ fontFamily: 'var(--font-inter)' }}
                 >
-                  See case studies
+                  {content?.cta_secondary || "See case studies"}
                 </button>
               </Link>
             </div>

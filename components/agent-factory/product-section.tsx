@@ -6,28 +6,16 @@ import { Clock, Inbox, LayoutDashboard } from 'lucide-react'
 const pillars = [
   {
     icon: Clock,
-    number: '01',
-    title: 'Stakeholders Wait Up to 2 Weeks for Data Insights.',
-    description:
-      'Heavy reliance on analytics teams creates bottlenecks, slowing down access to the data needed for timely and informed decision-making.',
   },
   {
     icon: Inbox,
-    number: '02',
-    title: 'Data Analysts Stuck in a Sea of Ad-Hoc Requests',
-    description:
-      'Flooded with low-impact requests, analysts spend their time handling routine tasks, leaving little room for high-value strategic analysis.',
   },
   {
     icon: LayoutDashboard,
-    number: '03',
-    title: "Just Dashboards aren't Enough for Actionable Insights",
-    description:
-      'Most dashboards are static, offering only BAU metrics for health checks. They rarely empower stakeholders to extract meaningful insights for strategic decision-making.',
   }
 ]
 
-export function ProductSection() {
+export function ProductSection({ content }: { content?: any }) {
   return (
     <section className="relative overflow-hidden bg-white py-28 px-6">
 
@@ -63,10 +51,10 @@ export function ProductSection() {
               backgroundClip: 'text',
             }}
           >
-            But, Why are Business Slow in Decision Making?
+            {content?.heading}
           </h2>
           <p className="text-base md:text-lg text-[#0d253d] leading-relaxed max-w-2xl mx-auto" style={{ fontFamily: 'var(--font-quicksand)' }}>
-            Millions of dollars are spent every year on data initiatives, yet insights take more than a week to arrive.
+            {content?.subheading}
           </p>
         </motion.div>
 
@@ -121,24 +109,27 @@ export function ProductSection() {
                       className="text-4xl font-black text-slate-100 select-none group-hover:text-[#665efd] transition-colors duration-300"
                       style={{ fontFamily: 'var(--font-inter)' }}
                     >
-                      {p.number}
+                      {content?.items?.[i]?.number}
                     </span>
                   </div>
 
                   {/* Title */}
                   <h3
-                    className="text-base font-semibold text-[#0d253d] leading-snug tracking-wide group-hover:text-[#0d253d] transition-colors duration-200"
+                    className="text-lg md:text-xl font-bold text-[#0d253d] mb-4 leading-snug group-hover:text-[#533afd] transition-colors"
                     style={{ fontFamily: 'var(--font-inter)' }}
                   >
-                    {p.title}
+                    {content?.items?.[i]?.title}
                   </h3>
 
                   {/* Divider — expands on hover */}
                   <div className="h-px bg-gradient-to-r from-[#533afd] to-[#ea2261] w-10 group-hover:w-20 transition-all duration-400 ease-out" />
 
                   {/* Description */}
-                  <p className="text-sm text-[#0d253d] leading-relaxed group-hover:text-[#0d253d] transition-colors duration-200" style={{ fontFamily: 'var(--font-quicksand)' }}>
-                    {p.description}
+                  <p
+                    className="text-sm md:text-[15px] text-[#64748d] leading-relaxed relative z-10"
+                    style={{ fontFamily: 'var(--font-quicksand)' }}
+                  >
+                    {content?.items?.[i]?.description}
                   </p>
                 </div>
               </motion.div>

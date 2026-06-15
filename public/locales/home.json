@@ -1,0 +1,307 @@
+{
+  "hero": {
+    "heading": "Enterprise Grade",
+    "animated_texts": [
+      "Agentic AI Solutions",
+      "Data Migration Solutions"
+    ],
+    "subheading": "Aidetic brings you production-ready Agentic AI solutions,\nso you skip the build cycle and go straight to impact.",
+    "cta_primary": "Request a Call",
+    "cta_secondary": "Our Products",
+    "trusted_by": "TRUSTED BY AI-FIRST ENTERPRISES",
+    "logos": [
+      { "name": "LG", "url": "" },
+      { "name": "Brambles", "url": "" },
+      { "name": "TRUIST", "url": "" },
+      { "name": "SEPHORA", "url": "" },
+      { "name": "Huel", "url": "" },
+      { "name": "keyloop", "url": "" },
+      { "name": "worldpay", "url": "" },
+      { "name": "Snowflake", "url": "" },
+      { "name": "Salesforce", "url": "" },
+      { "name": "Databricks", "url": "" }
+    ]
+  },
+  "about": {
+    "heading": "A boutique AI studio shipping production systems.",
+    "body": "We've spent the last seven years building AI systems for Fortune-500 data teams. Now we've packaged what works into products you can adopt today."
+  },
+  "stats": {
+    "heading": "What Aidetic Brings to the Table",
+    "subheading": "No dashboards. No waiting. No guesswork. Just decisions backed by your data.",
+    "items": [
+      {
+        "value": 120,
+        "suffix": "+",
+        "label": "Production AI systems shipped\nfor enterprises since 2019"
+      },
+      {
+        "value": 47,
+        "suffix": "",
+        "label": "Fortune-500 customers across\nCPG, telecom and finance"
+      },
+      {
+        "value": 99.8,
+        "suffix": "%",
+        "label": "Agent query success rate across\nproduction deployments"
+      },
+      {
+        "value": 4.2,
+        "suffix": "B",
+        "label": "Rows migrated through Data\nFlash in the last 12 months"
+      }
+    ]
+  },
+  "targetAudience": {
+    "heading": "Here's who we built our products for",
+    "products": [
+      {
+        "name": "AGENT FACTORY",
+        "metric": "6x",
+        "metricLabel": "Faster Data-Driven\nDecision Making",
+        "integrationLabel": "AI Data Analyst Integration",
+        "forTitle": "Who is Agent Factory for:",
+        "forDesc": "Agent Factory is built for business leaders who are tired of waiting on data teams for answers. If you're in marketing, sales, finance, or customer success and you've ever waited days for a report that should've taken minutes. Agent Factory acts as your AI Data Analyst, sitting on top of your company's data and answering your business questions directly."
+      },
+      {
+        "name": "DATA FLASH",
+        "metric": "100+",
+        "metricLabel": "hours of efforts saved\nin Data Migration",
+        "integrationLabel": "Automated Database Migration",
+        "forTitle": "Who is Data Flash for:",
+        "forDesc": "DataFlash is built for CTOs, data engineers, and data leaders who are tired of spending months writing custom migration code every time they move to a new platform. If you're migrating databases, consolidating data sources, dataFlash handles it through configuration, not code with built-in validation, quality checks, and audit tracking."
+      }
+    ]
+  },
+  "cmoCta": {
+    "heading": "Hi! I am Anurag, CMO at Aidetic.",
+    "subheading": "Curious how our agents can help your business?",
+    "cta": "Request a Call"
+  },
+  "products": {
+    "badge": "Our Products",
+    "heading": "Ask your business anything.",
+    "subheading": "AI agents that answer questions across marketing, sales, finance and ops straight from your own data, with citations on every answer.",
+    "cta": "Explore Agent Factory"
+  },
+  "infrastructure": {
+    "badge": "Built like infrastructure",
+    "heading": "Enterprise-grade AI from day one.",
+    "subheading": "Agent Factory runs on your cloud, connects to your data, and respects your security policies. Not a black box — a trusted system."
+  },
+  "case_studies": {
+    "heading": "Proven impact across industries",
+    "subheading": "See how leading companies are using our agentic AI platform to drive massive efficiency and growth.",
+    "scroll_text": "Scroll to explore",
+    "tabs": [
+      {
+        "label": "E-COMMERCE",
+        "id": "prebuilt"
+      },
+      {
+        "label": "RETAIL",
+        "id": "accelerators"
+      },
+      {
+        "label": "FINANCIAL SERVICES",
+        "id": "tailored"
+      }
+    ],
+    "items": [
+      {
+        "id": "prebuilt",
+        "company": "QuickReply.ai",
+        "industry": "E-COMMERCE SAAS",
+        "shortTitle": "QuickReply's founders save 15 hrs/week with Fabric",
+        "tagline": "FEATURED STORY",
+        "mainTitle": "How QuickReply's founders reclaimed 15 hours a week by automating tech hiring",
+        "desc": "QuickReply cut founder hiring time by 60% and halved time-to-hire for engineering roles using Fabric's AI screening and interview platform.",
+        "stats": [
+          {
+            "value": "50%",
+            "label": "Faster time-to-hire for tech roles"
+          },
+          {
+            "value": "60%",
+            "label": "Reduction in founder interview hours"
+          },
+          {
+            "value": "2x",
+            "label": "More applications assessed per role"
+          }
+        ],
+        "link": "#"
+      },
+      {
+        "id": "accelerators",
+        "company": "Global Retail Co.",
+        "industry": "RETAIL",
+        "shortTitle": "Retail giant increases supply chain visibility by 80%",
+        "tagline": "CASE STUDY",
+        "mainTitle": "Automating inventory tracking across 500+ locations",
+        "desc": "Using intelligent agents to sync inventory databases, the client eliminated stock-outs and reduced manual entry delays from days to seconds.",
+        "stats": [
+          {
+            "value": "80%",
+            "label": "Increase in real-time visibility"
+          },
+          {
+            "value": "30%",
+            "label": "Reduction in stock-outs"
+          },
+          {
+            "value": "99%",
+            "label": "Data accuracy"
+          }
+        ],
+        "link": "#"
+      },
+      {
+        "id": "tailored",
+        "company": "FinTech Innovators",
+        "industry": "FINANCIAL SERVICES",
+        "shortTitle": "Scaling customer support without adding headcount",
+        "tagline": "CUSTOMER STORY",
+        "mainTitle": "Resolving 75% of tier-1 support tickets autonomously",
+        "desc": "By deploying a customized LLM-powered support agent, FinTech Innovators handled a 3x surge in ticket volume while improving CSAT scores.",
+        "stats": [
+          {
+            "value": "75%",
+            "label": "Autonomous resolution rate"
+          },
+          {
+            "value": "3x",
+            "label": "Volume handled effortlessly"
+          },
+          {
+            "value": "+12",
+            "label": "Point increase in CSAT"
+          }
+        ],
+        "link": "#"
+      }
+    ]
+  },
+  "industrySolutions": {
+    "heading": "We've built our business by serving global enterprises",
+    "subheading": "Trust us, we've learned from the best.",
+    "desc": "Discover why hundreds of enterprises use our platform.",
+    "cta_primary": "REQUEST A DEMO",
+    "cta_secondary": "LET'S TALK",
+    "tabs": [
+      {
+        "id": "banking",
+        "label": "Banking"
+      },
+      {
+        "id": "healthcare",
+        "label": "Healthcare"
+      },
+      {
+        "id": "retail",
+        "label": "Retail"
+      },
+      {
+        "id": "telecom+media",
+        "label": "Telecom + Media"
+      },
+      {
+        "id": "business",
+        "label": "Business"
+      }
+    ],
+    "items": [
+      {
+        "id": "banking",
+        "title": "Banks, Credit Unions, Financial Institutions",
+        "subtitle": "Trusted by banking leaders",
+        "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop",
+        "logos": [
+          "EGON",
+          "Assurant",
+          "Morgan Stanley",
+          "Sabadell"
+        ]
+      },
+      {
+        "id": "healthcare",
+        "title": "Payers, Providers, Life Sciences",
+        "subtitle": "Trusted by healthcare leaders",
+        "image": "https://images.unsplash.com/photo-1504439468489-c8920d796a29?w=800&h=600&fit=crop",
+        "logos": [
+          "Florida Blue",
+          "Roche"
+        ]
+      },
+      {
+        "id": "retail",
+        "title": "Retail & Consumer Goods",
+        "subtitle": "Trusted by retail leaders",
+        "image": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop",
+        "logos": [
+          "ShopJapan",
+          "Myntra"
+        ]
+      },
+      {
+        "id": "telecom+media",
+        "title": "Telecom, Media, Communications",
+        "subtitle": "Trusted by telecom leaders",
+        "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=600&fit=crop",
+        "logos": [
+          "T-Mobile",
+          "Frontier",
+          "NetApp",
+          "ebay"
+        ]
+      },
+      {
+        "id": "business",
+        "title": "B2B Goods and Services",
+        "subtitle": "Trusted by business leaders",
+        "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop",
+        "logos": [
+          "Nippon Steel",
+          "Genpact"
+        ]
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Common questions from data leaders.",
+    "subheading": "Architecture, security, timelines — the questions we get on every first call.",
+    "cta": "Request a Call",
+    "items": [
+      {
+        "q": "How does Aidetic differ from an AI consultancy?",
+        "a": "Most consultancies leave you with slides and a pilot. We leave you with running software — Agent Factory and Data Flash — plus the integration work to make them yours. Fixed scope, fixed timeline, working systems."
+      },
+      {
+        "q": "Can our data stay inside our VPC / cloud?",
+        "a": "Yes. Both products deploy inside your perimeter — AWS, Azure, GCP or on-prem. Models can be hosted by us, by you, or routed to your private endpoint. Data never leaves your account."
+      },
+      {
+        "q": "Which LLMs and warehouses do you support?",
+        "a": "OpenAI, Anthropic, Google, Mistral, plus self-hosted open-source. Snowflake, Databricks, BigQuery, Redshift, Postgres, MongoDB, S3 and 50+ SaaS sources via connectors."
+      },
+      {
+        "q": "How long until something is in production?",
+        "a": "A scoped use case is in production in 4–8 weeks. The first agent or pipeline is usually live in a sandbox by week two — we work in two-week increments with weekly demos."
+      },
+      {
+        "q": "Do you handle compliance — SOC 2, HIPAA, GDPR?",
+        "a": "Aidetic is SOC 2 Type II. Both products include audit logs, role-based access, PII redaction and data-residency controls. HIPAA and GDPR-aligned deployments are standard."
+      },
+      {
+        "q": "What does a typical engagement look like?",
+        "a": "A two-week discovery to map the highest-leverage use case, then 6–10 weeks to deliver a production rollout. We bring product engineers and ML engineers — no offshored body shop."
+      }
+    ]
+  },
+  "finalCta": {
+    "heading": "Ready to put AI to work —<br/>for real?",
+    "subheading": "Tell us about the use case. We'll come back in 48 hours with a scoped plan, a fixed timeline and a working demo two weeks in.",
+    "cta_primary": "Request a Call",
+    "cta_secondary": "See case studies"
+  }
+}

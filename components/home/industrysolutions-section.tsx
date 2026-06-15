@@ -1,23 +1,10 @@
 'use client'
-import { AnimatePresence, motion, useInView } from "framer-motion";
-import { Activity, ArrowRight, Bot, Brain, ChevronDown, ChevronRight, Database, FileText, Layers, MousePointer2, Plug, RefreshCw, Send, ShieldCheck, Upload, Zap } from "lucide-react";
-import Image from 'next/image';
-import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { motion } from "framer-motion";
+import { useState } from 'react';
 import { BookCallDialog } from '@/components/shared/book-call-dialog';
-import { DashboardMock } from '@/components/home/dashboard-mock';
 
-const companies = [
-  { name: 'ShopJapan', label: 'Shop Japan' },
-  { name: 'Myntra', label: 'Myntra' },
-  { name: 'TheLineUp', label: 'The Line Up' },
-  { name: 'ACKO', label: 'ACKO' },
-  { name: 'CoinDCX', label: 'CoinDCX' },
-  { name: 'Meesho', label: 'Meesho' },
-  { name: 'Razorpay', label: 'Razorpay' },
-  { name: 'Groww', label: 'Groww' },
-]
-export function IndustrySolutionsSection({ activeIndustryTab, setActiveIndustryTab }: { activeIndustryTab: string, setActiveIndustryTab: (id: string) => void }) {
+export function IndustrySolutionsSection({ content }: { content?: any }) {
+  const [activeIndustryTab, setActiveIndustryTab] = useState('banking');
   return (
     <section className="w-full px-4 sm:px-6 lg:px-8 py-16 sm:py-24 border-t border-slate-200 snap-start">
           <div className="max-w-7xl mx-auto">
@@ -35,26 +22,26 @@ export function IndustrySolutionsSection({ activeIndustryTab, setActiveIndustryT
                       backgroundClip: 'text',
                     }}
                   >
-                    We&apos;ve built our business by serving global enterprises
+                    {content?.heading}
                   </h2>
                   <p className="text-[#64748d] text-lg" style={{ fontFamily: "var(--font-quicksand)" }}>
-                    Trust us, we&apos;ve learned from the best.
+                    {content?.subheading}
                   </p>
                 </motion.div>
 
                 <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.15 }} viewport={{ once: true }} className="text-[#64748d] leading-relaxed">
-                  <p style={{ fontFamily: "var(--font-quicksand)" }}>Discover why hundreds of enterprises use our platform.</p>
+                  <p style={{ fontFamily: "var(--font-quicksand)" }}>{content?.desc}</p>
                 </motion.div>
 
                 <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.3 }} viewport={{ once: true }} className="flex gap-4 flex-wrap">
                   <BookCallDialog>
                     <button className="px-8 py-3.5 rounded-full bg-[#533afd] text-white font-medium shadow-lg hover:opacity-90 hover:-translate-y-0.5 transition-all text-[15px]" style={{ fontFamily: 'var(--font-inter)' }}>
-                      REQUEST A DEMO
+                      {content?.cta_primary}
                     </button>
                   </BookCallDialog>
                   <BookCallDialog>
                     <button className="px-8 py-3.5 rounded-full bg-white text-[#533afd] font-medium border border-[#533afd]/30 shadow-sm hover:border-[#533afd] hover:bg-slate-50 hover:-translate-y-0.5 transition-all text-[15px]" style={{ fontFamily: 'var(--font-inter)' }}>
-                      LET&apos;S TALK
+                      {content?.cta_secondary}
                     </button>
                   </BookCallDialog>
                 </motion.div>
@@ -65,16 +52,16 @@ export function IndustrySolutionsSection({ activeIndustryTab, setActiveIndustryT
                 <div className="space-y-6">
                   {/* Tabs */}
                   <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="flex gap-3 flex-wrap">
-                    {['Banking', 'Healthcare', 'Retail', 'Telecom + Media', 'Business'].map((tab, i) => (
+                    {(content?.tabs || []).map((tab: any, i: number) => (
                       <button
                         key={i}
-                        onClick={() => setActiveIndustryTab(tab.toLowerCase().replace(/\s/g, ''))}
-                        className={`px-4 py-2 rounded-full font-semibold text-sm transition-all ${activeIndustryTab === tab.toLowerCase().replace(/\s/g, '')
+                        onClick={() => setActiveIndustryTab(tab.id)}
+                        className={`px-4 py-2 rounded-full font-semibold text-sm transition-all ${activeIndustryTab === tab.id
                           ? 'bg-[#533afd] text-white'
                           : 'bg-muted text-[#64748d] hover:text-[#0d253d]'
                           }`}
                       >
-                        {tab}
+                        {tab.label}
                       </button>
                     ))}
                   </motion.div>
@@ -84,46 +71,10 @@ export function IndustrySolutionsSection({ activeIndustryTab, setActiveIndustryT
                     <div
                       className="flex transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]"
                       style={{
-                        transform: `translateX(-${Math.max(0, ['banking', 'healthcare', 'retail', 'telecom+media', 'business'].indexOf(activeIndustryTab)) * 70}%)`
+                        transform: `translateX(-${Math.max(0, (content?.tabs || []).findIndex((t: any) => t.id === activeIndustryTab)) * 70}%)`
                       }}
                     >
-                      {[
-                        {
-                          id: 'banking',
-                          title: 'Banks, Credit Unions, Financial Institutions',
-                          subtitle: 'Trusted by banking leaders',
-                          image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop',
-                          logos: ['EGON', 'Assurant', 'Morgan Stanley', 'Sabadell']
-                        },
-                        {
-                          id: 'healthcare',
-                          title: 'Payers, Providers, Life Sciences',
-                          subtitle: 'Trusted by healthcare leaders',
-                          image: 'https://images.unsplash.com/photo-1504439468489-c8920d796a29?w=800&h=600&fit=crop',
-                          logos: ['Florida Blue', 'Roche']
-                        },
-                        {
-                          id: 'retail',
-                          title: 'Retail & Consumer Goods',
-                          subtitle: 'Trusted by retail leaders',
-                          image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop',
-                          logos: ['ShopJapan', 'Myntra']
-                        },
-                        {
-                          id: 'telecom+media',
-                          title: 'Telecom, Media, Communications',
-                          subtitle: 'Trusted by telecom leaders',
-                          image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=600&fit=crop',
-                          logos: ['T-Mobile', 'Frontier', 'NetApp', 'ebay']
-                        },
-                        {
-                          id: 'business',
-                          title: 'B2B Goods and Services',
-                          subtitle: 'Trusted by business leaders',
-                          image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop',
-                          logos: ['Nippon Steel', 'Genpact']
-                        }
-                      ].map((card, i) => (
+                      {(content?.items || []).map((card: any, i: number) => (
                         <div
                           key={i}
                           className="w-[70%] shrink-0 pr-4 sm:pr-6 lg:pr-8"
@@ -156,12 +107,12 @@ export function IndustrySolutionsSection({ activeIndustryTab, setActiveIndustryT
                                   <div
                                     className="flex gap-2 w-max ticker-rtl"
                                   >
-                                    {[...companies, ...companies].map((c, j) => (
+                                    {[...(card.logos || []), ...(card.logos || [])].map((c, j) => (
                                       <span
                                         key={j}
                                         className="shrink-0 px-4 py-1.5 bg-white/10 text-white text-xs font-semibold rounded-lg backdrop-blur-sm border border-white/10 whitespace-nowrap"
                                       >
-                                        {c.label}
+                                        {c}
                                       </span>
                                     ))}
                                   </div>

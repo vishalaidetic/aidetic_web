@@ -1,0 +1,18 @@
+{
+  "hero": {
+    "heading": "Client Success Stories",
+    "subheading": "Discover how we've helped businesses transform their operations through innovative engineering solutions."
+  },
+  "empty_state": {
+    "heading": "No Case Studies Yet",
+    "subheading": "Check back soon for our latest success stories."
+  },
+  "labels": {
+    "read_more": "Read Full Case Study",
+    "industry": "Industry",
+    "outcome": "Outcome",
+    "view_all": "View All Case Studies",
+    "back_to_all": "Back to all case studies",
+    "published_on": "Published on "
+  }
+}

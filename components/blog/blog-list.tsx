@@ -4,6 +4,7 @@ import { BlogCard } from '@/components/blog/blog-card'
 import { cn } from '@/lib/utils'
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { motion } from 'framer-motion'
+import { Search } from 'lucide-react'
 
 interface Blog {
   id: string
@@ -21,10 +22,12 @@ interface Blog {
 
 interface BlogListProps {
   blogs: Blog[]
+  content?: any
 }
 
-export function BlogList({ blogs }: BlogListProps) {
+export function BlogList({ blogs, content }: BlogListProps) {
   const [selectedTag, setSelectedTag] = useState<string | null>(null)
+  const [searchTerm, setSearchTerm] = useState('')
   const [visibleCount, setVisibleCount] = useState(10)
   const observerRef = useRef<IntersectionObserver | null>(null)
 
@@ -51,15 +54,23 @@ export function BlogList({ blogs }: BlogListProps) {
 
   // Get unique tags
   const uniqueTags = Array.from(new Set(blogs.map(b => b.tag_type || 'Engineering')))
-  const tags = ['All Posts', ...uniqueTags]
+  const tags = [content?.labels?.all_posts || 'All Posts', ...uniqueTags]
 
   // Featured section always pulls from the raw, unfiltered 'blogs' array (max 4)
   const featuredBlogs = blogs.filter(b => b.is_featured).slice(0, 4)
 
   // Regular grid applies the tag filter
-  const filteredBlogs = selectedTag === null || selectedTag === 'All Posts'
+  let filteredBlogs = selectedTag === null || selectedTag === (content?.labels?.all_posts || 'All Posts')
     ? blogs
     : blogs.filter(b => (b.tag_type || 'Engineering') === selectedTag)
+  
+  if (searchTerm.trim() !== '') {
+    const q = searchTerm.toLowerCase()
+    filteredBlogs = filteredBlogs.filter(b => 
+      b.title.toLowerCase().includes(q) || 
+      (b.description && b.description.toLowerCase().includes(q))
+    )
+  }
   
   // Regular blogs exclude the currently displayed featured blogs
   const regularBlogs = filteredBlogs.filter(b => !featuredBlogs.find(fb => fb.id === b.id))
@@ -89,10 +100,10 @@ export function BlogList({ blogs }: BlogListProps) {
                   backgroundClip: 'text',
                 }}
               >
-                Featured Blog Posts
+                {content?.featured?.heading || "Featured Blog Posts"}
               </h2>
               <p className="text-lg text-[#64748d] leading-relaxed max-w-md" style={{ fontFamily: 'var(--font-quicksand)' }}>
-                Read our most popular blogs in one place
+                {content?.featured?.subheading || "Read our most popular blogs in one place"}
               </p>
             </div>
 
@@ -126,20 +137,21 @@ export function BlogList({ blogs }: BlogListProps) {
         </motion.div>
       )}
 
-      {/* Tag Filters */}
-      {tags.length > 1 && (
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
-          className="flex flex-wrap items-center gap-3 w-full"
-        >
-          {tags.map((tag, idx) => {
-            const isActive = (selectedTag === tag) || (selectedTag === null && tag === 'All Posts')
+      {/* Tag Filters and Search */}
+      <div className="flex flex-col md:flex-row items-center justify-between gap-4 w-full">
+        {tags.length > 1 && (
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
+            className="flex flex-wrap items-center gap-3 w-full md:w-auto"
+          >
+            {tags.map((tag, idx) => {
+            const isActive = (selectedTag === tag) || (selectedTag === null && tag === (content?.labels?.all_posts || 'All Posts'))
             return (
               <button
                 key={idx}
-                onClick={() => setSelectedTag(tag === 'All Posts' ? null : tag)}
+                onClick={() => setSelectedTag(tag === (content?.labels?.all_posts || 'All Posts') ? null : tag)}
                 className={cn(
                   "whitespace-nowrap px-4 py-1.5 rounded-lg text-xs font-bold uppercase tracking-widest transition-all border",
                   isActive
@@ -153,7 +165,28 @@ export function BlogList({ blogs }: BlogListProps) {
             )
           })}
         </motion.div>
-      )}
+        )}
+        
+        {/* Search Bar */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut", delay: 0.25 }}
+          className="w-full md:w-80 relative"
+        >
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-[#64748d] w-4 h-4" />
+            <input
+              type="text"
+              placeholder={content?.labels?.search_placeholder || "Search blogs..."}
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full pl-10 pr-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:border-[#533afd] focus:ring-1 focus:ring-[#533afd] transition-all text-[15px]"
+              style={{ fontFamily: 'var(--font-inter)' }}
+            />
+          </div>
+        </motion.div>
+      </div>
 
       {/* Regular Blog List */}
       {regularBlogs.length > 0 && (
@@ -180,7 +213,7 @@ export function BlogList({ blogs }: BlogListProps) {
       {filteredBlogs.length === 0 && (
         <div className="text-center py-12">
           <p className="text-[#64748d] text-lg" style={{ fontFamily: 'var(--font-quicksand)' }}>
-            No posts found for "{selectedTag}".
+            {content?.empty_state?.text ? content.empty_state.text.replace('{selectedTag}', selectedTag || '') : `No posts found for "${selectedTag}".`}
           </p>
         </div>
       )}

@@ -699,7 +699,7 @@ function AIChatDemo() {
     </motion.div>
   );
 }
-export function ProductsSection() {
+export function ProductsSection({ content }: { content?: any }) {
   return (
     <section id="products" className="w-full py-20 border-t border-slate-200 snap-start bg-[#f6f9fc]/50">
           <div className="w-full relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -745,10 +745,10 @@ export function ProductsSection() {
                       className="text-lg md:text-xl font-bold leading-tight tracking-wide text-[#0d253d]"
                       style={{ fontFamily: 'var(--font-inter)' }}
                     >
-                      Ask your business anything.
+                      {content?.heading || "Ask your business anything."}
                     </h2>
                     <p className="text-md text-[#0d253d] leading-relaxed max-w-lg" style={{ fontFamily: 'var(--font-quicksand)' }}>
-                      AI agents that answer questions across marketing, sales, finance and ops straight from your own data, with citations on every answer.
+                      {content?.subheading || "AI agents that answer questions across marketing, sales, finance and ops straight from your own data, with citations on every answer."}
                     </p>
                   </div>
 
@@ -788,7 +788,7 @@ export function ProductsSection() {
                     className="inline-flex items-center gap-1.5 px-6 py-3 rounded-full font-medium text-[15px] text-white hover:opacity-90 hover:-translate-y-0.5 transition-all w-fit shadow-lg bg-[#533afd]"
                     style={{ fontFamily: 'var(--font-inter)' }}
                   >
-                    Explore Agent Factory
+                    {content?.cta || "Explore Agent Factory"}
                     <ChevronRight size={15} strokeWidth={2.5} className="translate-y-[1px]" />
                   </Link>
                 </motion.div>

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { BookCallDialog } from '@/components/shared/book-call-dialog'
 
-export function CtaSection() {
+export function CtaSection({ content }: { content?: any }) {
   return (
     <section className="py-24 px-4 sm:px-6 bg-white flex items-center justify-center w-full">
       <div className="w-full max-w-6xl mx-auto">
@@ -37,13 +37,13 @@ export function CtaSection() {
                   backgroundClip: 'text',
                 }}
               >
-                It's not 2016 anymore.
+                {content?.heading}
               </h2>
               <p
                 className="text-lg text-[#64748d] leading-relaxed max-w-xl"
                 style={{ fontFamily: 'var(--font-quicksand)' }}
               >
-                You shouldn't need a week, a dashboard, or a data team to make one decision.
+                {content?.subheading}
               </p>
             </div>
 
@@ -54,7 +54,7 @@ export function CtaSection() {
                   className="px-8 py-3.5 rounded-full bg-[#533afd] text-white font-medium shadow-lg hover:opacity-90 hover:-translate-y-0.5 transition-all text-[15px]"
                   style={{ fontFamily: 'var(--font-inter)' }}
                 >
-                  Request a Call
+                  {content?.cta_primary}
                 </button>
               </BookCallDialog>
               <Link href="/case-studies">
@@ -62,7 +62,7 @@ export function CtaSection() {
                   className="px-8 py-3.5 rounded-full bg-white text-[#533afd] font-medium border border-[#533afd]/30 shadow-sm hover:border-[#533afd] hover:bg-slate-50 hover:-translate-y-0.5 transition-all text-[15px]"
                   style={{ fontFamily: 'var(--font-inter)' }}
                 >
-                  See case studies
+                  {content?.cta_secondary}
                 </button>
               </Link>
             </div>

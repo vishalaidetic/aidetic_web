@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { BookCallDialog } from '@/components/shared/book-call-dialog';
 
-export function Hero() {
+export function Hero({ content }: { content?: any }) {
   return (
     <section className="relative overflow-hidden flex flex-col justify-start bg-white pt-20 pb-10 min-h-screen">
 
@@ -39,7 +39,7 @@ export function Hero() {
               className="mb-2"
             >
               <Image
-                src="/agent-fac-logo.png"
+                src={content?.logo_url}
                 alt="Agent Factory Logo"
                 width={180}
                 height={60}
@@ -65,9 +65,10 @@ export function Hero() {
                   backgroundClip: 'text',
                 }}
               >
-                AI Agents that Turn<br />
-                Customer Insights<br />
-                into Margin
+                {content?.heading?.[0]}
+                <br />
+                {content?.heading?.[1]}
+
               </h1>
             </motion.div>
 
@@ -79,7 +80,7 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.16 }}
             >
-              Agent Factory deploys domain-tuned AI agents on your customer data, category trends, and business KPIs. Fetches insight within seconds for CMOs, CFOs, and Sales Heads. So that every decision they make drives profit.
+              {content?.subheading}
             </motion.p>
 
             {/* CTA Buttons */}
@@ -95,7 +96,7 @@ export function Hero() {
                   className="px-8 py-3.5 rounded-full bg-[#533afd] text-white font-medium shadow-lg hover:opacity-90 hover:-translate-y-0.5 transition-all text-[15px]"
                   style={{ fontFamily: 'var(--font-inter)' }}
                 >
-                  Request a Call
+                  {content?.cta_primary}
                 </button>
               </BookCallDialog>
             </motion.div>
@@ -128,7 +129,7 @@ export function Hero() {
                 {/* Logo row */}
                 <div className="flex items-center gap-3">
                   <Image
-                    src="/agent-fac-logo.png"
+                    src={content?.logo_url}
                     alt="Agent Factory"
                     width={140}
                     height={40}
@@ -141,8 +142,8 @@ export function Hero() {
                   className="text-base tracking-wide"
                   style={{ fontFamily: 'var(--font-inter)' }}
                 >
-                  <span className="text-[#665efd] font-bold">Book</span>
-                  <span className="text-white/80"> a call today</span>
+                  <span className="text-[#665efd] font-bold">{content?.book_text_1}</span>
+                  <span className="text-white/80">{content?.book_text_2}</span>
                 </p>
               </div>
             </div>
@@ -165,7 +166,7 @@ export function Hero() {
               backgroundClip: 'text',
             }}
           >
-            TRUSTED BY AI-FIRST ENTERPRISES
+            {content?.trusted_by}
           </p>
 
           {/* Marquee wrapper with fade-edge mask */}
@@ -181,39 +182,23 @@ export function Hero() {
               className="flex items-center gap-14 w-max"
               style={{ animation: 'marquee-logos 28s linear infinite' }}
             >
-              {[
-                { name: 'LG', prefix: '🔵' },
-                { name: 'Brambles', prefix: null },
-                { name: 'TRUIST', suffix: '⊞' },
-                { name: 'SEPHORA', prefix: null },
-                { name: 'Huel', prefix: null, bold: true },
-                { name: 'keyloop', prefix: null },
-                { name: 'worldpay', prefix: null },
-                { name: 'Snowflake', prefix: null },
-                { name: 'Salesforce', prefix: null },
-                { name: 'Databricks', prefix: null },
-                /* duplicate for seamless loop */
-                { name: 'LG', prefix: '🔵' },
-                { name: 'Brambles', prefix: null },
-                { name: 'TRUIST', suffix: '⊞' },
-                { name: 'SEPHORA', prefix: null },
-                { name: 'Huel', prefix: null, bold: true },
-                { name: 'keyloop', prefix: null },
-                { name: 'worldpay', prefix: null },
-                { name: 'Snowflake', prefix: null },
-                { name: 'Salesforce', prefix: null },
-                { name: 'Databricks', prefix: null },
-              ].map((brand, i) => (
-                <span
-                  key={i}
-                  className={`flex items-center gap-2 whitespace-nowrap select-none text-[#533afd]/80 tracking-wide ${brand.bold ? 'text-2xl font-black italic' : 'text-lg font-semibold'
-                    }`}
-                  style={{ fontFamily: 'var(--font-inter)' }}
-                >
-                  {brand.prefix && <span className="text-sm">{brand.prefix}</span>}
-                  {brand.name}
-                  {(brand as { suffix?: string }).suffix && <span className="text-xs">{(brand as { suffix?: string }).suffix}</span>}
-                </span>
+              {[...(content?.logos || []), ...(content?.logos || [])].map((brand: any, i: number) => (
+                <div key={i} className="flex items-center justify-center shrink-0 h-8">
+                  {brand.url ? (
+                    <img
+                      src={brand.url}
+                      alt={brand.name}
+                      className="h-7 max-w-[120px] object-contain opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
+                    />
+                  ) : (
+                    <span
+                      className="text-base font-semibold tracking-tight text-[#533afd]/60 hover:text-[#533afd] transition-colors whitespace-nowrap select-none"
+                      style={{ fontFamily: 'var(--font-inter)' }}
+                    >
+                      {brand.name}
+                    </span>
+                  )}
+                </div>
               ))}
             </div>
           </div>

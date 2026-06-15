@@ -8,7 +8,39 @@ import { BookCallDialog } from '@/components/shared/book-call-dialog';
 import { DashboardMock } from '@/components/home/dashboard-mock';
 
 
-export function CaseStudiesSection({ activeTab, scrollToSection }: { activeTab: string, scrollToSection: (id: string) => void }) {
+export function CaseStudiesSection({ content }: { content?: any }) {
+  const [activeTab, setActiveTab] = useState('prebuilt');
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleCards = entries.filter(entry => entry.isIntersecting && entry.target.hasAttribute('data-section-id'));
+        if (visibleCards.length > 0) {
+          visibleCards.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+          const topVisible = visibleCards[0];
+          const sectionId = topVisible.target.getAttribute('data-section-id');
+          if (sectionId) setActiveTab(sectionId);
+        }
+      },
+      { threshold: 0.3, rootMargin: '-10% 0px -40% 0px' }
+    );
+
+    document.querySelectorAll('[data-section-id]').forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  const scrollToSection = (id: string) => {
+    setActiveTab(id);
+    const el = document.querySelector(`[data-section-id="${id}"]`);
+    if (el) {
+      const offsetTop = el.getBoundingClientRect().top + window.scrollY - 150;
+      window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+    }
+  };
+
+  const tabs = content?.tabs || [];
+  const items = content?.items || [];
+
   return (
     <section className="w-full px-4 sm:px-6 lg:px-8 py-16 sm:py-24 relative border-t border-slate-200 snap-start">
           <div className="max-w-7xl mx-auto">
@@ -17,18 +49,14 @@ export function CaseStudiesSection({ activeTab, scrollToSection }: { activeTab: 
               {/* Left Sticky Sidebar */}
               <div className="lg:col-span-3 lg:sticky lg:top-24 space-y-8 pt-8">
                 <div className="flex items-center gap-2 text-[#64748d] text-sm font-medium">
-                  <span>Scroll to explore</span>
+                  <span>{content?.scroll_text}</span>
                   <svg className="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                   </svg>
                 </div>
 
                 <div className="flex flex-col gap-3">
-                  {[
-                    { label: 'E-COMMERCE', id: 'prebuilt' },
-                    { label: 'RETAIL', id: 'accelerators' },
-                    { label: 'FINANCIAL SERVICES', id: 'tailored' },
-                  ].map((tab, i) => (
+                  {tabs.map((tab: any, i: number) => (
                     <button
                       key={i}
                       onClick={() => scrollToSection(tab.id)}
@@ -57,62 +85,16 @@ export function CaseStudiesSection({ activeTab, scrollToSection }: { activeTab: 
                       backgroundClip: 'text',
                     }}
                   >
-                    Proven impact across industries
+                    {content?.heading}
                   </h2>
                   <p className="text-lg text-[#0d253d]/70 leading-relaxed font-medium" style={{ fontFamily: "var(--font-quicksand)" }}>
-                    See how leading companies are using our agentic AI platform to drive massive efficiency and growth.
+                    {content?.subheading}
                   </p>
                 </div>
 
                 {/* Case Study Cards in a Vertical Stack */}
                 <div className="flex flex-col gap-8 relative pb-24">
-                  {[
-                    {
-                      id: 'prebuilt',
-                      company: 'QuickReply.ai',
-                      industry: 'E-COMMERCE SAAS',
-                      shortTitle: "QuickReply's founders save 15 hrs/week with Fabric",
-                      tagline: 'FEATURED STORY',
-                      mainTitle: "How QuickReply's founders reclaimed 15 hours a week by automating tech hiring",
-                      desc: "QuickReply cut founder hiring time by 60% and halved time-to-hire for engineering roles using Fabric's AI screening and interview platform.",
-                      stats: [
-                        { value: '50%', label: 'Faster time-to-hire for tech roles' },
-                        { value: '60%', label: 'Reduction in founder interview hours' },
-                        { value: '2x', label: 'More applications assessed per role' }
-                      ],
-                      link: '#'
-                    },
-                    {
-                      id: 'accelerators',
-                      company: 'Global Retail Co.',
-                      industry: 'RETAIL',
-                      shortTitle: "Retail giant increases supply chain visibility by 80%",
-                      tagline: 'CASE STUDY',
-                      mainTitle: "Automating inventory tracking across 500+ locations",
-                      desc: "Using intelligent agents to sync inventory databases, the client eliminated stock-outs and reduced manual entry delays from days to seconds.",
-                      stats: [
-                        { value: '80%', label: 'Increase in real-time visibility' },
-                        { value: '30%', label: 'Reduction in stock-outs' },
-                        { value: '99%', label: 'Data accuracy' }
-                      ],
-                      link: '#'
-                    },
-                    {
-                      id: 'tailored',
-                      company: 'FinTech Innovators',
-                      industry: 'FINANCIAL SERVICES',
-                      shortTitle: "Scaling customer support without adding headcount",
-                      tagline: 'CUSTOMER STORY',
-                      mainTitle: "Resolving 75% of tier-1 support tickets autonomously",
-                      desc: "By deploying a customized LLM-powered support agent, FinTech Innovators handled a 3x surge in ticket volume while improving CSAT scores.",
-                      stats: [
-                        { value: '75%', label: 'Autonomous resolution rate' },
-                        { value: '3x', label: 'Volume handled effortlessly' },
-                        { value: '+12', label: 'Point increase in CSAT' }
-                      ],
-                      link: '#'
-                    }
-                  ].map((card, i) => (
+                  {items.map((card: any, i: number) => (
                     <div
                       key={i}
                       id={`purpose-card-${i}`}
@@ -162,7 +144,7 @@ export function CaseStudiesSection({ activeTab, scrollToSection }: { activeTab: 
                          </p>
 
                          <div className="grid grid-cols-3 gap-4 border-t border-slate-100 pt-4 mb-0 mt-auto">
-                           {card.stats.map((stat, j) => (
+                           {card.stats.map((stat: any, j: number) => (
                              <div key={j} className="flex flex-col gap-1">
                                 <span className="text-[24px] lg:text-[28px] font-semibold text-[#0d253d] leading-none" style={{ fontFamily: 'var(--font-inter)' }}>{stat.value}</span>
                                 <span className="text-[11px] text-[#64748d] leading-tight pr-2">{stat.label}</span>

@@ -7,7 +7,7 @@ import { getAdminBasePath } from '@/lib/admin-path'
 import { getBlogRepository } from '@/lib/db/blog_queries'
 import { getCaseStudyRepository } from '@/lib/db/case_study_queries'
 import { formatDate } from '@/lib/utils/formatting'
-import { BookOpen, Calendar, ChevronDown, ChevronUp, Edit, Eye, EyeOff, FileText, Plus, TrendingUp } from 'lucide-react'
+import { BookOpen, Calendar, ChevronDown, ChevronUp, Edit, Eye, EyeOff, FileText, Plus, TrendingUp, LayoutDashboard } from 'lucide-react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
@@ -44,9 +44,14 @@ export default async function DashboardPage({
       <div className="space-y-8">
         {/* Page Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-          <div>
-            <h1 className="text-2xl font-bold text-[#1B2340]">Dashboard</h1>
-            <p className="text-sm text-[#6B7280] mt-0.5">Welcome to your content management hub</p>
+          <div className="flex items-center gap-4">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#1B2340] shadow-md shrink-0">
+              <LayoutDashboard size={22} className="text-white" />
+            </div>
+            <div>
+              <h1 className="text-2xl font-bold text-[#1B2340]">Dashboard</h1>
+              <p className="text-sm text-[#6B7280] mt-0.5">Welcome to your content management hub</p>
+            </div>
           </div>
           <div className="flex gap-3">
             <Link href={`${getAdminBasePath()}/blogs/create`}>

@@ -3,29 +3,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 
-const stats = [
-  {
-    value: 6,
-    suffix: 'x',
-    label: 'Faster Decision\nMaking and Actions',
-  },
-  {
-    value: 'Zero',
-    suffix: '',
-    label: 'Dashboards your team needs\nto build, maintain, or learn',
-  },
-  {
-    value: 80,
-    suffix: '%',
-    label: 'Reduction in time your data\nteam spends on reporting',
-  },
-  {
-    value: '1/3',
-    suffix: 'rd',
-    label: 'Reduction in\nyour analytics cost',
-  },
-]
-
 function CountUp({ end, suffix, duration = 2000 }: { end: number; suffix: string; duration?: number }) {
   const [count, setCount] = useState(0)
   const ref = useRef<HTMLSpanElement>(null)
@@ -77,7 +54,8 @@ function NetworkMesh() {
   )
 }
 
-export function StatsSection() {
+export function StatsSection({ content }: { content?: any }) {
+  const displayStats = content?.items || [];
   return (
     <section className="relative py-16 px-6 overflow-hidden bg-white">
 
@@ -121,16 +99,16 @@ export function StatsSection() {
                 backgroundClip: 'text',
               }}
             >
-              What Agent Factory Brings to the Table
+              {content?.heading}
             </h2>
             <p className="text-base md:text-lg text-[#0d253d] max-w-2xl mx-auto leading-relaxed" style={{ fontFamily: 'var(--font-quicksand)' }}>
-              No dashboards. No waiting. No guesswork. Just decisions backed by your data.
+              {content?.subheading}
             </p>
           </div>
 
           {/* ── Stats row ── */}
           <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {stats.map((stat, i) => (
+            {displayStats.map((stat: any, i: number) => (
               <motion.div
                 key={i}
                 className="text-center space-y-3"

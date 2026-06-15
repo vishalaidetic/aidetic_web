@@ -56,7 +56,8 @@ function MockupShell({ children }: { children: React.ReactNode }) {
 }
 
 /* ── Visual 1: Chat-style analyst interface ── */
-function AnalystMockup() {
+function AnalystMockup({ content }: { content?: any }) {
+  const data = content?.mockups?.analyst;
   return (
     <MockupShell>
       <div className="flex-1 p-5 space-y-4 overflow-hidden flex flex-col">
@@ -66,23 +67,20 @@ function AnalystMockup() {
             <MessageSquare className="w-3 h-3 text-[#533afd]" />
           </div>
           <div className="bg-slate-50 rounded-xl rounded-tl-none px-3 py-2 text-[10px] text-[#64748d] max-w-[80%] leading-relaxed">
-            Which top performing products need re-stocking this year?
+            {data?.question}
           </div>
         </div>
 
         {/* AI response */}
         <div className="space-y-2">
-          <div className="text-[9px] text-[#64748d] ml-1">Agent Factory is analysing…</div>
+          <div className="text-[9px] text-[#64748d] ml-1">{data?.analyzing}</div>
 
           {/* Mini table */}
           <div className="border border-slate-100 rounded-lg overflow-hidden text-[9px]">
             <div className="grid grid-cols-3 bg-slate-50 px-3 py-1.5 font-semibold text-[#64748d] border-[#533afd] border-slate-100">
-              <span>Product</span><span>Revenue</span><span>Stock</span>
+              <span>{data?.table_headers?.[0]}</span><span>{data?.table_headers?.[1]}</span><span>{data?.table_headers?.[2]}</span>
             </div>
-            {[
-              ['1. Apex', '$2.4M', 'Low ⚠'],
-              ['2. Arcana World', '$1.9M', 'Critical 🔴'],
-            ].map(([p, r, s], i) => (
+            {(data?.table_rows || []).map(([p, r, s]: string[], i: number) => (
               <div key={i} className="grid grid-cols-3 px-3 py-1.5 text-[#64748d] border-[#533afd] border-slate-50 last:border-0">
                 <span>{p}</span><span>{r}</span><span>{s}</span>
               </div>
@@ -92,7 +90,7 @@ function AnalystMockup() {
 
         {/* Follow-up chips */}
         <div className="flex gap-2 flex-wrap">
-          {['Show full list', 'Export CSV', 'Set alert'].map((t, i) => (
+          {(data?.chips || []).map((t: string, i: number) => (
             <span key={i} className="px-2 py-1 bg-[#f6f9fc] text-[#533afd] rounded text-[9px] border border-[#665efd] cursor-pointer hover:bg-[#f6f9fc] transition-colors">{t}</span>
           ))}
         </div>
@@ -100,7 +98,7 @@ function AnalystMockup() {
         {/* Input */}
         <div className="mt-auto flex items-center gap-2 border border-slate-200 rounded-xl px-3 py-2 bg-white">
           <Search className="w-3 h-3 text-slate-300" />
-          <span className="text-[9px] text-slate-300 italic">Ask a follow-up question…</span>
+          <span className="text-[9px] text-slate-300 italic">{data?.input_placeholder}</span>
           <div className="ml-auto w-5 h-5 rounded-full bg-[#533afd] flex items-center justify-center">
             <Zap className="w-2.5 h-2.5 text-white" />
           </div>
@@ -111,11 +109,12 @@ function AnalystMockup() {
 }
 
 /* ── Visual 2: Business Area Dropdown + Chat ── */
-function BusinessAreaMockup() {
+function BusinessAreaMockup({ content }: { content?: any }) {
+  const data = content?.mockups?.businessArea;
   return (
     <MockupShell>
       <div className="flex flex-col w-full h-full bg-white px-5 py-4 justify-start relative">
-        <label className="text-[9px] font-bold text-[#64748d] uppercase tracking-widest mb-2 block" style={{ fontFamily: 'var(--font-inter)' }}>Select Agent Domain</label>
+        <label className="text-[9px] font-bold text-[#64748d] uppercase tracking-widest mb-2 block" style={{ fontFamily: 'var(--font-inter)' }}>{data?.label}</label>
 
         <div className="relative mb-6">
           <div className="flex items-center justify-between border border-[#665efd] rounded-xl px-4 py-3 bg-white shadow-sm ring-2 ring-[#533afd]/20 z-10 relative">
@@ -123,7 +122,7 @@ function BusinessAreaMockup() {
               <div className="w-6 h-6 rounded-lg bg-[#533afd]/10 flex items-center justify-center">
                 <BarChart2 className="w-3.5 h-3.5 text-[#533afd]" />
               </div>
-              <span className="text-xs font-semibold text-[#0d253d]">Marketing & Growth</span>
+              <span className="text-xs font-semibold text-[#0d253d]">{data?.selected}</span>
             </div>
             <ChevronDown className="w-4 h-4 text-[#533afd] rotate-180 transition-transform" />
           </div>
@@ -134,7 +133,7 @@ function BusinessAreaMockup() {
               <div className="w-6 h-6 rounded-lg bg-emerald-500/10 flex items-center justify-center">
                 <Zap className="w-3.5 h-3.5 text-emerald-600" />
               </div>
-              <span className="text-xs font-medium text-[#0d253d]">Sales & CRM</span>
+              <span className="text-xs font-medium text-[#0d253d]">{data?.dropdown?.[0]}</span>
             </div>
             <div className="flex items-center gap-3 px-4 py-2.5 hover:bg-slate-50 cursor-pointer">
               <div className="w-6 h-6 rounded-lg bg-orange-500/10 flex items-center justify-center">
@@ -146,7 +145,7 @@ function BusinessAreaMockup() {
               <div className="w-6 h-6 rounded-lg bg-slate-100 flex items-center justify-center">
                 <Layers className="w-3.5 h-3.5 text-[#64748d]" />
               </div>
-              <span className="text-xs font-medium text-[#64748d]">Supply Chain</span>
+              <span className="text-xs font-medium text-[#64748d]">{data?.dropdown?.[1]}</span>
             </div>
           </div>
         </div>
@@ -160,7 +159,7 @@ function BusinessAreaMockup() {
             <span className="text-xs font-semibold text-[#0d253d]">Ask the Marketing Agent</span>
           </div>
           <div className="bg-slate-50 rounded-xl p-3 flex flex-col gap-3">
-            <span className="text-[10px] text-[#64748d]">E.g., "What was our CAC for the Q3 campaign?"</span>
+            <span className="text-[10px] text-[#64748d]">{data?.input_placeholder}</span>
             <div className="flex items-center justify-between pt-2 border-t border-slate-200/60">
               <div className="flex gap-2">
                 <div className="w-5 h-5 rounded bg-white border border-slate-200 flex items-center justify-center"><BarChart2 className="w-2.5 h-2.5 text-[#64748d]" /></div>
@@ -177,21 +176,22 @@ function BusinessAreaMockup() {
 }
 
 /* ── Visual 3: Charts and Breakdowns ── */
-function ChartsMockup() {
+function ChartsMockup({ content }: { content?: any }) {
+  const data = content?.mockups?.charts;
   return (
     <MockupShell>
       <div className="flex flex-col w-full h-full p-5 gap-4 bg-white">
         {/* Header/Title */}
         <div className="flex items-center justify-between pb-2 border-b border-slate-100">
-          <div className="text-xs font-bold text-[#0d253d]">Q3 Revenue Overview</div>
-          <div className="text-[9px] bg-slate-50 border border-slate-200 text-[#64748d] px-2 py-1 rounded-md shadow-sm">Last 90 Days</div>
+          <div className="text-xs font-bold text-[#0d253d]">{data?.label}</div>
+          <div className="text-[9px] bg-slate-50 border border-slate-200 text-[#64748d] px-2 py-1 rounded-md shadow-sm">{data?.y_axis?.[0]}</div>
         </div>
 
         <div className="flex gap-4 flex-1 min-h-0">
           {/* Left column: Pie Chart */}
           <div className="w-[45%] flex flex-col">
             <div className="bg-slate-50 border border-slate-100 rounded-xl p-4 flex-1 flex flex-col items-center justify-center shadow-sm relative overflow-hidden">
-              <div className="text-[9px] font-bold text-[#64748d] w-full text-left mb-4 uppercase tracking-widest" style={{ fontFamily: 'var(--font-inter)' }}>Region Split</div>
+              <div className="text-[9px] font-bold text-[#64748d] w-full text-left mb-4 uppercase tracking-widest" style={{ fontFamily: 'var(--font-inter)' }}>{data?.monthly}</div>
 
               {/* Mock Pie Chart (CSS conic-gradient) */}
               <div className="relative w-24 h-24 rounded-full shadow-inner" style={{
@@ -233,13 +233,13 @@ function ChartsMockup() {
 
             {/* Bar chart mock */}
             <div className="bg-slate-50 border border-slate-100 rounded-xl p-3 flex-1 flex flex-col shadow-sm">
-              <div className="text-[9px] font-bold text-[#64748d] uppercase tracking-widest mb-1" style={{ fontFamily: 'var(--font-inter)' }}>Monthly</div>
+              <div className="text-[9px] font-bold text-[#64748d] uppercase tracking-widest mb-1" style={{ fontFamily: 'var(--font-inter)' }}>{data?.monthly}</div>
               <div className="flex-1 flex items-end justify-between gap-1.5 border-b border-slate-200 pb-0.5 ml-1">
-                <div className="w-full bg-[#533afd]/20 hover:bg-[#533afd]/80 transition-colors rounded-t-sm relative group" style={{ height: '35%' }}><div className="absolute -top-4 left-1/2 -translate-x-1/2 text-[7px] text-[#0d253d] font-bold opacity-0 group-hover:opacity-100">$1M</div></div>
-                <div className="w-full bg-[#533afd]/40 hover:bg-[#533afd]/80 transition-colors rounded-t-sm relative group" style={{ height: '50%' }}><div className="absolute -top-4 left-1/2 -translate-x-1/2 text-[7px] text-[#0d253d] font-bold opacity-0 group-hover:opacity-100">$1.5M</div></div>
-                <div className="w-full bg-[#ea2261] hover:bg-[#ea2261]/80 transition-colors rounded-t-sm shadow-sm relative group" style={{ height: '85%' }}><div className="absolute -top-4 left-1/2 -translate-x-1/2 text-[7px] text-[#0d253d] font-bold opacity-0 group-hover:opacity-100">$2.8M</div></div>
-                <div className="w-full bg-[#533afd] hover:bg-[#533afd]/80 transition-colors rounded-t-sm shadow-sm relative group" style={{ height: '100%' }}><div className="absolute -top-4 left-1/2 -translate-x-1/2 text-[7px] text-[#0d253d] font-bold opacity-0 group-hover:opacity-100">$3.2M</div></div>
-                <div className="w-full bg-[#f96bee] hover:bg-[#f96bee]/80 transition-colors rounded-t-sm shadow-sm relative group" style={{ height: '70%' }}><div className="absolute -top-4 left-1/2 -translate-x-1/2 text-[7px] text-[#0d253d] font-bold opacity-0 group-hover:opacity-100">$2.1M</div></div>
+                <div className="w-full bg-[#533afd]/20 hover:bg-[#533afd]/80 transition-colors rounded-t-sm relative group" style={{ height: '35%' }}><div className="absolute -top-4 left-1/2 -translate-x-1/2 text-[7px] text-[#0d253d] font-bold opacity-0 group-hover:opacity-100">{data?.bar_labels?.[0]}</div></div>
+                <div className="w-full bg-[#533afd]/40 hover:bg-[#533afd]/80 transition-colors rounded-t-sm relative group" style={{ height: '50%' }}><div className="absolute -top-4 left-1/2 -translate-x-1/2 text-[7px] text-[#0d253d] font-bold opacity-0 group-hover:opacity-100">{data?.bar_labels?.[1]}</div></div>
+                <div className="w-full bg-[#ea2261] hover:bg-[#ea2261]/80 transition-colors rounded-t-sm shadow-sm relative group" style={{ height: '85%' }}><div className="absolute -top-4 left-1/2 -translate-x-1/2 text-[7px] text-[#0d253d] font-bold opacity-0 group-hover:opacity-100">{data?.bar_labels?.[2]}</div></div>
+                <div className="w-full bg-[#533afd] hover:bg-[#533afd]/80 transition-colors rounded-t-sm shadow-sm relative group" style={{ height: '100%' }}><div className="absolute -top-4 left-1/2 -translate-x-1/2 text-[7px] text-[#0d253d] font-bold opacity-0 group-hover:opacity-100">{data?.bar_labels?.[3]}</div></div>
+                <div className="w-full bg-[#f96bee] hover:bg-[#f96bee]/80 transition-colors rounded-t-sm shadow-sm relative group" style={{ height: '70%' }}><div className="absolute -top-4 left-1/2 -translate-x-1/2 text-[7px] text-[#0d253d] font-bold opacity-0 group-hover:opacity-100">{data?.bar_labels?.[4]}</div></div>
               </div>
             </div>
           </div>
@@ -250,7 +250,8 @@ function ChartsMockup() {
 }
 
 /* ── Visual 4: Integration / stack overview ── */
-function IntegrationMockup() {
+function IntegrationMockup({ content }: { content?: any }) {
+  const data = content?.mockups?.integration;
   const tools = [
     { name: 'Slack', color: 'bg-violet-500', icon: MessageSquare },
     { name: 'Tableau', color: 'bg-[#ea2261]', icon: BarChart2 },
@@ -264,8 +265,8 @@ function IntegrationMockup() {
       <div className="flex flex-col w-full h-full bg-white relative">
         {/* Header */}
         <div className="px-5 py-4 border-b border-slate-100 relative z-20 bg-white">
-          <span className="text-sm font-bold text-[#0d253d]" style={{ fontFamily: 'var(--font-inter)' }}>Integration Hub</span>
-          <p className="text-[11px] text-[#64748d] mt-0.5">Connect your entire analytics stack</p>
+          <span className="text-sm font-bold text-[#0d253d]" style={{ fontFamily: 'var(--font-inter)' }}>{data?.hub}</span>
+          <p className="text-[11px] text-[#64748d] mt-0.5">{data?.sub}</p>
         </div>
 
         {/* Horizontal Flow */}
@@ -279,7 +280,7 @@ function IntegrationMockup() {
               <div className="w-12 h-12 rounded-2xl bg-blue-500 flex items-center justify-center shadow-lg ring-4 ring-white relative group">
                 <Database className="w-5 h-5 text-white" strokeWidth={1.5} />
               </div>
-              <span className="text-[9px] font-bold text-[#64748d] text-center w-16 leading-tight">Table Join Injection</span>
+              <span className="text-[9px] font-bold text-[#64748d] text-center w-16 leading-tight">{data?.source_label}</span>
             </div>
 
             {/* Source 2 */}
@@ -319,13 +320,13 @@ function IntegrationMockup() {
 }
 
 /* ── Main section ── */
-export function FeaturesSection() {
-  const features = [
+export function FeaturesSection({ content }: { content?: any }) {
+  const rawFeatures = [
     {
       title: 'One Agent per Function. Each one an Expert.',
       description:
         "Agent Factory doesn't throw one generic AI Agent at every business question. It deploys specialist agents trained on each function's KPIs, vocabulary, and decision patterns.",
-      visual: <BusinessAreaMockup />,
+      visual: <BusinessAreaMockup content={content} />,
       reversed: false,
       delay: 0,
     },
@@ -333,7 +334,7 @@ export function FeaturesSection() {
       title: 'Answers that Explain Themselves.',
       description:
         'Every answer shows the reasoning behind it. What was queried, what logic was applied, why the number looks the way it does. Your team sees the work, not just the output.',
-      visual: <AnalystMockup />,
+      visual: <AnalystMockup content={content} />,
       reversed: true,
       delay: 0.1,
     },
@@ -341,7 +342,7 @@ export function FeaturesSection() {
       title: 'Charts, Breakdowns, and Trend Lines on Demand.',
       description:
         'Agent Factory shows you the insight in every format that makes decision making easier. Ask "how did revenue trend last quarter" and get a chart. Ask "break it down by region" and the view updates.',
-      visual: <ChartsMockup />,
+      visual: <ChartsMockup content={content} />,
       reversed: false,
       delay: 0.1,
     },
@@ -349,11 +350,17 @@ export function FeaturesSection() {
       title: 'Agents that Get Smarter Every Week',
       description:
         'Most AI tools stay stagnate. Agent Factory can be continuously tuned with new KPIs, changing business rules, evolving data models so the agents stay relevant as your business changes.',
-      visual: <IntegrationMockup />,
+      visual: <IntegrationMockup content={content} />,
       reversed: true,
       delay: 0.1,
     },
   ]
+
+  const features = rawFeatures.map((f, i) => ({
+    ...f,
+    title: content?.items?.[i]?.title,
+    description: content?.items?.[i]?.description,
+  }))
 
   return (
     <section className="bg-gradient-to-br from-white via-blue-50/40 to-[#f6f9fc]/60 overflow-hidden">
@@ -377,10 +384,10 @@ export function FeaturesSection() {
               backgroundClip: 'text',
             }}
           >
-            Why Businesses Love Agent Factory
+            {content?.heading}
           </h2>
           <p className="text-base md:text-lg text-[#0d253d] leading-relaxed max-w-2xl mx-auto" style={{ fontFamily: 'var(--font-quicksand)' }}>
-            It works the way they think. No SQL. No tickets to the data team. Just plain-English questions and answers they can act on.
+            {content?.subheading}
           </p>
         </motion.div>
       </div>

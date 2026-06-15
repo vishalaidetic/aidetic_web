@@ -8,7 +8,7 @@ import { BookCallDialog } from '@/components/shared/book-call-dialog';
 import { DashboardMock } from '@/components/home/dashboard-mock';
 
 
-export function AboutSection() {
+export function AboutSection({ content }: { content?: any }) {
   return (
     <section className="relative w-full bg-slate-50 pb-20 px-6 overflow-hidden snap-start">
           <div className="relative z-10 max-w-7xl mx-auto text-center space-y-6">
@@ -26,7 +26,7 @@ export function AboutSection() {
               transition={{ duration: 0.7 }}
               viewport={{ once: true, amount: 0.4 }}
             >
-              A boutique AI studio shipping production systems.
+              {content?.heading || "A boutique AI studio shipping production systems."}
             </motion.h2>
             <motion.h3
               className="text-[1rem] sm:text-[1.1rem] lg:text-[1.2rem] xl:text-[1.3rem] text-[#0d253d] leading-relaxed max-w-3xl mx-auto mb-8 text-center"
@@ -36,7 +36,7 @@ export function AboutSection() {
               transition={{ duration: 0.7, delay: 0.1 }}
               viewport={{ once: true, amount: 0.4 }}
             >
-              We've spent the last seven years building AI systems for Fortune-500 data teams. Now we've packaged what works into products you can adopt today.
+              {content?.body || "We've spent the last seven years building AI systems for Fortune-500 data teams. Now we've packaged what works into products you can adopt today."}
             </motion.h3>
           </div>
 

@@ -8,7 +8,7 @@ import { BookCallDialog } from '@/components/shared/book-call-dialog';
 import { DashboardMock } from '@/components/home/dashboard-mock';
 
 
-export function HeroSection() {
+export function HeroSection({ content }: { content?: any }) {
 
   const [heroTextIndex, setHeroTextIndex] = useState(0)
   useEffect(() => {
@@ -69,7 +69,7 @@ export function HeroSection() {
                   className="text-[2.5rem] sm:text-[3rem] lg:text-[4rem] xl:text-[4.5rem] font-medium text-[#0d253d] leading-[1.1] tracking-tight text-center"
                   style={{ fontFamily: 'var(--font-inter)' }}
                 >
-                  Enterprise Grade
+                  {content?.heading || "Enterprise Grade"}
                   <br className="hidden sm:block" />
                   <span className="inline-block relative min-w-[280px] sm:min-w-[400px]">
                     <AnimatePresence mode="wait">
@@ -88,12 +88,12 @@ export function HeroSection() {
                           fontFamily: 'var(--font-quicksand)'
                         }}
                       >
-                        {heroTextIndex === 0 ? 'Agentic AI Solutions' : 'Data Migration Solutions'}
+                        {heroTextIndex === 0 ? (content?.animated_texts?.[0] || 'Agentic AI Solutions') : (content?.animated_texts?.[1] || 'Data Migration Solutions')}
                       </motion.span>
                     </AnimatePresence>
                     {/* Invisible span to maintain correct document flow width */}
                     <span className="opacity-0 invisible whitespace-nowrap pointer-events-none" aria-hidden="true">
-                      Data Migration Solutions
+                      {content?.animated_texts?.[1] || 'Data Migration Solutions'}
                     </span>
                   </span>
                 </h1>
@@ -102,8 +102,7 @@ export function HeroSection() {
                   className="text-lg md:text-xl text-[#64748d] leading-relaxed mt-6 mb-10 max-w-3xl font-medium text-center"
                   style={{ fontFamily: 'var(--font-quicksand)' }}
                 >
-                  Aidetic brings you production-ready Agentic AI solutions,<br className="hidden sm:block" />
-                  so you skip the build cycle and go straight to impact.
+                  {content?.subheading || "Aidetic brings you production-ready Agentic AI solutions, so you skip the build cycle and go straight to impact."}
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
@@ -113,7 +112,7 @@ export function HeroSection() {
                       className="px-8 py-3.5 rounded-full bg-[#533afd] text-white font-medium shadow-lg hover:opacity-90 hover:-translate-y-0.5 transition-all text-[15px]"
                       style={{ fontFamily: 'var(--font-inter)' }}
                     >
-                      Request a Call
+                      {content?.cta_primary || "Request a Call"}
                     </button>
                   </BookCallDialog>
                   <Link href="/#products" className="w-full sm:w-auto">
@@ -121,7 +120,7 @@ export function HeroSection() {
                       className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-white text-[#533afd] font-medium border border-[#533afd]/30 shadow-sm hover:border-[#533afd] hover:bg-slate-50 hover:-translate-y-0.5 transition-all text-[15px]"
                       style={{ fontFamily: 'var(--font-inter)' }}
                     >
-                      Our Products
+                      {content?.cta_secondary || "Our Products"}
                     </button>
                   </Link>
                 </div>
@@ -143,7 +142,7 @@ export function HeroSection() {
                     backgroundClip: "text",
                   }}
                 >
-                  TRUSTED BY AI-FIRST ENTERPRISES
+                  {content?.trusted_by || "TRUSTED BY AI-FIRST ENTERPRISES"}
                 </p>
 
                 {/* Marquee wrapper with fade-edge mask */}
@@ -159,38 +158,25 @@ export function HeroSection() {
                     className="flex items-center gap-14 w-max"
                     style={{ animation: "marquee-logos 28s linear infinite" }}
                   >
-                    {[
-                      { name: "LG", prefix: "🔵" },
-                      { name: "Brambles", prefix: null },
-                      { name: "TRUIST", suffix: "⊞" },
-                      { name: "SEPHORA", prefix: null },
-                      { name: "Huel", prefix: null, bold: true },
-                      { name: "keyloop", prefix: null },
-                      { name: "worldpay", prefix: null },
-                      { name: "Snowflake", prefix: null },
-                      { name: "Salesforce", prefix: null },
-                      { name: "Databricks", prefix: null },
-                      /* duplicate for seamless loop */
-                      { name: "LG", prefix: "🔵" },
-                      { name: "Brambles", prefix: null },
-                      { name: "TRUIST", suffix: "⊞" },
-                      { name: "SEPHORA", prefix: null },
-                      { name: "Huel", prefix: null, bold: true },
-                      { name: "keyloop", prefix: null },
-                      { name: "worldpay", prefix: null },
-                      { name: "Snowflake", prefix: null },
-                      { name: "Salesforce", prefix: null },
-                      { name: "Databricks", prefix: null },
-                    ].map((logo, i) => (
+                    {[...(content?.logos || []), ...(content?.logos || [])].map((logo: any, i: number) => (
                       <div
                         key={i}
-                        className={`text-xl text-[#533afd]/60 hover:text-[#533afd] transition-colors flex items-center gap-2 ${logo.bold ? "font-bold italic text-2xl" : "font-semibold tracking-tight"
-                          }`}
-                        style={{ fontFamily: "var(--font-inter)" }}
+                        className="flex items-center justify-center shrink-0 h-8"
                       >
-                        {logo.prefix && <span className="opacity-80 text-sm">{logo.prefix}</span>}
-                        {logo.name}
-                        {logo.suffix && <span className="opacity-80 text-sm">{logo.suffix}</span>}
+                        {logo.url ? (
+                          <img
+                            src={logo.url}
+                            alt={logo.name}
+                            className="h-7 max-w-[120px] object-contain opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
+                          />
+                        ) : (
+                          <span
+                            className="text-base font-semibold tracking-tight text-[#533afd]/60 hover:text-[#533afd] transition-colors whitespace-nowrap"
+                            style={{ fontFamily: 'var(--font-inter)' }}
+                          >
+                            {logo.name}
+                          </span>
+                        )}
                       </div>
                     ))}
                   </div>

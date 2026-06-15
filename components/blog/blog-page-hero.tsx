@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 
-export function BlogPageHero() {
+export function BlogPageHero({ content }: { content?: any }) {
   return (
     <div className="relative w-full overflow-hidden text-center py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
       {/* ── Half-circle: center above top edge ── */}
@@ -31,13 +31,13 @@ export function BlogPageHero() {
           className="text-[2.5rem] sm:text-[3rem] lg:text-[4rem] xl:text-[4.5rem] font-medium text-[#0d253d] leading-[1.1] tracking-tight"
           style={{ fontFamily: 'var(--font-inter)' }}
         >
-          Aidetic Blogs
+          {content?.heading || "Aidetic Blogs"}
         </h1>
         <p
           className="text-lg text-[#64748d] leading-relaxed mt-6 max-w-3xl mx-auto"
           style={{ fontFamily: 'var(--font-quicksand)' }}
         >
-          Stay updated with the latest trends and insights in AI, Data-Science, and modern Generative AI technologies.
+          {content?.subheading || "Stay updated with the latest trends and insights in AI, Data-Science, and modern Generative AI technologies."}
         </p>
       </motion.div>
     </div>

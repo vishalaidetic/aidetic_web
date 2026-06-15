@@ -7,29 +7,23 @@ import { useState } from 'react'
 
 const cardsData = [
   {
-    title: "A Global F&B Company's Recipe for Profit in the Age of AI",
-    description: '"A global F&B conglomerate was over-discounting without realizing it. AI surfaced this insight in real time. They fixed their pricing strategy and revenue jumped 5-10%."',
     icon: TrendingUp,
     color: 'text-[#ea2261]',
     bg: 'bg-[#ea2261]/10',
   },
   {
-    title: 'A Supply Chain Dept. that Got Faster with AI',
-    description: '“The Supply Chain department of a CPG company was struggling to keep up with demand fluctuations due to slow data insights. AI gave them real-time visibility into their supply chain. Forecasting errors dropped by 30%”',
     icon: LineChart,
     color: 'text-[#533afd]',
     bg: 'bg-[#533afd]/10',
   },
   {
-    title: 'When AI Grows Your Bottom-Line',
-    description: '"A leading consulting firm found that CPG companies applying AI for real-time insights across commercial functions unlock 3–5 percentage points of EBITDA growth."',
     icon: Target,
     color: 'text-[#533afd]',
     bg: 'bg-[#533afd]/10',
   }
 ]
 
-export function UseCasesSection() {
+export function UseCasesSection({ content }: { content?: any }) {
   const [activeIndex, setActiveIndex] = useState(0)
 
   const maxIndex = Math.max(0, cardsData.length - 2)
@@ -62,10 +56,10 @@ export function UseCasesSection() {
                   backgroundClip: 'text',
                 }}
               >
-                Stale Insights will Never Give You Margin
+                {content?.heading}
               </h2>
               <p className="text-base md:text-lg text-[#0d253d] leading-relaxed max-w-2xl mx-auto" style={{ fontFamily: "var(--font-quicksand)" }}>
-                McKinsey says, businesses that take fast data-driven decisions are 19x more likely to be profitable.
+                {content?.subheading}
               </p>
             </motion.div>
 
@@ -109,14 +103,14 @@ export function UseCasesSection() {
                         </motion.div>
                         
                         <h3 className="text-base font-semibold text-[#0d253d] mb-5 leading-snug tracking-wide group-hover:text-[#533afd] transition-colors duration-300" style={{ fontFamily: 'var(--font-inter)' }}>
-                          {card.title}
+                            {content?.items?.[i]?.title}
                         </h3>
 
                         {/* Expandable Divider */}
                         <div className="h-[2px] bg-gradient-to-r from-[#533afd] to-[#ea2261] w-8 group-hover:w-16 transition-all duration-500 ease-out mb-5 rounded-full opacity-70" />
 
                         <p className="text-sm text-[#475569] leading-relaxed mb-6 flex-1 overflow-hidden" style={{ fontFamily: 'var(--font-quicksand)' }}>
-                          {card.description}
+                          {content?.items?.[i]?.description}
                         </p>
                       </motion.div>
                     )

@@ -53,10 +53,19 @@ const phase3 = [
   }
 ];
 
-export function AgentFactoryPipeline() {
+export function AgentFactoryPipeline({ content }: { content?: any }) {
   const [activeTab, setActiveTab] = useState('gather');
 
-  const allSteps = [...phase1, ...phase2, ...phase3];
+  // Use content from props if available, otherwise fallback to hardcoded definitions
+  const phase1Data = content?.phases?.[0]?.steps || phase1;
+  const phase2Data = content?.phases?.[1]?.steps || phase2;
+  const phase3Data = content?.phases?.[2]?.steps || phase3;
+
+  const mergedPhase1 = phase1.map((step, i) => ({ ...step, title: phase1Data?.[i]?.title, desc: phase1Data?.[i]?.desc }));
+  const mergedPhase2 = phase2.map((step, i) => ({ ...step, title: phase2Data?.[i]?.title, desc: phase2Data?.[i]?.desc }));
+  const mergedPhase3 = phase3.map((step, i) => ({ ...step, title: phase3Data?.[i]?.title, desc: phase3Data?.[i]?.desc }));
+
+  const allSteps = [...mergedPhase1, ...mergedPhase2, ...mergedPhase3];
   const activeStepData = allSteps.find(s => s.id === activeTab) || allSteps[0];
 
   return (
@@ -80,13 +89,13 @@ export function AgentFactoryPipeline() {
               backgroundClip: 'text',
             }}
           >
-            Build your Agent or a complete AI Application in 3 steps.
+            {content?.heading}
           </h2>
           <h3
             className="text-[#0d253d] text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
             style={{ fontFamily: 'var(--font-quicksand)' }}
           >
-            Start with a prompt and a connection to your data. We’ll handle the rest.
+            {content?.subheading}
           </h3>
         </motion.div>
 
@@ -109,12 +118,12 @@ export function AgentFactoryPipeline() {
                 </div>
                 <div>
                   <h4 className="text-base font-bold leading-tight tracking-wide text-[#0d253d]" style={{ fontFamily: 'var(--font-inter)' }}>
-                    Phase 1: Prerequisites
+                    {content?.phases?.[0]?.label}
                   </h4>
                 </div>
               </div>
               <div className="relative ml-4 pl-8 border-l border-slate-200 space-y-1 pb-4">
-                {phase1.map((step) => {
+                {mergedPhase1.map((step) => {
                   const isActive = activeTab === step.id;
                   return (
                     <button
@@ -151,12 +160,12 @@ export function AgentFactoryPipeline() {
                 </div>
                 <div>
                   <h4 className="text-base font-bold leading-tight tracking-wide text-[#0d253d]" style={{ fontFamily: 'var(--font-inter)' }}>
-                    Phase 2: Connect & Configure
+                    {content?.phases?.[1]?.label}
                   </h4>
                 </div>
               </div>
               <div className="relative ml-4 pl-8 border-l border-slate-200 space-y-1 pb-4">
-                {phase2.map((step) => {
+                {mergedPhase2.map((step) => {
                   const isActive = activeTab === step.id;
                   return (
                     <button
@@ -193,12 +202,12 @@ export function AgentFactoryPipeline() {
                 </div>
                 <div>
                   <h4 className="text-base font-bold leading-tight tracking-wide text-[#0d253d]" style={{ fontFamily: 'var(--font-inter)' }}>
-                    Phase 3: Test & Deploy
+                    {content?.phases?.[2]?.label}
                   </h4>
                 </div>
               </div>
               <div className="relative ml-4 pl-8 border-l border-slate-200 space-y-1 pb-4">
-                {phase3.map((step) => {
+                {mergedPhase3.map((step) => {
                   const isActive = activeTab === step.id;
                   return (
                     <button
@@ -267,16 +276,6 @@ export function AgentFactoryPipeline() {
                   <p className="text-base text-[#0d253d] leading-relaxed" style={{ fontFamily: 'var(--font-quicksand)' }}>
                     {activeStepData.desc}
                   </p>
-                </div>
-
-                {/* Progress Indicators */}
-                <div className="mt-8 flex items-center gap-2">
-                  {allSteps.map((s) => (
-                    <div
-                      key={s.id}
-                      className={`h-[5px] rounded-full transition-all duration-500 ${s.id === activeTab ? `w-10 bg-[#0ea5e9]` : 'w-4 bg-slate-200'}`}
-                    />
-                  ))}
                 </div>
               </motion.div>
             </AnimatePresence>

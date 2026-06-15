@@ -33,7 +33,7 @@ const homeFaqs = [
   },
 ]
 
-export function HomeFaqSection() {
+export function HomeFaqSection({ content }: { content?: any }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0) // First one open by default
 
   const toggle = (i: number) => setOpenIndex(prev => (prev === i ? null : i))
@@ -65,7 +65,7 @@ export function HomeFaqSection() {
                   backgroundClip: 'text',
                 }}
               >
-                Common questions from data leaders.
+                {content?.heading || "Common questions from data leaders."}
               </h2>
             </motion.div>
 
@@ -76,7 +76,7 @@ export function HomeFaqSection() {
               viewport={{ once: true }}
             >
               <p className="text-lg text-[#64748d] leading-relaxed max-w-md" style={{ fontFamily: "var(--font-quicksand)" }}>
-                Architecture, security, timelines — the questions we get on every first call.
+                {content?.subheading || "Architecture, security, timelines — the questions we get on every first call."}
               </p>
             </motion.div>
 
@@ -92,7 +92,7 @@ export function HomeFaqSection() {
                   className="px-8 py-3.5 rounded-full bg-[#533afd] text-white font-medium shadow-lg hover:opacity-90 hover:-translate-y-0.5 transition-all text-[15px]"
                   style={{ fontFamily: 'var(--font-inter)' }}
                 >
-                  Request a Call
+                  {content?.cta || "Request a Call"}
                 </button>
               </BookCallDialog>
             </motion.div>
@@ -107,7 +107,7 @@ export function HomeFaqSection() {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true, amount: 0.1 }}
             >
-              {homeFaqs.map((faq, i) => {
+              {(content?.items || []).map((faq: any, i: number) => {
                 const isOpen = openIndex === i
                 return (
                   <motion.div

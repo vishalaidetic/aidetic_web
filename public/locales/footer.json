@@ -1,0 +1,69 @@
+{
+  "description": "Aidetic builds AI-powered analytics agents so businesses can get instant, cited answers from their own data.",
+  "copyright": "All rights reserved.",
+  "watermark": "aidetic",
+  "columns": [
+    {
+      "heading": "Resources",
+      "links": [
+        {
+          "label": "Case Studies",
+          "href": "/case-studies"
+        },
+        {
+          "label": "Blogs",
+          "href": "/blog"
+        },
+        {
+          "label": "Documentation",
+          "href": "#"
+        }
+      ]
+    },
+    {
+      "heading": "Contact",
+      "links": [
+        {
+          "label": "Schedule a Demo",
+          "href": "#"
+        },
+        {
+          "label": "Technology Partner",
+          "href": "#"
+        }
+      ]
+    },
+    {
+      "heading": "Legal",
+      "links": [
+        {
+          "label": "Privacy Policy",
+          "href": "#"
+        },
+        {
+          "label": "Terms of Service",
+          "href": "#"
+        },
+        {
+          "label": "Refund Policy",
+          "href": "#"
+        }
+      ]
+    },
+    {
+      "heading": "Social",
+      "links": [
+        {
+          "label": "LinkedIn",
+          "href": "#",
+          "icon": "linkedin"
+        },
+        {
+          "label": "Twitter",
+          "href": "#",
+          "icon": "twitter"
+        }
+      ]
+    }
+  ]
+}

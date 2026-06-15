@@ -1,0 +1,21 @@
+{
+  "hero": {
+    "heading": "Aidetic Blogs",
+    "subheading": "Stay updated with the latest trends and insights in AI, Data-Science, and modern Generative AI technologies."
+  },
+  "empty_state": {
+    "text": "No posts found for \"{selectedTag}\"."
+  },
+  "labels": {
+    "all_posts": "All Posts",
+    "read_more": "Read More",
+    "published": "Published",
+    "draft": "Draft",
+    "featured": "Featured",
+    "min_read": "min read"
+  },
+  "featured": {
+    "heading": "Featured Blog Posts",
+    "subheading": "Read our most popular blogs in one place"
+  }
+}

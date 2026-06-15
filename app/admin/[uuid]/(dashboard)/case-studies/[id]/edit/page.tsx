@@ -18,15 +18,7 @@ export default async function EditCaseStudyPage({
   try {
     const repository = getCaseStudyRepository()
     const caseStudy = await repository.getCaseStudyById(id)
-
-    return (
-      <div className="w-full px-4 sm:px-6 lg:px-8 py-12">
-        <div className="w-full mx-auto">
-          <h1 className="text-3xl font-bold mb-8">Edit Case Study</h1>
-          <CaseStudyForm initialData={caseStudy} isEditing />
-        </div>
-      </div>
-    )
+    return <CaseStudyForm initialData={caseStudy} isEditing />
   } catch (error) {
     notFound()
   }

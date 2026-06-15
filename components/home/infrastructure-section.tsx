@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Activity, Bot, Layers, Plug, ShieldCheck, Zap } from "lucide-react";
 
 
-export function InfrastructureSection() {
+export function InfrastructureSection({ content }: { content?: any }) {
   return (
     <section className="relative w-full bg-gradient-to-br from-[#f6f9fc] snap-start via-white to-[#eaf5fd] py-24 px-6 overflow-hidden border-t border-slate-200">
 

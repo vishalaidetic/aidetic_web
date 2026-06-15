@@ -3,98 +3,112 @@
 import { motion } from 'framer-motion'
 import { BarChart2, ShieldCheck, Zap } from 'lucide-react'
 
-const resources = [
-  {
-    type: 'E-BOOK',
-    title: 'Trust or Bust: How to Deliver Accurate AI-Powered Analytics',
-    visual: (
-      <div className="w-full h-full bg-gradient-to-br from-[#f6f9fc] to-[#f5e9d4] p-6 flex flex-col relative overflow-hidden group-hover:scale-105 transition-transform duration-500">
-        <div className="flex items-center gap-2 mb-3">
-          <div className="w-4 h-4 rounded bg-slate-900/10 flex items-center justify-center">
-            <div className="w-2 h-2 bg-slate-900 rounded-sm"></div>
+const getResources = (content: any) => {
+  const items = content?.items || [];
+  return [
+    {
+      type: items[0]?.type,
+      title: items[0]?.title,
+      visual: (
+        <div className="w-full h-full bg-gradient-to-br from-[#f6f9fc] to-[#f5e9d4] p-6 flex flex-col relative overflow-hidden group-hover:scale-105 transition-transform duration-500">
+          <div className="flex items-center gap-2 mb-3">
+            <div className="w-4 h-4 rounded bg-slate-900/10 flex items-center justify-center">
+              <div className="w-2 h-2 bg-slate-900 rounded-sm"></div>
+            </div>
+            <span className="text-[#0d253d] text-[8px] font-bold" style={{ fontFamily: 'var(--font-inter)' }}>{items[0]?.brand}</span>
           </div>
-          <span className="text-[#0d253d] text-[8px] font-bold" style={{ fontFamily: 'var(--font-inter)' }}>ThoughtSpot</span>
-        </div>
-        <div className="text-[#64748d] text-[8px] font-bold tracking-wider mb-1" style={{ fontFamily: 'var(--font-inter)' }}>EBOOK</div>
-        <div className="text-[#0d253d] text-lg sm:text-xl font-bold leading-tight z-10 w-3/4" style={{ fontFamily: 'var(--font-inter)' }}>
-          Trust or Bust<br />
-          <span className="text-[10px] sm:text-xs font-normal text-[#64748d]">How to Deliver Accurate<br />AI-Powered Analytics</span>
-        </div>
-        <div className="mt-auto z-10 pt-4">
-          <div className="bg-slate-900 text-white text-[7px] px-3 py-1.5 rounded w-fit uppercase font-bold tracking-wider">GET THE GUIDE</div>
-        </div>
-        <div className="absolute right-4 top-1/2 -translate-y-1/2 w-16 h-16 bg-[#ea2261] rounded-2xl rotate-12 flex items-center justify-center shadow-xl">
-          <ShieldCheck className="w-8 h-8 text-white" />
-        </div>
-        <div className="absolute right-0 top-0 w-32 h-32 bg-white/20 rounded-full blur-2xl"></div>
-      </div>
-    )
-  },
-  {
-    type: 'WEBINAR',
-    title: 'The Fastest Path from Data to Insight',
-    visual: (
-      <div className="w-full h-full bg-[#0a0f1c] p-6 flex flex-col relative overflow-hidden group-hover:scale-105 transition-transform duration-500">
-        <div className="flex items-center gap-2 mb-3">
-          <div className="w-4 h-4 rounded bg-white/10 flex items-center justify-center">
-            <div className="w-2 h-2 bg-white rounded-sm"></div>
+          <div className="text-[#64748d] text-[8px] font-bold tracking-wider mb-1" style={{ fontFamily: 'var(--font-inter)' }}>{items[0]?.visual_type}</div>
+          <div className="text-[#0d253d] text-lg sm:text-xl font-bold leading-tight z-10 w-3/4" style={{ fontFamily: 'var(--font-inter)' }}>
+            {items[0]?.visual_title_1}<br />
+            <span className="text-[10px] sm:text-xs font-normal text-[#64748d]">
+              {items[0]?.visual_title_2}
+              <br />
+              {items[0]?.visual_title_3}
+            </span>
           </div>
-          <span className="text-slate-300 text-[8px] font-bold" style={{ fontFamily: 'var(--font-inter)' }}>ThoughtSpot</span>
-        </div>
-        <div className="text-[#665efd] text-[8px] font-bold tracking-wider mb-1" style={{ fontFamily: 'var(--font-inter)' }}>WEBINAR</div>
-        <div className="text-white text-lg sm:text-xl font-bold leading-tight z-10 w-2/3" style={{ fontFamily: 'var(--font-inter)' }}>
-          The Fastest<br />Path from Data<br />to Insight
-        </div>
-        <div className="mt-auto z-10 pt-4">
-          <div className="bg-[#533afd] text-white text-[7px] px-3 py-1.5 rounded w-fit uppercase font-bold tracking-wider">REGISTER NOW</div>
-        </div>
-        <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center">
-          <div className="w-12 h-12 bg-[#533afd]/20 rounded-full border border-[#533afd]/50 flex items-center justify-center -mr-2 z-10 backdrop-blur-sm">
-            <Zap className="w-5 h-5 text-[#665efd]" />
+          <div className="mt-auto z-10 pt-4">
+            <div className="bg-slate-900 text-white text-[7px] px-3 py-1.5 rounded w-fit uppercase font-bold tracking-wider">{items[0]?.button}</div>
           </div>
-          <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg">
-            <span className="text-[#0d253d] font-bold text-lg">T</span>
+          <div className="absolute right-4 top-1/2 -translate-y-1/2 w-16 h-16 bg-[#ea2261] rounded-2xl rotate-12 flex items-center justify-center shadow-xl">
+            <ShieldCheck className="w-8 h-8 text-white" />
           </div>
+          <div className="absolute right-0 top-0 w-32 h-32 bg-white/20 rounded-full blur-2xl"></div>
         </div>
-      </div>
-    )
-  },
-  {
-    type: 'ANALYST REPORT',
-    title: 'Build with the Leader in Embedded Analytics',
-    visual: (
-      <div className="w-full h-full bg-[#0a0f1c] p-6 flex flex-col relative overflow-hidden group-hover:scale-105 transition-transform duration-500">
-        <div className="flex items-center gap-2 mb-3">
-          <div className="w-4 h-4 rounded bg-white/10 flex items-center justify-center">
-            <div className="w-2 h-2 bg-white rounded-sm"></div>
+      )
+    },
+    {
+      type: items[1]?.type,
+      title: items[1]?.title,
+      visual: (
+        <div className="w-full h-full bg-[#0a0f1c] p-6 flex flex-col relative overflow-hidden group-hover:scale-105 transition-transform duration-500">
+          <div className="flex items-center gap-2 mb-3">
+            <div className="w-4 h-4 rounded bg-white/10 flex items-center justify-center">
+              <div className="w-2 h-2 bg-white rounded-sm"></div>
+            </div>
+            <span className="text-slate-300 text-[8px] font-bold" style={{ fontFamily: 'var(--font-inter)' }}>{items[1]?.brand}</span>
           </div>
-          <span className="text-slate-300 text-[8px] font-bold" style={{ fontFamily: 'var(--font-inter)' }}>ThoughtSpot</span>
-        </div>
-        <div className="text-[#665efd] text-[8px] font-bold tracking-wider mb-1" style={{ fontFamily: 'var(--font-inter)' }}>ANALYST REPORT</div>
-        <div className="text-white text-lg sm:text-xl font-bold leading-tight z-10 w-2/3" style={{ fontFamily: 'var(--font-inter)' }}>
-          Build with<br />the Best in<br /><span className="text-[#665efd]">Embedded<br />Analytics</span>
-        </div>
-        <div className="mt-auto z-10 pt-4">
-          <div className="bg-[#533afd] text-white text-[7px] px-3 py-1.5 rounded w-fit uppercase font-bold tracking-wider">LEARN MORE</div>
-        </div>
-        <div className="absolute right-4 top-4 bottom-4 w-[45%] bg-white rounded flex items-center justify-center p-2">
-          <div className="w-full h-full border-l border-[#533afd] border-slate-200 relative flex items-center justify-center">
-            <BarChart2 className="w-8 h-8 text-slate-200" />
-            <div className="absolute w-1.5 h-1.5 rounded-full bg-[#533afd] top-2 left-2"></div>
-            <div className="absolute w-1.5 h-1.5 rounded-full bg-[#ea2261] top-6 left-6"></div>
-            <div className="absolute w-1.5 h-1.5 rounded-full bg-indigo-500 bottom-4 right-4"></div>
-            <div className="absolute w-1.5 h-1.5 rounded-full bg-violet-500 top-4 right-8"></div>
-            <div className="absolute w-1.5 h-1.5 rounded-full bg-rose-500 bottom-6 left-4"></div>
-            <div className="absolute w-1 h-1 rounded-full bg-orange-400 top-2 right-2"></div>
-            <div className="absolute w-1 h-1 rounded-full bg-emerald-400 bottom-2 right-6"></div>
+          <div className="text-[#665efd] text-[8px] font-bold tracking-wider mb-1" style={{ fontFamily: 'var(--font-inter)' }}>{items[1]?.visual_type}</div>
+          <div className="text-white text-lg sm:text-xl font-bold leading-tight z-10 w-2/3" style={{ fontFamily: 'var(--font-inter)' }}>
+            {items[1]?.visual_title_1}<br />
+            {items[1]?.visual_title_2}<br />
+            {items[1]?.visual_title_3}
+          </div>
+          <div className="mt-auto z-10 pt-4">
+            <div className="bg-[#533afd] text-white text-[7px] px-3 py-1.5 rounded w-fit uppercase font-bold tracking-wider">{items[1]?.button}</div>
+          </div>
+          <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center">
+            <div className="w-12 h-12 bg-[#533afd]/20 rounded-full border border-[#533afd]/50 flex items-center justify-center -mr-2 z-10 backdrop-blur-sm">
+              <Zap className="w-5 h-5 text-[#665efd]" />
+            </div>
+            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg">
+              <span className="text-[#0d253d] font-bold text-lg">T</span>
+            </div>
           </div>
         </div>
-      </div>
-    )
-  },
-]
+      )
+    },
+    {
+      type: items[2]?.type,
+      title: items[2]?.title,
+      visual: (
+        <div className="w-full h-full bg-[#0a0f1c] p-6 flex flex-col relative overflow-hidden group-hover:scale-105 transition-transform duration-500">
+          <div className="flex items-center gap-2 mb-3">
+            <div className="w-4 h-4 rounded bg-white/10 flex items-center justify-center">
+              <div className="w-2 h-2 bg-white rounded-sm"></div>
+            </div>
+            <span className="text-slate-300 text-[8px] font-bold" style={{ fontFamily: 'var(--font-inter)' }}>{items[2]?.brand}</span>
+          </div>
+          <div className="text-[#665efd] text-[8px] font-bold tracking-wider mb-1" style={{ fontFamily: 'var(--font-inter)' }}>{items[2]?.visual_type}</div>
+          <div className="text-white text-lg sm:text-xl font-bold leading-tight z-10 w-2/3" style={{ fontFamily: 'var(--font-inter)' }}>
+            {items[2]?.visual_title_1}<br />
+            {items[2]?.visual_title_2}<br />
+            <span className="text-[#665efd]">
+              {items[2]?.visual_title_3}
+            </span>
+          </div>
+          <div className="mt-auto z-10 pt-4">
+            <div className="bg-[#533afd] text-white text-[7px] px-3 py-1.5 rounded w-fit uppercase font-bold tracking-wider">{items[2]?.button}</div>
+          </div>
+          <div className="absolute right-4 top-4 bottom-4 w-[45%] bg-white rounded flex items-center justify-center p-2">
+            <div className="w-full h-full border-l border-[#533afd] border-slate-200 relative flex items-center justify-center">
+              <BarChart2 className="w-8 h-8 text-slate-200" />
+              <div className="absolute w-1.5 h-1.5 rounded-full bg-[#533afd] top-2 left-2"></div>
+              <div className="absolute w-1.5 h-1.5 rounded-full bg-[#ea2261] top-6 left-6"></div>
+              <div className="absolute w-1.5 h-1.5 rounded-full bg-indigo-500 bottom-4 right-4"></div>
+              <div className="absolute w-1.5 h-1.5 rounded-full bg-violet-500 top-4 right-8"></div>
+              <div className="absolute w-1.5 h-1.5 rounded-full bg-rose-500 bottom-6 left-4"></div>
+              <div className="absolute w-1 h-1 rounded-full bg-orange-400 top-2 right-2"></div>
+              <div className="absolute w-1 h-1 rounded-full bg-emerald-400 bottom-2 right-6"></div>
+            </div>
+          </div>
+        </div>
+      )
+    },
+  ];
+}
 
-export function LearnMoreSection() {
+export function LearnMoreSection({ content }: { content?: any }) {
+  const resources = getResources(content);
   return (
     <section className="relative w-full bg-gradient-to-br from-white via-[#f6f9fc] to-[#f6f9fc]/60 py-24 px-6 overflow-hidden">
 
@@ -135,7 +149,7 @@ export function LearnMoreSection() {
               backgroundClip: 'text',
             }}
           >
-            Learn More About Agentic Analytics
+            {content?.heading}
           </h2>
         </motion.div>
 

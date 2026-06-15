@@ -8,7 +8,7 @@ import { BookCallDialog } from '@/components/shared/book-call-dialog';
 import { DashboardMock } from '@/components/home/dashboard-mock';
 
 
-export function CmoCtaSection() {
+export function CmoCtaSection({ content }: { content?: any }) {
   return (
     <section className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 border-t border-slate-200 snap-start scroll-mt-24 overflow-hidden">
           <motion.div
@@ -36,10 +36,10 @@ export function CmoCtaSection() {
                 className="text-xl md:text-2xl font-bold text-[#0d253d]"
                 style={{ fontFamily: 'var(--font-inter)' }}
               >
-                Hi! I am Anurag, CMO at Aidetic.
+                {content?.heading || "Hi! I am Anurag, CMO at Aidetic."}
               </h4>
               <p className="text-sm md:text-base text-[#64748d]" style={{ fontFamily: 'var(--font-quicksand)' }}>
-                Curious how our products will help your business? Let's Talk.
+                {content?.subheading || "Curious how our products will help your business? Let's Talk."}
               </p>
             </div>
 
@@ -50,7 +50,7 @@ export function CmoCtaSection() {
                   className="px-8 py-3.5 rounded-full bg-[#533afd] text-white font-medium shadow-lg hover:opacity-90 hover:-translate-y-0.5 transition-all text-[15px]"
                   style={{ fontFamily: 'var(--font-inter)' }}
                 >
-                  Request a Call
+                  {content?.cta || "Request a Call"}
                 </button>
               </BookCallDialog>
             </div>
