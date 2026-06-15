@@ -28,8 +28,8 @@ export function DashboardSidebar() {
   const navLinkClass = (active: boolean) =>
     `w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all group text-sm ${
       active
-        ? 'bg-[#1B2340] text-white font-semibold shadow-sm'
-        : 'text-[#6B7280] hover:text-[#1B2340] hover:bg-[#1B2340]/5 font-medium'
+        ? 'bg-[#DC2626] text-white font-semibold shadow-sm'
+        : 'text-[#6B7280] hover:text-[#DC2626] hover:bg-[#DC2626]/5 font-medium'
     }`
 
   return (
@@ -39,31 +39,31 @@ export function DashboardSidebar() {
 
         {/* Dashboard */}
         <Link href={base} className={navLinkClass(isActive(base))}>
-          <LayoutDashboard size={17} className={isActive(base) ? 'text-white' : 'text-[#6B7280] group-hover:text-[#1B2340]'} />
+          <LayoutDashboard size={17} className={isActive(base) ? 'text-white' : 'text-[#6B7280] group-hover:text-[#DC2626]'} />
           <span>Dashboard</span>
         </Link>
 
         {/* Blog Posts */}
         <Link href={`${base}/blogs`} className={navLinkClass(isActive(`${base}/blogs`))}>
-          <BookOpen size={17} className={isActive(`${base}/blogs`) ? 'text-white' : 'text-[#6B7280] group-hover:text-[#1B2340]'} />
+          <BookOpen size={17} className={isActive(`${base}/blogs`) ? 'text-white' : 'text-[#6B7280] group-hover:text-[#DC2626]'} />
           <span>Blog Posts</span>
         </Link>
 
         {/* Case Studies */}
         <Link href={`${base}/case-studies`} className={navLinkClass(isActive(`${base}/case-studies`))}>
-          <FileText size={17} className={isActive(`${base}/case-studies`) ? 'text-white' : 'text-[#6B7280] group-hover:text-[#1B2340]'} />
+          <FileText size={17} className={isActive(`${base}/case-studies`) ? 'text-white' : 'text-[#6B7280] group-hover:text-[#DC2626]'} />
           <span>Case Studies</span>
         </Link>
 
         {/* Meeting Requests */}
         <Link href={`${base}/meeting-requests`} className={navLinkClass(isActive(`${base}/meeting-requests`))}>
-          <Users size={17} className={isActive(`${base}/meeting-requests`) ? 'text-white' : 'text-[#6B7280] group-hover:text-[#1B2340]'} />
+          <Users size={17} className={isActive(`${base}/meeting-requests`) ? 'text-white' : 'text-[#6B7280] group-hover:text-[#DC2626]'} />
           <span>Meeting Requests</span>
         </Link>
 
         {/* Content Manager */}
         <Link href={`${base}/content-manager/home`} className={navLinkClass(pathname.includes('/content-manager'))}>
-          <Languages size={17} className={pathname.includes('/content-manager') ? 'text-white' : 'text-[#6B7280] group-hover:text-[#1B2340]'} />
+          <Languages size={17} className={pathname.includes('/content-manager') ? 'text-white' : 'text-[#6B7280] group-hover:text-[#DC2626]'} />
           <span>Content Manager</span>
         </Link>
 
@@ -95,7 +95,7 @@ export function DashboardSidebar() {
                 className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm transition-all ${
                   active
                     ? 'bg-[#DC2626] text-white font-semibold shadow-sm'
-                    : 'text-[#6B7280] hover:text-[#1B2340] hover:bg-slate-200/50 font-medium'
+                    : 'text-[#6B7280] hover:text-[#DC2626] hover:bg-slate-200/50 font-medium'
                 }`}
               >
                 <Icon size={16} className={active ? 'text-white' : 'text-[#6B7280]'} />

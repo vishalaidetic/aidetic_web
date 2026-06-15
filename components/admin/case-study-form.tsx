@@ -1,7 +1,7 @@
 'use client'
 
-import { CaseStudyLayout } from '@/components/case-studies/case-study-layout'
 import { CollapsibleCard } from '@/components/admin/collapsible-card'
+import { CaseStudyLayout } from '@/components/case-studies/case-study-layout'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -28,7 +28,7 @@ type CSSection = 'author' | 'company' | 'case_study' | 'problem' | 'solution' | 
 interface Props { initialData?: CaseStudy & any; isEditing?: boolean }
 
 const cls = (err?: boolean) =>
-  `w-full text-[14px] text-[#0d253d] bg-white border rounded-xl px-4 py-2.5 focus:outline-none focus:ring-4 transition-all shadow-sm h-auto ${err ? 'border-destructive focus:ring-destructive/10 focus:border-destructive' : 'border-slate-200 focus:ring-[#DC2626]/10 focus:border-[#DC2626]'}`
+  `w-full text-[14px] text-[#0d253d] bg-white border rounded-xl px-4 py-2.5 outline-none transition-all shadow-sm h-auto focus-visible:ring-[3px] focus-visible:outline-none ${err ? 'border-destructive focus-visible:ring-destructive/20 focus-visible:border-destructive' : 'border-slate-200 focus-visible:ring-[#DC2626]/20 focus-visible:border-[#DC2626]'}`
 
 const navItems: { key: CSSection; label: string; icon: React.ElementType }[] = [
   { key: 'author', label: 'Author Info', icon: User },
@@ -98,13 +98,30 @@ export function CaseStudyForm({ initialData, isEditing = false }: Props) {
 
   const handleJsonImport = () => {
     setJsonError(null)
-    let parsed: any
+    let parsedRaw: any
     try {
-      parsed = JSON.parse(jsonText)
+      parsedRaw = JSON.parse(jsonText)
     } catch {
       setJsonError('Invalid JSON — please check your syntax.')
       return
     }
+
+    const cleanJson = (obj: any): any => {
+      if (Array.isArray(obj)) {
+        return obj.map(cleanJson)
+      }
+      if (obj && typeof obj === 'object') {
+        return Object.fromEntries(
+          Object.entries(obj)
+            .filter(([k]) => !k.startsWith('_'))
+            .map(([k, v]) => [k, cleanJson(v)])
+        )
+      }
+      return obj
+    }
+
+    const parsed = cleanJson(parsedRaw)
+
     // Validate against schema (soft — just try, don't block)
     const { problem, solution, results, metrics, ...rest } = parsed
     reset({ ...rest, problem: problem ?? { heading: '', description: '', cards: [] }, solution: solution ?? { heading: '', description: '', steps: [] }, results: results ?? { title: '', items: [] }, metrics: metrics ?? [] })
@@ -118,6 +135,72 @@ export function CaseStudyForm({ initialData, isEditing = false }: Props) {
     if (rest.featured_image) setImagePreview(rest.featured_image)
     setJsonModal('closed')
     setJsonText('')
+  }
+
+  const handleJsonExport = () => {
+    const exportData: any = { ...watch() }
+
+    if (!exportData.title) {
+      exportData._version = "1.0"
+      exportData._description = "Case Study Import Template"
+    }
+
+    if (!exportData.metrics?.length) {
+      exportData.metrics = [{
+        _help: "Top hero metric",
+        metric_value: "35%",
+        metric_label: "Reduction in hiring time",
+        display_order: 0
+      }]
+    }
+
+    if (!exportData.problem?.cards?.length) {
+      exportData.problem = {
+        ...(exportData.problem || {}),
+        cards: [{
+          _help: "Single challenge card",
+          stat: "15+",
+          stat_label: "hours wasted",
+          title: "Manual Resume Screening",
+          bullets: ["Reviewing applications manually", "Slow candidate evaluation", "High recruiter workload"],
+          display_order: 0
+        }]
+      }
+    }
+
+    if (!exportData.solution?.steps?.length) {
+      exportData.solution = {
+        ...(exportData.solution || {}),
+        steps: [{
+          _help: "One solution step",
+          step_number: 1,
+          title: "Automated Screening",
+          bullets: ["Resume scoring", "Candidate ranking", "Auto filtering"],
+          display_order: 0
+        }]
+      }
+    }
+
+    if (!exportData.results?.items?.length) {
+      exportData.results = {
+        ...(exportData.results || {}),
+        items: [{
+          _help: "Result block",
+          category: "Efficiency",
+          badge: "35% IMPROVEMENT",
+          metrics: [
+            { value: "35%", label: "faster hiring" },
+            { value: "15+", label: "hours saved" },
+            { value: "60%", label: "less manual work" }
+          ],
+          display_order: 0
+        }]
+      }
+    }
+
+    setJsonText(JSON.stringify(exportData, null, 2))
+    setJsonError(null)
+    setJsonModal('export')
   }
 
   const handleTitleChange = (v: string) => { if (!isEditing) setValue('slug', generateSlug(v)) }
@@ -174,19 +257,19 @@ export function CaseStudyForm({ initialData, isEditing = false }: Props) {
       <div className="w-full h-full flex flex-col bg-slate-50 -m-6 sm:-m-8 lg:-m-10 min-h-screen">
         <div className="sticky top-0 z-50 bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between shadow-sm">
           <div className="flex items-center gap-4">
-            <Button type="button" variant="ghost" size="sm" onClick={() => setShowPreview(false)} className="text-[#6B7280] hover:text-[#1B2340]">
+            <Button type="button" variant="ghost" size="sm" onClick={() => setShowPreview(false)} className="text-black hover:text-white hover:bg-black">
               ← Back to Edit
             </Button>
             <h2 className="text-lg font-semibold text-[#1B2340]">Preview Mode</h2>
           </div>
           <div className="flex items-center gap-3">
-            <Button type="button" variant="outline" onClick={() => { setJsonText(JSON.stringify(watch(), null, 2)); setJsonError(null); setJsonModal('export') }} className="border-slate-200 text-slate-600 hover:text-[#1B2340] text-sm gap-1.5">
+            <Button type="button" variant="outline" onClick={handleJsonExport} className="border-black text-black hover:text-white hover:bg-black text-sm gap-1.5">
               <Download size={13} /> Export JSON
             </Button>
-            <Button type="button" variant="outline" onClick={() => { setJsonText(''); setJsonError(null); setJsonModal('import') }} className="border-slate-200 text-slate-600 hover:text-[#1B2340] text-sm gap-1.5">
+            <Button type="button" variant="outline" onClick={() => { setJsonText(''); setJsonError(null); setJsonModal('import') }} className="border-black text-black hover:text-white hover:bg-black text-sm gap-1.5">
               <Upload size={13} /> Import JSON
             </Button>
-            <button type="button" onClick={handleSubmit(onSubmit)} disabled={isLoading} className="flex items-center gap-2 px-5 py-2 rounded-lg bg-black text-white text-sm font-semibold hover:opacity-90 disabled:opacity-60 transition-all shadow-sm">
+            <button type="button" onClick={handleSubmit(onSubmit)} disabled={isLoading} className="flex items-center gap-2 px-5 py-2 rounded-lg bg-black text-white text-sm font-semibold hover:bg-[#DC2626] disabled:opacity-60 transition-all shadow-sm">
               {isLoading ? <Loader2 size={15} className="animate-spin" /> : <Save size={15} />}
               {isLoading ? 'Saving…' : isEditing ? 'Update Study' : 'Save Study'}
             </button>
@@ -219,7 +302,7 @@ export function CaseStudyForm({ initialData, isEditing = false }: Props) {
             const isActive = active === key
             return (
               <button key={key} type="button" onClick={() => setActive(key)}
-                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all ${isActive ? 'bg-[#DC2626] text-white font-semibold shadow-sm' : 'text-[#6B7280] hover:text-[#1B2340] hover:bg-slate-200/50 font-medium'}`}>
+                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all ${isActive ? 'bg-[#DC2626] text-white font-semibold shadow-sm' : 'text-[#6B7280] hover:text-[#DC2626] hover:bg-slate-200/50 font-medium'}`}>
                 <Icon size={15} className={isActive ? 'text-white' : 'text-[#6B7280]'} />
                 <span>{label}</span>
               </button>
@@ -244,16 +327,16 @@ export function CaseStudyForm({ initialData, isEditing = false }: Props) {
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <Button type="button" variant="outline" onClick={() => router.back()} className="border-slate-200 text-[#6B7280] hover:text-[#1B2340] text-sm">Cancel</Button>
-            <Button type="button" onClick={() => setShowPreview(true)} className="bg-slate-100 text-[#1B2340] hover:bg-slate-200 text-sm">Preview</Button>
-            <Button type="button" variant="outline" onClick={() => { setJsonText(JSON.stringify(watch(), null, 2)); setJsonError(null); setJsonModal('export') }} className="border-slate-200 text-slate-600 hover:text-[#1B2340] text-sm gap-1.5 hidden sm:flex">
+            <Button type="button" variant="outline" onClick={() => router.back()} className="border-black text-black hover:bg-black hover:text-white text-sm">Cancel</Button>
+            <Button type="button" onClick={() => setShowPreview(true)} className="bg-black text-white hover:bg-[#DC2626] text-sm">Preview</Button>
+            <Button type="button" variant="outline" onClick={handleJsonExport} className="border-black text-black hover:text-white hover:bg-black text-sm gap-1.5 hidden sm:flex">
               <Download size={13} /> Export JSON
             </Button>
-            <Button type="button" variant="outline" onClick={() => { setJsonText(''); setJsonError(null); setJsonModal('import') }} className="border-slate-200 text-slate-600 hover:text-[#1B2340] text-sm gap-1.5 hidden sm:flex">
+            <Button type="button" variant="outline" onClick={() => { setJsonText(''); setJsonError(null); setJsonModal('import') }} className="border-black text-black hover:text-white hover:bg-black text-sm gap-1.5 hidden sm:flex">
               <Upload size={13} /> Import JSON
             </Button>
             <button type="submit" disabled={isLoading || isUploading}
-              className="flex items-center gap-2 px-5 py-2 rounded-lg bg-black text-white text-sm font-semibold hover:opacity-90 disabled:opacity-60 transition-all shadow-sm">
+              className="flex items-center gap-2 px-5 py-2 rounded-lg bg-[#DC2626] text-white text-sm font-semibold hover:bg-black disabled:opacity-60 transition-all shadow-sm">
               {isLoading ? <Loader2 size={15} className="animate-spin" /> : <Save size={15} />}
               {isLoading ? 'Saving…' : isEditing ? 'Update Study' : 'Save Study'}
             </button>
@@ -402,9 +485,9 @@ export function CaseStudyForm({ initialData, isEditing = false }: Props) {
               </CollapsibleCard>
 
               {/* Highlights / Hero Metrics */}
-              <CollapsibleCard 
-                title="Highlights" 
-                subtitle="Key stats shown at the top — e.g. 50% · Faster time-to-hire" 
+              <CollapsibleCard
+                title="Highlights"
+                subtitle="Key stats shown at the top — e.g. 50% · Faster time-to-hire"
                 defaultOpen={false}
                 headerAction={
                   <Button
@@ -474,8 +557,8 @@ export function CaseStudyForm({ initialData, isEditing = false }: Props) {
                 </div>
               </CollapsibleCard>
 
-              <CollapsibleCard 
-                title="Problem Cards" 
+              <CollapsibleCard
+                title="Problem Cards"
                 defaultOpen={false}
                 headerAction={
                   <Button type="button" variant="outline" size="sm" onClick={() => appendProblemCard({ stat: '', stat_label: '', title: '', bullets: [], display_order: problemCards.length })}>
@@ -551,8 +634,8 @@ export function CaseStudyForm({ initialData, isEditing = false }: Props) {
                 </div>
               </CollapsibleCard>
 
-              <CollapsibleCard 
-                title="Solution Steps" 
+              <CollapsibleCard
+                title="Solution Steps"
                 defaultOpen={false}
                 headerAction={
                   <Button type="button" variant="outline" size="sm" onClick={() => appendSolutionStep({ step_number: solutionSteps.length + 1, title: '', bullets: [], display_order: solutionSteps.length })}>
@@ -614,8 +697,8 @@ export function CaseStudyForm({ initialData, isEditing = false }: Props) {
                 </div>
               </CollapsibleCard>
 
-              <CollapsibleCard 
-                title="Result Items" 
+              <CollapsibleCard
+                title="Result Items"
                 defaultOpen={false}
                 headerAction={
                   <Button type="button" variant="outline" size="sm" onClick={() => appendResultItem({ category: '', badge: '', metrics: [], display_order: resultItems.length })}>
@@ -717,16 +800,16 @@ export function CaseStudyForm({ initialData, isEditing = false }: Props) {
             </div>
 
             <div className="px-6 py-4 border-t border-slate-100 bg-slate-50/50 flex items-center justify-end gap-3">
-              <Button type="button" variant="ghost" onClick={() => setJsonModal('closed')} className="text-slate-600 hover:text-slate-900">
+              <Button type="button" variant="ghost" onClick={() => setJsonModal('closed')} className="text-black hover:text-white hover:bg-black">
                 Cancel
               </Button>
               {jsonModal === 'import' ? (
-                <Button type="button" onClick={handleJsonImport} className="bg-[#1B2340] text-white hover:bg-[#1B2340]/90">
+                <Button type="button" onClick={handleJsonImport} className="bg-black text-white hover:bg-[#DC2626]">
                   <Upload size={16} className="mr-2" />
                   Import Data
                 </Button>
               ) : (
-                <Button type="button" onClick={() => { navigator.clipboard.writeText(jsonText); setJsonModal('closed'); }} className="bg-[#1B2340] text-white hover:bg-[#1B2340]/90">
+                <Button type="button" onClick={() => { navigator.clipboard.writeText(jsonText); setJsonModal('closed'); }} className="bg-black text-white hover:bg-[#DC2626]">
                   <Copy size={16} className="mr-2" />
                   Copy to Clipboard
                 </Button>

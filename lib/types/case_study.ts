@@ -100,16 +100,24 @@ export const CaseStudyCreateInputSchema = z.object({
   
   results: z.object({
     title: z.string().nullable().optional(),
-    items: z.array(z.object({
-      category: z.string().nullable().optional(),
-      badge: z.string().nullable().optional(),
-      metrics: z.array(z.object({
-        value: z.string().nullable().optional(),
-        label: z.string().nullable().optional(),
-      })).default([]),
-      display_order: z.number().default(0)
-    })).default([])
+    items: z.array(z.union([
+      z.string().transform(str => ({ category: str, badge: '', metrics: [], display_order: 0 })),
+      z.object({
+        category: z.string().nullable().optional(),
+        badge: z.string().nullable().optional(),
+        metrics: z.array(z.object({
+          value: z.string().nullable().optional(),
+          label: z.string().nullable().optional(),
+        })).default([]),
+        display_order: z.number().default(0)
+      })
+    ])).default([])
   }).optional().nullable(),
+
+  highlights: z.array(z.object({
+    title: z.string().nullable().optional(),
+    description: z.string().nullable().optional()
+  })).optional().nullable(),
   
   metrics: z.array(z.object({
     metric_value: z.string().min(1),

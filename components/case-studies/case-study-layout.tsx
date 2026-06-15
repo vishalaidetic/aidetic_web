@@ -1,6 +1,5 @@
-import React from 'react'
-import { Check } from 'lucide-react'
 import { BlogContent } from '@/components/blog/blog-content'
+import { Check } from 'lucide-react'
 import Link from 'next/link'
 
 // ─── Hero Card ───────────────────────────────────────────────
@@ -11,28 +10,36 @@ function HeroCard({ study }: { study: any }) {
   const accentColor = colors[colorIdx]
 
   return (
-    <div className="relative w-full rounded-[2rem] overflow-hidden border border-slate-200/80 bg-white min-h-[360px] flex flex-col justify-between p-10 shadow-xl shadow-slate-200/40 group transition-all duration-500 hover:shadow-2xl hover:-translate-y-1">
+    <div className="relative w-full rounded-[2rem] overflow-hidden border border-[#533afd]/10 min-h-[380px] flex flex-col justify-between p-10 sm:p-12 shadow-sm shadow-[#533afd]/5 group transition-all duration-500 hover:shadow-lg hover:shadow-[#533afd]/10 hover:border-[#533afd]/20">
 
-      {/* Subtle dot-grid pattern */}
+      {/* ── Background: Agent Factory Duo Gradient ── */}
+      {/* Light base: cream-white to soft lavender (matches Agent Factory CTA) */}
+      <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, #fcf2e3 0%, #fde2f3 45%, #e6e2fd 100%)' }} />
+      {/* Violet glow top-left */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_rgba(83,58,253,0.10)_0%,_transparent_60%)]" />
+      {/* Pink glow bottom-right */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_rgba(234,34,97,0.08)_0%,_transparent_60%)]" />
+      {/* Subtle grid lines */}
       <div
-        className="absolute inset-0 pointer-events-none transition-opacity duration-700 group-hover:opacity-70"
+        className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: 'radial-gradient(circle, #94a3b8 1.5px, transparent 1.5px)',
-          backgroundSize: '24px 24px',
-          opacity: 0.25,
+          backgroundImage: 'linear-gradient(rgba(83,58,253,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(83,58,253,0.04) 1px, transparent 1px)',
+          backgroundSize: '40px 40px',
         }}
       />
-      {/* Fade the grid out towards bottom */}
-      <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-white/30 via-white/80 to-white" />
+      {/* Bottom fade for depth */}
+      <div className="absolute inset-0 bg-gradient-to-t from-white/30 to-transparent" />
 
-      {/* ── Top row: logo/avatar + name | divider | industry ── */}
-      <div className="relative z-10 flex items-center gap-3">
+      {/* ── Top row: logo/avatar + name + badges ── */}
+      <div className="relative z-10 flex flex-wrap items-center gap-3">
         {/* Company avatar */}
         {study.company_logo ? (
-          <img src={study.company_logo} alt={study.company_name} className="h-8 w-8 rounded-lg object-contain border border-slate-100 bg-white p-0.5" />
+          <div className="w-9 h-9 rounded-[10px] bg-white border border-slate-200 shadow-sm flex items-center justify-center p-1 overflow-hidden shrink-0">
+            <img src={study.company_logo} alt={study.company_name} className="w-full h-full object-contain" />
+          </div>
         ) : (
           <div
-            className="w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm font-bold shrink-0 shadow-sm"
+            className="w-9 h-9 rounded-[10px] flex items-center justify-center text-white text-[15px] font-bold shrink-0 shadow-sm"
             style={{ backgroundColor: accentColor }}
           >
             {(study.company_name ?? 'C').charAt(0).toUpperCase()}
@@ -40,25 +47,59 @@ function HeroCard({ study }: { study: any }) {
         )}
 
         {/* Company name */}
-        <span className="text-sm font-semibold text-slate-800">{study.company_name}</span>
+        <span className="text-[15px] font-semibold text-[#1a1040] tracking-tight">{study.company_name}</span>
 
-        {/* Vertical divider */}
-        {study.industry && (
-          <>
-            <span className="text-slate-300 text-base select-none">|</span>
-            <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">
-              {study.industry}
-              {study.tag_type && ` · ${study.tag_type}`}
-            </span>
-          </>
+        {/* Divider */}
+        {(study.industry || study.tag_type) && (
+          <span className="text-[#533afd]/20 text-base select-none mx-1">|</span>
         )}
+
+        {/* Industry / Tag Badges */}
+        <div className="flex items-center gap-2">
+          {study.industry && (
+            <span className="px-3 py-1 bg-white/60 backdrop-blur-sm border border-[#533afd]/15 text-[11px] font-bold uppercase tracking-[0.15em] text-[#533afd]/80 rounded-full">
+              {study.industry}
+            </span>
+          )}
+          {study.tag_type && (
+            <span className="px-3 py-1 bg-white/60 backdrop-blur-sm border border-[#ea2261]/15 text-[11px] font-bold uppercase tracking-[0.15em] text-[#ea2261]/80 rounded-full">
+              {study.tag_type}
+            </span>
+          )}
+        </div>
       </div>
 
       {/* ── Large title at bottom ─────────────────────────── */}
-      <div className="relative z-10 mt-auto pt-12">
-        <h2 className="text-2xl sm:text-3xl md:text-[2rem] font-bold text-slate-900 leading-[1.15] tracking-tight max-w-xl">
+      <div className="relative z-10 mt-auto pt-16">
+        <h2 className="text-3xl sm:text-4xl md:text-[2.5rem] font-medium text-[#0f172a] leading-[1.15] tracking-[-0.02em] max-w-2xl" style={{ fontFamily: 'var(--font-inter)' }}>
           {study.title}
         </h2>
+
+        {/* ── Highlight & Metric Badges ── */}
+        {((study.highlights && study.highlights.length > 0) || (study.metrics && study.metrics.length > 0)) && (
+          <div className="flex flex-wrap items-center gap-3 mt-8">
+            {/* Metric pills: bold value + label */}
+            {study.metrics && study.metrics.map((m: any, idx: number) => (
+              <div
+                key={`metric-${idx}`}
+                className="inline-flex items-center gap-1.5 px-4 py-2 bg-white/70 backdrop-blur-sm border border-[#533afd]/15 rounded-full text-[13px] shadow-sm"
+              >
+                <span className="font-bold text-[#533afd]">{m.metric_value}</span>
+                <span className="text-[#64748b]">{m.metric_label}</span>
+              </div>
+            ))}
+            {/* Highlight pills */}
+            {study.highlights && study.highlights.map((highlight: any, idx: number) => (
+              <div
+                key={`hl-${idx}`}
+                className="inline-flex items-center gap-1.5 px-4 py-2 bg-white/70 backdrop-blur-sm border border-[#ea2261]/15 rounded-full text-[13px] shadow-sm"
+              >
+                {highlight.title && <span className="font-bold text-[#ea2261]">{highlight.title}</span>}
+                {highlight.description && <span className="text-[#64748b]">{highlight.description}</span>}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   )

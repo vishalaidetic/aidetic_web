@@ -1,7 +1,7 @@
 'use client'
 
-import { BlogContent } from '@/components/blog/blog-content'
 import { CollapsibleCard } from '@/components/admin/collapsible-card'
+import { BlogContent } from '@/components/blog/blog-content'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -43,9 +43,9 @@ interface BlogFormProps {
 type BlogSection = 'author' | 'details'
 
 const inputCls = (hasError?: boolean) =>
-  `w-full text-[14px] text-[#0d253d] bg-white border rounded-xl px-4 py-2.5 focus:outline-none focus:ring-4 transition-all shadow-sm h-auto ${hasError
-    ? 'border-destructive focus:ring-destructive/10 focus:border-destructive'
-    : 'border-slate-200 focus:ring-[#DC2626]/10 focus:border-[#DC2626]'
+  `w-full text-[14px] text-[#0d253d] bg-white border rounded-xl px-4 py-2.5 outline-none transition-all shadow-sm h-auto focus-visible:ring-[3px] focus-visible:outline-none ${hasError
+    ? 'border-destructive focus-visible:ring-destructive/20 focus-visible:border-destructive'
+    : 'border-slate-200 focus-visible:ring-[#DC2626]/20 focus-visible:border-[#DC2626]'
   }`
 
 const navItems: { key: BlogSection; label: string; icon: React.ElementType }[] = [
@@ -217,12 +217,12 @@ export function BlogForm({ initialData, isEditing = false }: BlogFormProps) {
     return (
       <div className="p-8 space-y-8">
         <div className="flex items-center justify-between border-b pb-4">
-          <h2 className="text-2xl font-semibold tracking-tight text-[#1B2340]">Preview Mode</h2>
+          <h2 className="text-2xl font-semibold tracking-tight text-[#DC2626]">Preview Mode</h2>
           <div className="flex items-center gap-2">
-            <Button type="button" variant="outline" size="sm" onClick={() => { setJsonText(JSON.stringify(watch(), null, 2)); setJsonError(null); setJsonModal('export') }} className="border-slate-200 text-slate-600 hover:text-[#1B2340]">
+            <Button type="button" variant="outline" size="sm" onClick={() => { setJsonText(JSON.stringify(watch(), null, 2)); setJsonError(null); setJsonModal('export') }} className="border-black text-black hover:text-white hover:bg-black">
               <Download size={13} className="mr-1.5" /> Export JSON
             </Button>
-            <Button type="button" variant="outline" size="sm" onClick={() => { setJsonText(''); setJsonError(null); setJsonModal('import') }} className="border-slate-200 text-slate-600 hover:text-[#1B2340]">
+            <Button type="button" variant="outline" size="sm" onClick={() => { setJsonText(''); setJsonError(null); setJsonModal('import') }} className="border-black text-black hover:text-white hover:bg-black">
               <Upload size={13} className="mr-1.5" /> Import JSON
             </Button>
             <Button
@@ -230,7 +230,7 @@ export function BlogForm({ initialData, isEditing = false }: BlogFormProps) {
               variant="ghost"
               size="sm"
               onClick={() => setShowPreview(false)}
-              className="text-[#DC2626] hover:text-[#B91C1C] hover:bg-[#DC2626]/5"
+              className="text-black hover:text-white hover:bg-black"
             >
               ← Back to Edit
             </Button>
@@ -256,7 +256,7 @@ export function BlogForm({ initialData, isEditing = false }: BlogFormProps) {
             <Button
               type="submit"
               disabled={isLoading || isUploading}
-              className="bg-[#1B2340] hover:bg-[#1B2340]/85 text-white border-none shadow-sm"
+              className="bg-black hover:bg-[#DC2626] text-white border-none shadow-sm"
             >
               {isLoading ? (
                 <><Loader2 className="mr-2 h-4 w-4 animate-spin" />Saving…</>
@@ -267,7 +267,7 @@ export function BlogForm({ initialData, isEditing = false }: BlogFormProps) {
               variant="outline"
               onClick={() => setShowPreview(false)}
               disabled={isLoading || isUploading}
-              className="border-slate-200 text-[#6B7280] hover:text-[#1B2340]"
+              className="border-black text-black hover:text-white hover:bg-black"
             >
               Back to Edit
             </Button>
@@ -306,8 +306,8 @@ export function BlogForm({ initialData, isEditing = false }: BlogFormProps) {
                 type="button"
                 onClick={() => setActiveSection(key)}
                 className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all ${active
-                    ? 'bg-[#DC2626] text-white font-semibold shadow-sm'
-                    : 'text-[#6B7280] hover:text-[#1B2340] hover:bg-slate-200/50 font-medium'
+                  ? 'bg-[#DC2626] text-white font-semibold shadow-sm'
+                  : 'text-[#6B7280] hover:text-[#DC2626] hover:bg-slate-200/50 font-medium'
                   }`}
               >
                 <Icon size={15} className={active ? 'text-white' : 'text-[#6B7280]'} />
@@ -345,28 +345,28 @@ export function BlogForm({ initialData, isEditing = false }: BlogFormProps) {
               type="button"
               variant="outline"
               onClick={() => router.back()}
-              className="border-slate-200 text-[#6B7280] hover:text-[#1B2340] text-sm"
+              className="border-black text-black hover:bg-black hover:text-white text-sm"
             >
               Cancel
             </Button>
             <Button
               type="button"
               onClick={handlePreviewClick}
-              className="flex items-center gap-2 bg-[#1B2340] hover:bg-[#1B2340]/85 text-white border-none shadow-sm text-sm"
+              className="flex items-center gap-2 bg-black hover:bg-[#DC2626] text-white border-none shadow-sm text-sm"
             >
               Preview
             </Button>
             {/* JSON buttons */}
-            <Button type="button" variant="outline" onClick={() => { setJsonText(JSON.stringify(watch(), null, 2)); setJsonError(null); setJsonModal('export') }} className="border-slate-200 text-slate-600 hover:text-[#1B2340] text-sm gap-1.5 hidden sm:flex">
+            <Button type="button" variant="outline" onClick={() => { setJsonText(JSON.stringify(watch(), null, 2)); setJsonError(null); setJsonModal('export') }} className="border-black text-black hover:text-white hover:bg-black text-sm gap-1.5 hidden sm:flex">
               <Download size={13} /> Export JSON
             </Button>
-            <Button type="button" variant="outline" onClick={() => { setJsonText(''); setJsonError(null); setJsonModal('import') }} className="border-slate-200 text-slate-600 hover:text-[#1B2340] text-sm gap-1.5 hidden sm:flex">
+            <Button type="button" variant="outline" onClick={() => { setJsonText(''); setJsonError(null); setJsonModal('import') }} className="border-black text-black hover:text-white hover:bg-black text-sm gap-1.5 hidden sm:flex">
               <Upload size={13} /> Import JSON
             </Button>
             <button
               type="submit"
               disabled={isLoading || isUploading}
-              className="flex items-center gap-2 px-5 py-2 rounded-lg bg-black text-white text-sm font-semibold hover:opacity-90 disabled:opacity-60 transition-all shadow-sm"
+              className="flex items-center gap-2 px-5 py-2 rounded-lg bg-[#DC2626] text-white text-sm font-semibold hover:bg-black disabled:opacity-60 transition-all shadow-sm"
             >
               {isLoading ? <Loader2 size={15} className="animate-spin" /> : <Save size={15} />}
               {isLoading ? 'Saving…' : isEditing ? 'Update Post' : 'Save Post'}
@@ -385,18 +385,18 @@ export function BlogForm({ initialData, isEditing = false }: BlogFormProps) {
             <div className="space-y-5">
               <CollapsibleCard title="Author Details" defaultOpen={false}>
                 <div className="space-y-2">
-                <Label htmlFor="author" className="text-sm font-semibold text-[#1B2340]">
-                  Author Name <span className="text-[#DC2626]">*</span>
-                </Label>
-                <Input
-                  id="author"
-                  placeholder="Your full name"
-                  {...register('author')}
-                  className={inputCls(!!errors.author)}
-                />
-                {errors.author && (
-                  <p className="text-sm text-[#DC2626]">{errors.author.message}</p>
-                )}
+                  <Label htmlFor="author" className="text-sm font-semibold text-[#1B2340]">
+                    Author Name <span className="text-[#DC2626]">*</span>
+                  </Label>
+                  <Input
+                    id="author"
+                    placeholder="Your full name"
+                    {...register('author')}
+                    className={inputCls(!!errors.author)}
+                  />
+                  {errors.author && (
+                    <p className="text-sm text-[#DC2626]">{errors.author.message}</p>
+                  )}
                 </div>
               </CollapsibleCard>
 
@@ -565,7 +565,7 @@ export function BlogForm({ initialData, isEditing = false }: BlogFormProps) {
                                 field.onChange(val === '' ? null : val)
                               }
                             }}
-                            className="w-full text-[14px] text-[#0d253d] bg-white border border-slate-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-4 focus:ring-[#DC2626]/10 focus:border-[#DC2626] transition-all shadow-sm appearance-none"
+                            className="w-full text-[14px] text-[#0d253d] bg-white border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-[#DC2626]/20 focus-visible:border-[#DC2626] transition-all shadow-sm appearance-none"
                           >
                             <option value="">— Select a category —</option>
                             {BLOG_TAG_TYPES.map((t) => (
@@ -578,7 +578,7 @@ export function BlogForm({ initialData, isEditing = false }: BlogFormProps) {
                               placeholder="Enter custom category"
                               value={field.value ?? ''}
                               onChange={(e) => field.onChange(e.target.value)}
-                              className="w-full text-[14px] text-[#0d253d] bg-white border border-slate-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-4 focus:ring-[#DC2626]/10 focus:border-[#DC2626] transition-all shadow-sm"
+                              className="w-full text-[14px] text-[#0d253d] bg-white border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-[#DC2626]/20 focus-visible:border-[#DC2626] transition-all shadow-sm"
                             />
                           )}
                         </div>
@@ -658,16 +658,16 @@ export function BlogForm({ initialData, isEditing = false }: BlogFormProps) {
             </div>
 
             <div className="px-6 py-4 border-t border-slate-100 bg-slate-50/50 flex items-center justify-end gap-3">
-              <Button type="button" variant="ghost" onClick={() => setJsonModal('closed')} className="text-slate-600 hover:text-slate-900">
+              <Button type="button" variant="ghost" onClick={() => setJsonModal('closed')} className="text-black hover:text-white hover:bg-black">
                 Cancel
               </Button>
               {jsonModal === 'import' ? (
-                <Button type="button" onClick={handleJsonImport} className="bg-[#1B2340] text-white hover:bg-[#1B2340]/90">
+                <Button type="button" onClick={handleJsonImport} className="bg-black text-white hover:bg-[#DC2626]">
                   <Upload size={16} className="mr-2" />
                   Import Data
                 </Button>
               ) : (
-                <Button type="button" onClick={() => { navigator.clipboard.writeText(jsonText); setJsonModal('closed'); }} className="bg-[#1B2340] text-white hover:bg-[#1B2340]/90">
+                <Button type="button" onClick={() => { navigator.clipboard.writeText(jsonText); setJsonModal('closed'); }} className="bg-black text-white hover:bg-[#DC2626]">
                   <Copy size={16} className="mr-2" />
                   Copy to Clipboard
                 </Button>

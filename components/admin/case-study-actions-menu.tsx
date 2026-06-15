@@ -16,28 +16,28 @@ import { useState } from 'react'
 import { getAdminBasePath } from '@/lib/admin-path'
 import { getAdminHeaders } from '@/lib/middleware/auth'
 
-interface Blog {
+interface CaseStudy {
   id: string
   slug: string
   is_featured?: boolean
   published?: boolean
 }
 
-interface BlogActionsMenuProps {
-  blog: Blog
+interface CaseStudyActionsMenuProps {
+  caseStudy: CaseStudy
 }
 
-export function BlogActionsMenu({ blog }: BlogActionsMenuProps) {
+export function CaseStudyActionsMenu({ caseStudy }: CaseStudyActionsMenuProps) {
   const router = useRouter()
   const [isUpdating, setIsUpdating] = useState(false)
 
   const handleToggleFeatured = async () => {
     try {
       setIsUpdating(true)
-      const response = await fetch(`/api/blogs/${blog.id}`, {
+      const response = await fetch(`/api/case-studies/${caseStudy.id}`, {
         method: 'PATCH',
         headers: getAdminHeaders(),
-        body: JSON.stringify({ is_featured: !blog.is_featured }),
+        body: JSON.stringify({ is_featured: !caseStudy.is_featured }),
       })
 
       if (response.ok) {
@@ -57,10 +57,10 @@ export function BlogActionsMenu({ blog }: BlogActionsMenuProps) {
   const handleTogglePublish = async () => {
     try {
       setIsUpdating(true)
-      const response = await fetch(`/api/blogs/${blog.id}`, {
+      const response = await fetch(`/api/case-studies/${caseStudy.id}`, {
         method: 'PATCH',
         headers: getAdminHeaders(),
-        body: JSON.stringify({ published: !blog.published }),
+        body: JSON.stringify({ published: !caseStudy.published }),
       })
 
       if (response.ok) {
@@ -77,10 +77,10 @@ export function BlogActionsMenu({ blog }: BlogActionsMenuProps) {
   }
 
   const handleDelete = async () => {
-    if (confirm('Are you sure you want to delete this blog? This action cannot be undone.')) {
+    if (confirm('Are you sure you want to delete this case study? This action cannot be undone.')) {
       try {
         setIsUpdating(true)
-        const response = await fetch(`/api/blogs/${blog.id}`, {
+        const response = await fetch(`/api/case-studies/${caseStudy.id}`, {
           method: 'DELETE',
           headers: getAdminHeaders(),
         })
@@ -88,11 +88,11 @@ export function BlogActionsMenu({ blog }: BlogActionsMenuProps) {
         if (response.ok) {
           router.refresh()
         } else {
-          alert('Failed to delete blog.')
+          alert('Failed to delete case study.')
         }
       } catch (error) {
         console.error(error)
-        alert('Error deleting blog.')
+        alert('Error deleting case study.')
       } finally {
         setIsUpdating(false)
       }
@@ -113,7 +113,7 @@ export function BlogActionsMenu({ blog }: BlogActionsMenuProps) {
         
         {/* View */}
         <DropdownMenuItem asChild className="cursor-pointer focus:bg-slate-100 focus:text-[#1B2340]">
-          <Link href={`/blog/${blog.slug}`} target="_blank">
+          <Link href={`/case-studies/${caseStudy.slug}`} target="_blank">
             <Eye className="mr-2 h-4 w-4" />
             <span>View</span>
           </Link>
@@ -121,7 +121,7 @@ export function BlogActionsMenu({ blog }: BlogActionsMenuProps) {
 
         {/* Edit */}
         <DropdownMenuItem asChild className="cursor-pointer focus:bg-slate-100 focus:text-[#1B2340]">
-          <Link href={`${getAdminBasePath()}/blogs/${blog.id}/edit`}>
+          <Link href={`${getAdminBasePath()}/case-studies/${caseStudy.id}/edit`}>
             <Edit className="mr-2 h-4 w-4" />
             <span>Edit</span>
           </Link>
@@ -135,12 +135,12 @@ export function BlogActionsMenu({ blog }: BlogActionsMenuProps) {
           disabled={isUpdating}
           className="cursor-pointer focus:bg-slate-100 focus:text-[#1B2340]"
         >
-          {blog.is_featured ? (
+          {caseStudy.is_featured ? (
             <StarOff className="mr-2 h-4 w-4 text-[#6B7280]" />
           ) : (
             <Star className="mr-2 h-4 w-4 text-[#1B2340]" />
           )}
-          <span>{blog.is_featured ? 'Omit Featured' : 'Make Featured'}</span>
+          <span>{caseStudy.is_featured ? 'Omit Featured' : 'Make Featured'}</span>
         </DropdownMenuItem>
 
         {/* Toggle Publish */}
@@ -149,12 +149,12 @@ export function BlogActionsMenu({ blog }: BlogActionsMenuProps) {
           disabled={isUpdating}
           className="cursor-pointer focus:bg-slate-100 focus:text-[#1B2340]"
         >
-          {blog.published ? (
+          {caseStudy.published ? (
             <XCircle className="mr-2 h-4 w-4 text-orange-500" />
           ) : (
             <CheckCircle className="mr-2 h-4 w-4 text-green-600" />
           )}
-          <span>{blog.published ? 'Move to Draft' : 'Publish'}</span>
+          <span>{caseStudy.published ? 'Move to Draft' : 'Publish'}</span>
         </DropdownMenuItem>
 
         <DropdownMenuSeparator />

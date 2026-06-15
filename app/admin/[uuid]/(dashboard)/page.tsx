@@ -1,5 +1,4 @@
-import { BlogActionsMenu } from '@/components/admin/blog-actions-menu'
-import { DeleteCaseStudyButton } from '@/components/admin/delete-case-study-button'
+import { CaseStudyActionsMenu } from '@/components/admin/case-study-actions-menu'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
@@ -10,6 +9,7 @@ import { formatDate } from '@/lib/utils/formatting'
 import { BookOpen, Calendar, ChevronDown, ChevronUp, Edit, Eye, EyeOff, FileText, Plus, TrendingUp, LayoutDashboard } from 'lucide-react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { BlogActionsMenu } from '@/components/admin/blog-actions-menu'
 
 export const metadata: Metadata = {
   title: 'Dashboard - Admin',
@@ -215,6 +215,7 @@ export default async function DashboardPage({
                   <thead>
                     <tr className="bg-[#F5F5F5] text-[#6B7280]">
                       <th className="text-left py-3.5 px-6 font-semibold text-xs uppercase tracking-wider">Title</th>
+                      <th className="text-left py-3.5 px-6 font-semibold text-xs uppercase tracking-wider">Featured</th>
                       <th className="text-left py-3.5 px-6 font-semibold text-xs uppercase tracking-wider">Status</th>
                       <th className="text-left py-3.5 px-6 font-semibold text-xs uppercase tracking-wider">Created</th>
                       <th className="text-left py-3.5 px-6 font-semibold text-xs uppercase tracking-wider">Actions</th>
@@ -230,6 +231,13 @@ export default async function DashboardPage({
                             </div>
                             <span className="font-medium text-[#1A1A1A] line-clamp-1 group-hover:text-[#DC2626] transition-colors">{study.title}</span>
                           </div>
+                        </td>
+                        <td className="py-4 px-6">
+                          {study.is_featured ? (
+                            <span className="text-blue-700 font-semibold text-xs bg-blue-50 px-2 py-1 rounded-md border border-blue-200">True</span>
+                          ) : (
+                            <span className="text-[#6B7280] font-medium text-xs">False</span>
+                          )}
                         </td>
                         <td className="py-4 px-6">
                           {study.published ? (
@@ -249,14 +257,7 @@ export default async function DashboardPage({
                           </div>
                         </td>
                         <td className="py-4 px-6">
-                          <div className="flex gap-2">
-                            <Link href={`${getAdminBasePath()}/case-studies/${study.id}/edit`}>
-                              <Button size="sm" variant="outline" className="border-[#1B2340]/20 text-[#1B2340] hover:bg-[#1B2340] hover:text-white gap-1.5 h-8 px-3 transition-all duration-200">
-                                <Edit size={13} /> Edit
-                              </Button>
-                            </Link>
-                            <DeleteCaseStudyButton id={study.id} />
-                          </div>
+                          <CaseStudyActionsMenu caseStudy={study} />
                         </td>
                       </tr>
                     )) : (
