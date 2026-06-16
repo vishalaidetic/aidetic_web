@@ -110,8 +110,24 @@ function HeroCard({ study }: { study: any }) {
 export function CaseStudyLayout({ study, relatedStudies }: { study: any; relatedStudies?: any[] }) {
 
   return (
-    <div className="w-full bg-white text-slate-900 pb-24">
-      <div className="max-w-4xl mx-auto px-6 sm:px-8 pt-16 sm:pt-24 space-y-0">
+    <div className="relative w-full bg-white text-slate-900 pb-24 overflow-hidden">
+      {/* ── Half-circle: center above top edge ── */}
+      <div
+        className="absolute pointer-events-none z-0"
+        style={{
+          top: 0,
+          left: '55%',
+          transform: 'translate(-20%, -74%)',
+          width: '65vw',
+          height: '65vw',
+          maxWidth: '700px',
+          maxHeight: '700px',
+          borderRadius: '50%',
+          background: 'linear-gradient(to right, transparent 0%, transparent 45%, rgba(234,34,97,0.38) 55%, rgba(83,58,253,0.35) 78%, rgba(204,233,248,0.75) 100%)',
+          opacity: 0.7,
+        }}
+      />
+      <div className="relative z-10 max-w-4xl mx-auto px-6 sm:px-8 pt-16 sm:pt-24 space-y-0">
 
         {/* ── SECTION 1: Header ─────────────────────────────── */}
         <section className="mb-12">
