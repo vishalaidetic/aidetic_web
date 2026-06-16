@@ -89,23 +89,6 @@ export function BlogList({ blogs, content }: BlogListProps) {
           className="w-[calc(100vw-2rem)] lg:w-[calc(100vw-4rem)] relative left-1/2 -translate-x-1/2 bg-gradient-to-br from-[#533afd]/[0.06] via-[#ea2261]/[0.04] to-[#f96bee]/[0.08] border border-[#533afd]/10 rounded-2xl lg:rounded-[2.5rem] overflow-hidden shadow-sm"
         >
           <div className="w-full px-6 sm:px-10 lg:px-16 py-12 sm:py-16 relative z-10">
-            <div className="mb-8">
-              <h2
-                className="text-3xl sm:text-4xl font-semibold mb-2 tracking-tight"
-                style={{
-                  fontFamily: 'var(--font-inter)',
-                  background: 'linear-gradient(to right, #000000)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                }}
-              >
-                {content?.featured?.heading || "Featured Blog Posts"}
-              </h2>
-              <p className="text-lg text-[#64748d] leading-relaxed max-w-md" style={{ fontFamily: 'var(--font-quicksand)' }}>
-                {content?.featured?.subheading || "Read our most popular blogs in one place"}
-              </p>
-            </div>
 
             {/* Featured Grid Layout */}
             <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">

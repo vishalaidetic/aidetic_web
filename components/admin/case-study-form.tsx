@@ -23,7 +23,7 @@ const INDUSTRY_TYPES = ['E-commerce', 'SaaS', 'Healthcare', 'Finance', 'Educatio
 const CATEGORY_TYPES = ['Start Up', 'Mid Level / MSE', 'Enterprise', 'Government', 'NGO', 'Other'] as const
 
 type CSInput = z.infer<typeof CaseStudyCreateInputSchema>
-type CSSection = 'author' | 'company' | 'case_study' | 'problem' | 'solution' | 'results'
+type CSSection = 'author' | 'company' | 'case_study' | 'problem' | 'solution' | 'results' | 'testimonial'
 
 interface Props { initialData?: CaseStudy & any; isEditing?: boolean }
 
@@ -37,6 +37,7 @@ const navItems: { key: CSSection; label: string; icon: React.ElementType }[] = [
   { key: 'problem', label: 'The Problem', icon: AlertTriangle },
   { key: 'solution', label: 'The Solution', icon: CheckCircle2 },
   { key: 'results', label: 'Results', icon: Target },
+  { key: 'testimonial', label: 'Testimonial', icon: FileText },
 ]
 
 const meta: Record<CSSection, { title: string; subtitle: string; icon: React.ElementType }> = {
@@ -46,6 +47,7 @@ const meta: Record<CSSection, { title: string; subtitle: string; icon: React.Ele
   problem: { title: 'The Problem', subtitle: 'Challenges faced', icon: AlertTriangle },
   solution: { title: 'The Solution', subtitle: 'How it was solved', icon: CheckCircle2 },
   results: { title: 'Results', subtitle: 'Impact and metrics', icon: Target },
+  testimonial: { title: 'Testimonial', subtitle: 'Client quote', icon: FileText },
 }
 
 export function CaseStudyForm({ initialData, isEditing = false }: Props) {
@@ -88,6 +90,8 @@ export function CaseStudyForm({ initialData, isEditing = false }: Props) {
       problem: initialData?.problem ?? { heading: '', description: '', cards: [] },
       solution: initialData?.solution ?? { heading: '', description: '', steps: [] },
       results: initialData?.results ?? { title: '', items: [] },
+      testimonial: initialData?.testimonial ?? { quote: '', person_name: '', designation: '', avatar_url: '' },
+      metrics: initialData?.metrics ?? [],
     },
   })
 
@@ -123,8 +127,8 @@ export function CaseStudyForm({ initialData, isEditing = false }: Props) {
     const parsed = cleanJson(parsedRaw)
 
     // Validate against schema (soft — just try, don't block)
-    const { problem, solution, results, metrics, ...rest } = parsed
-    reset({ ...rest, problem: problem ?? { heading: '', description: '', cards: [] }, solution: solution ?? { heading: '', description: '', steps: [] }, results: results ?? { title: '', items: [] }, metrics: metrics ?? [] })
+    const { problem, solution, results, metrics, testimonial, ...rest } = parsed
+    reset({ ...rest, problem: problem ?? { heading: '', description: '', cards: [] }, solution: solution ?? { heading: '', description: '', steps: [] }, results: results ?? { title: '', items: [] }, metrics: metrics ?? [], testimonial: testimonial ?? { quote: '', person_name: '', designation: '', avatar_url: '' } })
     // Repopulate field arrays
     replaceProblemCards(problem?.cards ?? [])
     replaceSolutionSteps(solution?.steps ?? [])
@@ -755,6 +759,35 @@ export function CaseStudyForm({ initialData, isEditing = false }: Props) {
                   </div>
                 ))}
                 {resultItems.length === 0 && <div className="text-center py-8 text-sm text-slate-500 border-2 border-dashed border-slate-200 rounded-xl">No results added yet.</div>}
+              </CollapsibleCard>
+              <div className="pt-2">
+                <Button type="button" onClick={() => setActive('testimonial')} className="bg-[#DC2626] hover:bg-[#B91C1C] text-white">Next: Testimonial →</Button>
+              </div>
+            </div>
+          )}
+
+          {/* ── TESTIMONIAL ── */}
+          {active === 'testimonial' && (
+            <div className="space-y-5">
+              <CollapsibleCard title="Client Quote" defaultOpen={true}>
+                <div className="space-y-2">
+                  <Label htmlFor="testimonial.quote" className="text-sm font-semibold text-[#1B2340]">Quote</Label>
+                  <Textarea id="testimonial.quote" placeholder="e.g. Fabric worked so well for our engineering hires..." {...register('testimonial.quote')} rows={4} className={cls()} />
+                </div>
+                <div className="grid grid-cols-2 gap-4 mt-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="testimonial.person_name" className="text-sm font-semibold text-[#1B2340]">Person Name</Label>
+                    <Input id="testimonial.person_name" placeholder="e.g. Harry Gupta" {...register('testimonial.person_name')} className={cls()} />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="testimonial.designation" className="text-sm font-semibold text-[#1B2340]">Designation</Label>
+                    <Input id="testimonial.designation" placeholder="e.g. Co-Founder, QuickReply" {...register('testimonial.designation')} className={cls()} />
+                  </div>
+                </div>
+                <div className="space-y-2 mt-4">
+                  <Label htmlFor="testimonial.avatar_url" className="text-sm font-semibold text-[#1B2340]">Avatar URL</Label>
+                  <Input id="testimonial.avatar_url" placeholder="e.g. https://.../avatar.jpg" {...register('testimonial.avatar_url')} className={cls()} />
+                </div>
               </CollapsibleCard>
             </div>
           )}

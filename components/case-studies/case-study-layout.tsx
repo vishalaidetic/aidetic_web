@@ -143,13 +143,25 @@ export function CaseStudyLayout({ study, relatedStudies }: { study: any; related
           )}
 
           {/* Title */}
-          <h1 className="text-4xl sm:text-5xl md:text-[3.5rem] font-bold tracking-tight text-[#0f172a] leading-[1.05] mb-6">
+          <h1 
+            className="text-[2rem] sm:text-[2.25rem] lg:text-[2.5rem] xl:text-[2.75rem] font-semibold leading-[1.15] mb-6"
+            style={{
+              fontFamily: 'var(--font-inter)',
+              background: 'linear-gradient(to right, #533afd, #000000)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}
+          >
             {study.title}
           </h1>
 
           {/* Subtitle */}
           {study.subtitle && (
-            <p className="text-lg text-slate-500 leading-relaxed border-b border-slate-100 pb-10 mb-10">
+            <p 
+              className="text-base md:text-lg text-[#0d253d] leading-relaxed border-b border-slate-100 pb-10 mb-10"
+              style={{ fontFamily: 'var(--font-quicksand)' }}
+            >
               {study.subtitle}
             </p>
           )}
@@ -159,10 +171,17 @@ export function CaseStudyLayout({ study, relatedStudies }: { study: any; related
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 pb-10 border-b border-slate-100 mb-10">
               {study.metrics.map((m: any, i: number) => (
                 <div key={i}>
-                  <div className="text-4xl sm:text-5xl font-semibold text-slate-900 mb-1 leading-none">
+                  <div 
+                    className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#533afd] leading-none tracking-wide mb-3"
+                    style={{ fontFamily: 'var(--font-inter)' }}
+                  >
                     {m.metric_value}
                   </div>
-                  <div className="text-sm text-slate-500 leading-snug">
+                  {/* Dotted divider */}
+                  <div className="flex justify-start mb-3">
+                    <div className="w-12 h-0" style={{ borderTop: '2.5px dashed #22aed1' }} />
+                  </div>
+                  <div className="text-[#0d253d] text-sm leading-snug whitespace-pre-line px-1">
                     {m.metric_label}
                   </div>
                 </div>
@@ -181,10 +200,22 @@ export function CaseStudyLayout({ study, relatedStudies }: { study: any; related
         {/* ── About / Markdown Content ─────────────────────── */}
         {study.content && (
           <section className="mb-20">
-            <h2 className="text-2xl sm:text-3xl font-semibold text-slate-900 mb-5">
+            <h2 
+              className="text-2xl sm:text-3xl lg:text-4xl font-semibold leading-[1.15] mb-5"
+              style={{
+                fontFamily: 'var(--font-inter)',
+                background: 'linear-gradient(to right, #533afd, #000000)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}
+            >
               About {study.company_name || 'the Company'}
             </h2>
-            <div className="prose prose-lg prose-slate max-w-none prose-p:text-slate-600 prose-p:leading-relaxed prose-headings:text-slate-900 prose-a:text-purple-600">
+            <div 
+              className="prose prose-slate max-w-none prose-p:text-[#0d253d] prose-p:text-[15px] md:prose-p:text-base prose-p:leading-relaxed prose-headings:text-[#0d253d] prose-a:text-[#533afd]"
+              style={{ fontFamily: 'var(--font-quicksand)' }}
+            >
               <BlogContent content={study.content} />
             </div>
           </section>
@@ -198,13 +229,25 @@ export function CaseStudyLayout({ study, relatedStudies }: { study: any; related
             </div>
 
             {study.problem.heading && (
-              <h2 className="text-3xl sm:text-4xl font-semibold text-slate-900 mb-4 leading-tight">
+              <h2 
+                className="text-2xl sm:text-3xl lg:text-4xl font-semibold leading-[1.15] mb-4"
+                style={{
+                  fontFamily: 'var(--font-inter)',
+                  background: 'linear-gradient(to right, #533afd, #000000)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}
+              >
                 {study.problem.heading}
               </h2>
             )}
 
             {study.problem.description && (
-              <p className="text-xl text-slate-600 mb-10 leading-relaxed">
+              <p 
+                className="text-[15px] md:text-base text-[#0d253d] mb-10 leading-relaxed"
+                style={{ fontFamily: 'var(--font-quicksand)' }}
+              >
                 {study.problem.description}
               </p>
             )}
@@ -217,11 +260,11 @@ export function CaseStudyLayout({ study, relatedStudies }: { study: any; related
                     {/* Stat block */}
                     {card.stat && (
                       <div className="mb-5">
-                        <div className="text-4xl font-bold text-purple-600 leading-none mb-1.5">
+                        <div className="text-2xl sm:text-[1.75rem] font-bold text-purple-600 leading-none mb-1.5 tracking-tight">
                           {card.stat}
                         </div>
                         {card.stat_label && (
-                          <div className="text-sm text-slate-500 leading-snug">
+                          <div className="text-[13px] text-slate-500 leading-snug">
                             {card.stat_label}
                           </div>
                         )}
@@ -233,7 +276,7 @@ export function CaseStudyLayout({ study, relatedStudies }: { study: any; related
 
                     {/* Card title */}
                     {card.title && (
-                      <h3 className="text-base font-bold text-slate-900 mb-4 leading-snug">
+                      <h3 className="text-[15px] font-bold text-slate-900 mb-4 leading-snug">
                         {card.title}
                       </h3>
                     )}
@@ -242,7 +285,7 @@ export function CaseStudyLayout({ study, relatedStudies }: { study: any; related
                     {card.bullets?.length > 0 && (
                       <ul className="space-y-2.5 flex-1">
                         {card.bullets.map((bullet: string, j: number) => (
-                          <li key={j} className="flex items-start gap-2.5 text-sm text-slate-600 leading-relaxed">
+                          <li key={j} className="flex items-start gap-2.5 text-[13px] text-slate-600 leading-relaxed">
                             <span>{bullet}</span>
                           </li>
                         ))}
@@ -263,13 +306,25 @@ export function CaseStudyLayout({ study, relatedStudies }: { study: any; related
             </div>
 
             {study.solution.heading && (
-              <h2 className="text-3xl sm:text-4xl font-semibold text-slate-900 mb-4 leading-tight">
+              <h2 
+                className="text-2xl sm:text-3xl lg:text-4xl font-semibold leading-[1.15] mb-4"
+                style={{
+                  fontFamily: 'var(--font-inter)',
+                  background: 'linear-gradient(to right, #533afd, #000000)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}
+              >
                 {study.solution.heading}
               </h2>
             )}
 
             {study.solution.description && (
-              <p className="text-xl text-slate-600 mb-10 leading-relaxed">
+              <p 
+                className="text-[15px] md:text-base text-[#0d253d] mb-10 leading-relaxed"
+                style={{ fontFamily: 'var(--font-quicksand)' }}
+              >
                 {study.solution.description}
               </p>
             )}
@@ -286,7 +341,7 @@ export function CaseStudyLayout({ study, relatedStudies }: { study: any; related
 
                     {/* Step title */}
                     {step.title && (
-                      <h3 className="text-lg font-bold text-slate-900 mb-5 leading-snug">
+                      <h3 className="text-[15px] font-bold text-slate-900 mb-5 leading-snug">
                         {step.title}
                       </h3>
                     )}
@@ -295,7 +350,7 @@ export function CaseStudyLayout({ study, relatedStudies }: { study: any; related
                     {step.bullets?.length > 0 && (
                       <ul className="space-y-3 flex-1">
                         {step.bullets.map((bullet: string, j: number) => (
-                          <li key={j} className="flex items-start gap-3 text-sm text-slate-700 leading-relaxed">
+                          <li key={j} className="flex items-start gap-3 text-[13px] text-slate-700 leading-relaxed">
                             <Check className="w-4 h-4 text-purple-500 mt-0.5 shrink-0" />
                             <span>{bullet}</span>
                           </li>
@@ -312,29 +367,33 @@ export function CaseStudyLayout({ study, relatedStudies }: { study: any; related
         {/* ── TESTIMONIAL ──────────────────────────────────── */}
         {study.testimonial?.quote && (
           <section className="mb-20 border-t border-slate-100 pt-16">
-            <div className="text-purple-300 text-5xl leading-none mb-6 font-serif select-none">&ldquo;</div>
-            <blockquote className="text-2xl sm:text-3xl font-medium text-slate-900 leading-relaxed mb-8">
-              {study.testimonial.quote}
-            </blockquote>
-            <div className="flex items-center gap-4">
-              {study.testimonial.avatar_url && (
-                <img
-                  src={study.testimonial.avatar_url}
-                  alt={study.testimonial.person_name || ''}
-                  className="w-12 h-12 rounded-full object-cover border border-slate-200"
-                />
-              )}
+            <div className="flex items-start gap-4 sm:gap-6">
+              <div className="text-[#c4b5fd] text-[3rem] sm:text-[4rem] leading-none font-serif select-none shrink-0" style={{ marginTop: '-0.25rem' }}>&ldquo;</div>
               <div>
-                {study.testimonial.person_name && (
-                  <div className="font-semibold text-slate-900 text-sm">
-                    {study.testimonial.person_name}
+                <blockquote className="text-xl sm:text-[1.5rem] text-[#0d253d] leading-[1.4] tracking-tight mb-8" style={{ fontFamily: 'var(--font-inter)' }}>
+                  {study.testimonial.quote}
+                </blockquote>
+                <div className="flex items-center gap-3">
+                  {study.testimonial.avatar_url && (
+                    <img
+                      src={study.testimonial.avatar_url}
+                      alt={study.testimonial.person_name || ''}
+                      className="w-10 h-10 rounded-full object-cover shadow-sm"
+                    />
+                  )}
+                  <div>
+                    {study.testimonial.person_name && (
+                      <div className="font-semibold text-[#0d253d] text-[15px]" style={{ fontFamily: 'var(--font-inter)' }}>
+                        {study.testimonial.person_name}
+                      </div>
+                    )}
+                    {study.testimonial.designation && (
+                      <div className="text-[#64748b] text-[13px]" style={{ fontFamily: 'var(--font-quicksand)' }}>
+                        {study.testimonial.designation}
+                      </div>
+                    )}
                   </div>
-                )}
-                {study.testimonial.designation && (
-                  <div className="text-slate-500 text-sm">
-                    {study.testimonial.designation}
-                  </div>
-                )}
+                </div>
               </div>
             </div>
           </section>
@@ -348,7 +407,16 @@ export function CaseStudyLayout({ study, relatedStudies }: { study: any; related
             </div>
 
             {study.results.title && (
-              <h2 className="text-3xl sm:text-4xl font-semibold text-slate-900 mb-10 leading-tight">
+              <h2 
+                className="text-2xl sm:text-3xl lg:text-4xl font-semibold leading-[1.15] mb-10"
+                style={{
+                  fontFamily: 'var(--font-inter)',
+                  background: 'linear-gradient(to right, #533afd, #000000)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}
+              >
                 {study.results.title}
               </h2>
             )}
@@ -360,7 +428,7 @@ export function CaseStudyLayout({ study, relatedStudies }: { study: any; related
 
                     {/* Left: category + badge */}
                     <div className="w-full md:w-52 shrink-0">
-                      <h3 className="text-base font-bold text-slate-900 mb-3 leading-snug">
+                      <h3 className="text-[15px] font-bold text-slate-900 mb-3 leading-snug">
                         {item.category}
                       </h3>
                       {item.badge && (
@@ -374,10 +442,13 @@ export function CaseStudyLayout({ study, relatedStudies }: { study: any; related
                     <div className="flex-1 grid grid-cols-2 sm:grid-cols-3 gap-8">
                       {(item.metrics || []).filter((m: any) => m.value || m.label).map((metric: any, j: number) => (
                         <div key={j}>
-                          <div className="text-3xl sm:text-4xl font-semibold text-slate-900 mb-1 leading-none">
+                          <div 
+                            className="text-2xl sm:text-[1.75rem] font-bold text-[#533afd] mb-2 leading-none tracking-wide"
+                            style={{ fontFamily: 'var(--font-inter)' }}
+                          >
                             {metric.value}
                           </div>
-                          <div className="text-xs text-slate-500 leading-snug mt-1">
+                          <div className="text-[#0d253d] text-[13px] leading-snug">
                             {metric.label}
                           </div>
                         </div>

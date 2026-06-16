@@ -12,7 +12,7 @@ export class CaseStudyRepository {
 
     let query = this.client
       .from('case_studies')
-      .select('*, metrics:case_study_metrics(metric_value, metric_label, display_order)', { count: 'exact' })
+      .select('*, metrics:case_study_metrics(metric_value, metric_label, display_order), testimonials:case_study_testimonials(quote, person_name, designation, avatar_url)', { count: 'exact' })
       .order('created_at', { ascending: false })
 
     if (published !== 'all') {
@@ -42,6 +42,7 @@ export class CaseStudyRepository {
       metrics: Array.isArray(s.metrics)
         ? [...s.metrics].sort((a: any, b: any) => (a.display_order ?? 0) - (b.display_order ?? 0))
         : [],
+      testimonial: Array.isArray(s.testimonials) && s.testimonials.length > 0 ? s.testimonials[0] : (s.testimonials || null),
     }))
 
     return {
@@ -81,6 +82,24 @@ export class CaseStudyRepository {
       throw new NotFoundError(`Case study with slug "${slug}" not found`)
     }
 
+    return this._attachChildTables(study)
+  }
+
+  async getCaseStudyByIdFull(id: string): Promise<any> {
+    const { data: study, error } = await this.client
+      .from('case_studies')
+      .select('*')
+      .eq('id', id)
+      .single()
+
+    if (error || !study) {
+      throw new NotFoundError(`Case study with ID ${id} not found`)
+    }
+
+    return this._attachChildTables(study)
+  }
+
+  private async _attachChildTables(study: any): Promise<any> {
     const id = study.id
 
     // 2. Hero Metrics

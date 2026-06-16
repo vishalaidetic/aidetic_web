@@ -13,9 +13,5 @@
     "draft": "Draft",
     "featured": "Featured",
     "min_read": "min read"
-  },
-  "featured": {
-    "heading": "Featured Blog Posts",
-    "subheading": "Read our most popular blogs in one place"
   }
 }

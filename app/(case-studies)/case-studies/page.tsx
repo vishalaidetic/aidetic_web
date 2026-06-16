@@ -25,38 +25,25 @@ export default async function CaseStudiesPage() {
 
   return (
     <div className="w-full bg-white">
-      {/* Page Hero - Light Grid Style */}
-      <div className="relative w-full overflow-hidden text-center py-10 sm:py-16">
+      {/* Page Hero - Half Moon Style */}
+      <div className="relative w-full overflow-hidden text-center py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
         
-        {/* Static Base Grid */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:2rem_2rem] pointer-events-none [mask-image:linear-gradient(to_bottom,white_60%,transparent_100%)]" />
-
-        {/* Dynamic Grid Lines Overlay with Moving Red Dots */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none [mask-image:linear-gradient(to_bottom,white_60%,transparent_100%)]">
-          <style>{`
-            @keyframes dotMoveX {
-              0% { transform: translateX(-10vw); opacity: 0; }
-              10% { opacity: 1; }
-              90% { opacity: 1; }
-              100% { transform: translateX(100vw); opacity: 0; }
-            }
-            @keyframes dotMoveY {
-              0% { transform: translateY(-10vh); opacity: 0; }
-              10% { opacity: 1; }
-              90% { opacity: 1; }
-              100% { transform: translateY(100vh); opacity: 0; }
-            }
-          `}</style>
-          {/* Horizontal moving dots */}
-          <div className="absolute top-[calc(2rem*2-2px)] left-0 w-1.5 h-1.5 rounded-full bg-[#533afd] shadow-[0_0_10px_2px_#533afd]" style={{ animation: 'dotMoveX 6s linear infinite' }} />
-          <div className="absolute top-[calc(2rem*6-2px)] left-0 w-1.5 h-1.5 rounded-full bg-[#533afd] shadow-[0_0_10px_2px_#533afd]" style={{ animation: 'dotMoveX 8s linear infinite 2s' }} />
-          <div className="absolute top-[calc(2rem*10-2px)] left-0 w-1.5 h-1.5 rounded-full bg-[#533afd] shadow-[0_0_10px_2px_#533afd]" style={{ animation: 'dotMoveX 7s linear infinite 4s' }} />
-          
-          {/* Vertical moving dots */}
-          <div className="absolute left-[calc(2rem*8-2px)] top-0 w-1.5 h-1.5 rounded-full bg-[#533afd] shadow-[0_0_10px_2px_#533afd]" style={{ animation: 'dotMoveY 7s linear infinite 1s' }} />
-          <div className="absolute left-[calc(2rem*24-2px)] top-0 w-1.5 h-1.5 rounded-full bg-[#533afd] shadow-[0_0_10px_2px_#533afd]" style={{ animation: 'dotMoveY 9s linear infinite 3s' }} />
-          <div className="absolute left-[calc(2rem*40-2px)] top-0 w-1.5 h-1.5 rounded-full bg-[#533afd] shadow-[0_0_10px_2px_#533afd]" style={{ animation: 'dotMoveY 6s linear infinite 5s' }} />
-        </div>
+        {/* ── Half-circle: center above top edge ── */}
+        <div
+          className="absolute pointer-events-none z-0"
+          style={{
+            top: 0,
+            left: '55%',
+            transform: 'translate(-20%, -74%)',
+            width: '65vw',
+            height: '65vw',
+            maxWidth: '700px',
+            maxHeight: '700px',
+            borderRadius: '50%',
+            background: 'linear-gradient(to right, transparent 0%, transparent 45%, rgba(234,34,97,0.38) 55%, rgba(83,58,253,0.35) 78%, rgba(204,233,248,0.75) 100%)',
+            opacity: 0.7,
+          }}
+        />
 
         <div className="relative z-10 space-y-4">
           <h1 

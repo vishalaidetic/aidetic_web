@@ -17,7 +17,7 @@ export default async function EditCaseStudyPage({
 
   try {
     const repository = getCaseStudyRepository()
-    const caseStudy = await repository.getCaseStudyById(id)
+    const caseStudy = await repository.getCaseStudyByIdFull(id)
     return <CaseStudyForm initialData={caseStudy} isEditing />
   } catch (error) {
     notFound()
