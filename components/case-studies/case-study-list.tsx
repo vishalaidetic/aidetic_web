@@ -12,7 +12,7 @@ function FeaturedCard({ study, content }: { study: any; content: any }) {
   const accentColor = colors[(study.company_name?.charCodeAt(0) ?? 0) % colors.length]
 
   return (
-    <Link href={`/case-studies/${study.slug}`} className="block mb-14">
+    <Link href={`/case-studies/${study.slug}`} className="block">
       <div className="group relative w-full rounded-[2rem] overflow-hidden border border-[#533afd]/10 shadow-sm hover:shadow-xl hover:shadow-[#533afd]/10 hover:border-[#533afd]/25 transition-all duration-500 grid grid-cols-1 md:grid-cols-[4fr_6fr] min-h-[340px]">
 
         {/* ── LEFT: HeroCard preview ── */}
@@ -362,6 +362,8 @@ export function CaseStudyList({ caseStudies, content }: { caseStudies: any[], co
   const uniqueTags = Array.from(new Set(caseStudies.map((s: any) => s.tag_type).filter(Boolean)))
   const tags = [content?.labels?.all_studies || 'All Studies', ...uniqueTags]
 
+  const featuredStudies = caseStudies.filter((s: any) => s.is_featured).slice(0, 4)
+
   let filteredStudies = selectedTag === null || selectedTag === (content?.labels?.all_studies || 'All Studies')
     ? caseStudies
     : caseStudies.filter((s: any) => s.tag_type === selectedTag)
@@ -376,23 +378,24 @@ export function CaseStudyList({ caseStudies, content }: { caseStudies: any[], co
     )
   }
 
-  const featured = caseStudies.find((s: any) => s.is_featured) ?? caseStudies[0]
-  const rest = filteredStudies.filter((s: any) => s.id !== featured?.id)
-  const displayedRest = rest.slice(0, visibleCount)
+  const regularStudies = filteredStudies.filter((s: any) => !featuredStudies.find((fs: any) => fs.id === s.id))
+  const displayedRest = regularStudies.slice(0, visibleCount)
 
   return (
     <div className="flex flex-col gap-12 w-full px-4 sm:px-6 lg:px-8 pb-16 mx-auto max-w-7xl">
 
       {/* Featured Section */}
-      {featured && selectedTag === null && searchTerm === '' && (
+      {featuredStudies.length > 0 && (
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
           className="w-[calc(100vw-2rem)] lg:w-[calc(100vw-4rem)] relative left-1/2 -translate-x-1/2 bg-gradient-to-br from-[#533afd]/[0.06] via-[#ea2261]/[0.04] to-[#f96bee]/[0.08] border border-[#533afd]/10 rounded-2xl lg:rounded-[2.5rem] overflow-hidden shadow-sm mb-12"
         >
-          <div className="w-full px-6 sm:px-10 lg:px-16 py-12 sm:py-16 relative z-10">
-            <FeaturedCard study={featured} content={content} />
+          <div className="w-full px-6 sm:px-10 lg:px-16 py-12 sm:py-16 relative z-10 flex flex-col gap-8">
+            {featuredStudies.map((study: any) => (
+              <FeaturedCard key={study.id} study={study} content={content} />
+            ))}
           </div>
         </motion.div>
       )}
@@ -449,7 +452,7 @@ export function CaseStudyList({ caseStudies, content }: { caseStudies: any[], co
       </div>
 
       {/* Grid List */}
-      {rest.length > 0 && (
+      {regularStudies.length > 0 && (
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -461,7 +464,7 @@ export function CaseStudyList({ caseStudies, content }: { caseStudies: any[], co
           ))}
 
           {/* Intersection Observer Target */}
-          {visibleCount < rest.length && (
+          {visibleCount < regularStudies.length && (
             <div ref={loadMoreRef} className="h-10 w-full flex items-center justify-center mt-8">
               <div className="w-5 h-5 rounded-full border-2 border-[#533afd] border-t-transparent animate-spin" />
             </div>

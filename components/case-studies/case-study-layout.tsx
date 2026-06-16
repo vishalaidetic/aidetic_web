@@ -110,30 +110,32 @@ function HeroCard({ study }: { study: any }) {
 
 
 // ─── Main Layout ─────────────────────────────────────────────
-export function CaseStudyLayout({ study, relatedStudies }: { study: any; relatedStudies?: any[] }) {
+export function CaseStudyLayout({ study, relatedStudies, isPreview = false }: { study: any; relatedStudies?: any[]; isPreview?: boolean }) {
 
   return (
     <div className="relative w-full bg-white text-slate-900 pb-24 overflow-clip">
       {/* ── Top nav bar ─────────────────────────────────────── */}
-      <div className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-100 mb-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center gap-4">
-          <Link
-            href="/case-studies"
-            className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-[#533afd] transition-colors group"
-          >
-            <ChevronLeft size={15} className="transition-transform group-hover:-translate-x-0.5" />
-            All case studies
-          </Link>
-          {study.industry && (
-            <>
-              <span className="text-slate-200">/</span>
-              <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
-                {study.industry}
-              </span>
-            </>
-          )}
+      {!isPreview && (
+        <div className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-100 mb-12">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center gap-4">
+            <Link
+              href="/case-studies"
+              className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-[#533afd] transition-colors group"
+            >
+              <ChevronLeft size={15} className="transition-transform group-hover:-translate-x-0.5" />
+              All case studies
+            </Link>
+            {study.industry && (
+              <>
+                <span className="text-slate-200">/</span>
+                <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  {study.industry}
+                </span>
+              </>
+            )}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* ── Half-circle: center above top edge ── */}
       <div

@@ -11,7 +11,7 @@ const phase1 = [
     icon: FileText,
     desc: 'Align on core data schemas, metrics, and business terminology to establish a unified foundation.',
     color: 'from-blue-500 to-cyan-400',
-    imageUrl: '/data1.jpeg'
+    imageUrl: '/data_gathering.png'
   },
   {
     id: 'warehouse',
@@ -19,9 +19,9 @@ const phase1 = [
     icon: Database,
     desc: 'Organize data into Bronze, Silver, and Gold layers to ensure high quality, reliability, and performance.',
     color: 'from-indigo-500 to-blue-500',
-    imageUrl: '/second.png'
+    imageUrl: '/medallion_architecture.png'
   }
-]; 
+];
 
 const phase2 = [
   {
@@ -30,7 +30,7 @@ const phase2 = [
     icon: Activity,
     desc: 'Set the initial rules, boundaries, and reasoning paths for your custom AI agent.',
     color: 'from-purple-500 to-fuchsia-500',
-    imageUrl: '/fourth.png'
+    imageUrl: '/agent_architecture.png'
   }
 ];
 
@@ -41,7 +41,7 @@ const phase3 = [
     icon: CheckCircle2,
     desc: 'Validate agent responses against established business rules to ensure strict compliance and accuracy.',
     color: 'from-fuchsia-500 to-pink-500',
-    imageUrl: '/fifth.png'
+    imageUrl: '/test_iterate_guidelines.png'
   },
   {
     id: 'deploy',
@@ -49,7 +49,7 @@ const phase3 = [
     icon: Search,
     desc: 'Launch your custom AI application with full observability, ready to answer questions and fetch data.',
     color: 'from-pink-500 to-rose-500',
-    imageUrl: '/sixth.png'
+    imageUrl: '/deploy_production.png'
   }
 ];
 

@@ -219,12 +219,6 @@ export function BlogForm({ initialData, isEditing = false }: BlogFormProps) {
         <div className="flex items-center justify-between border-b pb-4">
           <h2 className="text-2xl font-semibold tracking-tight text-[#DC2626]">Preview Mode</h2>
           <div className="flex items-center gap-2">
-            <Button type="button" variant="outline" size="sm" onClick={() => { setJsonText(JSON.stringify(watch(), null, 2)); setJsonError(null); setJsonModal('export') }} className="border-black text-black hover:text-white hover:bg-black">
-              <Download size={13} className="mr-1.5" /> Export JSON
-            </Button>
-            <Button type="button" variant="outline" size="sm" onClick={() => { setJsonText(''); setJsonError(null); setJsonModal('import') }} className="border-black text-black hover:text-white hover:bg-black">
-              <Upload size={13} className="mr-1.5" /> Import JSON
-            </Button>
             <Button
               type="button"
               variant="ghost"
@@ -319,7 +313,7 @@ export function BlogForm({ initialData, isEditing = false }: BlogFormProps) {
       </aside>
 
       {/* ── Main Content ── */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="flex-1 flex flex-col">
         {error && (
           <div className="px-8 pt-6">
             <Alert variant="destructive">
@@ -341,21 +335,6 @@ export function BlogForm({ initialData, isEditing = false }: BlogFormProps) {
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => router.back()}
-              className="border-black text-black hover:bg-black hover:text-white text-sm"
-            >
-              Cancel
-            </Button>
-            <Button
-              type="button"
-              onClick={handlePreviewClick}
-              className="flex items-center gap-2 bg-black hover:bg-[#DC2626] text-white border-none shadow-sm text-sm"
-            >
-              Preview
-            </Button>
             {/* JSON buttons */}
             <Button type="button" variant="outline" onClick={() => { setJsonText(JSON.stringify(watch(), null, 2)); setJsonError(null); setJsonModal('export') }} className="border-black text-black hover:text-white hover:bg-black text-sm gap-1.5 hidden sm:flex">
               <Download size={13} /> Export JSON
@@ -363,14 +342,6 @@ export function BlogForm({ initialData, isEditing = false }: BlogFormProps) {
             <Button type="button" variant="outline" onClick={() => { setJsonText(''); setJsonError(null); setJsonModal('import') }} className="border-black text-black hover:text-white hover:bg-black text-sm gap-1.5 hidden sm:flex">
               <Upload size={13} /> Import JSON
             </Button>
-            <button
-              type="submit"
-              disabled={isLoading || isUploading}
-              className="flex items-center gap-2 px-5 py-2 rounded-lg bg-[#DC2626] text-white text-sm font-semibold hover:bg-black disabled:opacity-60 transition-all shadow-sm"
-            >
-              {isLoading ? <Loader2 size={15} className="animate-spin" /> : <Save size={15} />}
-              {isLoading ? 'Saving…' : isEditing ? 'Update Post' : 'Save Post'}
-            </button>
           </div>
         </div>
 
@@ -378,7 +349,7 @@ export function BlogForm({ initialData, isEditing = false }: BlogFormProps) {
         <input type="hidden" {...register('slug')} />
 
         {/* Fields */}
-        <div className="flex-1 overflow-y-auto px-8 pb-10 space-y-5">
+        <div className="flex-1 px-8 pb-10 space-y-5">
 
           {/* ── AUTHOR INFO ── */}
           {activeSection === 'author' && (
@@ -400,15 +371,6 @@ export function BlogForm({ initialData, isEditing = false }: BlogFormProps) {
                 </div>
               </CollapsibleCard>
 
-              <div className="pt-2 flex gap-3">
-                <Button
-                  type="button"
-                  onClick={() => setActiveSection('details')}
-                  className="bg-[#DC2626] hover:bg-[#B91C1C] text-white shadow-sm"
-                >
-                  Next: Blog Details →
-                </Button>
-              </div>
             </div>
           )}
 
@@ -617,6 +579,45 @@ export function BlogForm({ initialData, isEditing = false }: BlogFormProps) {
                 </CollapsibleCard>
               </div>
             </div>
+          )}
+        </div>
+
+        <div className="mt-8 border-t border-slate-200 px-8 py-6 flex items-center justify-between bg-slate-50 sticky bottom-0 z-10">
+          <div className="flex items-center gap-3">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => router.back()}
+              className="border-black text-black hover:bg-black hover:text-white text-sm"
+            >
+              Cancel
+            </Button>
+            <Button
+              type="button"
+              onClick={handlePreviewClick}
+              className="flex items-center gap-2 bg-black hover:bg-[#DC2626] text-white border-none shadow-sm text-sm"
+            >
+              Preview
+            </Button>
+          </div>
+
+          {activeSection === 'author' ? (
+            <Button
+              type="button"
+              onClick={() => setActiveSection('details')}
+              className="bg-[#DC2626] hover:bg-[#B91C1C] text-white shadow-sm"
+            >
+              Next: Blog Details →
+            </Button>
+          ) : (
+            <button
+              type="submit"
+              disabled={isLoading || isUploading}
+              className="flex items-center gap-2 px-5 py-2 rounded-lg bg-[#DC2626] text-white text-sm font-semibold hover:bg-black disabled:opacity-60 transition-all shadow-sm"
+            >
+              {isLoading ? <Loader2 size={15} className="animate-spin" /> : <Save size={15} />}
+              {isLoading ? 'Saving…' : isEditing ? 'Update Post' : 'Save Post'}
+            </button>
           )}
         </div>
       </div>

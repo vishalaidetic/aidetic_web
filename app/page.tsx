@@ -27,8 +27,8 @@ export default async function HomePage() {
         <TargetAudienceSection content={content?.targetAudience} />
         <CmoCtaSection content={content?.cmoCta} />
         <ProductsSection content={content?.products} />
-        <InfrastructureSection content={content?.infrastructure} />
         <CaseStudiesSection content={content?.case_studies} />
+        <InfrastructureSection content={content?.infrastructure} />
         <IndustrySolutionsSection content={content?.industrySolutions} />
         <HomeFaqSection content={content?.faq} />
         <FinalCtaSection content={content?.finalCta} />

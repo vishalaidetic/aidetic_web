@@ -258,30 +258,46 @@ export function CaseStudyForm({ initialData, isEditing = false }: Props) {
   if (showPreview) {
     const study = watch()
     return (
-      <div className="w-full h-full flex flex-col bg-slate-50 -m-6 sm:-m-8 lg:-m-10 min-h-screen">
-        <div className="sticky top-0 z-50 bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between shadow-sm">
-          <div className="flex items-center gap-4">
-            <Button type="button" variant="ghost" size="sm" onClick={() => setShowPreview(false)} className="text-black hover:text-white hover:bg-black">
+      <div className="p-8 space-y-8">
+        <div className="flex items-center justify-between border-b pb-4">
+          <h2 className="text-2xl font-semibold tracking-tight text-[#DC2626]">Preview Mode</h2>
+          <div className="flex items-center gap-2">
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={() => setShowPreview(false)}
+              className="text-black hover:text-white hover:bg-black"
+            >
               ← Back to Edit
             </Button>
-            <h2 className="text-lg font-semibold text-[#1B2340]">Preview Mode</h2>
-          </div>
-          <div className="flex items-center gap-3">
-            <Button type="button" variant="outline" onClick={handleJsonExport} className="border-black text-black hover:text-white hover:bg-black text-sm gap-1.5">
-              <Download size={13} /> Export JSON
-            </Button>
-            <Button type="button" variant="outline" onClick={() => { setJsonText(''); setJsonError(null); setJsonModal('import') }} className="border-black text-black hover:text-white hover:bg-black text-sm gap-1.5">
-              <Upload size={13} /> Import JSON
-            </Button>
-            <button type="button" onClick={handleSubmit(onSubmit)} disabled={isLoading} className="flex items-center gap-2 px-5 py-2 rounded-lg bg-black text-white text-sm font-semibold hover:bg-[#DC2626] disabled:opacity-60 transition-all shadow-sm">
-              {isLoading ? <Loader2 size={15} className="animate-spin" /> : <Save size={15} />}
-              {isLoading ? 'Saving…' : isEditing ? 'Update Study' : 'Save Study'}
-            </button>
           </div>
         </div>
-        <div className="flex-1 overflow-y-auto">
-          <CaseStudyLayout study={study} />
+        <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+          <CaseStudyLayout study={study} isPreview={true} />
         </div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="flex gap-4 pt-2">
+            <Button
+              type="submit"
+              disabled={isLoading || isUploading || isLogoUploading}
+              className="bg-black hover:bg-[#DC2626] text-white border-none shadow-sm"
+            >
+              {isLoading ? (
+                <><Loader2 className="mr-2 h-4 w-4 animate-spin" />Saving…</>
+              ) : isEditing ? 'Update Study' : 'Save Study'}
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => setShowPreview(false)}
+              disabled={isLoading || isUploading || isLogoUploading}
+              className="border-black text-black hover:text-white hover:bg-black"
+            >
+              Back to Edit
+            </Button>
+          </div>
+        </form>
       </div>
     )
   }
@@ -316,7 +332,7 @@ export function CaseStudyForm({ initialData, isEditing = false }: Props) {
       </aside>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="flex-1 flex flex-col">
         {error && <div className="px-8 pt-6"><Alert variant="destructive"><AlertTriangle className="h-4 w-4" /><AlertDescription>{error}</AlertDescription></Alert></div>}
 
         {/* Header */}
@@ -331,25 +347,18 @@ export function CaseStudyForm({ initialData, isEditing = false }: Props) {
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <Button type="button" variant="outline" onClick={() => router.back()} className="border-black text-black hover:bg-black hover:text-white text-sm">Cancel</Button>
-            <Button type="button" onClick={() => setShowPreview(true)} className="bg-black text-white hover:bg-[#DC2626] text-sm">Preview</Button>
             <Button type="button" variant="outline" onClick={handleJsonExport} className="border-black text-black hover:text-white hover:bg-black text-sm gap-1.5 hidden sm:flex">
               <Download size={13} /> Export JSON
             </Button>
             <Button type="button" variant="outline" onClick={() => { setJsonText(''); setJsonError(null); setJsonModal('import') }} className="border-black text-black hover:text-white hover:bg-black text-sm gap-1.5 hidden sm:flex">
               <Upload size={13} /> Import JSON
             </Button>
-            <button type="submit" disabled={isLoading || isUploading}
-              className="flex items-center gap-2 px-5 py-2 rounded-lg bg-[#DC2626] text-white text-sm font-semibold hover:bg-black disabled:opacity-60 transition-all shadow-sm">
-              {isLoading ? <Loader2 size={15} className="animate-spin" /> : <Save size={15} />}
-              {isLoading ? 'Saving…' : isEditing ? 'Update Study' : 'Save Study'}
-            </button>
           </div>
         </div>
 
         <input type="hidden" {...register('slug')} />
 
-        <div className="flex-1 overflow-y-auto px-8 pb-10 space-y-5">
+        <div className="flex-1 px-8 pb-10 space-y-5">
 
           {/* ── AUTHOR INFO ── */}
           {active === 'author' && (
@@ -361,9 +370,6 @@ export function CaseStudyForm({ initialData, isEditing = false }: Props) {
                   {errors.author && <p className="text-sm text-[#DC2626]">{errors.author.message}</p>}
                 </div>
               </CollapsibleCard>
-              <div className="pt-2">
-                <Button type="button" onClick={() => setActive('company')} className="bg-[#DC2626] hover:bg-[#B91C1C] text-white">Next: Company Info →</Button>
-              </div>
             </div>
           )}
 
@@ -465,9 +471,6 @@ export function CaseStudyForm({ initialData, isEditing = false }: Props) {
                 </div>
               </CollapsibleCard>
 
-              <div className="pt-2">
-                <Button type="button" onClick={() => setActive('case_study')} className="bg-[#DC2626] hover:bg-[#B91C1C] text-white">Next: Case Study Info →</Button>
-              </div>
             </div>
           )}
 
@@ -497,6 +500,7 @@ export function CaseStudyForm({ initialData, isEditing = false }: Props) {
                   <Button
                     type="button" variant="outline" size="sm"
                     onClick={() => appendMetric({ metric_value: '', metric_label: '', display_order: metricFields.length })}
+                    className="hover:bg-[#DC2626] hover:text-white hover:border-[#DC2626]"
                   >
                     <Plus size={14} className="mr-1" /> Add Highlight
                   </Button>
@@ -541,9 +545,6 @@ export function CaseStudyForm({ initialData, isEditing = false }: Props) {
                 </div>
               </CollapsibleCard>
 
-              <div className="pt-2">
-                <Button type="button" onClick={() => setActive('problem')} className="bg-[#DC2626] hover:bg-[#B91C1C] text-white">Next: The Problem →</Button>
-              </div>
             </div>
           )}
 
@@ -565,7 +566,7 @@ export function CaseStudyForm({ initialData, isEditing = false }: Props) {
                 title="Problem Cards"
                 defaultOpen={false}
                 headerAction={
-                  <Button type="button" variant="outline" size="sm" onClick={() => appendProblemCard({ stat: '', stat_label: '', title: '', bullets: [], display_order: problemCards.length })}>
+                  <Button type="button" variant="outline" size="sm" onClick={() => appendProblemCard({ stat: '', stat_label: '', title: '', bullets: [], display_order: problemCards.length })} className="hover:bg-[#DC2626] hover:text-white hover:border-[#DC2626]">
                     <Plus size={14} className="mr-1" /> Add Card
                   </Button>
                 }
@@ -601,26 +602,53 @@ export function CaseStudyForm({ initialData, isEditing = false }: Props) {
                       <Controller
                         name={`problem.cards.${index}.bullets` as const}
                         control={control}
-                        render={({ field: f }) => (
-                          <Textarea
-                            placeholder={`Co-founders manually screening every resume\nFirst-round interviews running back-to-back\nProduct decisions getting deferred`}
-                            value={Array.isArray(f.value) ? f.value.join('\n') : (f.value ?? '')}
-                            onChange={e => f.onChange(e.target.value.split('\n').filter(Boolean))}
-                            rows={4}
-                            className={cls()}
-                          />
-                        )}
+                        render={({ field: f }) => {
+                          const items = Array.isArray(f.value) ? f.value : [];
+                          return (
+                            <div className="space-y-2">
+                              {items.map((bullet, i) => (
+                                <div key={i} className="flex items-center gap-2">
+                                  <Input 
+                                    value={bullet} 
+                                    onChange={(e) => {
+                                      const newItems = [...items];
+                                      newItems[i] = e.target.value;
+                                      f.onChange(newItems);
+                                    }} 
+                                    placeholder="Enter bullet point"
+                                    className={cls(false)}
+                                  />
+                                  <Button 
+                                    type="button" 
+                                    variant="ghost" 
+                                    size="icon" 
+                                    className="shrink-0 text-slate-400 hover:text-red-500 hover:bg-red-50"
+                                    onClick={() => f.onChange(items.filter((_, idx) => idx !== i))}
+                                  >
+                                    <Trash2 size={16} />
+                                  </Button>
+                                </div>
+                              ))}
+                              <Button
+                                type="button"
+                                variant="outline"
+                                size="sm"
+                                onClick={() => f.onChange([...items, ''])}
+                                className="w-full text-slate-500 border-dashed hover:bg-[#DC2626] hover:text-white hover:border-[#DC2626]"
+                              >
+                                <Plus size={14} className="mr-2" /> Add Bullet Point
+                              </Button>
+                            </div>
+                          )
+                        }}
                       />
-                      <p className="text-[11px] text-slate-400">One bullet per line (dash — style in the preview)</p>
+                      <p className="text-[11px] text-slate-400">Dash — style in the preview</p>
                     </div>
                   </div>
                 ))}
                 {problemCards.length === 0 && <div className="text-center py-8 text-sm text-slate-500 border-2 border-dashed border-slate-200 rounded-xl">No cards added yet.</div>}
               </CollapsibleCard>
 
-              <div className="pt-2">
-                <Button type="button" onClick={() => setActive('solution')} className="bg-[#DC2626] hover:bg-[#B91C1C] text-white">Next: The Solution →</Button>
-              </div>
             </div>
           )}
 
@@ -642,7 +670,7 @@ export function CaseStudyForm({ initialData, isEditing = false }: Props) {
                 title="Solution Steps"
                 defaultOpen={false}
                 headerAction={
-                  <Button type="button" variant="outline" size="sm" onClick={() => appendSolutionStep({ step_number: solutionSteps.length + 1, title: '', bullets: [], display_order: solutionSteps.length })}>
+                  <Button type="button" variant="outline" size="sm" onClick={() => appendSolutionStep({ step_number: solutionSteps.length + 1, title: '', bullets: [], display_order: solutionSteps.length })} className="hover:bg-[#DC2626] hover:text-white hover:border-[#DC2626]">
                     <Plus size={14} className="mr-1" /> Add Step
                   </Button>
                 }
@@ -668,26 +696,53 @@ export function CaseStudyForm({ initialData, isEditing = false }: Props) {
                       <Controller
                         name={`solution.steps.${index}.bullets` as const}
                         control={control}
-                        render={({ field: f }) => (
-                          <Textarea
-                            placeholder={`Every resume evaluated against technical + startup-fit criteria\nRanked shortlist instead of a pile of unread applications\nNo more 20-out-of-150 manual triage`}
-                            value={Array.isArray(f.value) ? f.value.join('\n') : (f.value ?? '')}
-                            onChange={e => f.onChange(e.target.value.split('\n').filter(Boolean))}
-                            rows={4}
-                            className={cls()}
-                          />
-                        )}
+                        render={({ field: f }) => {
+                          const items = Array.isArray(f.value) ? f.value : [];
+                          return (
+                            <div className="space-y-2">
+                              {items.map((bullet, i) => (
+                                <div key={i} className="flex items-center gap-2">
+                                  <Input 
+                                    value={bullet} 
+                                    onChange={(e) => {
+                                      const newItems = [...items];
+                                      newItems[i] = e.target.value;
+                                      f.onChange(newItems);
+                                    }} 
+                                    placeholder="Enter bullet point"
+                                    className={cls(false)}
+                                  />
+                                  <Button 
+                                    type="button" 
+                                    variant="ghost" 
+                                    size="icon" 
+                                    className="shrink-0 text-slate-400 hover:text-red-500 hover:bg-red-50"
+                                    onClick={() => f.onChange(items.filter((_, idx) => idx !== i))}
+                                  >
+                                    <Trash2 size={16} />
+                                  </Button>
+                                </div>
+                              ))}
+                              <Button
+                                type="button"
+                                variant="outline"
+                                size="sm"
+                                onClick={() => f.onChange([...items, ''])}
+                                className="w-full text-slate-500 border-dashed hover:bg-[#DC2626] hover:text-white hover:border-[#DC2626]"
+                              >
+                                <Plus size={14} className="mr-2" /> Add Bullet Point
+                              </Button>
+                            </div>
+                          )
+                        }}
                       />
-                      <p className="text-[11px] text-slate-400">One bullet per line — shown with ✓ checkmarks in the preview</p>
+                      <p className="text-[11px] text-slate-400">Shown with ✓ checkmarks in the preview</p>
                     </div>
                   </div>
                 ))}
                 {solutionSteps.length === 0 && <div className="text-center py-8 text-sm text-slate-500 border-2 border-dashed border-slate-200 rounded-xl">No steps added yet.</div>}
               </CollapsibleCard>
 
-              <div className="pt-2">
-                <Button type="button" onClick={() => setActive('results')} className="bg-[#DC2626] hover:bg-[#B91C1C] text-white">Next: Results →</Button>
-              </div>
             </div>
           )}
 
@@ -705,7 +760,7 @@ export function CaseStudyForm({ initialData, isEditing = false }: Props) {
                 title="Result Items"
                 defaultOpen={false}
                 headerAction={
-                  <Button type="button" variant="outline" size="sm" onClick={() => appendResultItem({ category: '', badge: '', metrics: [], display_order: resultItems.length })}>
+                  <Button type="button" variant="outline" size="sm" onClick={() => appendResultItem({ category: '', badge: '', metrics: [], display_order: resultItems.length })} className="hover:bg-[#DC2626] hover:text-white hover:border-[#DC2626]">
                     <Plus size={14} className="mr-1" /> Add Result Category
                   </Button>
                 }
@@ -760,9 +815,6 @@ export function CaseStudyForm({ initialData, isEditing = false }: Props) {
                 ))}
                 {resultItems.length === 0 && <div className="text-center py-8 text-sm text-slate-500 border-2 border-dashed border-slate-200 rounded-xl">No results added yet.</div>}
               </CollapsibleCard>
-              <div className="pt-2">
-                <Button type="button" onClick={() => setActive('testimonial')} className="bg-[#DC2626] hover:bg-[#B91C1C] text-white">Next: Testimonial →</Button>
-              </div>
             </div>
           )}
 
@@ -794,6 +846,24 @@ export function CaseStudyForm({ initialData, isEditing = false }: Props) {
 
         </div>
 
+        {/* Action Footer */}
+        <div className="mt-8 border-t border-slate-200 px-8 py-6 flex items-center justify-between bg-slate-50 sticky bottom-0 z-10">
+          <div className="flex items-center gap-3">
+            <Button type="button" variant="outline" onClick={() => router.back()} className="border-black text-black hover:bg-black hover:text-white text-sm">Cancel</Button>
+            <Button type="button" onClick={() => setShowPreview(true)} className="bg-black text-white hover:bg-[#DC2626] text-sm">Preview</Button>
+          </div>
+          {navItems.findIndex(i => i.key === active) < navItems.length - 1 ? (
+            <Button type="button" onClick={() => setActive(navItems[navItems.findIndex(i => i.key === active) + 1].key)} className="bg-[#DC2626] hover:bg-[#B91C1C] text-white">
+              Next: {navItems[navItems.findIndex(i => i.key === active) + 1].label} →
+            </Button>
+          ) : (
+            <button type="submit" disabled={isLoading || isUploading || isLogoUploading}
+              className="flex items-center gap-2 px-5 py-2 rounded-lg bg-[#DC2626] text-white text-sm font-semibold hover:bg-black disabled:opacity-60 transition-all shadow-sm">
+              {isLoading ? <Loader2 size={15} className="animate-spin" /> : <Save size={15} />}
+              {isLoading ? 'Saving…' : isEditing ? 'Update Study' : 'Save Study'}
+            </button>
+          )}
+        </div>
       </div>
 
       {/* JSON Import/Export Modal */}
