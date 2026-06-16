@@ -128,26 +128,28 @@ export function Navigation({ adminEmail: adminEmailProp }: NavigationProps = {})
 
                   {/* Dropdown panel */}
                   {openDropdown === link.label && (
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 bg-white rounded-2xl border border-slate-100 shadow-xl shadow-slate-200/60 py-2 z-50">
-                      {/* Arrow pointer */}
-                      <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rotate-45 bg-white border-l border-t border-slate-100" />
-                      {link.children.map((child) => (
-                        <Link
-                          key={child.href}
-                          href={child.href}
-                          className="flex flex-col gap-0.5 px-4 py-3 mx-2 rounded-xl hover:bg-[#533afd]/5 transition-colors group"
-                          onClick={() => setOpenDropdown(null)}
-                        >
-                          <span className="text-sm font-bold text-[#0d253d] group-hover:text-[#533afd] transition-colors">
-                            {child.label}
-                          </span>
-                          {child.description && (
-                            <span className="text-xs text-[#64748d] leading-snug">
-                              {child.description}
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 z-50">
+                      <div className="relative w-64 bg-white rounded-2xl border border-slate-100 shadow-xl shadow-slate-200/60 py-2">
+                        {/* Arrow pointer */}
+                        <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rotate-45 bg-white border-l border-t border-slate-100" />
+                        {link.children.map((child) => (
+                          <Link
+                            key={child.href}
+                            href={child.href}
+                            className="flex flex-col gap-0.5 px-4 py-3 mx-2 rounded-xl hover:bg-[#533afd]/5 transition-colors group"
+                            onClick={() => setOpenDropdown(null)}
+                          >
+                            <span className="text-sm font-bold text-[#0d253d] group-hover:text-[#533afd] transition-colors">
+                              {child.label}
                             </span>
-                          )}
-                        </Link>
-                      ))}
+                            {child.description && (
+                              <span className="text-xs text-[#64748d] leading-snug">
+                                {child.description}
+                              </span>
+                            )}
+                          </Link>
+                        ))}
+                      </div>
                     </div>
                   )}
                 </div>

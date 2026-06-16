@@ -1,6 +1,9 @@
+'use client'
+
 import { BlogContent } from '@/components/blog/blog-content'
-import { Check } from 'lucide-react'
+import { Check, ChevronLeft } from 'lucide-react'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 
 // ─── Hero Card ───────────────────────────────────────────────
 function HeroCard({ study }: { study: any }) {
@@ -110,7 +113,28 @@ function HeroCard({ study }: { study: any }) {
 export function CaseStudyLayout({ study, relatedStudies }: { study: any; relatedStudies?: any[] }) {
 
   return (
-    <div className="relative w-full bg-white text-slate-900 pb-24 overflow-hidden">
+    <div className="relative w-full bg-white text-slate-900 pb-24 overflow-clip">
+      {/* ── Top nav bar ─────────────────────────────────────── */}
+      <div className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-100 mb-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center gap-4">
+          <Link
+            href="/case-studies"
+            className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-[#533afd] transition-colors group"
+          >
+            <ChevronLeft size={15} className="transition-transform group-hover:-translate-x-0.5" />
+            All case studies
+          </Link>
+          {study.industry && (
+            <>
+              <span className="text-slate-200">/</span>
+              <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                {study.industry}
+              </span>
+            </>
+          )}
+        </div>
+      </div>
+
       {/* ── Half-circle: center above top edge ── */}
       <div
         className="absolute pointer-events-none z-0"
@@ -127,10 +151,15 @@ export function CaseStudyLayout({ study, relatedStudies }: { study: any; related
           opacity: 0.7,
         }}
       />
-      <div className="relative z-10 max-w-4xl mx-auto px-6 sm:px-8 pt-16 sm:pt-24 space-y-0">
+      <div className="relative z-10 max-w-4xl mx-auto px-6 sm:px-8 space-y-0">
 
         {/* ── SECTION 1: Header ─────────────────────────────── */}
-        <section className="mb-12">
+        <motion.section 
+          className="mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        >
           {/* Row 1: Logo + Company Name */}
           <div className="flex items-center gap-3 mb-2">
             {study.company_logo ? (
@@ -204,18 +233,30 @@ export function CaseStudyLayout({ study, relatedStudies }: { study: any; related
               ))}
             </div>
           )}
-        </section>
+        </motion.section>
 
         {/* ── Hero Card ────────────────────────────────────── */}
         {(study.metrics?.length > 0 || study.subtitle) && (
-          <section className="mb-20">
+          <motion.section 
+            className="mb-20"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          >
             <HeroCard study={study} />
-          </section>
+          </motion.section>
         )}
 
         {/* ── About / Markdown Content ─────────────────────── */}
         {study.content && (
-          <section className="mb-20">
+          <motion.section 
+            className="mb-20"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          >
             <h2 
               className="text-2xl sm:text-3xl lg:text-4xl font-semibold leading-[1.15] mb-5"
               style={{
@@ -234,12 +275,18 @@ export function CaseStudyLayout({ study, relatedStudies }: { study: any; related
             >
               <BlogContent content={study.content} />
             </div>
-          </section>
+          </motion.section>
         )}
 
         {/* ── THE PROBLEM ──────────────────────────────────── */}
         {study.problem && (study.problem.heading || study.problem.description || study.problem.cards?.length > 0) && (
-          <section className="mb-24">
+          <motion.section 
+            className="mb-24"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          >
             <div className="inline-flex items-center px-4 py-1.5 bg-gradient-to-r from-purple-50 to-indigo-50 border border-purple-100 shadow-sm text-purple-700 text-[11px] font-bold uppercase tracking-[0.2em] rounded-full mb-8">
               The Problem
             </div>
@@ -311,12 +358,18 @@ export function CaseStudyLayout({ study, relatedStudies }: { study: any; related
                 ))}
               </div>
             )}
-          </section>
+          </motion.section>
         )}
 
         {/* ── THE SOLUTION ─────────────────────────────────── */}
         {study.solution && (study.solution.heading || study.solution.description || study.solution.steps?.length > 0) && (
-          <section className="mb-24">
+          <motion.section 
+            className="mb-24"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          >
             <div className="inline-flex items-center px-4 py-1.5 bg-gradient-to-r from-purple-50 to-indigo-50 border border-purple-100 shadow-sm text-purple-700 text-[11px] font-bold uppercase tracking-[0.2em] rounded-full mb-8">
               The Solution
             </div>
@@ -377,12 +430,18 @@ export function CaseStudyLayout({ study, relatedStudies }: { study: any; related
                 ))}
               </div>
             )}
-          </section>
+          </motion.section>
         )}
 
         {/* ── TESTIMONIAL ──────────────────────────────────── */}
         {study.testimonial?.quote && (
-          <section className="mb-20 border-t border-slate-100 pt-16">
+          <motion.section 
+            className="mb-20 border-t border-slate-100 pt-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          >
             <div className="flex items-start gap-4 sm:gap-6">
               <div className="text-[#c4b5fd] text-[3rem] sm:text-[4rem] leading-none font-serif select-none shrink-0" style={{ marginTop: '-0.25rem' }}>&ldquo;</div>
               <div>
@@ -412,12 +471,18 @@ export function CaseStudyLayout({ study, relatedStudies }: { study: any; related
                 </div>
               </div>
             </div>
-          </section>
+          </motion.section>
         )}
 
         {/* ── RESULTS ──────────────────────────────────────── */}
         {study.results && (study.results.title || study.results.items?.length > 0) && (
-          <section className="mb-24 border-t border-slate-100 pt-20">
+          <motion.section 
+            className="mb-24 border-t border-slate-100 pt-20"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          >
             <div className="inline-flex items-center px-4 py-1.5 bg-gradient-to-r from-purple-50 to-indigo-50 border border-purple-100 shadow-sm text-purple-700 text-[11px] font-bold uppercase tracking-[0.2em] rounded-full mb-8">
               Results
             </div>
@@ -474,12 +539,18 @@ export function CaseStudyLayout({ study, relatedStudies }: { study: any; related
                 ))}
               </div>
             )}
-          </section>
+          </motion.section>
         )}
 
         {/* ── MORE CUSTOMER STORIES ────────────────────────── */}
         {relatedStudies && relatedStudies.length > 0 && (
-          <section className="border-t border-slate-100 pt-16">
+          <motion.section 
+            className="border-t border-slate-100 pt-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          >
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-slate-400 mb-8">
               More Customer Stories
             </p>
@@ -502,11 +573,9 @@ export function CaseStudyLayout({ study, relatedStudies }: { study: any; related
                 </Link>
               ))}
             </div>
-          </section>
+          </motion.section>
         )}
-
       </div>
     </div>
   )
 }
-
