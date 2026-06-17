@@ -66,7 +66,6 @@ export function DashboardSidebar() {
           <Languages size={17} className={pathname.includes('/content-manager') ? 'text-white' : 'text-[#6B7280] group-hover:text-[#DC2626]'} />
           <span>Content Manager</span>
         </Link>
-
       </nav>
     </aside>
 

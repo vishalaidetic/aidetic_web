@@ -27,6 +27,11 @@ const navLinks: NavLink[] = [
         label: 'Agent Factory',
         description: 'AI agents that answer your business questions instantly.',
       },
+      {
+        href: '/data-flash',
+        label: 'Data Flash',
+        description: 'Fast, secure, and automated insights at your fingertips.',
+      },
     ],
   },
   { href: '/blog', label: 'Blogs' },

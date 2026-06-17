@@ -1,0 +1,308 @@
+{
+  "hero": {
+    "badge": "Data Migration Tool",
+    "heading": [
+      "Seamless Cloud Transitions.",
+      "Zero Downtime Data Migration."
+    ],
+    "subheading": "Move your legacy databases and files securely to the cloud. Our enterprise-grade Data Migration tool guarantees data integrity, rapid transfer speeds, and minimal disruption.",
+    "cta_primary": "Get a Free Assessment",
+    "cta_secondary": "View Documentation",
+    "logo_url": "/agent-fac-logo.png",
+    "book_text_1": "Book",
+    "book_text_2": " a migration audit today",
+    "trusted_by": "TRUSTED BY ENTERPRISES WORLDWIDE",
+    "logos": [
+      { "name": "AWS", "url": "" },
+      { "name": "Google Cloud", "url": "" },
+      { "name": "Azure", "url": "" },
+      { "name": "Snowflake", "url": "" },
+      { "name": "Databricks", "url": "" },
+      { "name": "Oracle", "url": "" },
+      { "name": "MongoDB", "url": "" }
+    ]
+  },
+  "pipeline": {
+    "badge": "How We Migrate",
+    "heading": "Risk-Free Data Migration in 3 Phases.",
+    "subheading": "From initial audit to final validation, we ensure every byte makes it safely to its new home.",
+    "phases": [
+      {
+        "id": "phase1",
+        "label": "Phase 1: Assess & Plan",
+        "steps": [
+          {
+            "id": "audit",
+            "title": "Infrastructure Audit",
+            "desc": "Map out your existing legacy data schemas, dependencies, and business rules to create a foolproof transition plan."
+          },
+          {
+            "id": "mapping",
+            "title": "Schema Mapping",
+            "desc": "Translate old data types and structures into the optimized formats required by your new target destination."
+          }
+        ]
+      },
+      {
+        "id": "phase2",
+        "label": "Phase 2: Transfer & Sync",
+        "steps": [
+          {
+            "id": "transfer",
+            "title": "Continuous Sync & Transfer",
+            "desc": "Utilize change data capture (CDC) to move bulk data while keeping the old and new systems perfectly synchronized."
+          }
+        ]
+      },
+      {
+        "id": "phase3",
+        "label": "Phase 3: Validate & Switch",
+        "steps": [
+          {
+            "id": "validate",
+            "title": "Data Integrity Validation",
+            "desc": "Run automated hash-checks and row-count validations to prove 100% data accuracy."
+          },
+          {
+            "id": "cutover",
+            "title": "Zero-Downtime Cutover",
+            "desc": "Seamlessly reroute your application traffic to the new database with less than a second of downtime."
+          }
+        ]
+      }
+    ]
+  },
+  "features": {
+    "heading": "Why Choose Our Migration Tool",
+    "subheading": "We've removed the stress, data loss, and endless weekends associated with legacy migrations.",
+    "items": [
+      {
+        "title": "Zero Downtime, Zero Disruptions.",
+        "description": "Our Change Data Capture (CDC) technology syncs data in real-time, meaning your business never goes offline while data moves in the background."
+      },
+      {
+        "title": "Automated Schema Translation.",
+        "description": "Moving from Oracle to Postgres? Or SQL to NoSQL? Our engine automatically converts schema types and handles data transformations on the fly."
+      },
+      {
+        "title": "End-to-End Encryption.",
+        "description": "Your data is encrypted in transit and at rest using AES-256 and TLS 1.3. Security is guaranteed throughout the entire transition pipeline."
+      },
+      {
+        "title": "Guaranteed Data Fidelity",
+        "description": "We don't just move data; we prove it arrived safely. Comprehensive auditing and validation scripts verify every single row."
+      }
+    ],
+    "mockups": {
+      "analyst": {
+        "question": "Which tables are failing the integrity check?",
+        "analyzing": "Migration tool is scanning...",
+        "table_headers": [
+          "Table",
+          "Rows Source",
+          "Rows Target",
+          "Status"
+        ],
+        "table_rows": [
+          [
+            "1. Users",
+            "1,204,550",
+            "1,204,550",
+            "Verified ✅"
+          ],
+          [
+            "2. Transactions",
+            "45,091,112",
+            "45,091,110",
+            "Mismatch ⚠"
+          ]
+        ],
+        "chips": [
+          "View Logs",
+          "Re-sync Table",
+          "Export Report"
+        ],
+        "input_placeholder": "Run custom validation query..."
+      },
+      "businessArea": {
+        "label": "Select Target Environment",
+        "selected": "Production (AWS)",
+        "dropdown": [
+          "Staging (GCP)",
+          "QA Environment"
+        ],
+        "chat_question": "What is the estimated completion time for the massive Logs table?",
+        "chat_answer": "Estimated completion: 2h 15m at current throughput of 500MB/s.",
+        "input_placeholder": "Ask migration status..."
+      },
+      "charts": {
+        "label": "Throughput Speed",
+        "y_axis": [
+          "1GB/s",
+          "500MB/s",
+          "0"
+        ],
+        "monthly": "Hourly",
+        "bar_labels": [
+          "200MB/s",
+          "450MB/s",
+          "800MB/s",
+          "1.2GB/s",
+          "950MB/s"
+        ]
+      },
+      "integration": {
+        "hub": "Connection Settings",
+        "sub": "Securely link your source and destination",
+        "source_label": "Source DB: On-Premise Oracle",
+        "tools": [
+          "Oracle",
+          "SQL Server",
+          "PostgreSQL",
+          "MySQL",
+          "Snowflake",
+          "BigQuery"
+        ],
+        "data_label": "Destination: Cloud Native"
+      }
+    }
+  },
+  "stats": {
+    "heading": "Proven Migration Performance",
+    "subheading": "The numbers speak for themselves. Faster, safer, and cheaper migrations.",
+    "items": [
+      {
+        "value": 99.99,
+        "suffix": "%",
+        "label": "Data Integrity Maintained\nAcross all Migrations"
+      },
+      {
+        "value": "<1",
+        "suffix": "s",
+        "label": "Downtime during\nproduction cutover"
+      },
+      {
+        "value": 5,
+        "suffix": "x",
+        "label": "Faster data transfer speeds\nthan traditional methods"
+      },
+      {
+        "value": 60,
+        "suffix": "%",
+        "label": "Reduction in overall\nproject costs"
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Common Migration Questions.",
+    "subheading": "Everything you need to know before moving your critical data.",
+    "cta": "Get a Free Assessment",
+    "items": [
+      {
+        "question": "Do we need to take our application offline?",
+        "answer": "No. Our Change Data Capture (CDC) ensures the source database remains live. When the transfer is complete, we perform a sub-second cutover."
+      },
+      {
+        "question": "What happens if the migration is interrupted?",
+        "answer": "The tool uses checkpointing. If the network drops or a server reboots, the migration resumes exactly where it left off without duplicating data."
+      },
+      {
+        "question": "Which databases do you support?",
+        "answer": "We support all major relational databases (Oracle, SQL Server, MySQL, Postgres), NoSQL stores (MongoDB, Cassandra), and modern cloud warehouses (Snowflake, BigQuery, Redshift)."
+      },
+      {
+        "question": "How do you guarantee data accuracy?",
+        "answer": "Phase 3 includes automated validation. We perform row-by-row hash checks to ensure the destination data is a perfect, bit-for-bit match with the source."
+      },
+      {
+        "question": "Can you handle schema transformations?",
+        "answer": "Yes. Our engine can rename columns, convert data types, and restructure tables during transit, allowing you to modernize your schema as you migrate."
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Stop delaying your cloud transition.",
+    "subheading": "Move your data securely and finally shut down that expensive on-premise hardware.",
+    "cta_primary": "Get a Free Assessment",
+    "cta_secondary": "Read Migration Guides"
+  },
+  "useCases": {
+    "heading": "Migration Success Stories",
+    "subheading": "See how enterprises modernized their stacks without skipping a beat.",
+    "items": [
+      {
+        "title": "Global Bank Escapes Legacy Hardware",
+        "description": "Moved 50TB of financial records from an on-premise mainframe to Snowflake over a single weekend with zero downtime or customer impact."
+      },
+      {
+        "title": "Retailer Consolidates 14 Databases",
+        "description": "Merged data from 14 regional MySQL instances into a single global Postgres cluster, normalizing schemas on the fly."
+      },
+      {
+        "title": "Healthcare Provider Migrates to the Cloud",
+        "description": "Successfully migrated 10 years of patient records to AWS while maintaining strict HIPAA compliance and full end-to-end encryption."
+      }
+    ]
+  },
+  "product": {
+    "heading": "Why Traditional Migrations Fail",
+    "subheading": "Manual data transitions are fraught with risks, hidden costs, and painful downtime.",
+    "items": [
+      {
+        "number": "01",
+        "title": "Unacceptable Business Downtime",
+        "description": "Legacy methods require taking applications offline for hours or days, costing thousands in lost revenue."
+      },
+      {
+        "number": "02",
+        "title": "Silent Data Corruption",
+        "description": "Moving millions of rows manually often results in dropped characters, wrong date formats, and corrupted files."
+      },
+      {
+        "number": "03",
+        "title": "Runaway Consulting Costs",
+        "description": "Hiring armies of consultants to write custom ETL scripts is expensive, slow, and hard to maintain."
+      }
+    ]
+  },
+  "cmo": {
+    "heading": "Hi! I am the Head of Data at Aidetic.",
+    "subheading": "Ready to discuss your migration path?",
+    "cta": "Get a Free Assessment"
+  },
+  "learnMore": {
+    "heading": "Data Migration Resources",
+    "items": [
+      {
+        "type": "WHITEPAPER",
+        "title": "The Zero-Downtime Playbook",
+        "brand": "Data Migration Institute",
+        "visual_type": "WHITEPAPER",
+        "visual_title_1": "The Playbook",
+        "visual_title_2": "For Zero-Downtime",
+        "visual_title_3": "Cloud Migrations",
+        "button": "READ NOW"
+      },
+      {
+        "type": "WEBINAR",
+        "title": "Migrating from Oracle to Postgres",
+        "brand": "Tech Talks",
+        "visual_type": "WEBINAR",
+        "visual_title_1": "Migrating from",
+        "visual_title_2": "Oracle to",
+        "visual_title_3": "Postgres",
+        "button": "WATCH ON-DEMAND"
+      },
+      {
+        "type": "CHECKLIST",
+        "title": "Pre-Migration Security Audit",
+        "brand": "Cloud Security Alliance",
+        "visual_type": "CHECKLIST",
+        "visual_title_1": "Pre-Migration",
+        "visual_title_2": "Security & Compliance",
+        "visual_title_3": "Checklist",
+        "button": "DOWNLOAD"
+      }
+    ]
+  }
+}
