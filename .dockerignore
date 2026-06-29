@@ -1,35 +1,66 @@
-# ─── Docker & build artifacts ───────────────────
+# ═══════════════════════════════════════════════════════════════════
+#  .dockerignore — Next.js frontend build context
+#  Lives at repo root; applies to the Dockerfile (Next.js) build.
+#  The backend services use backend/backend/Dockerfile with their
+#  own context so they are not affected by this file.
+# ═══════════════════════════════════════════════════════════════════
+
+# ─── Docker artifacts ──────────────────────────────────────────────
 Dockerfile
 .dockerignore
-.next
-out
+docker-compose*.yml
 
-# ─── Dependencies (copied fresh inside Docker) ──
-node_modules
+# ─── Next.js build output (rebuilt inside container) ───────────────
+.next/
+out/
+build/
 
-# ─── Version control ────────────────────────────
-.git
+# ─── Node modules (installed fresh inside container) ───────────────
+node_modules/
+
+# ─── Environment / secrets ─────────────────────────────────────────
+.env
+.env.backend
+.env.*.local
+.env.development
+.env.production
+# .env.local is intentionally NOT ignored so Next.js can read NEXT_PUBLIC_* vars during npm run build
+
+# ─── Backend source (not needed for the Next.js image) ─────────────
+backend/
+
+# ─── Version control ───────────────────────────────────────────────
+.git/
 .gitignore
 
-# ─── Environment & secrets ──────────────────────
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# ─── Dev tooling & docs ─────────────────────────
-.vscode
-.idea
+# ─── Dev tooling / docs ────────────────────────────────────────────
+.vscode/
+.idea/
 README.md
 SETUP.md
+*.md
+
+# ─── Logs & debug ──────────────────────────────────────────────────
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+*.log
 
-# ─── OS artifacts ───────────────────────────────
+# ─── OS artifacts ──────────────────────────────────────────────────
 .DS_Store
 Thumbs.db
+desktop.ini
 
-# ─── TypeScript build cache ──────────────────────
+# ─── TypeScript build cache ────────────────────────────────────────
 tsconfig.tsbuildinfo
+
+# ─── Test / CI ─────────────────────────────────────────────────────
+coverage/
+.pytest_cache/
+__pycache__/
+*.pyc
+
+# ─── Misc ──────────────────────────────────────────────────────────
+.turbo/
+.cache/
+update_colors.js

@@ -32,6 +32,8 @@ COPY . .
 # Disable Next.js telemetry during the build
 ENV NEXT_TELEMETRY_DISABLED=1
 
+
+
 # Build the application (outputs standalone server)
 RUN npm run build
 
