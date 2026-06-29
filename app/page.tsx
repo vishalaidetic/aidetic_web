@@ -1,41 +1,42 @@
-import { FinalCtaSection } from '@/components/home/final-cta-section';
-import { HomeFaqSection } from '@/components/home/home-faq-section';
-import { Footer } from '@/components/layout/footer';
-import { Navigation } from '@/components/layout/navigation';
+import { CmoSection } from '@/components/agent-factory/cmo-section'
+import { CtaSection } from '@/components/agent-factory/cta-section'
+import { FaqSection } from '@/components/agent-factory/faq-section'
+import { FeaturesSection } from '@/components/agent-factory/features-section'
+import { Hero } from '@/components/agent-factory/hero'
+import { LearnMoreSection } from '@/components/agent-factory/learn-more-section'
+import { AgentFactoryPipeline } from '@/components/agent-factory/pipeline'
+import { ProductSection } from '@/components/agent-factory/product-section'
+import { StatsSection } from '@/components/agent-factory/stats-section'
+import { UseCasesSection } from '@/components/agent-factory/use-cases-section'
+import { Footer } from '@/components/layout/footer'
+import { Navigation } from '@/components/layout/navigation'
+import { getPageContent } from '@/lib/content'
 
-import { HeroSection } from '@/components/home/hero-section';
-import { AboutSection } from '@/components/home/about-section';
-import { StatsSection } from '@/components/home/stats-section';
-import { TargetAudienceSection } from '@/components/home/targetaudience-section';
-import { CmoCtaSection } from '@/components/home/cmocta-section';
-import { ProductsSection } from '@/components/home/products-section';
-import { InfrastructureSection } from '@/components/home/infrastructure-section';
-import { CaseStudiesSection } from '@/components/home/casestudies-section';
-import { IndustrySolutionsSection } from '@/components/home/industrysolutions-section';
-import { getPageContent } from '@/lib/content';
+
+export const metadata = {
+  title: 'Enterprise Brain ',
+  description: 'Enterprise Brain — An AI-powered analytics agent at your fingertips. Instant answers, automated insights, and enterprise-grade security.',
+}
 
 export default async function HomePage() {
-  const content = await getPageContent('home');
+  const content = await getPageContent<any>('home')
 
   return (
     <>
       <Navigation />
-      <main className="min-h-screen bg-slate-50">
-        <HeroSection content={content?.hero} />
-        <AboutSection content={content?.about} />
+      <main className="w-full">
+        <Hero content={content?.hero} />
+        <UseCasesSection content={content?.useCases} />
+        <ProductSection content={content?.product} />
         <StatsSection content={content?.stats} />
-        <TargetAudienceSection content={content?.targetAudience} />
-        <CmoCtaSection content={content?.cmoCta} />
-        <ProductsSection content={content?.products} />
-        <CaseStudiesSection content={content?.case_studies} />
-        <InfrastructureSection content={content?.infrastructure} />
-        <IndustrySolutionsSection content={content?.industrySolutions} />
-        <HomeFaqSection content={content?.faq} />
-        <FinalCtaSection content={content?.finalCta} />
+        <FeaturesSection content={content?.features} />
+        <CmoSection content={content?.cmo} />
+        <AgentFactoryPipeline content={content?.pipeline} />
+        <LearnMoreSection content={content?.learnMore} />
+        <CtaSection content={content?.cta} />
+        <FaqSection content={content?.faq} />
       </main>
-      <div className="snap-start w-full">
-        <Footer />
-      </div>
+      <Footer />
     </>
   )
 }

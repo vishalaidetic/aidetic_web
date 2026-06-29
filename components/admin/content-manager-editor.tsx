@@ -157,7 +157,6 @@ export function ContentManagerEditor({ pageKey, pageLabel }: ContentManagerEdito
   const Icon = (() => {
     switch (pageKey) {
       case 'home': return Home
-      case 'agent-factory': return Bot
       case 'blog': return Newspaper
       case 'case-study': return BookMarked
       case 'navbar': return AlignLeft

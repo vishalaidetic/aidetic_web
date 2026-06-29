@@ -1,0 +1,114 @@
+{
+  "hero": {
+    "badge": "Enterprise Brain Platform",
+    "title": "Unify Your Enterprise Intelligence",
+    "description": "The Enterprise Brain by Aidetic centralizes your organizational knowledge into an intelligent, AI-powered ecosystem. Deploy autonomous agents, automate complex analytics, and make data-driven decisions securely at scale.",
+    "primaryCta": "Request a Demo",
+    "secondaryCta": "Explore Architecture"
+  },
+  "useCases": {
+    "title": "Enterprise Intelligence Built for Scale",
+    "subtitle": "Discover how the Enterprise Brain transforms your workflows across domains.",
+    "items": [
+      {
+        "title": "Automated Financial Analysis",
+        "description": "Seamlessly integrate with financial data lakes to generate predictive models, audit trails, and risk assessments in real-time."
+      },
+      {
+        "title": "Smart Project Management",
+        "description": "Optimize resource allocation and detect project bottlenecks before they occur with autonomous oversight agents."
+      },
+      {
+        "title": "HR & Employee Engagement",
+        "description": "Personalize onboarding, automate policy compliance, and measure organizational health through natural language interactions."
+      }
+    ]
+  },
+  "product": {
+    "title": "The Core of Your Digital Organization",
+    "description": "Built on a robust, multi-agent architecture, the Enterprise Brain securely ingests, processes, and activates your data without compromising privacy or compliance.",
+    "features": [
+      "Role-Based Access Control (RBAC)",
+      "End-to-End Encryption",
+      "Deployable On-Premises or VPC",
+      "Native Kafka & Neo4j Integrations"
+    ]
+  },
+  "stats": {
+    "title": "Quantifiable Business Impact",
+    "items": [
+      {
+        "value": "10x",
+        "label": "Faster Insights"
+      },
+      {
+        "value": "99.9%",
+        "label": "Uptime SLA"
+      },
+      {
+        "value": "SOC2",
+        "label": "Compliant Security"
+      }
+    ]
+  },
+  "features": {
+    "title": "Advanced Capabilities",
+    "subtitle": "A unified platform designed for enterprise-grade AI automation.",
+    "list": [
+      {
+        "title": "Graph-Augmented Retrieval",
+        "description": "Leverages Neo4j knowledge graphs to provide deeply contextual and highly accurate answers."
+      },
+      {
+        "title": "Multi-Agent Orchestration",
+        "description": "Coordinate specialized agents for finance, HR, and operations to solve complex multi-step problems."
+      },
+      {
+        "title": "Secure API Gateway",
+        "description": "Every interaction is routed through a central, highly secure gateway with integrated audit logging."
+      }
+    ]
+  },
+  "cmo": {
+    "quote": "The Enterprise Brain completely revolutionized how we approach data. It’s not just an analytics tool; it’s an active participant in our organizational strategy.",
+    "author": "Sarah Jenkins",
+    "role": "Chief Data Officer, Fortune 500"
+  },
+  "pipeline": {
+    "title": "How the Brain Works",
+    "description": "From data ingestion to actionable intelligence, our pipeline is built for transparency and power.",
+    "steps": [
+      "Data Ingestion & Embedding",
+      "Knowledge Graph Construction",
+      "Agentic Orchestration",
+      "Secure Action Execution"
+    ]
+  },
+  "learnMore": {
+    "title": "Deep Dive into the Architecture",
+    "description": "Explore our technical whitepapers and see how the Enterprise Brain is built from the ground up to support modern businesses.",
+    "linkText": "Read the Documentation"
+  },
+  "cta": {
+    "title": "Ready to Deploy Your Enterprise Brain?",
+    "description": "Join industry leaders who are already leveraging Aidetic's platform to transform their operations.",
+    "primaryCta": "Schedule a Consultation"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "items": [
+      {
+        "question": "How is my data secured?",
+        "answer": "We employ zero-trust architecture, end-to-end encryption, and rigorous RBAC to ensure your data never leaks into public models."
+      },
+      {
+        "question": "Can it integrate with our existing databases?",
+        "answer": "Yes, the Enterprise Brain natively connects to PostgreSQL, Neo4j, Redis, and provides custom connectors for legacy systems."
+      },
+      {
+        "question": "Is it available for on-premise deployment?",
+        "answer": "Absolutely. We offer flexible deployment models including fully managed cloud, VPC, and on-premises installations."
+      }
+    ]
+  }
+}

@@ -24,7 +24,6 @@ import { getAdminBasePath } from '@/lib/admin-path'
 
 const contentPages = [
   { key: 'home', label: 'Home Page', icon: Home },
-  { key: 'agent-factory', label: 'Agent Factory', icon: Bot },
   { key: 'blog', label: 'Blog Page', icon: Newspaper },
   { key: 'case-study', label: 'Case Study Page', icon: BookMarked },
   { key: 'navbar', label: 'Navbar', icon: AlignLeft },
