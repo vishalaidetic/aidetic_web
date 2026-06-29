@@ -47,7 +47,7 @@ services:
 
   api-gateway:
     build:
-      context: ./backend
+      context: .
       dockerfile: Dockerfile
     container_name: brain_api_gateway
     ports:
@@ -73,7 +73,7 @@ services:
 
   employee-service:
     build:
-      context: ./backend
+      context: .
       dockerfile: Dockerfile
     container_name: brain_employee_service
     ports:
@@ -92,7 +92,7 @@ services:
 
   project-service:
     build:
-      context: ./backend
+      context: .
       dockerfile: Dockerfile
     container_name: brain_project_service
     ports:
@@ -111,7 +111,7 @@ services:
 
   finance-service:
     build:
-      context: ./backend
+      context: .
       dockerfile: Dockerfile
     container_name: brain_finance_service
     ports:
@@ -129,7 +129,7 @@ services:
     command: [ "python", "-m", "apps.financeService.grpc_handler" ]
   neo4j-sync-worker:
     build:
-      context: ./backend
+      context: .
       dockerfile: Dockerfile
     container_name: brain_neo4j_sync_worker
     environment:

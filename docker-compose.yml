@@ -17,7 +17,7 @@ name: aidetic
 # ─── Shared re-usable anchors ──────────────────────────────────────
 x-backend-build: &backend-build
   build:
-    context: ./backend/backend
+    context: ./backend
     dockerfile: Dockerfile
   env_file:
     - .env.backend

@@ -2,7 +2,7 @@
 
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
-import { createSessionToken, ADMIN_SESSION_COOKIE } from '@/lib/auth/session'
+import { ADMIN_SESSION_COOKIE } from '@/lib/auth/session'
 
 /** A non-httpOnly cookie so client JS can detect admin auth state */
 const ADMIN_HINT_COOKIE = 'admin_hint'
@@ -23,41 +23,55 @@ export async function adminLoginAction(formData: FormData) {
   const email = (formData.get('email') as string | null)?.trim() ?? ''
   const password = (formData.get('password') as string | null) ?? ''
 
-  const adminEmail = process.env.ADMIN_EMAIL ?? ''
-  const adminPassword = process.env.ADMIN_PASSWORD ?? ''
-
-  if (!adminEmail || !adminPassword) {
-    return { error: 'Server misconfiguration: admin credentials are not set.' }
+  if (!email || !password) {
+    return { error: 'Please provide both email and password.' }
   }
 
-  // Compare in constant time to prevent timing attacks
-  const emailMatch = email === adminEmail
-  const passwordMatch = password === adminPassword
+  // Call backend API for authentication
+  const BRAIN_BASE = process.env.BRAIN_API_URL ?? 'http://localhost:8000'
+  try {
+    const res = await fetch(`${BRAIN_BASE}/api/v1/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+      cache: 'no-store'
+    })
 
-  if (!emailMatch || !passwordMatch) {
-    return { error: 'Invalid email or password.' }
+    if (!res.ok) {
+      const errData = await res.json().catch(() => ({}))
+      return { error: errData.message || 'Invalid email or password.' }
+    }
+
+    const data = await res.json()
+    const token = data.data?.token || data.data?.access_token || data.token
+    if (!token) {
+      return { error: 'Login successful, but no token received.' }
+    }
+
+    const cookieStore = await cookies()
+
+    // Set HTTP-only secure cookie for backend auth (X-Token)
+    cookieStore.set(ADMIN_SESSION_COOKIE, token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: SESSION_MAX_AGE,
+      path: '/',
+    })
+
+    // Non-httpOnly hint so client-side JS (Navigation) can show the Admin button
+    cookieStore.set(ADMIN_HINT_COOKIE, email, {
+      httpOnly: false,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: SESSION_MAX_AGE,
+      path: '/',
+    })
+
+  } catch (error) {
+    console.error('Login error:', error)
+    return { error: 'An error occurred during login. Please try again.' }
   }
-
-  // Create signed session token and set cookie
-  const token = await createSessionToken(email)
-  const cookieStore = await cookies()
-
-  cookieStore.set(ADMIN_SESSION_COOKIE, token, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax',
-    maxAge: SESSION_MAX_AGE,
-    path: '/',
-  })
-
-  // Non-httpOnly hint so client-side JS (Navigation) can show the Admin button
-  cookieStore.set(ADMIN_HINT_COOKIE, email, {
-    httpOnly: false,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax',
-    maxAge: SESSION_MAX_AGE,
-    path: '/',
-  })
 
   redirect(adminBasePath)
 }

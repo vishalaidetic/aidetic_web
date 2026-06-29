@@ -2,7 +2,7 @@ import { DashboardSidebar } from '@/components/admin/dashboard-sidebar'
 import { Navigation } from '@/components/layout/navigation'
 import { Footer } from '@/components/layout/footer'
 import { cookies } from 'next/headers'
-import { verifySessionToken, ADMIN_SESSION_COOKIE } from '@/lib/auth/session'
+import { ADMIN_SESSION_COOKIE } from '@/lib/auth/session'
 import { redirect } from 'next/navigation'
 import type { ReactNode } from 'react'
 
@@ -19,12 +19,13 @@ interface AdminLayoutProps {
 export default async function AdminLayout({ children }: AdminLayoutProps) {
   const cookieStore = await cookies()
   const sessionCookie = cookieStore.get(ADMIN_SESSION_COOKIE)?.value ?? ''
-  const adminEmail = sessionCookie ? await verifySessionToken(sessionCookie) : null
-
-  if (!adminEmail) {
+  
+  if (!sessionCookie) {
     const adminUuid = process.env.NEXT_PUBLIC_ADMIN_ROUTE_UUID
     redirect(`/admin/${adminUuid}/login`)
   }
+
+  const adminEmail = cookieStore.get('admin_hint')?.value ?? 'Admin'
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
