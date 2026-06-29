@@ -20,7 +20,7 @@ export function Hero({ content }: { content?: any }) {
           maxWidth: '700px',
           maxHeight: '700px',
           borderRadius: '50%',
-          background: 'linear-gradient(to right, transparent 0%, transparent 45%, rgba(234,34,97,0.38) 55%, rgba(83,58,253,0.35) 78%, rgba(204,233,248,0.75) 100%)',
+          background: 'linear-gradient(to right, transparent 0%, transparent 45%, rgba(220,38,38,0.38) 55%, rgba(220,38,38,0.35) 78%, rgba(254,226,226,0.75) 100%)',
           opacity: 0.7,
         }}
       />
@@ -59,7 +59,7 @@ export function Hero({ content }: { content?: any }) {
                 className="text-[2rem] sm:text-[2.25rem] lg:text-[2.5rem] xl:text-[2.75rem] font-semibold leading-[1.15]"
                 style={{
                   fontFamily: 'var(--font-inter)',
-                  background: 'linear-gradient(to right, #533afd, #000000)',
+                  background: 'linear-gradient(to right, #DC2626, #000000)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
@@ -74,7 +74,7 @@ export function Hero({ content }: { content?: any }) {
 
             {/* Body */}
             <motion.p
-              className="text-base md:text-lg text-[#0d253d] leading-relaxed max-w-lg mb-8"
+              className="text-base md:text-lg text-[#1B2340] leading-relaxed max-w-lg mb-8"
               style={{ fontFamily: 'var(--font-quicksand)' }}
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -93,7 +93,7 @@ export function Hero({ content }: { content?: any }) {
               <BookCallDialog>
                 <button
                   id="hero-cta-demo"
-                  className="px-8 py-3.5 rounded-full bg-[#533afd] text-white font-medium shadow-lg hover:opacity-90 hover:-translate-y-0.5 transition-all text-[15px]"
+                  className="px-8 py-3.5 rounded-full bg-[#DC2626] text-white font-medium shadow-lg hover:opacity-90 hover:-translate-y-0.5 transition-all text-[15px]"
                   style={{ fontFamily: 'var(--font-inter)' }}
                 >
                   {content?.cta_primary}
@@ -142,7 +142,7 @@ export function Hero({ content }: { content?: any }) {
                   className="text-base tracking-wide"
                   style={{ fontFamily: 'var(--font-inter)' }}
                 >
-                  <span className="text-[#665efd] font-bold">{content?.book_text_1}</span>
+                  <span className="text-[#DC2626] font-bold">{content?.book_text_1}</span>
                   <span className="text-white/80">{content?.book_text_2}</span>
                 </p>
               </div>
@@ -160,7 +160,7 @@ export function Hero({ content }: { content?: any }) {
             className="font-bold tracking-[0.25em] text-sm uppercase mb-8 text-center"
             style={{
               fontFamily: 'var(--font-inter)',
-              background: 'linear-gradient(to right, #533afd, #000000)',
+              background: 'linear-gradient(to right, #DC2626, #000000)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
@@ -171,7 +171,7 @@ export function Hero({ content }: { content?: any }) {
 
           {/* Marquee wrapper with fade-edge mask */}
           <div
-            className="relative overflow-hidden border-t border-b border-[#533afd]/30 py-8 mb-8"
+            className="relative overflow-hidden border-t border-b border-[#DC2626]/30 py-8 mb-8"
             style={{
               maskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)',
               WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)',
@@ -192,7 +192,7 @@ export function Hero({ content }: { content?: any }) {
                     />
                   ) : (
                     <span
-                      className="text-base font-semibold tracking-tight text-[#533afd]/60 hover:text-[#533afd] transition-colors whitespace-nowrap select-none"
+                      className="text-base font-semibold tracking-tight text-[#DC2626]/60 hover:text-[#DC2626] transition-colors whitespace-nowrap select-none"
                       style={{ fontFamily: 'var(--font-inter)' }}
                     >
                       {brand.name}

@@ -25,14 +25,14 @@ export function FaqSection({ content }: { content?: any }) {
               viewport={{ once: true }}
               className="space-y-4"
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#533afd]/10 text-[#533afd] text-xs font-bold tracking-widest uppercase mb-4" style={{ fontFamily: "var(--font-inter)" }}>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DC2626]/10 text-[#DC2626] text-xs font-bold tracking-widest uppercase mb-4" style={{ fontFamily: "var(--font-inter)" }}>
                 FAQ
               </div>
               <h2
                 className="text-[2.25rem] sm:text-[2.5rem] lg:text-[3rem] font-medium leading-[1.15] tracking-tight"
                 style={{
                   fontFamily: 'var(--font-inter)',
-                  background: 'linear-gradient(to right, #533afd, #000000)',
+                  background: 'linear-gradient(to right, #DC2626, #000000)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
@@ -62,7 +62,7 @@ export function FaqSection({ content }: { content?: any }) {
               <BookCallDialog>
                 <button
                   id="agent-factory-faq-cta"
-                  className="px-8 py-3.5 rounded-full bg-[#533afd] text-white font-medium shadow-lg hover:opacity-90 hover:-translate-y-0.5 transition-all text-[15px]"
+                  className="px-8 py-3.5 rounded-full bg-[#DC2626] text-white font-medium shadow-lg hover:opacity-90 hover:-translate-y-0.5 transition-all text-[15px]"
                   style={{ fontFamily: 'var(--font-inter)' }}
                 >
                   {content?.cta}
@@ -87,10 +87,10 @@ export function FaqSection({ content }: { content?: any }) {
                     key={i}
                     className="rounded-xl border overflow-hidden bg-white"
                     style={{
-                      borderColor: '#533afd',
+                      borderColor: '#DC2626',
                       boxShadow: isOpen
-                        ? '0 8px 32px -4px rgba(83,58,253,0.12)'
-                        : '0 2px 8px -2px rgba(83,58,253,0.05)',
+                        ? '0 8px 32px -4px rgba(220,38,38,0.12)'
+                        : '0 2px 8px -2px rgba(220,38,38,0.05)',
                       transition: 'all 0.3s ease',
                     }}
                   >
@@ -102,7 +102,7 @@ export function FaqSection({ content }: { content?: any }) {
                     >
                       {/* Icon */}
                       <motion.div
-                        className="shrink-0 w-6 h-6 rounded-full flex items-center justify-center mt-0.5 bg-[#533afd]"
+                        className="shrink-0 w-6 h-6 rounded-full flex items-center justify-center mt-0.5 bg-[#DC2626]"
                         animate={{ rotate: isOpen ? 180 : 0 }}
                         transition={{ duration: 0.3 }}
                       >
@@ -117,7 +117,7 @@ export function FaqSection({ content }: { content?: any }) {
                       <span
                         className="text-[17px] font-medium leading-snug flex-1 pt-0.5"
                         style={{
-                          color: '#0d253d',
+                          color: '#1B2340',
                           fontFamily: 'var(--font-inter)',
                         }}
                       >

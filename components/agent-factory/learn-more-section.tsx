@@ -15,10 +15,10 @@ const getResources = (content: any) => {
             <div className="w-4 h-4 rounded bg-slate-900/10 flex items-center justify-center">
               <div className="w-2 h-2 bg-slate-900 rounded-sm"></div>
             </div>
-            <span className="text-[#0d253d] text-[8px] font-bold" style={{ fontFamily: 'var(--font-inter)' }}>{items[0]?.brand}</span>
+            <span className="text-[#1B2340] text-[8px] font-bold" style={{ fontFamily: 'var(--font-inter)' }}>{items[0]?.brand}</span>
           </div>
           <div className="text-[#64748d] text-[8px] font-bold tracking-wider mb-1" style={{ fontFamily: 'var(--font-inter)' }}>{items[0]?.visual_type}</div>
-          <div className="text-[#0d253d] text-lg sm:text-xl font-bold leading-tight z-10 w-3/4" style={{ fontFamily: 'var(--font-inter)' }}>
+          <div className="text-[#1B2340] text-lg sm:text-xl font-bold leading-tight z-10 w-3/4" style={{ fontFamily: 'var(--font-inter)' }}>
             {items[0]?.visual_title_1}<br />
             <span className="text-[10px] sm:text-xs font-normal text-[#64748d]">
               {items[0]?.visual_title_2}
@@ -29,7 +29,7 @@ const getResources = (content: any) => {
           <div className="mt-auto z-10 pt-4">
             <div className="bg-slate-900 text-white text-[7px] px-3 py-1.5 rounded w-fit uppercase font-bold tracking-wider">{items[0]?.button}</div>
           </div>
-          <div className="absolute right-4 top-1/2 -translate-y-1/2 w-16 h-16 bg-[#ea2261] rounded-2xl rotate-12 flex items-center justify-center shadow-xl">
+          <div className="absolute right-4 top-1/2 -translate-y-1/2 w-16 h-16 bg-[#DC2626] rounded-2xl rotate-12 flex items-center justify-center shadow-xl">
             <ShieldCheck className="w-8 h-8 text-white" />
           </div>
           <div className="absolute right-0 top-0 w-32 h-32 bg-white/20 rounded-full blur-2xl"></div>
@@ -47,21 +47,21 @@ const getResources = (content: any) => {
             </div>
             <span className="text-slate-300 text-[8px] font-bold" style={{ fontFamily: 'var(--font-inter)' }}>{items[1]?.brand}</span>
           </div>
-          <div className="text-[#665efd] text-[8px] font-bold tracking-wider mb-1" style={{ fontFamily: 'var(--font-inter)' }}>{items[1]?.visual_type}</div>
+          <div className="text-[#DC2626] text-[8px] font-bold tracking-wider mb-1" style={{ fontFamily: 'var(--font-inter)' }}>{items[1]?.visual_type}</div>
           <div className="text-white text-lg sm:text-xl font-bold leading-tight z-10 w-2/3" style={{ fontFamily: 'var(--font-inter)' }}>
             {items[1]?.visual_title_1}<br />
             {items[1]?.visual_title_2}<br />
             {items[1]?.visual_title_3}
           </div>
           <div className="mt-auto z-10 pt-4">
-            <div className="bg-[#533afd] text-white text-[7px] px-3 py-1.5 rounded w-fit uppercase font-bold tracking-wider">{items[1]?.button}</div>
+            <div className="bg-[#DC2626] text-white text-[7px] px-3 py-1.5 rounded w-fit uppercase font-bold tracking-wider">{items[1]?.button}</div>
           </div>
           <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center">
-            <div className="w-12 h-12 bg-[#533afd]/20 rounded-full border border-[#533afd]/50 flex items-center justify-center -mr-2 z-10 backdrop-blur-sm">
-              <Zap className="w-5 h-5 text-[#665efd]" />
+            <div className="w-12 h-12 bg-[#DC2626]/20 rounded-full border border-[#DC2626]/50 flex items-center justify-center -mr-2 z-10 backdrop-blur-sm">
+              <Zap className="w-5 h-5 text-[#DC2626]" />
             </div>
             <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg">
-              <span className="text-[#0d253d] font-bold text-lg">T</span>
+              <span className="text-[#1B2340] font-bold text-lg">T</span>
             </div>
           </div>
         </div>
@@ -78,25 +78,25 @@ const getResources = (content: any) => {
             </div>
             <span className="text-slate-300 text-[8px] font-bold" style={{ fontFamily: 'var(--font-inter)' }}>{items[2]?.brand}</span>
           </div>
-          <div className="text-[#665efd] text-[8px] font-bold tracking-wider mb-1" style={{ fontFamily: 'var(--font-inter)' }}>{items[2]?.visual_type}</div>
+          <div className="text-[#DC2626] text-[8px] font-bold tracking-wider mb-1" style={{ fontFamily: 'var(--font-inter)' }}>{items[2]?.visual_type}</div>
           <div className="text-white text-lg sm:text-xl font-bold leading-tight z-10 w-2/3" style={{ fontFamily: 'var(--font-inter)' }}>
             {items[2]?.visual_title_1}<br />
             {items[2]?.visual_title_2}<br />
-            <span className="text-[#665efd]">
+            <span className="text-[#DC2626]">
               {items[2]?.visual_title_3}
             </span>
           </div>
           <div className="mt-auto z-10 pt-4">
-            <div className="bg-[#533afd] text-white text-[7px] px-3 py-1.5 rounded w-fit uppercase font-bold tracking-wider">{items[2]?.button}</div>
+            <div className="bg-[#DC2626] text-white text-[7px] px-3 py-1.5 rounded w-fit uppercase font-bold tracking-wider">{items[2]?.button}</div>
           </div>
           <div className="absolute right-4 top-4 bottom-4 w-[45%] bg-white rounded flex items-center justify-center p-2">
-            <div className="w-full h-full border-l border-[#533afd] border-slate-200 relative flex items-center justify-center">
+            <div className="w-full h-full border-l border-[#DC2626] border-slate-200 relative flex items-center justify-center">
               <BarChart2 className="w-8 h-8 text-slate-200" />
-              <div className="absolute w-1.5 h-1.5 rounded-full bg-[#533afd] top-2 left-2"></div>
-              <div className="absolute w-1.5 h-1.5 rounded-full bg-[#ea2261] top-6 left-6"></div>
-              <div className="absolute w-1.5 h-1.5 rounded-full bg-indigo-500 bottom-4 right-4"></div>
-              <div className="absolute w-1.5 h-1.5 rounded-full bg-violet-500 top-4 right-8"></div>
-              <div className="absolute w-1.5 h-1.5 rounded-full bg-rose-500 bottom-6 left-4"></div>
+              <div className="absolute w-1.5 h-1.5 rounded-full bg-[#DC2626] top-2 left-2"></div>
+              <div className="absolute w-1.5 h-1.5 rounded-full bg-[#DC2626] top-6 left-6"></div>
+              <div className="absolute w-1.5 h-1.5 rounded-full bg-red-500 bottom-4 right-4"></div>
+              <div className="absolute w-1.5 h-1.5 rounded-full bg-red-500 top-4 right-8"></div>
+              <div className="absolute w-1.5 h-1.5 rounded-full bg-red-500 bottom-6 left-4"></div>
               <div className="absolute w-1 h-1 rounded-full bg-orange-400 top-2 right-2"></div>
               <div className="absolute w-1 h-1 rounded-full bg-emerald-400 bottom-2 right-6"></div>
             </div>
@@ -123,7 +123,7 @@ export function LearnMoreSection({ content }: { content?: any }) {
           height: '55vw',
           maxWidth: '680px',
           maxHeight: '680px',
-          background: 'linear-gradient(to right, transparent 0%, transparent 40%, rgba(234,34,97,0.55) 52%, rgba(234,34,97,0.35) 65%, rgba(83,58,253,0.35) 82%, rgba(204,233,248,0.70) 100%)',
+          background: 'linear-gradient(to right, transparent 0%, transparent 40%, rgba(220,38,38,0.55) 52%, rgba(220,38,38,0.35) 65%, rgba(220,38,38,0.35) 82%, rgba(254,226,226,0.70) 100%)',
           borderRadius: '50%',
           opacity: 0.65,
         }}
@@ -143,7 +143,7 @@ export function LearnMoreSection({ content }: { content?: any }) {
             className="text-[2rem] sm:text-[2.25rem] lg:text-[2.5rem] xl:text-[2.75rem] font-semibold leading-[1.15]"
             style={{
               fontFamily: 'var(--font-inter)',
-              background: 'linear-gradient(to right, #533afd, #000000)',
+              background: 'linear-gradient(to right, #DC2626, #000000)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
@@ -185,7 +185,7 @@ export function LearnMoreSection({ content }: { content?: any }) {
                   >
                     {r.type}
                   </span>
-                  <h3 className="text-[13px] font-medium text-[#0d253d] leading-snug">
+                  <h3 className="text-[13px] font-medium text-[#1B2340] leading-snug">
                     {r.title}
                   </h3>
                 </div>

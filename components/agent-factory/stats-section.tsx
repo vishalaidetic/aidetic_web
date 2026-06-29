@@ -71,7 +71,7 @@ export function StatsSection({ content }: { content?: any }) {
             height: '55vw',
             maxWidth: '700px',
             maxHeight: '700px',
-            background: 'linear-gradient(to right, transparent 0%, transparent 40%, rgba(234,34,97,0.55) 52%, rgba(234,34,97,0.35) 65%, rgba(83,58,253,0.35) 82%, rgba(204,233,248,0.70) 100%)',
+            background: 'linear-gradient(to right, transparent 0%, transparent 40%, rgba(220,38,38,0.55) 52%, rgba(220,38,38,0.35) 65%, rgba(220,38,38,0.35) 82%, rgba(254,226,226,0.70) 100%)',
             borderRadius: '50%',
             opacity: 0.65,
           }}
@@ -93,7 +93,7 @@ export function StatsSection({ content }: { content?: any }) {
               className="text-[2rem] sm:text-[2.25rem] lg:text-[2.5rem] xl:text-[2.75rem] font-semibold leading-[1.15]"
               style={{
                 fontFamily: 'var(--font-inter)',
-                background: 'linear-gradient(to right, #533afd, #000000)',
+                background: 'linear-gradient(to right, #DC2626, #000000)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
@@ -101,7 +101,7 @@ export function StatsSection({ content }: { content?: any }) {
             >
               {content?.heading}
             </h2>
-            <p className="text-base md:text-lg text-[#0d253d] max-w-2xl mx-auto leading-relaxed" style={{ fontFamily: 'var(--font-quicksand)' }}>
+            <p className="text-base md:text-lg text-[#1B2340] max-w-2xl mx-auto leading-relaxed" style={{ fontFamily: 'var(--font-quicksand)' }}>
               {content?.subheading}
             </p>
           </div>
@@ -119,7 +119,7 @@ export function StatsSection({ content }: { content?: any }) {
               >
                 {/* Big number */}
                 <div
-                  className="text-4xl md:text-5xl font-bold text-[#533afd] leading-none tracking-wide"
+                  className="text-4xl md:text-5xl font-bold text-[#DC2626] leading-none tracking-wide"
                   style={{ fontFamily: 'var(--font-inter)' }}
                 >
                   {typeof stat.value === 'string' ? (
@@ -140,7 +140,7 @@ export function StatsSection({ content }: { content?: any }) {
                 </div>
 
                 {/* Label */}
-                <p className="text-[#0d253d] text-sm leading-snug whitespace-pre-line px-2">
+                <p className="text-[#1B2340] text-sm leading-snug whitespace-pre-line px-2">
                   {stat.label}
                 </p>
               </motion.div>

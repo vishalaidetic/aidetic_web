@@ -8,18 +8,18 @@ import { useState } from 'react'
 const cardsData = [
   {
     icon: TrendingUp,
-    color: 'text-[#ea2261]',
-    bg: 'bg-[#ea2261]/10',
+    color: 'text-[#DC2626]',
+    bg: 'bg-[#DC2626]/10',
   },
   {
     icon: LineChart,
-    color: 'text-[#533afd]',
-    bg: 'bg-[#533afd]/10',
+    color: 'text-[#DC2626]',
+    bg: 'bg-[#DC2626]/10',
   },
   {
     icon: Target,
-    color: 'text-[#533afd]',
-    bg: 'bg-[#533afd]/10',
+    color: 'text-[#DC2626]',
+    bg: 'bg-[#DC2626]/10',
   }
 ]
 
@@ -39,7 +39,7 @@ export function UseCasesSection({ content }: { content?: any }) {
   return (
     <section className="relative w-full px-4 sm:px-6 lg:px-8 py-20 sm:py-28 bg-white overflow-hidden">
       {/* Top accent line */}
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#533afd]/60 to-transparent" />
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#DC2626]/60 to-transparent" />
       
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="grid lg:grid-cols-5 gap-12 lg:gap-20 items-center">
@@ -50,7 +50,7 @@ export function UseCasesSection({ content }: { content?: any }) {
                 className="text-[2rem] sm:text-[2.25rem] lg:text-[2.5rem] xl:text-[2.75rem] font-semibold leading-[1.15] pb-2"
                 style={{
                   fontFamily: 'var(--font-inter)',
-                  background: 'linear-gradient(to right, #533afd, #000000)',
+                  background: 'linear-gradient(to right, #DC2626, #000000)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
@@ -58,7 +58,7 @@ export function UseCasesSection({ content }: { content?: any }) {
               >
                 {content?.heading}
               </h2>
-              <p className="text-base md:text-lg text-[#0d253d] leading-relaxed max-w-2xl mx-auto" style={{ fontFamily: "var(--font-quicksand)" }}>
+              <p className="text-base md:text-lg text-[#1B2340] leading-relaxed max-w-2xl mx-auto" style={{ fontFamily: "var(--font-quicksand)" }}>
                 {content?.subheading}
               </p>
             </motion.div>
@@ -91,7 +91,7 @@ export function UseCasesSection({ content }: { content?: any }) {
                         {/* Subtle top accent bar */}
                         <div
                           className="absolute top-0 left-0 w-full h-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                          style={{ background: 'linear-gradient(to right, #533afd, #ea2261)' }}
+                          style={{ background: 'linear-gradient(to right, #DC2626, #DC2626)' }}
                         />
 
                         <motion.div 
@@ -102,12 +102,12 @@ export function UseCasesSection({ content }: { content?: any }) {
                           <Icon className={`w-5 h-5 ${card.color}`} strokeWidth={1.8} />
                         </motion.div>
                         
-                        <h3 className="text-base font-semibold text-[#0d253d] mb-5 leading-snug tracking-wide group-hover:text-[#533afd] transition-colors duration-300" style={{ fontFamily: 'var(--font-inter)' }}>
+                        <h3 className="text-base font-semibold text-[#1B2340] mb-5 leading-snug tracking-wide group-hover:text-[#DC2626] transition-colors duration-300" style={{ fontFamily: 'var(--font-inter)' }}>
                             {content?.items?.[i]?.title}
                         </h3>
 
                         {/* Expandable Divider */}
-                        <div className="h-[2px] bg-gradient-to-r from-[#533afd] to-[#ea2261] w-8 group-hover:w-16 transition-all duration-500 ease-out mb-5 rounded-full opacity-70" />
+                        <div className="h-[2px] bg-gradient-to-r from-[#DC2626] to-[#DC2626] w-8 group-hover:w-16 transition-all duration-500 ease-out mb-5 rounded-full opacity-70" />
 
                         <p className="text-sm text-[#475569] leading-relaxed mb-6 flex-1 overflow-hidden" style={{ fontFamily: 'var(--font-quicksand)' }}>
                           {content?.items?.[i]?.description}
@@ -126,16 +126,16 @@ export function UseCasesSection({ content }: { content?: any }) {
           <button
             onClick={prevCard}
             disabled={activeIndex === 0}
-            className="w-12 h-12 rounded-full flex items-center justify-center transition-all bg-white text-[#533afd] hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100 hover:scale-105 border border-transparent"
-            style={{ boxShadow: '0 8px 30px rgba(83,58,253,0.12)' }}
+            className="w-12 h-12 rounded-full flex items-center justify-center transition-all bg-white text-[#DC2626] hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100 hover:scale-105 border border-transparent"
+            style={{ boxShadow: '0 8px 30px rgba(220,38,38,0.12)' }}
           >
             <ChevronLeft className="w-5 h-5" strokeWidth={2.5} />
           </button>
           <button
             onClick={nextCard}
             disabled={activeIndex === maxIndex}
-            className="w-12 h-12 rounded-full flex items-center justify-center transition-all bg-white text-[#533afd] hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100 hover:scale-105 border border-transparent"
-            style={{ boxShadow: '0 8px 30px rgba(83,58,253,0.12)' }}
+            className="w-12 h-12 rounded-full flex items-center justify-center transition-all bg-white text-[#DC2626] hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100 hover:scale-105 border border-transparent"
+            style={{ boxShadow: '0 8px 30px rgba(220,38,38,0.12)' }}
           >
             <ChevronRight className="w-5 h-5" strokeWidth={2.5} />
           </button>

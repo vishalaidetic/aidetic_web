@@ -61,7 +61,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center gap-4">
             <Link
               href="/blog"
-              className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-[#533afd] transition-colors group"
+              className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-[#DC2626] transition-colors group"
             >
               <ChevronLeft size={15} className="transition-transform group-hover:-translate-x-0.5" />
               All posts
@@ -84,12 +84,12 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
 
             {/* Tag pill */}
             {blog.tag_type && (
-              <div className="inline-flex items-center px-3 py-1 bg-[#533afd]/8 text-[#533afd] text-[11px] font-bold uppercase tracking-[0.15em] rounded-full mb-6">
+              <div className="inline-flex items-center px-3 py-1 bg-[#DC2626]/8 text-[#DC2626] text-[11px] font-bold uppercase tracking-[0.15em] rounded-full mb-6">
                 {blog.tag_type}
               </div>
             )}
             {blog.is_featured && (
-              <div className="inline-flex items-center px-3 py-1 bg-[#533afd] text-white text-[11px] font-bold uppercase tracking-[0.15em] rounded-full mb-6 ml-2">
+              <div className="inline-flex items-center px-3 py-1 bg-[#DC2626] text-white text-[11px] font-bold uppercase tracking-[0.15em] rounded-full mb-6 ml-2">
                 Featured
               </div>
             )}
@@ -97,7 +97,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
             {/* Title */}
             <h1
               className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold leading-[1.12] tracking-tight mb-6"
-              style={{ fontFamily: 'var(--font-inter)', color: '#0d253d' }}
+              style={{ fontFamily: 'var(--font-inter)', color: '#1B2340' }}
             >
               {blog.title}
             </h1>
@@ -116,10 +116,10 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
             <div className="flex flex-wrap items-center justify-center gap-5 text-sm text-slate-500 border-t border-b border-slate-100 py-4">
               {blog.author && (
                 <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-full bg-[#533afd] flex items-center justify-center text-white text-[11px] font-bold shadow-sm">
+                  <div className="w-7 h-7 rounded-full bg-[#DC2626] flex items-center justify-center text-white text-[11px] font-bold shadow-sm">
                     {blog.author.charAt(0).toUpperCase()}
                   </div>
-                  <span className="font-semibold text-[#0d253d]">{blog.author}</span>
+                  <span className="font-semibold text-[#1B2340]">{blog.author}</span>
                 </div>
               )}
               <div className="flex items-center gap-1.5">
@@ -160,14 +160,14 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
             <main className={toc.length > 0 ? 'lg:col-span-9 order-1 lg:order-2' : 'lg:col-span-12'}>
               <div
                 className="prose prose-lg max-w-none
-                  prose-headings:font-bold prose-headings:text-[#0d253d] prose-headings:tracking-tight
+                  prose-headings:font-bold prose-headings:text-[#1B2340] prose-headings:tracking-tight
                   prose-h2:text-2xl prose-h2:sm:text-3xl prose-h2:mt-12 prose-h2:mb-4 prose-h2:pb-3 prose-h2:border-b prose-h2:border-slate-100
                   prose-h3:text-xl prose-h3:sm:text-2xl prose-h3:mt-8 prose-h3:mb-3
                   prose-p:text-[#374151] prose-p:leading-[1.85] prose-p:text-[1.05rem]
-                  prose-a:text-[#533afd] prose-a:font-medium prose-a:no-underline hover:prose-a:underline
-                  prose-strong:text-[#0d253d] prose-strong:font-semibold
-                  prose-blockquote:border-l-4 prose-blockquote:border-[#533afd] prose-blockquote:bg-[#533afd]/[0.03] prose-blockquote:rounded-r-xl prose-blockquote:px-6 prose-blockquote:py-1 prose-blockquote:not-italic prose-blockquote:text-slate-600
-                  prose-code:text-[#ea2261] prose-code:bg-[#ea2261]/[0.06] prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:font-mono prose-code:text-sm prose-code:font-medium
+                  prose-a:text-[#DC2626] prose-a:font-medium prose-a:no-underline hover:prose-a:underline
+                  prose-strong:text-[#1B2340] prose-strong:font-semibold
+                  prose-blockquote:border-l-4 prose-blockquote:border-[#DC2626] prose-blockquote:bg-[#DC2626]/[0.03] prose-blockquote:rounded-r-xl prose-blockquote:px-6 prose-blockquote:py-1 prose-blockquote:not-italic prose-blockquote:text-slate-600
+                  prose-code:text-[#DC2626] prose-code:bg-[#DC2626]/[0.06] prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:font-mono prose-code:text-sm prose-code:font-medium
                   prose-pre:rounded-xl prose-pre:shadow-md
                   prose-img:rounded-xl prose-img:shadow-sm prose-img:border prose-img:border-slate-100
                   prose-ul:my-4 prose-ol:my-4 prose-li:text-[#374151] prose-li:leading-relaxed
@@ -181,7 +181,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
               <div className="mt-16 pt-8 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-sm text-slate-400">
                 <div className="flex items-center gap-2">
                   <User size={13} />
-                  <span>Written by <span className="font-semibold text-[#0d253d]">{blog.author || 'Team'}</span></span>
+                  <span>Written by <span className="font-semibold text-[#1B2340]">{blog.author || 'Team'}</span></span>
                 </div>
                 <div className="flex items-center gap-4">
                   <span>Published {formatDate(blog.created_at)}</span>

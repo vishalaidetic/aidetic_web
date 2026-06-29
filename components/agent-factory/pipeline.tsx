@@ -10,7 +10,7 @@ const phase1 = [
     title: 'Gather Data Dictionary',
     icon: FileText,
     desc: 'Align on core data schemas, metrics, and business terminology to establish a unified foundation.',
-    color: 'from-blue-500 to-cyan-400',
+    color: 'from-red-500 to-orange-400',
     imageUrl: '/data_gathering.png'
   },
   {
@@ -18,7 +18,7 @@ const phase1 = [
     title: 'Integrate Medallion Architecture',
     icon: Database,
     desc: 'Organize data into Bronze, Silver, and Gold layers to ensure high quality, reliability, and performance.',
-    color: 'from-indigo-500 to-blue-500',
+    color: 'from-red-500 to-red-500',
     imageUrl: '/medallion_architecture.png'
   }
 ];
@@ -29,7 +29,7 @@ const phase2 = [
     title: 'Configure Agent Parameters',
     icon: Activity,
     desc: 'Set the initial rules, boundaries, and reasoning paths for your custom AI agent.',
-    color: 'from-purple-500 to-fuchsia-500',
+    color: 'from-red-500 to-red-500',
     imageUrl: '/agent_architecture.png'
   }
 ];
@@ -40,7 +40,7 @@ const phase3 = [
     title: 'Test & Iterate Business Guidelines',
     icon: CheckCircle2,
     desc: 'Validate agent responses against established business rules to ensure strict compliance and accuracy.',
-    color: 'from-fuchsia-500 to-pink-500',
+    color: 'from-red-500 to-red-500',
     imageUrl: '/test_iterate_guidelines.png'
   },
   {
@@ -48,7 +48,7 @@ const phase3 = [
     title: 'Deploy to Production',
     icon: Search,
     desc: 'Launch your custom AI application with full observability, ready to answer questions and fetch data.',
-    color: 'from-pink-500 to-rose-500',
+    color: 'from-red-500 to-red-500',
     imageUrl: '/deploy_production.png'
   }
 ];
@@ -83,7 +83,7 @@ export function AgentFactoryPipeline({ content }: { content?: any }) {
             className="text-[2rem] sm:text-[2.25rem] lg:text-[2.5rem] xl:text-[2.75rem] font-semibold leading-[1.15] max-w-3xl mx-auto"
             style={{
               fontFamily: 'var(--font-inter)',
-              background: 'linear-gradient(to right, #533afd, #000000)',
+              background: 'linear-gradient(to right, #DC2626, #000000)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
@@ -92,7 +92,7 @@ export function AgentFactoryPipeline({ content }: { content?: any }) {
             {content?.heading}
           </h2>
           <h3
-            className="text-[#0d253d] text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
+            className="text-[#1B2340] text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
             style={{ fontFamily: 'var(--font-quicksand)' }}
           >
             {content?.subheading}
@@ -113,11 +113,11 @@ export function AgentFactoryPipeline({ content }: { content?: any }) {
             {/* Group 1: Prerequisites */}
             <div className="relative">
               <div className="flex items-start gap-4 mb-3">
-                <div className="w-8 h-8 rounded-full bg-[#533afd]/10 flex items-center justify-center shrink-0 mt-0.5">
-                  <span className="text-[#533afd] font-bold text-[15px]">1</span>
+                <div className="w-8 h-8 rounded-full bg-[#DC2626]/10 flex items-center justify-center shrink-0 mt-0.5">
+                  <span className="text-[#DC2626] font-bold text-[15px]">1</span>
                 </div>
                 <div>
-                  <h4 className="text-base font-bold leading-tight tracking-wide text-[#0d253d]" style={{ fontFamily: 'var(--font-inter)' }}>
+                  <h4 className="text-base font-bold leading-tight tracking-wide text-[#1B2340]" style={{ fontFamily: 'var(--font-inter)' }}>
                     {content?.phases?.[0]?.label}
                   </h4>
                 </div>
@@ -129,10 +129,10 @@ export function AgentFactoryPipeline({ content }: { content?: any }) {
                     <button
                       key={step.id}
                       onClick={() => setActiveTab(step.id)}
-                      className={`w-full text-left py-3 px-4 rounded-[14px] transition-all duration-300 flex items-center gap-4 group relative z-10 ${isActive ? 'bg-white shadow-sm border border-slate-200 ring-1 ring-[#533afd]/20' : 'hover:bg-slate-50 border border-transparent'}`}
+                      className={`w-full text-left py-3 px-4 rounded-[14px] transition-all duration-300 flex items-center gap-4 group relative z-10 ${isActive ? 'bg-white shadow-sm border border-slate-200 ring-1 ring-[#DC2626]/20' : 'hover:bg-slate-50 border border-transparent'}`}
                     >
                       {isActive ? (
-                        <div className="w-6 h-6 rounded-full bg-[#533afd] flex items-center justify-center shrink-0 shadow-md">
+                        <div className="w-6 h-6 rounded-full bg-[#DC2626] flex items-center justify-center shrink-0 shadow-md">
                           <step.icon className="w-3.5 h-3.5 text-white" strokeWidth={2.5} />
                         </div>
                       ) : (
@@ -141,11 +141,11 @@ export function AgentFactoryPipeline({ content }: { content?: any }) {
                         </div>
                       )}
                       <div className="flex-1">
-                        <span className={`text-sm font-semibold block transition-colors ${isActive ? 'text-[#0d253d]' : 'text-[#64748d] group-hover:text-[#0d253d]'}`} style={{ fontFamily: 'var(--font-inter)' }}>
+                        <span className={`text-sm font-semibold block transition-colors ${isActive ? 'text-[#1B2340]' : 'text-[#64748d] group-hover:text-[#1B2340]'}`} style={{ fontFamily: 'var(--font-inter)' }}>
                           {step.title}
                         </span>
                       </div>
-                      {isActive && <ChevronRight className="w-4 h-4 text-[#533afd]" strokeWidth={2.5} />}
+                      {isActive && <ChevronRight className="w-4 h-4 text-[#DC2626]" strokeWidth={2.5} />}
                     </button>
                   );
                 })}
@@ -155,11 +155,11 @@ export function AgentFactoryPipeline({ content }: { content?: any }) {
             {/* Group 2: Connect and configure agent-factory */}
             <div className="relative">
               <div className="flex items-start gap-4 mb-3">
-                <div className="w-8 h-8 rounded-full bg-[#8b5cf6]/10 flex items-center justify-center shrink-0 mt-0.5">
-                  <span className="text-[#8b5cf6] font-bold text-[15px]">2</span>
+                <div className="w-8 h-8 rounded-full bg-[#DC2626]/10 flex items-center justify-center shrink-0 mt-0.5">
+                  <span className="text-[#DC2626] font-bold text-[15px]">2</span>
                 </div>
                 <div>
-                  <h4 className="text-base font-bold leading-tight tracking-wide text-[#0d253d]" style={{ fontFamily: 'var(--font-inter)' }}>
+                  <h4 className="text-base font-bold leading-tight tracking-wide text-[#1B2340]" style={{ fontFamily: 'var(--font-inter)' }}>
                     {content?.phases?.[1]?.label}
                   </h4>
                 </div>
@@ -171,10 +171,10 @@ export function AgentFactoryPipeline({ content }: { content?: any }) {
                     <button
                       key={step.id}
                       onClick={() => setActiveTab(step.id)}
-                      className={`w-full text-left py-3 px-4 rounded-[14px] transition-all duration-300 flex items-center gap-4 group relative z-10 ${isActive ? 'bg-white shadow-sm border border-slate-200 ring-1 ring-[#8b5cf6]/20' : 'hover:bg-slate-50 border border-transparent'}`}
+                      className={`w-full text-left py-3 px-4 rounded-[14px] transition-all duration-300 flex items-center gap-4 group relative z-10 ${isActive ? 'bg-white shadow-sm border border-slate-200 ring-1 ring-[#DC2626]/20' : 'hover:bg-slate-50 border border-transparent'}`}
                     >
                       {isActive ? (
-                        <div className="w-6 h-6 rounded-full bg-[#8b5cf6] flex items-center justify-center shrink-0 shadow-md">
+                        <div className="w-6 h-6 rounded-full bg-[#DC2626] flex items-center justify-center shrink-0 shadow-md">
                           <step.icon className="w-3.5 h-3.5 text-white" strokeWidth={2.5} />
                         </div>
                       ) : (
@@ -183,11 +183,11 @@ export function AgentFactoryPipeline({ content }: { content?: any }) {
                         </div>
                       )}
                       <div className="flex-1">
-                        <span className={`text-sm font-semibold block transition-colors ${isActive ? 'text-[#0d253d]' : 'text-[#64748d] group-hover:text-[#0d253d]'}`} style={{ fontFamily: 'var(--font-inter)' }}>
+                        <span className={`text-sm font-semibold block transition-colors ${isActive ? 'text-[#1B2340]' : 'text-[#64748d] group-hover:text-[#1B2340]'}`} style={{ fontFamily: 'var(--font-inter)' }}>
                           {step.title}
                         </span>
                       </div>
-                      {isActive && <ChevronRight className="w-4 h-4 text-[#8b5cf6]" strokeWidth={2.5} />}
+                      {isActive && <ChevronRight className="w-4 h-4 text-[#DC2626]" strokeWidth={2.5} />}
                     </button>
                   );
                 })}
@@ -197,11 +197,11 @@ export function AgentFactoryPipeline({ content }: { content?: any }) {
             {/* Group 3: Test and Deploy */}
             <div className="relative">
               <div className="flex items-start gap-4 mb-3">
-                <div className="w-8 h-8 rounded-full bg-[#9f1239]/10 flex items-center justify-center shrink-0 mt-0.5">
-                  <span className="text-[#9f1239] font-bold text-[15px]">3</span>
+                <div className="w-8 h-8 rounded-full bg-[#DC2626]/10 flex items-center justify-center shrink-0 mt-0.5">
+                  <span className="text-[#DC2626] font-bold text-[15px]">3</span>
                 </div>
                 <div>
-                  <h4 className="text-base font-bold leading-tight tracking-wide text-[#0d253d]" style={{ fontFamily: 'var(--font-inter)' }}>
+                  <h4 className="text-base font-bold leading-tight tracking-wide text-[#1B2340]" style={{ fontFamily: 'var(--font-inter)' }}>
                     {content?.phases?.[2]?.label}
                   </h4>
                 </div>
@@ -213,10 +213,10 @@ export function AgentFactoryPipeline({ content }: { content?: any }) {
                     <button
                       key={step.id}
                       onClick={() => setActiveTab(step.id)}
-                      className={`w-full text-left py-3 px-4 rounded-[14px] transition-all duration-300 flex items-center gap-4 group relative z-10 ${isActive ? 'bg-white shadow-sm border border-slate-200 ring-1 ring-[#9f1239]/20' : 'hover:bg-slate-50 border border-transparent'}`}
+                      className={`w-full text-left py-3 px-4 rounded-[14px] transition-all duration-300 flex items-center gap-4 group relative z-10 ${isActive ? 'bg-white shadow-sm border border-slate-200 ring-1 ring-[#DC2626]/20' : 'hover:bg-slate-50 border border-transparent'}`}
                     >
                       {isActive ? (
-                        <div className="w-6 h-6 rounded-full bg-[#9f1239] flex items-center justify-center shrink-0 shadow-md">
+                        <div className="w-6 h-6 rounded-full bg-[#DC2626] flex items-center justify-center shrink-0 shadow-md">
                           <step.icon className="w-3.5 h-3.5 text-white" strokeWidth={2.5} />
                         </div>
                       ) : (
@@ -225,11 +225,11 @@ export function AgentFactoryPipeline({ content }: { content?: any }) {
                         </div>
                       )}
                       <div className="flex-1">
-                        <span className={`text-sm font-semibold block transition-colors ${isActive ? 'text-[#0d253d]' : 'text-[#64748d] group-hover:text-[#0d253d]'}`} style={{ fontFamily: 'var(--font-inter)' }}>
+                        <span className={`text-sm font-semibold block transition-colors ${isActive ? 'text-[#1B2340]' : 'text-[#64748d] group-hover:text-[#1B2340]'}`} style={{ fontFamily: 'var(--font-inter)' }}>
                           {step.title}
                         </span>
                       </div>
-                      {isActive && <ChevronRight className="w-4 h-4 text-[#9f1239]" strokeWidth={2.5} />}
+                      {isActive && <ChevronRight className="w-4 h-4 text-[#DC2626]" strokeWidth={2.5} />}
                     </button>
                   );
                 })}
@@ -268,12 +268,12 @@ export function AgentFactoryPipeline({ content }: { content?: any }) {
                 {/* Content */}
                 <div className="space-y-3 max-w-2xl">
                   <h3 
-                    className="text-lg md:text-xl font-bold leading-tight tracking-wide text-[#0d253d]" 
+                    className="text-lg md:text-xl font-bold leading-tight tracking-wide text-[#1B2340]" 
                     style={{ fontFamily: 'var(--font-inter)' }}
                   >
                     {activeStepData.title}
                   </h3>
-                  <p className="text-base text-[#0d253d] leading-relaxed" style={{ fontFamily: 'var(--font-quicksand)' }}>
+                  <p className="text-base text-[#1B2340] leading-relaxed" style={{ fontFamily: 'var(--font-quicksand)' }}>
                     {activeStepData.desc}
                   </p>
                 </div>

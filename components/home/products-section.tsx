@@ -453,9 +453,9 @@ function AIChatDemo() {
       {/* Dark top bar */}
       <div className="flex items-center gap-3 px-4 py-3 bg-[#1c1e54] z-30 relative shrink-0">
         <img
-          src="/agent-fac-logo.png"
+          src="/brain-logo.png"
           alt="Agent Factory"
-          className="h-5 w-auto object-contain brightness-0 invert"
+          className="h-5 w-auto object-contain"
         />
         <div className="flex-1 h-5 bg-white/10 rounded-md" />
         <div className="flex gap-1.5">
@@ -735,7 +735,7 @@ export function ProductsSection({ content }: { content?: any }) {
                 <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="flex flex-col order-2 lg:order-1">
                   <div className="mb-4">
                     <img
-                      src="/agent-fac-logo.png"
+                      src="/brain-logo.png"
                       alt="Agent Factory"
                       className="h-12 w-auto object-contain"
                     />

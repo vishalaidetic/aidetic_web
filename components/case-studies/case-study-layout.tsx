@@ -13,20 +13,20 @@ function HeroCard({ study }: { study: any }) {
   const accentColor = colors[colorIdx]
 
   return (
-    <div className="relative w-full rounded-[2rem] overflow-hidden border border-[#533afd]/10 min-h-[380px] flex flex-col justify-between p-10 sm:p-12 shadow-sm shadow-[#533afd]/5 group transition-all duration-500 hover:shadow-lg hover:shadow-[#533afd]/10 hover:border-[#533afd]/20">
+    <div className="relative w-full rounded-[2rem] overflow-hidden border border-[#DC2626]/10 min-h-[380px] flex flex-col justify-between p-10 sm:p-12 shadow-sm shadow-[#DC2626]/5 group transition-all duration-500 hover:shadow-lg hover:shadow-[#DC2626]/10 hover:border-[#DC2626]/20">
 
       {/* ── Background: Agent Factory Duo Gradient ── */}
       {/* Light base: cream-white to soft lavender (matches Agent Factory CTA) */}
       <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, #fcf2e3 0%, #fde2f3 45%, #e6e2fd 100%)' }} />
       {/* Violet glow top-left */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_rgba(83,58,253,0.10)_0%,_transparent_60%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_rgba(220,38,38,0.10)_0%,_transparent_60%)]" />
       {/* Pink glow bottom-right */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_rgba(234,34,97,0.08)_0%,_transparent_60%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_rgba(220,38,38,0.08)_0%,_transparent_60%)]" />
       {/* Subtle grid lines */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: 'linear-gradient(rgba(83,58,253,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(83,58,253,0.04) 1px, transparent 1px)',
+          backgroundImage: 'linear-gradient(rgba(220,38,38,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(220,38,38,0.04) 1px, transparent 1px)',
           backgroundSize: '40px 40px',
         }}
       />
@@ -54,18 +54,18 @@ function HeroCard({ study }: { study: any }) {
 
         {/* Divider */}
         {(study.industry || study.tag_type) && (
-          <span className="text-[#533afd]/20 text-base select-none mx-1">|</span>
+          <span className="text-[#DC2626]/20 text-base select-none mx-1">|</span>
         )}
 
         {/* Industry / Tag Badges */}
         <div className="flex items-center gap-2">
           {study.industry && (
-            <span className="px-3 py-1 bg-white/60 backdrop-blur-sm border border-[#533afd]/15 text-[11px] font-bold uppercase tracking-[0.15em] text-[#533afd]/80 rounded-full">
+            <span className="px-3 py-1 bg-white/60 backdrop-blur-sm border border-[#DC2626]/15 text-[11px] font-bold uppercase tracking-[0.15em] text-[#DC2626]/80 rounded-full">
               {study.industry}
             </span>
           )}
           {study.tag_type && (
-            <span className="px-3 py-1 bg-white/60 backdrop-blur-sm border border-[#ea2261]/15 text-[11px] font-bold uppercase tracking-[0.15em] text-[#ea2261]/80 rounded-full">
+            <span className="px-3 py-1 bg-white/60 backdrop-blur-sm border border-[#DC2626]/15 text-[11px] font-bold uppercase tracking-[0.15em] text-[#DC2626]/80 rounded-full">
               {study.tag_type}
             </span>
           )}
@@ -85,9 +85,9 @@ function HeroCard({ study }: { study: any }) {
             {study.metrics && study.metrics.map((m: any, idx: number) => (
               <div
                 key={`metric-${idx}`}
-                className="inline-flex items-center gap-1.5 px-4 py-2 bg-white/70 backdrop-blur-sm border border-[#533afd]/15 rounded-full text-[13px] shadow-sm"
+                className="inline-flex items-center gap-1.5 px-4 py-2 bg-white/70 backdrop-blur-sm border border-[#DC2626]/15 rounded-full text-[13px] shadow-sm"
               >
-                <span className="font-bold text-[#533afd]">{m.metric_value}</span>
+                <span className="font-bold text-[#DC2626]">{m.metric_value}</span>
                 <span className="text-[#64748b]">{m.metric_label}</span>
               </div>
             ))}
@@ -95,9 +95,9 @@ function HeroCard({ study }: { study: any }) {
             {study.highlights && study.highlights.map((highlight: any, idx: number) => (
               <div
                 key={`hl-${idx}`}
-                className="inline-flex items-center gap-1.5 px-4 py-2 bg-white/70 backdrop-blur-sm border border-[#ea2261]/15 rounded-full text-[13px] shadow-sm"
+                className="inline-flex items-center gap-1.5 px-4 py-2 bg-white/70 backdrop-blur-sm border border-[#DC2626]/15 rounded-full text-[13px] shadow-sm"
               >
-                {highlight.title && <span className="font-bold text-[#ea2261]">{highlight.title}</span>}
+                {highlight.title && <span className="font-bold text-[#DC2626]">{highlight.title}</span>}
                 {highlight.description && <span className="text-[#64748b]">{highlight.description}</span>}
               </div>
             ))}
@@ -120,7 +120,7 @@ export function CaseStudyLayout({ study, relatedStudies, isPreview = false }: { 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center gap-4">
             <Link
               href="/case-studies"
-              className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-[#533afd] transition-colors group"
+              className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-[#DC2626] transition-colors group"
             >
               <ChevronLeft size={15} className="transition-transform group-hover:-translate-x-0.5" />
               All case studies
@@ -149,7 +149,7 @@ export function CaseStudyLayout({ study, relatedStudies, isPreview = false }: { 
           maxWidth: '700px',
           maxHeight: '700px',
           borderRadius: '50%',
-          background: 'linear-gradient(to right, transparent 0%, transparent 45%, rgba(234,34,97,0.38) 55%, rgba(83,58,253,0.35) 78%, rgba(204,233,248,0.75) 100%)',
+          background: 'linear-gradient(to right, transparent 0%, transparent 45%, rgba(220,38,38,0.38) 55%, rgba(220,38,38,0.35) 78%, rgba(254,226,226,0.75) 100%)',
           opacity: 0.7,
         }}
       />
@@ -194,7 +194,7 @@ export function CaseStudyLayout({ study, relatedStudies, isPreview = false }: { 
             className="text-[2rem] sm:text-[2.25rem] lg:text-[2.5rem] xl:text-[2.75rem] font-semibold leading-[1.15] mb-6"
             style={{
               fontFamily: 'var(--font-inter)',
-              background: 'linear-gradient(to right, #533afd, #000000)',
+              background: 'linear-gradient(to right, #DC2626, #000000)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
@@ -206,7 +206,7 @@ export function CaseStudyLayout({ study, relatedStudies, isPreview = false }: { 
           {/* Subtitle */}
           {study.subtitle && (
             <p 
-              className="text-base md:text-lg text-[#0d253d] leading-relaxed border-b border-slate-100 pb-10 mb-10"
+              className="text-base md:text-lg text-[#1B2340] leading-relaxed border-b border-slate-100 pb-10 mb-10"
               style={{ fontFamily: 'var(--font-quicksand)' }}
             >
               {study.subtitle}
@@ -219,7 +219,7 @@ export function CaseStudyLayout({ study, relatedStudies, isPreview = false }: { 
               {study.metrics.map((m: any, i: number) => (
                 <div key={i}>
                   <div 
-                    className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#533afd] leading-none tracking-wide mb-3"
+                    className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#DC2626] leading-none tracking-wide mb-3"
                     style={{ fontFamily: 'var(--font-inter)' }}
                   >
                     {m.metric_value}
@@ -228,7 +228,7 @@ export function CaseStudyLayout({ study, relatedStudies, isPreview = false }: { 
                   <div className="flex justify-start mb-3">
                     <div className="w-12 h-0" style={{ borderTop: '2.5px dashed #22aed1' }} />
                   </div>
-                  <div className="text-[#0d253d] text-sm leading-snug whitespace-pre-line px-1">
+                  <div className="text-[#1B2340] text-sm leading-snug whitespace-pre-line px-1">
                     {m.metric_label}
                   </div>
                 </div>
@@ -263,7 +263,7 @@ export function CaseStudyLayout({ study, relatedStudies, isPreview = false }: { 
               className="text-2xl sm:text-3xl lg:text-4xl font-semibold leading-[1.15] mb-5"
               style={{
                 fontFamily: 'var(--font-inter)',
-                background: 'linear-gradient(to right, #533afd, #000000)',
+                background: 'linear-gradient(to right, #DC2626, #000000)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
@@ -272,7 +272,7 @@ export function CaseStudyLayout({ study, relatedStudies, isPreview = false }: { 
               About {study.company_name || 'the Company'}
             </h2>
             <div 
-              className="prose prose-slate max-w-none prose-p:text-[#0d253d] prose-p:text-[15px] md:prose-p:text-base prose-p:leading-relaxed prose-headings:text-[#0d253d] prose-a:text-[#533afd]"
+              className="prose prose-slate max-w-none prose-p:text-[#1B2340] prose-p:text-[15px] md:prose-p:text-base prose-p:leading-relaxed prose-headings:text-[#1B2340] prose-a:text-[#DC2626]"
               style={{ fontFamily: 'var(--font-quicksand)' }}
             >
               <BlogContent content={study.content} />
@@ -298,7 +298,7 @@ export function CaseStudyLayout({ study, relatedStudies, isPreview = false }: { 
                 className="text-2xl sm:text-3xl lg:text-4xl font-semibold leading-[1.15] mb-4"
                 style={{
                   fontFamily: 'var(--font-inter)',
-                  background: 'linear-gradient(to right, #533afd, #000000)',
+                  background: 'linear-gradient(to right, #DC2626, #000000)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
@@ -310,7 +310,7 @@ export function CaseStudyLayout({ study, relatedStudies, isPreview = false }: { 
 
             {study.problem.description && (
               <p 
-                className="text-[15px] md:text-base text-[#0d253d] mb-10 leading-relaxed"
+                className="text-[15px] md:text-base text-[#1B2340] mb-10 leading-relaxed"
                 style={{ fontFamily: 'var(--font-quicksand)' }}
               >
                 {study.problem.description}
@@ -381,7 +381,7 @@ export function CaseStudyLayout({ study, relatedStudies, isPreview = false }: { 
                 className="text-2xl sm:text-3xl lg:text-4xl font-semibold leading-[1.15] mb-4"
                 style={{
                   fontFamily: 'var(--font-inter)',
-                  background: 'linear-gradient(to right, #533afd, #000000)',
+                  background: 'linear-gradient(to right, #DC2626, #000000)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
@@ -393,7 +393,7 @@ export function CaseStudyLayout({ study, relatedStudies, isPreview = false }: { 
 
             {study.solution.description && (
               <p 
-                className="text-[15px] md:text-base text-[#0d253d] mb-10 leading-relaxed"
+                className="text-[15px] md:text-base text-[#1B2340] mb-10 leading-relaxed"
                 style={{ fontFamily: 'var(--font-quicksand)' }}
               >
                 {study.solution.description}
@@ -447,7 +447,7 @@ export function CaseStudyLayout({ study, relatedStudies, isPreview = false }: { 
             <div className="flex items-start gap-4 sm:gap-6">
               <div className="text-[#c4b5fd] text-[3rem] sm:text-[4rem] leading-none font-serif select-none shrink-0" style={{ marginTop: '-0.25rem' }}>&ldquo;</div>
               <div>
-                <blockquote className="text-xl sm:text-[1.5rem] text-[#0d253d] leading-[1.4] tracking-tight mb-8" style={{ fontFamily: 'var(--font-inter)' }}>
+                <blockquote className="text-xl sm:text-[1.5rem] text-[#1B2340] leading-[1.4] tracking-tight mb-8" style={{ fontFamily: 'var(--font-inter)' }}>
                   {study.testimonial.quote}
                 </blockquote>
                 <div className="flex items-center gap-3">
@@ -460,7 +460,7 @@ export function CaseStudyLayout({ study, relatedStudies, isPreview = false }: { 
                   )}
                   <div>
                     {study.testimonial.person_name && (
-                      <div className="font-semibold text-[#0d253d] text-[15px]" style={{ fontFamily: 'var(--font-inter)' }}>
+                      <div className="font-semibold text-[#1B2340] text-[15px]" style={{ fontFamily: 'var(--font-inter)' }}>
                         {study.testimonial.person_name}
                       </div>
                     )}
@@ -494,7 +494,7 @@ export function CaseStudyLayout({ study, relatedStudies, isPreview = false }: { 
                 className="text-2xl sm:text-3xl lg:text-4xl font-semibold leading-[1.15] mb-10"
                 style={{
                   fontFamily: 'var(--font-inter)',
-                  background: 'linear-gradient(to right, #533afd, #000000)',
+                  background: 'linear-gradient(to right, #DC2626, #000000)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
@@ -526,12 +526,12 @@ export function CaseStudyLayout({ study, relatedStudies, isPreview = false }: { 
                       {(item.metrics || []).filter((m: any) => m.value || m.label).map((metric: any, j: number) => (
                         <div key={j}>
                           <div 
-                            className="text-2xl sm:text-[1.75rem] font-bold text-[#533afd] mb-2 leading-none tracking-wide"
+                            className="text-2xl sm:text-[1.75rem] font-bold text-[#DC2626] mb-2 leading-none tracking-wide"
                             style={{ fontFamily: 'var(--font-inter)' }}
                           >
                             {metric.value}
                           </div>
-                          <div className="text-[#0d253d] text-[13px] leading-snug">
+                          <div className="text-[#1B2340] text-[13px] leading-snug">
                             {metric.label}
                           </div>
                         </div>

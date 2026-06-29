@@ -31,7 +31,7 @@ export function CtaSection({ content }: { content?: any }) {
                 className="text-[2rem] sm:text-[2.25rem] lg:text-[2.75rem] font-medium leading-[1.15] tracking-tight"
                 style={{
                   fontFamily: 'var(--font-inter)',
-                  background: 'linear-gradient(to right, #533afd, #000000)',
+                  background: 'linear-gradient(to right, #DC2626, #000000)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
@@ -51,7 +51,7 @@ export function CtaSection({ content }: { content?: any }) {
             <div className="flex flex-col sm:flex-row items-center gap-4 shrink-0">
               <BookCallDialog>
                 <button
-                  className="px-8 py-3.5 rounded-full bg-[#533afd] text-white font-medium shadow-lg hover:opacity-90 hover:-translate-y-0.5 transition-all text-[15px]"
+                  className="px-8 py-3.5 rounded-full bg-[#DC2626] text-white font-medium shadow-lg hover:opacity-90 hover:-translate-y-0.5 transition-all text-[15px]"
                   style={{ fontFamily: 'var(--font-inter)' }}
                 >
                   {content?.cta_primary}
@@ -59,7 +59,7 @@ export function CtaSection({ content }: { content?: any }) {
               </BookCallDialog>
               <Link href="/case-studies">
                 <button
-                  className="px-8 py-3.5 rounded-full bg-white text-[#533afd] font-medium border border-[#533afd]/30 shadow-sm hover:border-[#533afd] hover:bg-slate-50 hover:-translate-y-0.5 transition-all text-[15px]"
+                  className="px-8 py-3.5 rounded-full bg-white text-[#DC2626] font-medium border border-[#DC2626]/30 shadow-sm hover:border-[#DC2626] hover:bg-slate-50 hover:-translate-y-0.5 transition-all text-[15px]"
                   style={{ fontFamily: 'var(--font-inter)' }}
                 >
                   {content?.cta_secondary}

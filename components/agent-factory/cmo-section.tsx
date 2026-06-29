@@ -16,7 +16,7 @@ export function CmoSection({ content }: { content?: any }) {
           viewport={{ once: true, amount: 0.4 }}
         >
           {/* Avatar */}
-          <div className="shrink-0 relative w-20 h-20 md:w-24 md:h-24 rounded-full p-1 bg-gradient-to-br from-[#533afd] to-blue-500">
+          <div className="shrink-0 relative w-20 h-20 md:w-24 md:h-24 rounded-full p-1 bg-gradient-to-br from-[#DC2626] to-red-500">
             <div className="w-full h-full rounded-full overflow-hidden border-2 border-white relative bg-slate-200">
               <Image
                 src="/anurag.jpeg"
@@ -30,7 +30,7 @@ export function CmoSection({ content }: { content?: any }) {
           {/* Text Content */}
           <div className="flex flex-col flex-1 text-center md:text-left space-y-1.5 md:space-y-1">
             <h4
-              className="text-xl md:text-2xl font-bold text-[#0d253d]"
+              className="text-xl md:text-2xl font-bold text-[#1B2340]"
               style={{ fontFamily: 'var(--font-inter)' }}
             >
               {content?.heading}
@@ -44,7 +44,7 @@ export function CmoSection({ content }: { content?: any }) {
           <div className="shrink-0 mt-4 md:mt-0">
             <BookCallDialog>
               <button
-                className="px-8 py-3.5 rounded-full bg-[#533afd] text-white font-medium shadow-lg hover:opacity-90 hover:-translate-y-0.5 transition-all text-[15px]"
+                className="px-8 py-3.5 rounded-full bg-[#DC2626] text-white font-medium shadow-lg hover:opacity-90 hover:-translate-y-0.5 transition-all text-[15px]"
                 style={{ fontFamily: 'var(--font-inter)' }}
               >
                 {content?.cta}

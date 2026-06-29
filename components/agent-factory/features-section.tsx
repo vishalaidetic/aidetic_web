@@ -23,11 +23,11 @@ function MockupShell({ children }: { children: React.ReactNode }) {
       {/* Dark top bar */}
       <div className="flex items-center gap-3 px-4 py-3 bg-[#1c1e54] z-30 relative">
         <Image
-          src="/agent-fac-logo.png"
+          src="/brain-logo.png"
           alt="Agent Factory"
           width={80}
           height={24}
-          className="h-5 w-auto object-contain brightness-0 invert"
+          className="h-5 w-auto object-contain"
         />
         <div className="flex-1 h-5 bg-white/10 rounded-md" />
         <div className="flex gap-1.5">
@@ -64,7 +64,7 @@ function AnalystMockup({ content }: { content?: any }) {
         {/* User question bubble */}
         <div className="flex items-start gap-2">
           <div className="w-6 h-6 rounded-full bg-[#f6f9fc] flex items-center justify-center shrink-0">
-            <MessageSquare className="w-3 h-3 text-[#533afd]" />
+            <MessageSquare className="w-3 h-3 text-[#DC2626]" />
           </div>
           <div className="bg-slate-50 rounded-xl rounded-tl-none px-3 py-2 text-[10px] text-[#64748d] max-w-[80%] leading-relaxed">
             {data?.question}
@@ -77,11 +77,11 @@ function AnalystMockup({ content }: { content?: any }) {
 
           {/* Mini table */}
           <div className="border border-slate-100 rounded-lg overflow-hidden text-[9px]">
-            <div className="grid grid-cols-3 bg-slate-50 px-3 py-1.5 font-semibold text-[#64748d] border-[#533afd] border-slate-100">
+            <div className="grid grid-cols-3 bg-slate-50 px-3 py-1.5 font-semibold text-[#64748d] border-[#DC2626] border-slate-100">
               <span>{data?.table_headers?.[0]}</span><span>{data?.table_headers?.[1]}</span><span>{data?.table_headers?.[2]}</span>
             </div>
             {(data?.table_rows || []).map(([p, r, s]: string[], i: number) => (
-              <div key={i} className="grid grid-cols-3 px-3 py-1.5 text-[#64748d] border-[#533afd] border-slate-50 last:border-0">
+              <div key={i} className="grid grid-cols-3 px-3 py-1.5 text-[#64748d] border-[#DC2626] border-slate-50 last:border-0">
                 <span>{p}</span><span>{r}</span><span>{s}</span>
               </div>
             ))}
@@ -91,7 +91,7 @@ function AnalystMockup({ content }: { content?: any }) {
         {/* Follow-up chips */}
         <div className="flex gap-2 flex-wrap">
           {(data?.chips || []).map((t: string, i: number) => (
-            <span key={i} className="px-2 py-1 bg-[#f6f9fc] text-[#533afd] rounded text-[9px] border border-[#665efd] cursor-pointer hover:bg-[#f6f9fc] transition-colors">{t}</span>
+            <span key={i} className="px-2 py-1 bg-[#f6f9fc] text-[#DC2626] rounded text-[9px] border border-[#DC2626] cursor-pointer hover:bg-[#f6f9fc] transition-colors">{t}</span>
           ))}
         </div>
 
@@ -99,7 +99,7 @@ function AnalystMockup({ content }: { content?: any }) {
         <div className="mt-auto flex items-center gap-2 border border-slate-200 rounded-xl px-3 py-2 bg-white">
           <Search className="w-3 h-3 text-slate-300" />
           <span className="text-[9px] text-slate-300 italic">{data?.input_placeholder}</span>
-          <div className="ml-auto w-5 h-5 rounded-full bg-[#533afd] flex items-center justify-center">
+          <div className="ml-auto w-5 h-5 rounded-full bg-[#DC2626] flex items-center justify-center">
             <Zap className="w-2.5 h-2.5 text-white" />
           </div>
         </div>
@@ -117,14 +117,14 @@ function BusinessAreaMockup({ content }: { content?: any }) {
         <label className="text-[9px] font-bold text-[#64748d] uppercase tracking-widest mb-2 block" style={{ fontFamily: 'var(--font-inter)' }}>{data?.label}</label>
 
         <div className="relative mb-6">
-          <div className="flex items-center justify-between border border-[#665efd] rounded-xl px-4 py-3 bg-white shadow-sm ring-2 ring-[#533afd]/20 z-10 relative">
+          <div className="flex items-center justify-between border border-[#DC2626] rounded-xl px-4 py-3 bg-white shadow-sm ring-2 ring-[#DC2626]/20 z-10 relative">
             <div className="flex items-center gap-3">
-              <div className="w-6 h-6 rounded-lg bg-[#533afd]/10 flex items-center justify-center">
-                <BarChart2 className="w-3.5 h-3.5 text-[#533afd]" />
+              <div className="w-6 h-6 rounded-lg bg-[#DC2626]/10 flex items-center justify-center">
+                <BarChart2 className="w-3.5 h-3.5 text-[#DC2626]" />
               </div>
-              <span className="text-xs font-semibold text-[#0d253d]">{data?.selected}</span>
+              <span className="text-xs font-semibold text-[#1B2340]">{data?.selected}</span>
             </div>
-            <ChevronDown className="w-4 h-4 text-[#533afd] rotate-180 transition-transform" />
+            <ChevronDown className="w-4 h-4 text-[#DC2626] rotate-180 transition-transform" />
           </div>
 
           {/* Expanded Dropdown Menu */}
@@ -133,13 +133,13 @@ function BusinessAreaMockup({ content }: { content?: any }) {
               <div className="w-6 h-6 rounded-lg bg-emerald-500/10 flex items-center justify-center">
                 <Zap className="w-3.5 h-3.5 text-emerald-600" />
               </div>
-              <span className="text-xs font-medium text-[#0d253d]">{data?.dropdown?.[0]}</span>
+              <span className="text-xs font-medium text-[#1B2340]">{data?.dropdown?.[0]}</span>
             </div>
             <div className="flex items-center gap-3 px-4 py-2.5 hover:bg-slate-50 cursor-pointer">
               <div className="w-6 h-6 rounded-lg bg-orange-500/10 flex items-center justify-center">
                 <FileText className="w-3.5 h-3.5 text-orange-600" />
               </div>
-              <span className="text-xs font-medium text-[#0d253d]">Financial KPIs</span>
+              <span className="text-xs font-medium text-[#1B2340]">Financial KPIs</span>
             </div>
             <div className="flex items-center gap-3 px-4 py-2.5 hover:bg-slate-50 cursor-pointer border-t border-slate-100">
               <div className="w-6 h-6 rounded-lg bg-slate-100 flex items-center justify-center">
@@ -154,9 +154,9 @@ function BusinessAreaMockup({ content }: { content?: any }) {
         <div className="border border-slate-200 rounded-2xl p-4 bg-white opacity-50 pointer-events-none mt-auto">
           <div className="flex items-center gap-2 mb-3">
             <div className="w-5 h-5 rounded-full bg-slate-100 flex items-center justify-center">
-              <MessageSquare className="w-3 h-3 text-[#533afd]" />
+              <MessageSquare className="w-3 h-3 text-[#DC2626]" />
             </div>
-            <span className="text-xs font-semibold text-[#0d253d]">Ask the Marketing Agent</span>
+            <span className="text-xs font-semibold text-[#1B2340]">Ask the Marketing Agent</span>
           </div>
           <div className="bg-slate-50 rounded-xl p-3 flex flex-col gap-3">
             <span className="text-[10px] text-[#64748d]">{data?.input_placeholder}</span>
@@ -164,7 +164,7 @@ function BusinessAreaMockup({ content }: { content?: any }) {
               <div className="flex gap-2">
                 <div className="w-5 h-5 rounded bg-white border border-slate-200 flex items-center justify-center"><BarChart2 className="w-2.5 h-2.5 text-[#64748d]" /></div>
               </div>
-              <div className="px-3 py-1 bg-[#533afd] rounded-lg flex items-center gap-1.5">
+              <div className="px-3 py-1 bg-[#DC2626] rounded-lg flex items-center gap-1.5">
                 <span className="text-white text-[8px] font-bold uppercase tracking-wider">Send</span>
               </div>
             </div>
@@ -183,7 +183,7 @@ function ChartsMockup({ content }: { content?: any }) {
       <div className="flex flex-col w-full h-full p-5 gap-4 bg-white">
         {/* Header/Title */}
         <div className="flex items-center justify-between pb-2 border-b border-slate-100">
-          <div className="text-xs font-bold text-[#0d253d]">{data?.label}</div>
+          <div className="text-xs font-bold text-[#1B2340]">{data?.label}</div>
           <div className="text-[9px] bg-slate-50 border border-slate-200 text-[#64748d] px-2 py-1 rounded-md shadow-sm">{data?.y_axis?.[0]}</div>
         </div>
 
@@ -195,18 +195,18 @@ function ChartsMockup({ content }: { content?: any }) {
 
               {/* Mock Pie Chart (CSS conic-gradient) */}
               <div className="relative w-24 h-24 rounded-full shadow-inner" style={{
-                background: 'conic-gradient(#533afd 0% 45%, #ea2261 45% 75%, #f96bee 75% 100%)'
+                background: 'conic-gradient(#DC2626 0% 45%, #DC2626 45% 75%, #DC2626 75% 100%)'
               }}>
                 {/* Donut hole */}
                 <div className="absolute inset-0 m-auto w-12 h-12 bg-slate-50 rounded-full shadow-sm flex items-center justify-center">
-                  <span className="text-[10px] font-bold text-[#0d253d]">100%</span>
+                  <span className="text-[10px] font-bold text-[#1B2340]">100%</span>
                 </div>
               </div>
 
               <div className="flex gap-3 mt-4 w-full justify-center">
-                <div className="flex items-center gap-1.5"><div className="w-2 h-2 rounded-full bg-[#533afd]"></div><span className="text-[8px] font-medium text-[#64748d]">NA</span></div>
-                <div className="flex items-center gap-1.5"><div className="w-2 h-2 rounded-full bg-[#ea2261]"></div><span className="text-[8px] font-medium text-[#64748d]">EMEA</span></div>
-                <div className="flex items-center gap-1.5"><div className="w-2 h-2 rounded-full bg-[#f96bee]"></div><span className="text-[8px] font-medium text-[#64748d]">APAC</span></div>
+                <div className="flex items-center gap-1.5"><div className="w-2 h-2 rounded-full bg-[#DC2626]"></div><span className="text-[8px] font-medium text-[#64748d]">NA</span></div>
+                <div className="flex items-center gap-1.5"><div className="w-2 h-2 rounded-full bg-[#DC2626]"></div><span className="text-[8px] font-medium text-[#64748d]">EMEA</span></div>
+                <div className="flex items-center gap-1.5"><div className="w-2 h-2 rounded-full bg-[#DC2626]"></div><span className="text-[8px] font-medium text-[#64748d]">APAC</span></div>
               </div>
             </div>
           </div>
@@ -219,12 +219,12 @@ function ChartsMockup({ content }: { content?: any }) {
               <div className="flex-1 relative border-l border-b border-slate-200 ml-2 mb-2">
                 {/* SVG Line */}
                 <svg className="absolute inset-0 w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 100 100">
-                  <path d="M0,90 Q20,80 40,50 T80,30 T100,10" fill="none" stroke="#533afd" strokeWidth="2.5" vectorEffect="non-scaling-stroke" strokeLinecap="round" />
+                  <path d="M0,90 Q20,80 40,50 T80,30 T100,10" fill="none" stroke="#DC2626" strokeWidth="2.5" vectorEffect="non-scaling-stroke" strokeLinecap="round" />
                   <path d="M0,100 L0,90 Q20,80 40,50 T80,30 T100,10 L100,100 Z" fill="url(#gradLine)" />
                   <defs>
                     <linearGradient id="gradLine" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#533afd" stopOpacity="0.15" />
-                      <stop offset="100%" stopColor="#533afd" stopOpacity="0" />
+                      <stop offset="0%" stopColor="#DC2626" stopOpacity="0.15" />
+                      <stop offset="100%" stopColor="#DC2626" stopOpacity="0" />
                     </linearGradient>
                   </defs>
                 </svg>
@@ -235,11 +235,11 @@ function ChartsMockup({ content }: { content?: any }) {
             <div className="bg-slate-50 border border-slate-100 rounded-xl p-3 flex-1 flex flex-col shadow-sm">
               <div className="text-[9px] font-bold text-[#64748d] uppercase tracking-widest mb-1" style={{ fontFamily: 'var(--font-inter)' }}>{data?.monthly}</div>
               <div className="flex-1 flex items-end justify-between gap-1.5 border-b border-slate-200 pb-0.5 ml-1">
-                <div className="w-full bg-[#533afd]/20 hover:bg-[#533afd]/80 transition-colors rounded-t-sm relative group" style={{ height: '35%' }}><div className="absolute -top-4 left-1/2 -translate-x-1/2 text-[7px] text-[#0d253d] font-bold opacity-0 group-hover:opacity-100">{data?.bar_labels?.[0]}</div></div>
-                <div className="w-full bg-[#533afd]/40 hover:bg-[#533afd]/80 transition-colors rounded-t-sm relative group" style={{ height: '50%' }}><div className="absolute -top-4 left-1/2 -translate-x-1/2 text-[7px] text-[#0d253d] font-bold opacity-0 group-hover:opacity-100">{data?.bar_labels?.[1]}</div></div>
-                <div className="w-full bg-[#ea2261] hover:bg-[#ea2261]/80 transition-colors rounded-t-sm shadow-sm relative group" style={{ height: '85%' }}><div className="absolute -top-4 left-1/2 -translate-x-1/2 text-[7px] text-[#0d253d] font-bold opacity-0 group-hover:opacity-100">{data?.bar_labels?.[2]}</div></div>
-                <div className="w-full bg-[#533afd] hover:bg-[#533afd]/80 transition-colors rounded-t-sm shadow-sm relative group" style={{ height: '100%' }}><div className="absolute -top-4 left-1/2 -translate-x-1/2 text-[7px] text-[#0d253d] font-bold opacity-0 group-hover:opacity-100">{data?.bar_labels?.[3]}</div></div>
-                <div className="w-full bg-[#f96bee] hover:bg-[#f96bee]/80 transition-colors rounded-t-sm shadow-sm relative group" style={{ height: '70%' }}><div className="absolute -top-4 left-1/2 -translate-x-1/2 text-[7px] text-[#0d253d] font-bold opacity-0 group-hover:opacity-100">{data?.bar_labels?.[4]}</div></div>
+                <div className="w-full bg-[#DC2626]/20 hover:bg-[#DC2626]/80 transition-colors rounded-t-sm relative group" style={{ height: '35%' }}><div className="absolute -top-4 left-1/2 -translate-x-1/2 text-[7px] text-[#1B2340] font-bold opacity-0 group-hover:opacity-100">{data?.bar_labels?.[0]}</div></div>
+                <div className="w-full bg-[#DC2626]/40 hover:bg-[#DC2626]/80 transition-colors rounded-t-sm relative group" style={{ height: '50%' }}><div className="absolute -top-4 left-1/2 -translate-x-1/2 text-[7px] text-[#1B2340] font-bold opacity-0 group-hover:opacity-100">{data?.bar_labels?.[1]}</div></div>
+                <div className="w-full bg-[#DC2626] hover:bg-[#DC2626]/80 transition-colors rounded-t-sm shadow-sm relative group" style={{ height: '85%' }}><div className="absolute -top-4 left-1/2 -translate-x-1/2 text-[7px] text-[#1B2340] font-bold opacity-0 group-hover:opacity-100">{data?.bar_labels?.[2]}</div></div>
+                <div className="w-full bg-[#DC2626] hover:bg-[#DC2626]/80 transition-colors rounded-t-sm shadow-sm relative group" style={{ height: '100%' }}><div className="absolute -top-4 left-1/2 -translate-x-1/2 text-[7px] text-[#1B2340] font-bold opacity-0 group-hover:opacity-100">{data?.bar_labels?.[3]}</div></div>
+                <div className="w-full bg-[#DC2626] hover:bg-[#DC2626]/80 transition-colors rounded-t-sm shadow-sm relative group" style={{ height: '70%' }}><div className="absolute -top-4 left-1/2 -translate-x-1/2 text-[7px] text-[#1B2340] font-bold opacity-0 group-hover:opacity-100">{data?.bar_labels?.[4]}</div></div>
               </div>
             </div>
           </div>
@@ -253,8 +253,8 @@ function ChartsMockup({ content }: { content?: any }) {
 function IntegrationMockup({ content }: { content?: any }) {
   const data = content?.mockups?.integration;
   const tools = [
-    { name: 'Slack', color: 'bg-violet-500', icon: MessageSquare },
-    { name: 'Tableau', color: 'bg-[#ea2261]', icon: BarChart2 },
+    { name: 'Slack', color: 'bg-red-500', icon: MessageSquare },
+    { name: 'Tableau', color: 'bg-[#DC2626]', icon: BarChart2 },
     { name: 'Claude AI', color: 'bg-orange-400', icon: Zap },
     { name: 'dbt Core', color: 'bg-orange-500', icon: Layers },
     { name: 'Looker', color: 'bg-green-500', icon: Search },
@@ -265,7 +265,7 @@ function IntegrationMockup({ content }: { content?: any }) {
       <div className="flex flex-col w-full h-full bg-white relative">
         {/* Header */}
         <div className="px-5 py-4 border-b border-slate-100 relative z-20 bg-white">
-          <span className="text-sm font-bold text-[#0d253d]" style={{ fontFamily: 'var(--font-inter)' }}>{data?.hub}</span>
+          <span className="text-sm font-bold text-[#1B2340]" style={{ fontFamily: 'var(--font-inter)' }}>{data?.hub}</span>
           <p className="text-[11px] text-[#64748d] mt-0.5">{data?.sub}</p>
         </div>
 
@@ -277,7 +277,7 @@ function IntegrationMockup({ content }: { content?: any }) {
           <div className="flex items-start justify-between w-full z-10">
             {/* Source 1 */}
             <div className="flex flex-col items-center gap-2">
-              <div className="w-12 h-12 rounded-2xl bg-blue-500 flex items-center justify-center shadow-lg ring-4 ring-white relative group">
+              <div className="w-12 h-12 rounded-2xl bg-red-500 flex items-center justify-center shadow-lg ring-4 ring-white relative group">
                 <Database className="w-5 h-5 text-white" strokeWidth={1.5} />
               </div>
               <span className="text-[9px] font-bold text-[#64748d] text-center w-16 leading-tight">{data?.source_label}</span>
@@ -285,7 +285,7 @@ function IntegrationMockup({ content }: { content?: any }) {
 
             {/* Source 2 */}
             <div className="flex flex-col items-center gap-2">
-              <div className="w-12 h-12 rounded-2xl bg-[#ea2261] flex items-center justify-center shadow-lg ring-4 ring-white relative group">
+              <div className="w-12 h-12 rounded-2xl bg-[#DC2626] flex items-center justify-center shadow-lg ring-4 ring-white relative group">
                 <Layers className="w-5 h-5 text-white" strokeWidth={1.5} />
               </div>
               <span className="text-[9px] font-bold text-[#64748d] text-center w-20 leading-tight">KPI Performance Metrics</span>
@@ -293,14 +293,14 @@ function IntegrationMockup({ content }: { content?: any }) {
 
             {/* Center */}
             <div className="flex flex-col items-center gap-2">
-              <div className="px-4 py-3 h-12 rounded-2xl bg-[#533afd] flex items-center justify-center shadow-xl shadow-[#533afd]/20 ring-4 ring-white">
+              <div className="px-4 py-3 h-12 rounded-2xl bg-[#DC2626] flex items-center justify-center shadow-xl shadow-[#DC2626]/20 ring-4 ring-white">
                 <span className="text-white text-[11px] font-bold text-center leading-tight tracking-wider" style={{ fontFamily: 'var(--font-inter)' }}>Agent<br />Factory</span>
               </div>
             </div>
 
             {/* Destination */}
             <div className="flex flex-col items-center gap-2">
-              <div className="w-12 h-12 rounded-2xl bg-[#8b5cf6] flex items-center justify-center shadow-lg ring-4 ring-white relative group">
+              <div className="w-12 h-12 rounded-2xl bg-[#DC2626] flex items-center justify-center shadow-lg ring-4 ring-white relative group">
                 <MessageSquare className="w-5 h-5 text-white" strokeWidth={1.5} />
               </div>
               <span className="text-[9px] font-bold text-[#64748d] text-center w-12 leading-tight">Slack</span>
@@ -310,7 +310,7 @@ function IntegrationMockup({ content }: { content?: any }) {
 
         {/* API row */}
         <div className="px-5 py-4 border-t border-slate-100 flex items-center gap-3 mt-auto">
-          <Plug className="w-4 h-4 text-[#533afd]" strokeWidth={1.5} />
+          <Plug className="w-4 h-4 text-[#DC2626]" strokeWidth={1.5} />
           <span className="text-[11px] text-[#64748d] font-medium">REST API · Webhooks · SSO · Custom connectors</span>
           <Cloud className="w-4 h-4 text-slate-300 ml-auto" strokeWidth={1.5} />
         </div>
@@ -378,7 +378,7 @@ export function FeaturesSection({ content }: { content?: any }) {
             className="text-[2rem] sm:text-[2.25rem] lg:text-[2.5rem] xl:text-[2.75rem] font-semibold leading-[1.15]"
             style={{
               fontFamily: 'var(--font-inter)',
-              background: 'linear-gradient(to right, #533afd, #000000)',
+              background: 'linear-gradient(to right, #DC2626, #000000)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
@@ -386,7 +386,7 @@ export function FeaturesSection({ content }: { content?: any }) {
           >
             {content?.heading}
           </h2>
-          <p className="text-base md:text-lg text-[#0d253d] leading-relaxed max-w-2xl mx-auto" style={{ fontFamily: 'var(--font-quicksand)' }}>
+          <p className="text-base md:text-lg text-[#1B2340] leading-relaxed max-w-2xl mx-auto" style={{ fontFamily: 'var(--font-quicksand)' }}>
             {content?.subheading}
           </p>
         </motion.div>

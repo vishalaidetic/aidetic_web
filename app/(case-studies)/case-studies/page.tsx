@@ -40,14 +40,14 @@ export default async function CaseStudiesPage() {
             maxWidth: '700px',
             maxHeight: '700px',
             borderRadius: '50%',
-            background: 'linear-gradient(to right, transparent 0%, transparent 45%, rgba(234,34,97,0.38) 55%, rgba(83,58,253,0.35) 78%, rgba(204,233,248,0.75) 100%)',
+            background: 'linear-gradient(to right, transparent 0%, transparent 45%, rgba(220,38,38,0.38) 55%, rgba(220,38,38,0.35) 78%, rgba(254,226,226,0.75) 100%)',
             opacity: 0.7,
           }}
         />
 
         <div className="relative z-10 space-y-4">
           <h1 
-            className="text-[2.5rem] sm:text-[3rem] lg:text-[4rem] xl:text-[4.5rem] font-medium text-[#0d253d] leading-[1.1] tracking-tight"
+            className="text-[2.5rem] sm:text-[3rem] lg:text-[4rem] xl:text-[4.5rem] font-medium text-[#1B2340] leading-[1.1] tracking-tight"
             style={{ fontFamily: 'var(--font-inter)' }}
           >
             {content?.hero?.heading || "Client Success Stories"}

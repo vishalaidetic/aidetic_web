@@ -18,22 +18,7 @@ interface NavLink {
 }
 
 const navLinks: NavLink[] = [
-  {
-    href: '/#products',
-    label: 'Products',
-    children: [
-      {
-        href: '/agent-factory',
-        label: 'Agent Factory',
-        description: 'AI agents that answer your business questions instantly.',
-      },
-      {
-        href: '/data-flash',
-        label: 'Data Flash',
-        description: 'Fast, secure, and automated insights at your fingertips.',
-      },
-    ],
-  },
+  { href: '/', label: 'Enterprise Brain' },
   { href: '/blog', label: 'Blogs' },
   { href: '/case-studies', label: 'Case Studies' },
 ]
@@ -93,8 +78,8 @@ export function Navigation({ adminEmail: adminEmailProp }: NavigationProps = {})
           {/* Logo / Brand */}
           <Link href="/" className="flex items-center gap-3 group shrink-0">
             <Image
-              src="/Aideticlogo.png"
-              alt="Aidetic Logo"
+              src="/brain-logo.png"
+              alt="Enterprise Brain Logo"
               width={200}
               height={64}
               className="h-14 w-auto object-contain"
@@ -117,8 +102,8 @@ export function Navigation({ adminEmail: adminEmailProp }: NavigationProps = {})
                     className={cn(
                       'flex items-center gap-1 text-sm font-semibold transition-colors relative py-1',
                       isActive(link.href)
-                        ? 'text-[#533afd]'
-                        : 'text-slate-600 hover:text-[#0d253d]'
+                        ? 'text-[#DC2626]'
+                        : 'text-slate-600 hover:text-[#1B2340]'
                     )}
                   >
                     {link.label}
@@ -141,10 +126,10 @@ export function Navigation({ adminEmail: adminEmailProp }: NavigationProps = {})
                           <Link
                             key={child.href}
                             href={child.href}
-                            className="flex flex-col gap-0.5 px-4 py-3 mx-2 rounded-xl hover:bg-[#533afd]/5 transition-colors group"
+                            className="flex flex-col gap-0.5 px-4 py-3 mx-2 rounded-xl hover:bg-[#DC2626]/5 transition-colors group"
                             onClick={() => setOpenDropdown(null)}
                           >
-                            <span className="text-sm font-bold text-[#0d253d] group-hover:text-[#533afd] transition-colors">
+                            <span className="text-sm font-bold text-[#1B2340] group-hover:text-[#DC2626] transition-colors">
                               {child.label}
                             </span>
                             {child.description && (
@@ -166,13 +151,13 @@ export function Navigation({ adminEmail: adminEmailProp }: NavigationProps = {})
                   className={cn(
                     'text-sm font-semibold transition-colors relative py-1',
                     isActive(link.href)
-                      ? 'text-[#533afd]'
-                      : 'text-slate-600 hover:text-[#0d253d]'
+                      ? 'text-[#DC2626]'
+                      : 'text-slate-600 hover:text-[#1B2340]'
                   )}
                 >
                   {link.label}
                   {isActive(link.href) && (
-                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#533afd] rounded-full" />
+                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#DC2626] rounded-full" />
                   )}
                 </Link>
               )
@@ -187,7 +172,7 @@ export function Navigation({ adminEmail: adminEmailProp }: NavigationProps = {})
                 {/* Admin shortcut — only on public pages */}
                 {!isInDashboard && (
                   <Link href={adminBasePath} className="flex items-center gap-2 px-4 py-2 hover:bg-slate-50 transition-colors rounded-lg border border-slate-200 shadow-sm">
-                    <LayoutDashboard size={16} className="text-[#533afd]" />
+                    <LayoutDashboard size={16} className="text-[#DC2626]" />
                     <span className="text-sm font-medium text-slate-700">Dashboard</span>
                   </Link>
                 )}
@@ -208,7 +193,7 @@ export function Navigation({ adminEmail: adminEmailProp }: NavigationProps = {})
             ) : (
               /* Guest */
               <BookCallDialog>
-                <button className="text-[15px] font-medium px-6 py-2.5 rounded-full bg-[#533afd] hover:opacity-90 hover:-translate-y-0.5 text-white shadow-md transition-all duration-200">
+                <button className="text-[15px] font-medium px-6 py-2.5 rounded-full bg-[#DC2626] hover:opacity-90 hover:-translate-y-0.5 text-white shadow-md transition-all duration-200">
                   Request a Call
                 </button>
               </BookCallDialog>
@@ -235,8 +220,8 @@ export function Navigation({ adminEmail: adminEmailProp }: NavigationProps = {})
                   className={cn(
                     'block px-4 py-3 text-sm font-bold rounded-lg transition-colors',
                     isActive(link.href)
-                      ? 'bg-slate-50 text-[#533afd]'
-                      : 'text-slate-600 hover:bg-slate-50 hover:text-[#0d253d]'
+                      ? 'bg-slate-50 text-[#DC2626]'
+                      : 'text-slate-600 hover:bg-slate-50 hover:text-[#1B2340]'
                   )}
                   onClick={() => setMobileMenuOpen(false)}
                 >
@@ -247,7 +232,7 @@ export function Navigation({ adminEmail: adminEmailProp }: NavigationProps = {})
                   <Link
                     key={child.href}
                     href={child.href}
-                    className="block pl-8 pr-4 py-2 text-sm font-semibold text-[#533afd] hover:bg-[#533afd]/5 rounded-lg transition-colors"
+                    className="block pl-8 pr-4 py-2 text-sm font-semibold text-[#DC2626] hover:bg-[#DC2626]/5 rounded-lg transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     → {child.label}
@@ -262,7 +247,7 @@ export function Navigation({ adminEmail: adminEmailProp }: NavigationProps = {})
                   {/* Admin button — only on public pages */}
                   {!isInDashboard && (
                     <Link href={adminBasePath} onClick={() => setMobileMenuOpen(false)}>
-                      <button className="w-full flex items-center justify-center gap-2 text-sm font-bold px-5 py-3 rounded-lg bg-gradient-to-r from-[#0d253d] to-[#533afd] hover:opacity-90 text-white border-none shadow-md transition-all duration-200">
+                      <button className="w-full flex items-center justify-center gap-2 text-sm font-bold px-5 py-3 rounded-lg bg-gradient-to-r from-[#1B2340] to-[#DC2626] hover:opacity-90 text-white border-none shadow-md transition-all duration-200">
                         <ShieldCheck size={16} /> Admin Dashboard
                       </button>
                     </Link>
@@ -280,7 +265,7 @@ export function Navigation({ adminEmail: adminEmailProp }: NavigationProps = {})
               ) : (
                 /* Guest */
               <BookCallDialog>
-                <button className="w-full text-[15px] font-medium px-6 py-3 rounded-full bg-[#533afd] hover:opacity-90 hover:-translate-y-0.5 text-white shadow-md transition-all duration-200">
+                <button className="w-full text-[15px] font-medium px-6 py-3 rounded-full bg-[#DC2626] hover:opacity-90 hover:-translate-y-0.5 text-white shadow-md transition-all duration-200">
                   Request a Call
                 </button>
               </BookCallDialog>

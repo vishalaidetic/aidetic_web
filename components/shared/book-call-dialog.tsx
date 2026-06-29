@@ -124,7 +124,7 @@ export function BookCallDialog({ children }: BookCallDialogProps) {
         {/* Header gradient bar */}
         <div
           className="px-7 pt-7 pb-5 relative"
-          style={{ background: 'linear-gradient(135deg, #533afd 0%, #1B2340 100%)' }}
+          style={{ background: 'linear-gradient(135deg, #DC2626 0%, #1B2340 100%)' }}
         >
           {/* Aidetic Logo */}
           <div className="absolute top-5 right-6 opacity-30 pointer-events-none">
@@ -154,7 +154,7 @@ export function BookCallDialog({ children }: BookCallDialogProps) {
               <div className="w-16 h-16 rounded-full bg-green-50 border-2 border-green-200 flex items-center justify-center mx-auto">
                 <CheckCircle2 size={30} className="text-green-500" />
               </div>
-              <h3 className="font-bold text-[#0d253d] text-lg mt-2" style={{ fontFamily: 'var(--font-inter)' }}>
+              <h3 className="font-bold text-[#1B2340] text-lg mt-2" style={{ fontFamily: 'var(--font-inter)' }}>
                 Request Submitted!
               </h3>
               <p className="text-sm text-[#64748b]" style={{ fontFamily: 'var(--font-quicksand)' }}>
@@ -166,8 +166,8 @@ export function BookCallDialog({ children }: BookCallDialogProps) {
 
               {/* Name */}
               <div className="space-y-1.5">
-                <label htmlFor="rc-name" className="text-xs font-semibold text-[#0d253d] uppercase tracking-wider">
-                  Full Name <span className="text-[#533afd]">*</span>
+                <label htmlFor="rc-name" className="text-xs font-semibold text-[#1B2340] uppercase tracking-wider">
+                  Full Name <span className="text-[#DC2626]">*</span>
                 </label>
                 <div className="relative">
                   <User size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
@@ -178,15 +178,15 @@ export function BookCallDialog({ children }: BookCallDialogProps) {
                     placeholder="Jane Smith"
                     value={formData.name}
                     onChange={handleChange}
-                    className="pl-9 h-10 text-sm border-slate-200 focus-visible:ring-1 focus-visible:ring-[#533afd] focus-visible:border-[#533afd]"
+                    className="pl-9 h-10 text-sm border-slate-200 focus-visible:ring-1 focus-visible:ring-[#DC2626] focus-visible:border-[#DC2626]"
                   />
                 </div>
               </div>
 
               {/* Email */}
               <div className="space-y-1.5">
-                <label htmlFor="rc-email" className="text-xs font-semibold text-[#0d253d] uppercase tracking-wider">
-                  Work Email <span className="text-[#533afd]">*</span>
+                <label htmlFor="rc-email" className="text-xs font-semibold text-[#1B2340] uppercase tracking-wider">
+                  Work Email <span className="text-[#DC2626]">*</span>
                 </label>
                 <div className="relative">
                   <Mail size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
@@ -198,21 +198,21 @@ export function BookCallDialog({ children }: BookCallDialogProps) {
                     placeholder="jane@company.com"
                     value={formData.email}
                     onChange={handleChange}
-                    className="pl-9 h-10 text-sm border-slate-200 focus-visible:ring-1 focus-visible:ring-[#533afd] focus-visible:border-[#533afd]"
+                    className="pl-9 h-10 text-sm border-slate-200 focus-visible:ring-1 focus-visible:ring-[#DC2626] focus-visible:border-[#DC2626]"
                   />
                 </div>
               </div>
 
               {/* Phone */}
               <div className="space-y-1.5">
-                <label htmlFor="rc-phone" className="text-xs font-semibold text-[#0d253d] uppercase tracking-wider">
+                <label htmlFor="rc-phone" className="text-xs font-semibold text-[#1B2340] uppercase tracking-wider">
                   Phone Number <span className="text-slate-400 font-normal normal-case tracking-normal">(optional)</span>
                 </label>
                 <div className="flex gap-2">
                   <select
                     value={countryCode}
                     onChange={(e) => setCountryCode(e.target.value)}
-                    className="h-10 rounded-md border border-slate-200 bg-slate-50 text-sm px-2 text-[#0d253d] focus:outline-none focus:ring-1 focus:ring-[#533afd] focus:border-[#533afd] w-[110px] shrink-0"
+                    className="h-10 rounded-md border border-slate-200 bg-slate-50 text-sm px-2 text-[#1B2340] focus:outline-none focus:ring-1 focus:ring-[#DC2626] focus:border-[#DC2626] w-[110px] shrink-0"
                     style={{ fontFamily: 'var(--font-inter)' }}
                   >
                     {COUNTRY_CODES.map((c) => (
@@ -230,7 +230,7 @@ export function BookCallDialog({ children }: BookCallDialogProps) {
                       placeholder="9876543210"
                       value={formData.phoneNumber}
                       onChange={handleChange}
-                      className="pl-9 h-10 text-sm border-slate-200 focus-visible:ring-1 focus-visible:ring-[#533afd] focus-visible:border-[#533afd]"
+                      className="pl-9 h-10 text-sm border-slate-200 focus-visible:ring-1 focus-visible:ring-[#DC2626] focus-visible:border-[#DC2626]"
                     />
                   </div>
                 </div>
@@ -238,8 +238,8 @@ export function BookCallDialog({ children }: BookCallDialogProps) {
 
               {/* Organization */}
               <div className="space-y-1.5">
-                <label htmlFor="rc-org" className="text-xs font-semibold text-[#0d253d] uppercase tracking-wider">
-                  Organization <span className="text-[#533afd]">*</span>
+                <label htmlFor="rc-org" className="text-xs font-semibold text-[#1B2340] uppercase tracking-wider">
+                  Organization <span className="text-[#DC2626]">*</span>
                 </label>
                 <div className="relative">
                   <Building2 size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
@@ -250,15 +250,15 @@ export function BookCallDialog({ children }: BookCallDialogProps) {
                     placeholder="Acme Corp"
                     value={formData.organization}
                     onChange={handleChange}
-                    className="pl-9 h-10 text-sm border-slate-200 focus-visible:ring-1 focus-visible:ring-[#533afd] focus-visible:border-[#533afd]"
+                    className="pl-9 h-10 text-sm border-slate-200 focus-visible:ring-1 focus-visible:ring-[#DC2626] focus-visible:border-[#DC2626]"
                   />
                 </div>
               </div>
 
               {/* Purpose */}
               <div className="space-y-1.5">
-                <label htmlFor="rc-purpose" className="text-xs font-semibold text-[#0d253d] uppercase tracking-wider">
-                  Purpose of Meeting <span className="text-[#533afd]">*</span>
+                <label htmlFor="rc-purpose" className="text-xs font-semibold text-[#1B2340] uppercase tracking-wider">
+                  Purpose of Meeting <span className="text-[#DC2626]">*</span>
                 </label>
                 <Textarea
                   id="rc-purpose"
@@ -267,7 +267,7 @@ export function BookCallDialog({ children }: BookCallDialogProps) {
                   placeholder="I'd like to discuss migrating our data pipeline to Aidetic..."
                   value={formData.purpose}
                   onChange={handleChange}
-                  className="resize-none h-20 text-sm border-slate-200 focus-visible:ring-1 focus-visible:ring-[#533afd] focus-visible:border-[#533afd]"
+                  className="resize-none h-20 text-sm border-slate-200 focus-visible:ring-1 focus-visible:ring-[#DC2626] focus-visible:border-[#DC2626]"
                 />
               </div>
 
@@ -276,7 +276,7 @@ export function BookCallDialog({ children }: BookCallDialogProps) {
                 type="submit"
                 disabled={loading}
                 className="w-full h-11 rounded-xl font-bold text-sm text-white tracking-wide uppercase transition-all duration-200 hover:opacity-90 hover:-translate-y-px disabled:opacity-60 disabled:cursor-not-allowed mt-1"
-                style={{ background: 'linear-gradient(135deg, #533afd 0%, #1B2340 100%)', fontFamily: 'var(--font-inter)' }}
+                style={{ background: 'linear-gradient(135deg, #DC2626 0%, #1B2340 100%)', fontFamily: 'var(--font-inter)' }}
               >
                 {loading ? (
                   <span className="flex items-center justify-center gap-2">

@@ -1,113 +1,319 @@
 {
   "hero": {
     "badge": "Enterprise Brain Platform",
-    "title": "Unify Your Enterprise Intelligence",
-    "description": "The Enterprise Brain by Aidetic centralizes your organizational knowledge into an intelligent, AI-powered ecosystem. Deploy autonomous agents, automate complex analytics, and make data-driven decisions securely at scale.",
-    "primaryCta": "Request a Demo",
-    "secondaryCta": "Explore Architecture"
-  },
-  "useCases": {
-    "title": "Enterprise Intelligence Built for Scale",
-    "subtitle": "Discover how the Enterprise Brain transforms your workflows across domains.",
-    "items": [
-      {
-        "title": "Automated Financial Analysis",
-        "description": "Seamlessly integrate with financial data lakes to generate predictive models, audit trails, and risk assessments in real-time."
-      },
-      {
-        "title": "Smart Project Management",
-        "description": "Optimize resource allocation and detect project bottlenecks before they occur with autonomous oversight agents."
-      },
-      {
-        "title": "HR & Employee Engagement",
-        "description": "Personalize onboarding, automate policy compliance, and measure organizational health through natural language interactions."
-      }
+    "heading": [
+      "Unify Your Organization's",
+      "Digital Intelligence."
+    ],
+    "subheading": "Centralize knowledge, deploy autonomous agents, and automate complex workflows securely across your entire enterprise architecture.",
+    "cta_primary": "Request a Demo",
+    "cta_secondary": "Explore Architecture",
+    "logo_url": "/brain-logo.png",
+    "book_text_1": "Book",
+    "book_text_2": " a consultation",
+    "trusted_by": "TRUSTED BY FORWARD-THINKING ENTERPRISES",
+    "logos": [
+      { "name": "LG", "url": "" },
+      { "name": "Brambles", "url": "" },
+      { "name": "TRUIST", "url": "" },
+      { "name": "SEPHORA", "url": "" },
+      { "name": "Huel", "url": "" },
+      { "name": "keyloop", "url": "" },
+      { "name": "worldpay", "url": "" },
+      { "name": "Snowflake", "url": "" },
+      { "name": "Salesforce", "url": "" },
+      { "name": "Databricks", "url": "" }
     ]
   },
-  "product": {
-    "title": "The Core of Your Digital Organization",
-    "description": "Built on a robust, multi-agent architecture, the Enterprise Brain securely ingests, processes, and activates your data without compromising privacy or compliance.",
-    "features": [
-      "Role-Based Access Control (RBAC)",
-      "End-to-End Encryption",
-      "Deployable On-Premises or VPC",
-      "Native Kafka & Neo4j Integrations"
-    ]
-  },
-  "stats": {
-    "title": "Quantifiable Business Impact",
-    "items": [
+  "pipeline": {
+    "badge": "Architecture Pipeline",
+    "heading": "Deploy your Enterprise Brain in 3 structural phases.",
+    "subheading": "From data ingestion to actionable intelligence, our pipeline is built for transparency and power.",
+    "phases": [
       {
-        "value": "10x",
-        "label": "Faster Insights"
+        "id": "phase1",
+        "label": "Phase 1: Ingestion & Structuring",
+        "steps": [
+          {
+            "id": "gather",
+            "title": "Establish Knowledge Graph",
+            "desc": "Map your organizational data structures, permissions, and ontologies into a unified Neo4j graph."
+          },
+          {
+            "id": "medallion",
+            "title": "Data Pipeline Integration",
+            "desc": "Connect existing data lakes and warehouses directly to the brain's ingestion endpoints securely."
+          }
+        ]
       },
       {
-        "value": "99.9%",
-        "label": "Uptime SLA"
+        "id": "phase2",
+        "label": "Phase 2: Agentic Orchestration",
+        "steps": [
+          {
+            "id": "configure",
+            "title": "Configure Agent Boundaries",
+            "desc": "Define RBAC policies, system prompts, and action scopes for specialized autonomous agents."
+          }
+        ]
       },
       {
-        "value": "SOC2",
-        "label": "Compliant Security"
+        "id": "phase3",
+        "label": "Phase 3: Secure Execution",
+        "steps": [
+          {
+            "id": "guidelines",
+            "title": "Validate Action Protocols",
+            "desc": "Ensure all automated workflows comply with internal governance and risk management frameworks."
+          },
+          {
+            "id": "deploy",
+            "title": "Activate Enterprise Intelligence",
+            "desc": "Launch the brain network across your organization with full audit logging and real-time observability."
+          }
+        ]
       }
     ]
   },
   "features": {
-    "title": "Advanced Capabilities",
-    "subtitle": "A unified platform designed for enterprise-grade AI automation.",
-    "list": [
+    "heading": "Why Enterprises Choose The Brain",
+    "subheading": "A unified platform designed for enterprise-grade AI automation without compromising on security.",
+    "items": [
       {
         "title": "Graph-Augmented Retrieval",
-        "description": "Leverages Neo4j knowledge graphs to provide deeply contextual and highly accurate answers."
+        "description": "Leverages interconnected knowledge graphs to provide deeply contextual and highly accurate answers across siloed departments."
       },
       {
         "title": "Multi-Agent Orchestration",
-        "description": "Coordinate specialized agents for finance, HR, and operations to solve complex multi-step problems."
+        "description": "Coordinate specialized agents for finance, HR, and operations to collaborate and solve complex multi-step problems autonomously."
       },
       {
         "title": "Secure API Gateway",
-        "description": "Every interaction is routed through a central, highly secure gateway with integrated audit logging."
+        "description": "Every interaction is routed through a central, highly secure gateway with integrated RBAC and complete audit logging."
+      },
+      {
+        "title": "Continuous Adaptation",
+        "description": "The Enterprise Brain learns from organizational changes, adapting its models as your internal KPIs, structures, and schemas evolve."
+      }
+    ],
+    "mockups": {
+      "analyst": {
+        "question": "Which top performing products need re-stocking this year?",
+        "analyzing": "The Brain is analysing…",
+        "table_headers": [
+          "Product",
+          "Revenue",
+          "Stock"
+        ],
+        "table_rows": [
+          [
+            "1. Apex",
+            "$2.4M",
+            "Low ⚠"
+          ],
+          [
+            "2. Arcana World",
+            "$1.9M",
+            "Critical "
+          ]
+        ],
+        "chips": [
+          "Show full list",
+          "Export CSV",
+          "Set alert"
+        ],
+        "input_placeholder": "Ask a follow-up question…"
+      },
+      "businessArea": {
+        "label": "Select Brain Domain",
+        "selected": "Financial Analysis",
+        "dropdown": [
+          "Operations",
+          "Supply Chain"
+        ],
+        "chat_question": "What's our projected Q3 EBITDA margin?",
+        "chat_answer": "Based on current operational costs, Q3 EBITDA is projected at 24%, up 2% YoY.",
+        "input_placeholder": "Ask the finance agent..."
+      },
+      "charts": {
+        "label": "Operational Efficiency",
+        "y_axis": [
+          "100%",
+          "50%",
+          "0%"
+        ],
+        "monthly": "Monthly",
+        "bar_labels": [
+          "70%",
+          "82%",
+          "89%",
+          "94%",
+          "98%"
+        ]
+      },
+      "integration": {
+        "hub": "Enterprise Integration Hub",
+        "sub": "Connect your entire data ecosystem",
+        "source_label": "Graph Injection",
+        "tools": [
+          "Kafka",
+          "Neo4j",
+          "PostgreSQL",
+          "dbt Core",
+          "Salesforce",
+          "Snowflake"
+        ],
+        "data_label": "Enterprise Ontology"
+      }
+    }
+  },
+  "stats": {
+    "heading": "Quantifiable Business Impact",
+    "subheading": "Built for rigorous enterprise environments. Reliable, secure, and blazingly fast.",
+    "items": [
+      {
+        "value": 10,
+        "suffix": "x",
+        "label": "Faster Cross-Departmental\nInsights"
+      },
+      {
+        "value": "99.9",
+        "suffix": "%",
+        "label": "Platform Uptime SLA\nGuaranteed"
+      },
+      {
+        "value": 85,
+        "suffix": "%",
+        "label": "Reduction in manual\ndata reporting tasks"
+      },
+      {
+        "value": "SOC2",
+        "suffix": "",
+        "label": "Compliant Security\nArchitecture"
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "subheading": "Deployment, security, and integration — everything you need to know about the Enterprise Brain.",
+    "cta": "Request a Call",
+    "items": [
+      {
+        "question": "How is our organizational data secured?",
+        "answer": "We employ a zero-trust architecture, end-to-end encryption, and rigorous RBAC to ensure your data never leaks into public models or unauthorized departments."
+      },
+      {
+        "question": "Can it integrate with our legacy on-premise systems?",
+        "answer": "Yes. The Enterprise Brain natively connects to PostgreSQL, Neo4j, Kafka, and offers secure tunnels for legacy on-premise database ingestion."
+      },
+      {
+        "question": "What is the typical deployment timeline?",
+        "answer": "A standard enterprise deployment takes 4 to 6 weeks, beginning with knowledge graph mapping and concluding with fully tested agent orchestration."
+      },
+      {
+        "question": "Does it replace our data engineering team?",
+        "answer": "No. It acts as a force multiplier for your engineering team, freeing them from ad-hoc reporting requests so they can focus on core infrastructure."
+      },
+      {
+        "question": "How is this different from a standard RAG application?",
+        "answer": "Standard RAG applications lack organizational context. The Enterprise Brain utilizes graph-augmented retrieval and autonomous multi-agent reasoning to answer multi-step operational questions."
+      },
+      {
+        "question": "Is it available for VPC deployment?",
+        "answer": "Absolutely. We offer flexible deployment models including fully managed cloud, VPC, and strictly air-gapped on-premises installations."
+      },
+      {
+        "question": "Who maintains the underlying models?",
+        "answer": "Our dedicated platform engineers continuously tune the underlying models and orchestrators, ensuring your Brain adapts as new state-of-the-art LLMs are released."
+      },
+      {
+        "question": "How does it handle conflicting data sources?",
+        "answer": "The platform's ingestion pipeline uses Medallion architecture principles and semantic resolution to flag anomalies and establish a single source of truth within the knowledge graph."
+      }
+    ]
+  },
+  "cta": {
+    "heading": "The Future of Enterprise Operations.",
+    "subheading": "Join industry leaders who have successfully unified their digital intelligence.",
+    "cta_primary": "Schedule a Consultation",
+    "cta_secondary": "Read the Whitepaper"
+  },
+  "useCases": {
+    "heading": "Transforming Workflows Across the Enterprise",
+    "subheading": "Discover how the Enterprise Brain drives efficiency and unlocks revenue in every department.",
+    "items": [
+      {
+        "title": "Automated Financial Analysis & Auditing",
+        "description": "Seamlessly integrate with financial data lakes to generate predictive models, complete audit trails, and flag risk anomalies in real-time."
+      },
+      {
+        "title": "Smart Project & Resource Management",
+        "description": "Optimize resource allocation across global teams and detect supply chain bottlenecks before they impact delivery timelines."
+      },
+      {
+        "title": "HR & Organizational Health",
+        "description": "Personalize employee onboarding, automate complex policy compliance, and measure organizational engagement through natural language."
+      }
+    ]
+  },
+  "product": {
+    "heading": "The Core of Your Digital Organization",
+    "subheading": "Built on a robust, scalable architecture that securely activates your data.",
+    "items": [
+      {
+        "number": "01",
+        "title": "Role-Based Access Control (RBAC)",
+        "description": "Granular permissions ensure that sensitive HR or financial data is only accessible to authorized agents and personnel."
+      },
+      {
+        "number": "02",
+        "title": "End-to-End Encryption",
+        "description": "Data is secured in transit and at rest, complying with strict enterprise governance and privacy regulations."
+      },
+      {
+        "number": "03",
+        "title": "Native Knowledge Graph Integration",
+        "description": "Powered by Neo4j and Kafka, the Brain processes streaming data and maps complex relationships instantly."
       }
     ]
   },
   "cmo": {
-    "quote": "The Enterprise Brain completely revolutionized how we approach data. It’s not just an analytics tool; it’s an active participant in our organizational strategy.",
-    "author": "Sarah Jenkins",
-    "role": "Chief Data Officer, Fortune 500"
-  },
-  "pipeline": {
-    "title": "How the Brain Works",
-    "description": "From data ingestion to actionable intelligence, our pipeline is built for transparency and power.",
-    "steps": [
-      "Data Ingestion & Embedding",
-      "Knowledge Graph Construction",
-      "Agentic Orchestration",
-      "Secure Action Execution"
-    ]
+    "heading": "Hi! I am the Chief Architect at Aidetic.",
+    "subheading": "Curious how the Enterprise Brain integrates with your stack?",
+    "cta": "Request a Technical Deep Dive"
   },
   "learnMore": {
-    "title": "Deep Dive into the Architecture",
-    "description": "Explore our technical whitepapers and see how the Enterprise Brain is built from the ground up to support modern businesses.",
-    "linkText": "Read the Documentation"
-  },
-  "cta": {
-    "title": "Ready to Deploy Your Enterprise Brain?",
-    "description": "Join industry leaders who are already leveraging Aidetic's platform to transform their operations.",
-    "primaryCta": "Schedule a Consultation"
-  },
-  "faq": {
-    "title": "Frequently Asked Questions",
+    "heading": "Deep Dive into the Architecture",
     "items": [
       {
-        "question": "How is my data secured?",
-        "answer": "We employ zero-trust architecture, end-to-end encryption, and rigorous RBAC to ensure your data never leaks into public models."
+        "type": "WHITEPAPER",
+        "title": "Securing AI in the Enterprise Ecosystem",
+        "brand": "Aidetic",
+        "visual_type": "WHITEPAPER",
+        "visual_title_1": "Securing AI",
+        "visual_title_2": "in the Enterprise",
+        "visual_title_3": "Ecosystem",
+        "button": "READ THE PAPER"
       },
       {
-        "question": "Can it integrate with our existing databases?",
-        "answer": "Yes, the Enterprise Brain natively connects to PostgreSQL, Neo4j, Redis, and provides custom connectors for legacy systems."
+        "type": "DOCUMENTATION",
+        "title": "Graph-Augmented Retrieval Explained",
+        "brand": "Aidetic",
+        "visual_type": "DOCS",
+        "visual_title_1": "Graph-Augmented",
+        "visual_title_2": "Retrieval",
+        "visual_title_3": "Explained",
+        "button": "VIEW DOCS"
       },
       {
-        "question": "Is it available for on-premise deployment?",
-        "answer": "Absolutely. We offer flexible deployment models including fully managed cloud, VPC, and on-premises installations."
+        "type": "CASE STUDY",
+        "title": "Deploying the Brain in Fortune 500s",
+        "brand": "Aidetic",
+        "visual_type": "CASE STUDY",
+        "visual_title_1": "Deploying the Brain",
+        "visual_title_2": "in Fortune 500s",
+        "visual_title_3": "",
+        "button": "READ MORE"
       }
     ]
   }

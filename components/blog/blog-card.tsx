@@ -49,7 +49,7 @@ export function BlogCard({ blog, featured = false, compact = false, list = false
       >
         <Link href={`/blog/${blog.slug}`} className="block group">
         <div
-          className="relative flex flex-col sm:flex-row items-center sm:items-center p-6 sm:p-8 rounded-2xl border border-slate-200/80 bg-white overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_48px_-8px_rgba(83,58,253,0.28),0_8px_24px_-4px_rgba(234,34,97,0.18)]"
+          className="relative flex flex-col sm:flex-row items-center sm:items-center p-6 sm:p-8 rounded-2xl border border-slate-200/80 bg-white overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_48px_-8px_rgba(220,38,38,0.28),0_8px_24px_-4px_rgba(220,38,38,0.18)]"
           style={{ boxShadow: '0 2px 12px 0 rgba(0,0,0,0.06)' }}
         >
           {/* Hover background fill */}
@@ -71,8 +71,8 @@ export function BlogCard({ blog, featured = false, compact = false, list = false
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               ) : (
-                <div className="w-full h-full bg-gradient-to-br from-[#533afd]/5 via-[#f96bee]/5 to-[#ea2261]/5 flex items-center justify-center">
-                  <span className="text-[#533afd]/40 font-medium">No Image</span>
+                <div className="w-full h-full bg-gradient-to-br from-[#DC2626]/5 via-[#DC2626]/5 to-[#DC2626]/5 flex items-center justify-center">
+                  <span className="text-[#DC2626]/40 font-medium">No Image</span>
                 </div>
               )}
             </motion.div>
@@ -86,26 +86,26 @@ export function BlogCard({ blog, featured = false, compact = false, list = false
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
             >
               <div className="flex items-center gap-2 text-sm text-[#64748d] mb-3" style={{ fontFamily: 'var(--font-quicksand)' }}>
-                <User size={14} className="text-[#533afd]" />
+                <User size={14} className="text-[#DC2626]" />
                 <span className="font-medium">
-                  <span className="font-semibold text-[#0d253d]">Author</span> : <span className="text-[#0d253d]">{blog.author || 'Team'}</span>
+                  <span className="font-semibold text-[#1B2340]">Author</span> : <span className="text-[#1B2340]">{blog.author || 'Team'}</span>
                 </span>
                 <span>·</span>
                 <span>{formatDate(blog.created_at)}</span>
               </div>
 
-              <h3 className="font-semibold text-[#0d253d] group-hover:text-[#533afd] transition-colors mb-3 leading-snug tracking-wide text-xl sm:text-2xl" style={{ fontFamily: 'var(--font-inter)' }}>
+              <h3 className="font-semibold text-[#1B2340] group-hover:text-[#DC2626] transition-colors mb-3 leading-snug tracking-wide text-xl sm:text-2xl" style={{ fontFamily: 'var(--font-inter)' }}>
                 {blog.title}
               </h3>
 
               {blog.description && (
-                <p className="text-[#0d253d] text-base leading-relaxed mb-6 line-clamp-2" style={{ fontFamily: 'var(--font-quicksand)' }}>
+                <p className="text-[#1B2340] text-base leading-relaxed mb-6 line-clamp-2" style={{ fontFamily: 'var(--font-quicksand)' }}>
                   {blog.description}
                 </p>
               )}
 
               <div className="flex items-center gap-6 mt-auto text-base text-[#64748d]" style={{ fontFamily: 'var(--font-quicksand)' }}>
-                <Badge className="bg-[#533afd]/5 text-[#533afd] hover:bg-[#533afd]/10 border-none shadow-none text-xs rounded-full px-3 py-0.5 font-semibold">
+                <Badge className="bg-[#DC2626]/5 text-[#DC2626] hover:bg-[#DC2626]/10 border-none shadow-none text-xs rounded-full px-3 py-0.5 font-semibold">
                   {tag}
                 </Badge>
                 <span className="font-medium">{readingTimeMinutes} min read</span>
@@ -129,7 +129,7 @@ export function BlogCard({ blog, featured = false, compact = false, list = false
       <Link href={`/blog/${blog.slug}`} className={cn('block group h-full')}>
       <div 
         className={cn(
-          "relative bg-white rounded-2xl border border-slate-200/80 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_48px_-8px_rgba(83,58,253,0.28),0_8px_24px_-4px_rgba(234,34,97,0.18)]",
+          "relative bg-white rounded-2xl border border-slate-200/80 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_48px_-8px_rgba(220,38,38,0.28),0_8px_24px_-4px_rgba(220,38,38,0.18)]",
           compact ? "p-4 sm:p-5" : "p-5 sm:p-6"
         )}
         style={{ boxShadow: '0 2px 12px 0 rgba(0,0,0,0.06)' }}
@@ -160,8 +160,8 @@ export function BlogCard({ blog, featured = false, compact = false, list = false
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
             ) : (
-              <div className="w-full h-full bg-gradient-to-br from-[#533afd]/5 via-[#f96bee]/5 to-[#ea2261]/5 flex items-center justify-center">
-                <span className="text-[#533afd]/40 font-medium">No Image</span>
+              <div className="w-full h-full bg-gradient-to-br from-[#DC2626]/5 via-[#DC2626]/5 to-[#DC2626]/5 flex items-center justify-center">
+                <span className="text-[#DC2626]/40 font-medium">No Image</span>
               </div>
             )}
           </motion.div>
@@ -180,11 +180,11 @@ export function BlogCard({ blog, featured = false, compact = false, list = false
             {/* Tags */}
             <div className="flex flex-wrap items-center gap-2 mb-3">
               {(featured || blog.is_featured) && (
-                <Badge className="bg-[#533afd] hover:bg-[#533afd] border-none text-white text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-full" style={{ fontFamily: 'var(--font-inter)' }}>
+                <Badge className="bg-[#DC2626] hover:bg-[#DC2626] border-none text-white text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-full" style={{ fontFamily: 'var(--font-inter)' }}>
                   Featured
                 </Badge>
               )}
-              <Badge className="bg-[#533afd]/10 text-[#533afd] border-none hover:bg-[#533afd]/20 text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-full" style={{ fontFamily: 'var(--font-inter)' }}>
+              <Badge className="bg-[#DC2626]/10 text-[#DC2626] border-none hover:bg-[#DC2626]/20 text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-full" style={{ fontFamily: 'var(--font-inter)' }}>
                 {tag}
               </Badge>
             </div>
@@ -192,7 +192,7 @@ export function BlogCard({ blog, featured = false, compact = false, list = false
             {/* Title */}
             <h3
               className={cn(
-                'font-semibold text-[#0d253d] group-hover:text-[#533afd] transition-colors mb-3 tracking-wide',
+                'font-semibold text-[#1B2340] group-hover:text-[#DC2626] transition-colors mb-3 tracking-wide',
                 featured ? 'text-xl sm:text-2xl leading-snug' : 'text-base leading-snug'
               )}
               style={{ fontFamily: 'var(--font-inter)' }}
@@ -203,7 +203,7 @@ export function BlogCard({ blog, featured = false, compact = false, list = false
             {/* Description */}
             {!compact && blog.description && (
               <p className={cn(
-                "text-[#0d253d] leading-relaxed mb-4 line-clamp-2",
+                "text-[#1B2340] leading-relaxed mb-4 line-clamp-2",
                 featured ? "text-base" : "text-sm"
               )} style={{ fontFamily: 'var(--font-quicksand)' }}>
                 {blog.description}
@@ -213,7 +213,7 @@ export function BlogCard({ blog, featured = false, compact = false, list = false
             {/* Read More Link */}
             <div className="mb-4">
               <span className={cn(
-                "font-medium flex items-center gap-1.5 transition-all text-[#64748d] group-hover:text-[#533afd]",
+                "font-medium flex items-center gap-1.5 transition-all text-[#64748d] group-hover:text-[#DC2626]",
                 featured ? "text-sm" : "text-xs"
               )} style={{ fontFamily: 'var(--font-inter)' }}>
                 Read more <ArrowRight size={featured ? 14 : 12} />
@@ -224,7 +224,7 @@ export function BlogCard({ blog, featured = false, compact = false, list = false
             {!compact && (
               <div className="flex flex-col gap-0.5 mt-auto text-xs text-[#64748d] font-medium" style={{ fontFamily: 'var(--font-quicksand)' }}>
                 {blog.author && (
-                  <span className="text-[#0d253d] font-bold">{blog.author}</span>
+                  <span className="text-[#1B2340] font-bold">{blog.author}</span>
                 )}
                 <div className="flex items-center gap-1.5">
                   <span>{formatDate(blog.created_at)}</span>

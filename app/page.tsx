@@ -1,4 +1,4 @@
-import { CmoSection } from '@/components/agent-factory/cmo-section'
+
 import { CtaSection } from '@/components/agent-factory/cta-section'
 import { FaqSection } from '@/components/agent-factory/faq-section'
 import { FeaturesSection } from '@/components/agent-factory/features-section'
@@ -30,7 +30,6 @@ export default async function HomePage() {
         <ProductSection content={content?.product} />
         <StatsSection content={content?.stats} />
         <FeaturesSection content={content?.features} />
-        <CmoSection content={content?.cmo} />
         <AgentFactoryPipeline content={content?.pipeline} />
         <LearnMoreSection content={content?.learnMore} />
         <CtaSection content={content?.cta} />

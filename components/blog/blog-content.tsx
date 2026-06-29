@@ -21,36 +21,36 @@ export function BlogContent({ content }: BlogContentProps) {
         components={{
           h1: ({ children }) => {
             const id = generateSlug(React.Children.toArray(children).map(c => typeof c === 'string' ? c : '').join(''))
-            return <h1 id={id} className="text-3xl font-bold text-[#0d253d] mt-10 mb-5 scroll-mt-24 tracking-tight">{children}</h1>
+            return <h1 id={id} className="text-3xl font-bold text-[#1B2340] mt-10 mb-5 scroll-mt-24 tracking-tight">{children}</h1>
           },
           h2: ({ children }) => {
             const id = generateSlug(React.Children.toArray(children).map(c => typeof c === 'string' ? c : '').join(''))
-            return <h2 id={id} className="text-2xl font-bold text-[#0d253d] mt-12 mb-4 scroll-mt-24 tracking-tight pb-3 border-b border-slate-100">{children}</h2>
+            return <h2 id={id} className="text-2xl font-bold text-[#1B2340] mt-12 mb-4 scroll-mt-24 tracking-tight pb-3 border-b border-slate-100">{children}</h2>
           },
           h3: ({ children }) => {
             const id = generateSlug(React.Children.toArray(children).map(c => typeof c === 'string' ? c : '').join(''))
-            return <h3 id={id} className="text-xl font-bold text-[#0d253d] mt-8 mb-3 scroll-mt-24">{children}</h3>
+            return <h3 id={id} className="text-xl font-bold text-[#1B2340] mt-8 mb-3 scroll-mt-24">{children}</h3>
           },
           h4: ({ children }) => (
-            <h4 className="text-lg font-semibold text-[#0d253d] mt-6 mb-2">{children}</h4>
+            <h4 className="text-lg font-semibold text-[#1B2340] mt-6 mb-2">{children}</h4>
           ),
           p: ({ children }) => (
             <p className="text-[#374151] text-[1.05rem] leading-[1.85] my-5">{children}</p>
           ),
           a: ({ href, children }) => (
             <a href={href} target="_blank" rel="noopener noreferrer"
-              className="text-[#533afd] font-medium hover:underline underline-offset-2">
+              className="text-[#DC2626] font-medium hover:underline underline-offset-2">
               {children}
             </a>
           ),
           strong: ({ children }) => (
-            <strong className="font-semibold text-[#0d253d]">{children}</strong>
+            <strong className="font-semibold text-[#1B2340]">{children}</strong>
           ),
           em: ({ children }) => (
             <em className="italic text-[#374151]">{children}</em>
           ),
           blockquote: ({ children }) => (
-            <blockquote className="my-8 pl-6 pr-4 py-4 border-l-4 border-[#533afd] bg-[#533afd]/[0.03] rounded-r-xl text-slate-600 not-italic">
+            <blockquote className="my-8 pl-6 pr-4 py-4 border-l-4 border-[#DC2626] bg-[#DC2626]/[0.03] rounded-r-xl text-slate-600 not-italic">
               {children}
             </blockquote>
           ),
@@ -62,7 +62,7 @@ export function BlogContent({ content }: BlogContentProps) {
           ),
           li: ({ children }) => (
             <li className="flex items-start gap-2.5 text-[#374151] leading-relaxed">
-              <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#533afd] shrink-0" />
+              <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#DC2626] shrink-0" />
               <span>{children}</span>
             </li>
           ),
@@ -73,7 +73,7 @@ export function BlogContent({ content }: BlogContentProps) {
 
             if (isInline) {
               return (
-                <code className="bg-[#ea2261]/[0.06] text-[#ea2261] px-1.5 py-0.5 rounded text-[0.88em] font-mono font-medium" {...rest}>
+                <code className="bg-[#DC2626]/[0.06] text-[#DC2626] px-1.5 py-0.5 rounded text-[0.88em] font-mono font-medium" {...rest}>
                   {children}
                 </code>
               )
@@ -82,7 +82,7 @@ export function BlogContent({ content }: BlogContentProps) {
             return (
               <div className="group relative my-8">
                 {match?.[1] && (
-                  <div className="absolute top-0 left-4 -translate-y-1/2 px-2.5 py-0.5 rounded bg-[#533afd] text-[10px] font-bold uppercase tracking-wider text-white z-10">
+                  <div className="absolute top-0 left-4 -translate-y-1/2 px-2.5 py-0.5 rounded bg-[#DC2626] text-[10px] font-bold uppercase tracking-wider text-white z-10">
                     {match[1]}
                   </div>
                 )}
@@ -113,7 +113,7 @@ export function BlogContent({ content }: BlogContentProps) {
             </div>
           ),
           th: ({ children }) => (
-            <th className="px-4 py-3 text-left font-semibold text-[#0d253d] bg-slate-50 border-b border-slate-200">{children}</th>
+            <th className="px-4 py-3 text-left font-semibold text-[#1B2340] bg-slate-50 border-b border-slate-200">{children}</th>
           ),
           td: ({ children }) => (
             <td className="px-4 py-3 text-[#374151] border-b border-slate-100">{children}</td>

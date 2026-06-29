@@ -86,7 +86,7 @@ export function BlogList({ blogs, content }: BlogListProps) {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-          className="w-[calc(100vw-2rem)] lg:w-[calc(100vw-4rem)] relative left-1/2 -translate-x-1/2 bg-gradient-to-br from-[#533afd]/[0.06] via-[#ea2261]/[0.04] to-[#f96bee]/[0.08] border border-[#533afd]/10 rounded-2xl lg:rounded-[2.5rem] overflow-hidden shadow-sm"
+          className="w-[calc(100vw-2rem)] lg:w-[calc(100vw-4rem)] relative left-1/2 -translate-x-1/2 bg-gradient-to-br from-[#DC2626]/[0.06] via-[#DC2626]/[0.04] to-[#DC2626]/[0.08] border border-[#DC2626]/10 rounded-2xl lg:rounded-[2.5rem] overflow-hidden shadow-sm"
         >
           <div className="w-full px-6 sm:px-10 lg:px-16 py-12 sm:py-16 relative z-10">
 
@@ -138,8 +138,8 @@ export function BlogList({ blogs, content }: BlogListProps) {
                 className={cn(
                   "whitespace-nowrap px-4 py-1.5 rounded-lg text-xs font-bold uppercase tracking-widest transition-all border",
                   isActive
-                    ? "bg-[#533afd] border-[#533afd] text-white shadow-md shadow-[#533afd]/20"
-                    : "bg-white border-[#533afd]/20 text-[#64748d] hover:border-[#533afd]/50 hover:text-[#533afd]"
+                    ? "bg-[#DC2626] border-[#DC2626] text-white shadow-md shadow-[#DC2626]/20"
+                    : "bg-white border-[#DC2626]/20 text-[#64748d] hover:border-[#DC2626]/50 hover:text-[#DC2626]"
                 )}
                 style={{ fontFamily: 'var(--font-inter)' }}
               >
@@ -164,7 +164,7 @@ export function BlogList({ blogs, content }: BlogListProps) {
               placeholder={content?.labels?.search_placeholder || "Search blogs..."}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:border-[#533afd] focus:ring-1 focus:ring-[#533afd] transition-all text-[15px]"
+              className="w-full pl-10 pr-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:border-[#DC2626] focus:ring-1 focus:ring-[#DC2626] transition-all text-[15px]"
               style={{ fontFamily: 'var(--font-inter)' }}
             />
           </div>
@@ -186,7 +186,7 @@ export function BlogList({ blogs, content }: BlogListProps) {
           {/* Intersection Observer Target */}
           {visibleCount < regularBlogs.length && (
             <div ref={loadMoreRef} className="h-10 w-full flex items-center justify-center">
-              <div className="w-5 h-5 rounded-full border-2 border-[#533afd] border-t-transparent animate-spin" />
+              <div className="w-5 h-5 rounded-full border-2 border-[#DC2626] border-t-transparent animate-spin" />
             </div>
           )}
         </motion.div>

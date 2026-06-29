@@ -5,7 +5,7 @@ import { getPageContent } from '@/lib/content'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Aidetic Blogs',
+  title: 'Blogs',
   description: 'Insights on AI interviews, hiring, and modern recruitment technologies',
 }
 

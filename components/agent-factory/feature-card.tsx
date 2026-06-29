@@ -38,8 +38,8 @@ export function FeatureCard({
           maxWidth: '620px',
           maxHeight: '620px',
           background: reversed
-            ? 'linear-gradient(to right, transparent 0%, transparent 40%, rgba(234,34,97,0.55) 52%, rgba(234,34,97,0.35) 65%, rgba(83,58,253,0.35) 82%, rgba(204,233,248,0.70) 100%)'
-            : 'linear-gradient(to left, transparent 0%, transparent 40%, rgba(234,34,97,0.55) 52%, rgba(234,34,97,0.35) 65%, rgba(83,58,253,0.35) 82%, rgba(204,233,248,0.70) 100%)',
+            ? 'linear-gradient(to right, transparent 0%, transparent 40%, rgba(220,38,38,0.55) 52%, rgba(220,38,38,0.35) 65%, rgba(220,38,38,0.35) 82%, rgba(254,226,226,0.70) 100%)'
+            : 'linear-gradient(to left, transparent 0%, transparent 40%, rgba(220,38,38,0.55) 52%, rgba(220,38,38,0.35) 65%, rgba(220,38,38,0.35) 82%, rgba(254,226,226,0.70) 100%)',
           borderRadius: '50%',
           opacity: 0.65,
         }}
@@ -56,12 +56,12 @@ export function FeatureCard({
           viewport={viewport}
         >
           <h2
-            className="text-lg md:text-xl font-bold leading-tight tracking-wide text-[#0d253d]"
+            className="text-lg md:text-xl font-bold leading-tight tracking-wide text-[#1B2340]"
             style={{ fontFamily: 'var(--font-inter)' }}
           >
             {title}
           </h2>
-          <p className="text-md text-[#0d253d] leading-relaxed max-w-lg" style={{ fontFamily: 'var(--font-quicksand)' }}>{description}</p>
+          <p className="text-md text-[#1B2340] leading-relaxed max-w-lg" style={{ fontFamily: 'var(--font-quicksand)' }}>{description}</p>
         </motion.div>
 
         {/* Visual side — white card */}
@@ -74,17 +74,17 @@ export function FeatureCard({
           viewport={viewport}
         >
           {/* Ambient glow — expands on hover */}
-          <div className="absolute -inset-4 bg-gradient-to-r from-[#533afd]/25 to-[#ea2261]/25 rounded-3xl blur-2xl opacity-50 group-hover:opacity-100 group-hover:blur-3xl transition-all duration-500 pointer-events-none" />
+          <div className="absolute -inset-4 bg-gradient-to-r from-[#DC2626]/25 to-[#DC2626]/25 rounded-3xl blur-2xl opacity-50 group-hover:opacity-100 group-hover:blur-3xl transition-all duration-500 pointer-events-none" />
 
           {/* White card frame */}
           <motion.div
             className="relative rounded-2xl overflow-hidden bg-white min-h-[360px] flex flex-col"
             style={{
-              border: '2px solid #665efd',
-              boxShadow: '0 8px 32px -4px rgba(83,58,253,0.18), 0 2px 8px 0 rgba(0,0,0,0.06)',
+              border: '2px solid #DC2626',
+              boxShadow: '0 8px 32px -4px rgba(220,38,38,0.18), 0 2px 8px 0 rgba(0,0,0,0.06)',
             }}
             whileHover={{
-              boxShadow: '0 24px 56px -8px rgba(83,58,253,0.38), 0 8px 24px -4px rgba(234,34,97,0.22), 0 0 0 1px rgba(83,58,253,0.5)',
+              boxShadow: '0 24px 56px -8px rgba(220,38,38,0.38), 0 8px 24px -4px rgba(220,38,38,0.22), 0 0 0 1px rgba(220,38,38,0.5)',
             }}
             transition={{ duration: 0.35, ease: 'easeOut' }}
           >
@@ -101,7 +101,7 @@ export function FeatureCard({
             {/* Top accent bar */}
             <div
               className="absolute top-0 left-0 w-full h-[3px] opacity-60 group-hover:opacity-100 transition-opacity duration-300"
-              style={{ background: 'linear-gradient(to right, #533afd, #ea2261)' }}
+              style={{ background: 'linear-gradient(to right, #DC2626, #DC2626)' }}
             />
 
             {visual}

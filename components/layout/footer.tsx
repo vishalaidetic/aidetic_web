@@ -20,8 +20,8 @@ export function Footer() {
             {/* Logo */}
             <div className="flex items-center">
               <Image
-                src="/Aideticlogo.png"
-                alt="Aidetic Logo"
+                src="/brain-logo.png"
+                alt="Enterprise Brain Logo"
                 width={260}
                 height={100}
                 className="h-36 w-auto object-contain"
@@ -43,42 +43,42 @@ export function Footer() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 flex-1 lg:max-w-3xl">
             {/* Resources */}
             <div className="flex flex-col space-y-4">
-              <h3 className="font-semibold text-[#0d253d] text-sm">Resources</h3>
+              <h3 className="font-semibold text-[#1B2340] text-sm">Resources</h3>
               <nav className="flex flex-col space-y-3">
-                <Link href="/case-studies" className="text-sm text-slate-500 hover:text-[#533afd] transition-colors">Case Studies</Link>
-                <Link href="/blog" className="text-sm text-slate-500 hover:text-[#533afd] transition-colors">Blogs</Link>
-                <a href="#" className="text-sm text-slate-500 hover:text-[#533afd] transition-colors">Documentation</a>
+                <Link href="/case-studies" className="text-sm text-slate-500 hover:text-[#DC2626] transition-colors">Case Studies</Link>
+                <Link href="/blog" className="text-sm text-slate-500 hover:text-[#DC2626] transition-colors">Blogs</Link>
+                <a href="#" className="text-sm text-slate-500 hover:text-[#DC2626] transition-colors">Documentation</a>
               </nav>
             </div>
 
             {/* Contact */}
             <div className="flex flex-col space-y-4">
-              <h3 className="font-semibold text-[#0d253d] text-sm">Contact</h3>
+              <h3 className="font-semibold text-[#1B2340] text-sm">Contact</h3>
               <nav className="flex flex-col space-y-3">
-                <a href="#" className="text-sm text-slate-500 hover:text-[#533afd] transition-colors">Schedule a Demo</a>
-                <a href="#" className="text-sm text-[#0d253d] font-semibold hover:text-[#533afd] transition-colors">Technology Partner</a>
-                <span className="text-[10px] font-bold bg-[#533afd] text-white px-2 py-0.5 rounded w-fit uppercase tracking-wider">Aidetic</span>
+                <a href="#" className="text-sm text-slate-500 hover:text-[#DC2626] transition-colors">Schedule a Demo</a>
+                <a href="#" className="text-sm text-[#1B2340] font-semibold hover:text-[#DC2626] transition-colors">Technology Partner</a>
+                <span className="text-[10px] font-bold bg-[#DC2626] text-white px-2 py-0.5 rounded w-fit uppercase tracking-wider">Aidetic</span>
               </nav>
             </div>
 
             {/* Legal */}
             <div className="flex flex-col space-y-4">
-              <h3 className="font-semibold text-[#0d253d] text-sm">Legal</h3>
+              <h3 className="font-semibold text-[#1B2340] text-sm">Legal</h3>
               <nav className="flex flex-col space-y-3">
-                <a href="#" className="text-sm text-slate-500 hover:text-[#533afd] transition-colors">Privacy Policy</a>
-                <a href="#" className="text-sm text-slate-500 hover:text-[#533afd] transition-colors">Terms of Service</a>
-                <a href="#" className="text-sm text-slate-500 hover:text-[#533afd] transition-colors">Refund Policy</a>
+                <a href="#" className="text-sm text-slate-500 hover:text-[#DC2626] transition-colors">Privacy Policy</a>
+                <a href="#" className="text-sm text-slate-500 hover:text-[#DC2626] transition-colors">Terms of Service</a>
+                <a href="#" className="text-sm text-slate-500 hover:text-[#DC2626] transition-colors">Refund Policy</a>
               </nav>
             </div>
 
             {/* Social */}
             <div className="flex flex-col space-y-4">
-              <h3 className="font-semibold text-[#0d253d] text-sm">Social</h3>
+              <h3 className="font-semibold text-[#1B2340] text-sm">Social</h3>
               <nav className="flex flex-col space-y-3">
-                <a href="#" className="flex items-center gap-2 text-sm text-slate-500 hover:text-[#533afd] transition-colors">
+                <a href="#" className="flex items-center gap-2 text-sm text-slate-500 hover:text-[#DC2626] transition-colors">
                   <Linkedin size={16} /> LinkedIn
                 </a>
-                <a href="#" className="flex items-center gap-2 text-sm text-slate-500 hover:text-[#533afd] transition-colors">
+                <a href="#" className="flex items-center gap-2 text-sm text-slate-500 hover:text-[#DC2626] transition-colors">
                   <Twitter size={16} /> Twitter
                 </a>
               </nav>
@@ -90,7 +90,7 @@ export function Footer() {
       {/* Big Watermark Text */}
       <div className="absolute bottom-0 left-0 w-full flex justify-center pointer-events-none select-none z-0">
         <span 
-          className="text-[18vw] font-black tracking-tighter leading-none translate-y-[40%] opacity-60"
+          className="text-[10vw] font-black tracking-tighter leading-none translate-y-[30%] opacity-60"
           style={{
             background: 'linear-gradient(to right, #ffe1d1, #f4d9fc, #dce1fb)',
             WebkitBackgroundClip: 'text',
@@ -98,7 +98,7 @@ export function Footer() {
             backgroundClip: 'text',
           }}
         >
-          aidetic
+          enterprise brain
         </span>
       </div>
     </footer>

@@ -51,7 +51,7 @@ export function ScaleSection() {
           height: '55vw',
           maxWidth: '680px',
           maxHeight: '680px',
-          background: 'linear-gradient(to left, transparent 0%, transparent 40%, rgba(234,34,97,0.55) 52%, rgba(234,34,97,0.35) 65%, rgba(83,58,253,0.35) 82%, rgba(204,233,248,0.70) 100%)',
+          background: 'linear-gradient(to left, transparent 0%, transparent 40%, rgba(220,38,38,0.55) 52%, rgba(220,38,38,0.35) 65%, rgba(220,38,38,0.35) 82%, rgba(254,226,226,0.70) 100%)',
           borderRadius: '50%',
           opacity: 0.65,
         }}
@@ -71,7 +71,7 @@ export function ScaleSection() {
             className="text-2xl sm:text-3xl lg:text-4xl xl:text-[2.5rem] font-bold leading-tight"
             style={{
               fontFamily: 'var(--font-inter)',
-              background: 'linear-gradient(to right, #533afd, #ea2261)',
+              background: 'linear-gradient(to right, #DC2626, #DC2626)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
@@ -87,7 +87,7 @@ export function ScaleSection() {
 
         {/* ── Features grid ── */}
         <motion.div
-          className="border-2 border-[#533afd] rounded-3xl overflow-hidden bg-white/60 backdrop-blur-sm shadow-sm shadow-cyan-100"
+          className="border-2 border-[#DC2626] rounded-3xl overflow-hidden bg-white/60 backdrop-blur-sm shadow-sm shadow-cyan-100"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
@@ -105,11 +105,11 @@ export function ScaleSection() {
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <div className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-[#f6f9fc] border border-[#665efd]">
-                    <Icon className="w-5 h-5 text-[#533afd]" strokeWidth={1.5} />
+                  <div className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-[#f6f9fc] border border-[#DC2626]">
+                    <Icon className="w-5 h-5 text-[#DC2626]" strokeWidth={1.5} />
                   </div>
                   <h3
-                    className="text-base font-bold text-[#0d253d] tracking-wide"
+                    className="text-base font-bold text-[#1B2340] tracking-wide"
                     style={{ fontFamily: 'var(--font-inter)' }}
                   >
                     {f.title}
@@ -121,7 +121,7 @@ export function ScaleSection() {
           </div>
 
           {/* Horizontal divider between rows */}
-          <div className="border-t-2 border-[#665efd]/60" />
+          <div className="border-t-2 border-[#DC2626]/60" />
 
           <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-cyan-200/60">
             {features.slice(3).map((f, i) => {
@@ -135,11 +135,11 @@ export function ScaleSection() {
                   transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <div className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-[#f6f9fc] border border-[#665efd]">
-                    <Icon className="w-5 h-5 text-[#533afd]" strokeWidth={1.5} />
+                  <div className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-[#f6f9fc] border border-[#DC2626]">
+                    <Icon className="w-5 h-5 text-[#DC2626]" strokeWidth={1.5} />
                   </div>
                   <h3
-                    className="text-base font-bold text-[#0d253d] tracking-wide"
+                    className="text-base font-bold text-[#1B2340] tracking-wide"
                     style={{ fontFamily: 'var(--font-inter)' }}
                   >
                     {f.title}
