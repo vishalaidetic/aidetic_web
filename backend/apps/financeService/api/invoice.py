@@ -10,6 +10,7 @@ from apps.authService.schema.auth import UserGet
 from apps.financeService.schema.invoice import InvoiceCreate
 from apps.shared.responses import InvoiceGet
 from apps.financeService.service import invoice as service
+from apps.financeService.model.invoice import Invoice
 
 router = APIRouter(prefix="/invoices", tags=["Invoice Management"])
 
@@ -33,7 +34,8 @@ def list_endpoint(
 ):
     try:
         results = service.get_all_invoices(session, skip, limit)
-        return custom_response(results, "Invoices retrieved successfully", 200)
+        total = session.query(Invoice).count()
+        return custom_response(results, "Invoices retrieved successfully", 200, total=total)
     except Exception as e:
         return custom_response(None, "Failed to fetch invoices", 500, str(e))
 

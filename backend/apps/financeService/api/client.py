@@ -10,6 +10,7 @@ from apps.authService.schema.auth import UserGet
 from apps.financeService.schema.client import ClientCreate, ClientUpdate
 from apps.shared.responses import ClientGet
 from apps.financeService.service import client as service
+from apps.financeService.model.client import Client
 
 router = APIRouter(prefix="/clients", tags=["Client Management"])
 
@@ -33,7 +34,8 @@ def list_endpoint(
 ):
     try:
         results = service.get_all_clients(session, skip, limit)
-        return custom_response(results, "Clients retrieved successfully", 200)
+        total = session.query(Client).count()
+        return custom_response(results, "Clients retrieved successfully", 200, total=total)
     except Exception as e:
         return custom_response(None, "Failed to fetch clients", 500, str(e))
 

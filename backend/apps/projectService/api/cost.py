@@ -10,6 +10,7 @@ from apps.authService.schema.auth import UserGet
 from apps.projectService.schema.cost import ProjectCostCreate, ProjectCostUpdate
 from apps.shared.responses import ProjectCostGet
 from apps.projectService.service import cost as service
+from apps.projectService.model.cost import ProjectCost
 
 router = APIRouter(prefix="/costs", tags=["Project Cost Tracking"])
 
@@ -33,7 +34,8 @@ def list_endpoint(
 ):
     try:
         results = service.get_all_costs(session, skip, limit)
-        return custom_response(results, "Costs retrieved successfully", 200)
+        total = session.query(ProjectCost).count()
+        return custom_response(results, "Costs retrieved successfully", 200, total=total)
     except Exception as e:
         return custom_response(None, "Failed to retrieve costs", 500, str(e))
 

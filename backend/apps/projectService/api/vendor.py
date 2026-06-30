@@ -10,6 +10,7 @@ from apps.authService.schema.auth import UserGet
 from apps.projectService.schema.vendor import VendorCreate, VendorUpdate
 from apps.shared.responses import VendorGet
 from apps.projectService.service import vendor as service
+from apps.projectService.model.vendor import Vendor
 
 router = APIRouter(prefix="/vendors", tags=["Vendor Management"])
 
@@ -33,7 +34,8 @@ def list_endpoint(
 ):
     try:
         results = service.get_all_vendors(session, skip, limit)
-        return custom_response(results, "Vendors retrieved successfully", 200)
+        total = session.query(Vendor).count()
+        return custom_response(results, "Vendors retrieved successfully", 200, total=total)
     except Exception as e:
         return custom_response(None, "Failed to retrieve vendors", 500, str(e))
 

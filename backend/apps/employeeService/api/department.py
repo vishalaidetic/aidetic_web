@@ -8,6 +8,7 @@ from uuid import UUID
 
 from apps.shared.security import verify_token
 from apps.authService.schema.auth import UserGet
+from apps.employeeService.model.department import Department
 
 router = APIRouter(prefix="/departments", tags=["Departments"])
 
@@ -27,7 +28,8 @@ def create_endpoint(
 def get_all_endpoint(skip: int = 0, limit: int = 100, session: Session = Depends(get_db)):
     try:
         results = service.get_all_departments(session, skip, limit)
-        return custom_response(results, "Departments retrieved successfully", 200)
+        total = session.query(Department).count()
+        return custom_response(results, "Departments retrieved successfully", 200, total=total)
     except Exception as e:
         return custom_response(None, "Department retrieval failed", 500, str(e))
 

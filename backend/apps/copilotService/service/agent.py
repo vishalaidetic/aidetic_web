@@ -532,15 +532,93 @@ Rules:
         yield {"type": "content", "content": final_answer}
 
 
+class UniversalLLMClient:
+    """A scalable, dependency-free wrapper for OpenAI-compatible LLM endpoints."""
+    def __init__(self):
+        self.provider = "huggingface"
+        self.api_key = os.getenv("HUGGINGFACE_API_KEY")
+        self.model_id = os.getenv("LLM_MODEL", "meta-llama/Meta-Llama-3-8B-Instruct")
+        self.base_url = "https://api-inference.huggingface.co/models/"
+
+        # Fallback to Gemini if provided
+        if os.getenv("GEMINI_KEY"):
+            self.provider = "gemini"
+            self.api_key = os.getenv("GEMINI_KEY")
+            self.model_id = os.getenv("GEMINI_LLM_MODEL", "gemini-1.5-flash")
+            self.base_url = "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions"
+        
+        # Fallback to OpenAI if provided
+        elif os.getenv("OPENAI_API_KEY"):
+            self.provider = "openai"
+            self.api_key = os.getenv("OPENAI_API_KEY")
+            self.model_id = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
+            self.base_url = "https://api.openai.com/v1/chat/completions"
+
+    class _ResponseChoice:
+        def __init__(self, content, is_stream=False):
+            class _Msg:
+                def __init__(self, c):
+                    self.content = c
+            if is_stream:
+                self.delta = _Msg(content)
+            else:
+                self.message = _Msg(content)
+
+    class _ChatResponse:
+        def __init__(self, content, is_stream=False):
+            self.choices = [UniversalLLMClient._ResponseChoice(content, is_stream)]
+
+    def chat_completion(self, messages, model=None, max_tokens=512, temperature=0.1, stream=False):
+        import httpx
+        model_to_use = model or self.model_id
+        
+        headers = {
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {self.api_key}"
+        }
+        
+        payload = {
+            "model": model_to_use,
+            "messages": messages,
+            "max_tokens": max_tokens,
+            "temperature": temperature,
+            "stream": stream
+        }
+
+        url = self.base_url
+        if self.provider == "huggingface":
+            url = f"{self.base_url}{model_to_use}/v1/chat/completions"
+
+        if not stream:
+            with httpx.Client(timeout=60.0) as client:
+                response = client.post(url, headers=headers, json=payload)
+                response.raise_for_status()
+                data = response.json()
+                content = data.get("choices", [{}])[0].get("message", {}).get("content", "")
+                return self._ChatResponse(content, is_stream=False)
+        else:
+            def stream_generator():
+                with httpx.Client(timeout=60.0) as client:
+                    with client.stream("POST", url, headers=headers, json=payload) as response:
+                        response.raise_for_status()
+                        for line in response.iter_lines():
+                            if line.startswith("data: ") and line != "data: [DONE]":
+                                data_str = line[6:]
+                                try:
+                                    import json
+                                    data = json.loads(data_str)
+                                    content = data.get("choices", [{}])[0].get("delta", {}).get("content", "")
+                                    if content:
+                                        yield self._ChatResponse(content, is_stream=True)
+                                except json.JSONDecodeError:
+                                    pass
+            return stream_generator()
+
 class CopilotAgent:
     def __init__(self):
-        self.api_key = os.getenv("HUGGINGFACE_API_KEY")
-        if not self.api_key:
-            print("WARNING: HUGGINGFACE_API_KEY is not set.")
-
-        self.model_id = "meta-llama/Meta-Llama-3-8B-Instruct"
         try:
-            self.llm = InferenceClient(api_key=self.api_key)
+            self.llm = UniversalLLMClient()
+            self.model_id = self.llm.model_id
         except Exception as e:
             print(f"Failed to initialize LLM: {e}")
             self.llm = None

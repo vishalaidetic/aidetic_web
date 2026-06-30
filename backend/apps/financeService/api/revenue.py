@@ -10,6 +10,7 @@ from apps.authService.schema.auth import UserGet
 from apps.financeService.schema.revenue import ProjectRevenueCreate
 from apps.shared.responses import ProjectRevenueGet
 from apps.financeService.service import revenue as service
+from apps.financeService.model.revenue import ProjectRevenue
 
 router = APIRouter(prefix="/revenues", tags=["Revenue Tracking"])
 
@@ -33,7 +34,8 @@ def list_endpoint(
 ):
     try:
         results = service.get_all_revenues(session, skip, limit)
-        return custom_response(results, "Revenues retrieved successfully", 200)
+        total = session.query(ProjectRevenue).count()
+        return custom_response(results, "Revenues retrieved successfully", 200, total=total)
     except Exception as e:
         return custom_response(None, "Failed to fetch revenues", 500, str(e))
 

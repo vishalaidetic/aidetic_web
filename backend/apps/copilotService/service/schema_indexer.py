@@ -156,10 +156,13 @@ class SchemaIndexer:
                 desc_lines.append(f"Description: {table_meta['description']}")
                 
             desc_lines.append("Columns:")
+            col_metadata_lines = []
+            
             for col in columns:
                 col_name = col['name']
                 col_type = str(col['type'])
                 is_pk = " (PRIMARY KEY)" if pk and col_name in pk.get('constrained_columns', []) else ""
+                
                 # Find if it's a foreign key
                 fk_str = ""
                 for fk in fks:
@@ -171,11 +174,15 @@ class SchemaIndexer:
                     col_desc = f" - {table_meta['columns'][col_name]}"
                     
                 desc_lines.append(f"- {col_name}: {col_type}{is_pk}{fk_str}{col_desc}")
+                col_metadata_lines.append(f"{col_name} ({col_type}){col_desc}")
             
             table_text = "\n".join(desc_lines)
+            
             schema_docs.append({
                 "table": table_name,
-                "text": table_text
+                "text": table_text,
+                "description": table_meta.get("description", f"Data table for {table_name}"),
+                "columns": ", ".join(col_metadata_lines)
             })
             
         return schema_docs
@@ -184,8 +191,9 @@ class SchemaIndexer:
         print("Extracting schema from database...")
         docs = self.extract_schema()
         
-        texts = [doc["text"] for doc in docs]
-        metadatas = [{"table": doc["table"]} for doc in docs]
+        # Pop 'text' to use the remaining dict as metadata directly
+        texts = [doc.pop("text") for doc in docs]
+        metadatas = docs
         
         print(f"Indexing {len(texts)} tables into ChromaDB...")
         

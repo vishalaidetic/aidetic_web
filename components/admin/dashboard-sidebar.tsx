@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useSearchParams } from 'next/navigation'
 import {
   BookOpen,
   FileText,
@@ -14,11 +14,20 @@ import {
   BookMarked,
   AlignLeft,
   Footprints,
-  FolderKanban,
-  Wallet,
-  Building2,
   GitBranch,
   Sparkles,
+  Calendar,
+  Award,
+  FolderKanban,
+  UserCheck,
+  Store,
+  DollarSign,
+  Wallet,
+  Receipt,
+  RefreshCw,
+  Building2,
+  Search,
+  TrendingUp,
 } from 'lucide-react'
 import { getAdminBasePath } from '@/lib/admin-path'
 
@@ -32,6 +41,7 @@ const contentPages = [
 
 export function DashboardSidebar() {
   const pathname = usePathname()
+  const searchParams = useSearchParams()
   const base = getAdminBasePath()
 
   const isActive = (path: string) => {
@@ -79,7 +89,7 @@ export function DashboardSidebar() {
 
           {/* Meeting Requests */}
           <Link href={`${base}/meeting-requests`} className={navLinkClass(isActive(`${base}/meeting-requests`))}>
-            <Users size={17} className={iconClass(isActive(`${base}/meeting-requests`))} />
+            <Calendar size={17} className={iconClass(isActive(`${base}/meeting-requests`))} />
             <span>Meeting Requests</span>
           </Link>
 
@@ -94,7 +104,7 @@ export function DashboardSidebar() {
 
           {/* Employees */}
           <Link href={`${base}/employees`} className={navLinkClass(isActive(`${base}/employees`))}>
-            <Building2 size={17} className={iconClass(isActive(`${base}/employees`))} />
+            <Users size={17} className={iconClass(isActive(`${base}/employees`))} />
             <span>Employees</span>
           </Link>
 
@@ -125,6 +135,12 @@ export function DashboardSidebar() {
             <span>AI Copilot</span>
           </Link>
 
+          {/* Advanced Search */}
+          <Link href={`${base}/search`} className={navLinkClass(isActive(`${base}/search`))}>
+            <Search size={17} className={iconClass(isActive(`${base}/search`))} />
+            <span>Advanced Search</span>
+          </Link>
+
         </nav>
       </aside>
 
@@ -150,6 +166,132 @@ export function DashboardSidebar() {
                 <Link
                   key={key}
                   href={href}
+                  className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm transition-all ${
+                    active
+                      ? 'bg-[#DC2626] text-white font-semibold shadow-sm'
+                      : 'text-[#6B7280] hover:text-[#DC2626] hover:bg-slate-200/50 font-medium'
+                  }`}
+                >
+                  <Icon size={16} className={active ? 'text-white' : 'text-[#6B7280]'} />
+                  <span>{label}</span>
+                </Link>
+              )
+            })}
+          </nav>
+        </aside>
+      )}
+
+      {/* Secondary Sidebar for Employees */}
+      {pathname.includes('/employees') && (
+        <aside className="w-64 shrink-0 h-screen sticky top-0 bg-slate-50/50 border-r border-slate-200 flex flex-col overflow-y-auto z-0">
+          <div className="p-5 border-b border-slate-200">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#1B2340] shadow-md shrink-0">
+                <Users size={18} className="text-white" />
+              </div>
+              <div>
+                <h2 className="text-sm font-bold text-[#1B2340] uppercase tracking-wider">People & Org</h2>
+                <p className="text-xs text-[#6B7280] mt-0.5">Manage workforce</p>
+              </div>
+            </div>
+          </div>
+          <nav className="flex-1 p-4 space-y-1">
+            {[
+              { key: 'employees', label: 'Employees', icon: Users },
+              { key: 'departments', label: 'Departments', icon: Building2 },
+              { key: 'designations', label: 'Designations', icon: Award },
+              { key: 'attributions', label: 'Attributions', icon: Award },
+            ].map(({ key, label, icon: Icon }) => {
+              const currentTab = searchParams.get('tab') || 'employees'
+              const active = currentTab === key
+              return (
+                <Link
+                  key={key}
+                  href={`${base}/employees?tab=${key}`}
+                  className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm transition-all ${
+                    active
+                      ? 'bg-[#DC2626] text-white font-semibold shadow-sm'
+                      : 'text-[#6B7280] hover:text-[#DC2626] hover:bg-slate-200/50 font-medium'
+                  }`}
+                >
+                  <Icon size={16} className={active ? 'text-white' : 'text-[#6B7280]'} />
+                  <span>{label}</span>
+                </Link>
+              )
+            })}
+          </nav>
+        </aside>
+      )}
+
+      {/* Secondary Sidebar for Projects */}
+      {pathname.includes('/projects') && (
+        <aside className="w-64 shrink-0 h-screen sticky top-0 bg-slate-50/50 border-r border-slate-200 flex flex-col overflow-y-auto z-0">
+          <div className="p-5 border-b border-slate-200">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#DC2626] shadow-md shrink-0">
+                <FolderKanban size={18} className="text-white" />
+              </div>
+              <div>
+                <h2 className="text-sm font-bold text-[#1B2340] uppercase tracking-wider">Projects</h2>
+                <p className="text-xs text-[#6B7280] mt-0.5">Manage tasks & costs</p>
+              </div>
+            </div>
+          </div>
+          <nav className="flex-1 p-4 space-y-1">
+            {[
+              { key: 'projects', label: 'Projects', icon: FolderKanban },
+              { key: 'assignments', label: 'Assignments', icon: UserCheck },
+              { key: 'vendors', label: 'Vendors', icon: Store },
+              { key: 'costs', label: 'Costs', icon: DollarSign },
+            ].map(({ key, label, icon: Icon }) => {
+              const currentTab = searchParams.get('tab') || 'projects'
+              const active = currentTab === key
+              return (
+                <Link
+                  key={key}
+                  href={`${base}/projects?tab=${key}`}
+                  className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm transition-all ${
+                    active
+                      ? 'bg-[#DC2626] text-white font-semibold shadow-sm'
+                      : 'text-[#6B7280] hover:text-[#DC2626] hover:bg-slate-200/50 font-medium'
+                  }`}
+                >
+                  <Icon size={16} className={active ? 'text-white' : 'text-[#6B7280]'} />
+                  <span>{label}</span>
+                </Link>
+              )
+            })}
+          </nav>
+        </aside>
+      )}
+
+      {/* Secondary Sidebar for Finance */}
+      {pathname.includes('/finance') && (
+        <aside className="w-64 shrink-0 h-screen sticky top-0 bg-slate-50/50 border-r border-slate-200 flex flex-col overflow-y-auto z-0">
+          <div className="p-5 border-b border-slate-200">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-600 shadow-md shrink-0">
+                <Wallet size={18} className="text-white" />
+              </div>
+              <div>
+                <h2 className="text-sm font-bold text-[#1B2340] uppercase tracking-wider">Finance</h2>
+                <p className="text-xs text-[#6B7280] mt-0.5">Manage revenue</p>
+              </div>
+            </div>
+          </div>
+          <nav className="flex-1 p-4 space-y-1">
+            {[
+              { key: 'clients', label: 'Clients', icon: Wallet },
+              { key: 'invoices', label: 'Invoices', icon: Receipt },
+              { key: 'revenue', label: 'Revenue', icon: TrendingUp },
+              { key: 'reimbursements', label: 'Reimbursements', icon: RefreshCw },
+            ].map(({ key, label, icon: Icon }) => {
+              const currentTab = searchParams.get('tab') || 'clients'
+              const active = currentTab === key
+              return (
+                <Link
+                  key={key}
+                  href={`${base}/finance?tab=${key}`}
                   className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm transition-all ${
                     active
                       ? 'bg-[#DC2626] text-white font-semibold shadow-sm'

@@ -18,8 +18,7 @@ const SESSION_MAX_AGE = 60 * 60 * 8
  * On success, sets a signed httpOnly session cookie and redirects to the secure admin route.
  */
 export async function adminLoginAction(formData: FormData) {
-  const adminUuid = process.env.NEXT_PUBLIC_ADMIN_ROUTE_UUID
-  const adminBasePath = `/admin/${adminUuid}`
+  const adminBasePath = `/admin`
   const email = (formData.get('email') as string | null)?.trim() ?? ''
   const password = (formData.get('password') as string | null) ?? ''
 
@@ -33,7 +32,7 @@ export async function adminLoginAction(formData: FormData) {
     const res = await fetch(`${BRAIN_BASE}/api/v1/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ username: email, password }),
       cache: 'no-store'
     })
 
@@ -43,7 +42,13 @@ export async function adminLoginAction(formData: FormData) {
     }
 
     const data = await res.json()
-    const token = data.data?.token || data.data?.access_token || data.token
+    
+    // FastAPI returns HTTP 200 even for errors in custom_response, so check status_code
+    if (data.status_code && data.status_code !== 200) {
+      return { error: data.message || data.error || 'Invalid email or password.' }
+    }
+
+    const token = data.data?.session_token || data.data?.token || data.data?.access_token || data.token
     if (!token) {
       return { error: 'Login successful, but no token received.' }
     }
@@ -81,8 +86,7 @@ export async function adminLoginAction(formData: FormData) {
  * Clears the session cookie and redirects to the login page.
  */
 export async function adminLogoutAction() {
-  const adminUuid = process.env.NEXT_PUBLIC_ADMIN_ROUTE_UUID
-  const adminBasePath = `/admin/${adminUuid}`
+  const adminBasePath = `/admin`
 
   const cookieStore = await cookies()
   cookieStore.delete(ADMIN_SESSION_COOKIE)

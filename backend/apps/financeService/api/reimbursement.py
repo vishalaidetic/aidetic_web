@@ -10,6 +10,7 @@ from apps.authService.schema.auth import UserGet
 from apps.financeService.schema.reimbursement import ReimbursementCreate, ReimbursementUpdate
 from apps.shared.responses import ReimbursementGet
 from apps.financeService.service import reimbursement as service
+from apps.financeService.model.reimbursement import Reimbursement
 
 router = APIRouter(prefix="/reimbursements", tags=["Reimbursement Management"])
 
@@ -35,7 +36,8 @@ def list_endpoint(
 ):
     try:
         results = service.get_all_reimbursements(session, skip, limit)
-        return custom_response(results, "Reimbursements retrieved successfully", 200)
+        total = session.query(Reimbursement).count()
+        return custom_response(results, "Reimbursements retrieved successfully", 200, total=total)
     except Exception as e:
         return custom_response(None, "Failed to fetch reimbursements", 500, str(e))
 

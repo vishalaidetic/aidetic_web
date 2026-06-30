@@ -64,7 +64,7 @@ def get_graph_data(current_user: UserGet = Depends(verify_token)):
                 nodes[n.element_id] = {"id": n.element_id, "label": list(n.labels)[0], "properties": dict(n)}
                 
             # Query relationships
-            links_result = session.run("MATCH (n)-[r]->(m) RETURN n, r, m LIMIT 5000")
+            links_result = session.run("MATCH (n)-[r]->(m) RETURN n, r, m LIMIT 15000")
             links = []
             for record in links_result:
                 n = record["n"]

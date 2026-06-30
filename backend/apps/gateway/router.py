@@ -13,6 +13,8 @@ from apps.financeService.api.invoice import router as invoice_router
 from apps.financeService.api.revenue import router as revenue_router
 from apps.financeService.api.reimbursement import router as reimbursement_router
 from apps.analyticsService.api.rule_engine import router as analytics_router
+from apps.analyticsService.api.attribution import router as attribution_router
+from apps.analyticsService.api.search import router as search_router
 from apps.shared.security import verify_token
 from apps.copilotService.api.copilot import router as copilot_router
 from apps.cmsService.api.cms import router as cms_router
@@ -41,6 +43,8 @@ gateway_router.include_router(reimbursement_router, dependencies=protected_depen
 
 # 3. ANALYTICS / INTELLIGENCE
 gateway_router.include_router(analytics_router, prefix="/analytics", tags=["Intelligence"])
+gateway_router.include_router(attribution_router, prefix="/analytics", tags=["Intelligence"])
+gateway_router.include_router(search_router, prefix="/analytics", tags=["Intelligence"])
 gateway_router.include_router(copilot_router, prefix="/copilot", tags=["Intelligence"])
 
 # 4. CMS (public read, protected write handled within router)

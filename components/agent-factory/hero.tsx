@@ -1,8 +1,8 @@
 'use client'
 
-import { motion } from 'framer-motion';
-import Image from 'next/image';
 import { BookCallDialog } from '@/components/shared/book-call-dialog';
+import { motion } from 'framer-motion';
+import { BarChart3, LineChart, MousePointer2, PieChart, Sparkles } from 'lucide-react';
 
 export function Hero({ content }: { content?: any }) {
   return (
@@ -32,7 +32,7 @@ export function Hero({ content }: { content?: any }) {
           <div className="flex flex-col lg:col-span-7">
 
             {/* Eyebrow */}
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
@@ -46,7 +46,7 @@ export function Hero({ content }: { content?: any }) {
                 className="h-12 sm:h-14 w-auto object-contain object-left"
                 priority
               />
-            </motion.div>
+            </motion.div> */}
 
             {/* Headline */}
             <motion.div
@@ -102,50 +102,23 @@ export function Hero({ content }: { content?: any }) {
             </motion.div>
           </div>
 
-          {/* ── Right: Dark product card ── */}
+          {/* ── Right: Animated Chatbot UI ── */}
           <motion.div
             className="relative flex items-center justify-center lg:justify-end lg:col-span-5"
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.15, ease: 'easeOut' }}
           >
-            <div
-              className="relative w-full max-w-[460px] aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl"
-              style={{ background: 'linear-gradient(135deg, #0d1b3e 0%, #0f1f4a 50%, #1a1040 100%)' }}
-            >
-              {/* Background decorative orbs inside card */}
-              <div
-                className="absolute top-[-20%] left-[-10%] w-[280px] h-[280px] rounded-full opacity-30"
-                style={{ background: 'radial-gradient(circle, #1e3a8a 0%, transparent 70%)' }}
+            {/* New Video Player */}
+            <div className="relative w-full max-w-[600px] aspect-video rounded-2xl overflow-hidden shadow-2xl bg-slate-900 border border-slate-100 flex items-center justify-center">
+              <video 
+                src="/PixVerse_V6_Image_Text_360P_Generate_a_Ai_Chat.mp4" 
+                autoPlay 
+                loop 
+                muted 
+                playsInline 
+                className="w-full h-full object-cover"
               />
-              <div
-                className="absolute bottom-[-15%] right-[-10%] w-[220px] h-[220px] rounded-full opacity-40"
-                style={{ background: 'radial-gradient(circle, #4c1d95 0%, transparent 70%)' }}
-              />
-
-              {/* Card content — centred */}
-              <div className="relative z-10 flex flex-col items-center justify-center h-full gap-5 px-10 text-center">
-
-                {/* Logo row */}
-                <div className="flex items-center gap-3">
-                  <Image
-                    src={content?.logo_url}
-                    alt="Agent Factory"
-                    width={140}
-                    height={40}
-                    className="h-8 w-auto object-contain brightness-0 invert"
-                  />
-                </div>
-
-                {/* CTA line */}
-                <p
-                  className="text-base tracking-wide"
-                  style={{ fontFamily: 'var(--font-inter)' }}
-                >
-                  <span className="text-[#DC2626] font-bold">{content?.book_text_1}</span>
-                  <span className="text-white/80">{content?.book_text_2}</span>
-                </p>
-              </div>
             </div>
           </motion.div>
         </div>

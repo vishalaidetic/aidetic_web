@@ -66,8 +66,7 @@ export function Navigation({ adminEmail: adminEmailProp }: NavigationProps = {})
 
   // Are we inside the admin / dashboard area?
   // NEXT_PUBLIC_ prefix allows client components to read this env var
-  const adminUuid = process.env.NEXT_PUBLIC_ADMIN_ROUTE_UUID
-  const adminBasePath = adminUuid ? `/admin/${adminUuid}` : '/admin'
+  const adminBasePath = '/admin'
   const isInDashboard = pathname.startsWith('/admin')
 
   return (

@@ -293,13 +293,17 @@ export default function CopilotChat() {
     setMessages((prev) => [...prev, { id: assistantId, role: 'assistant', content: '' }])
 
     try {
+      const tokenRes = await fetch('/api/auth/token')
+      const tokenData = await tokenRes.json()
+      const authToken = tokenData.token || ''
+
       const wsBase = process.env.NEXT_PUBLIC_BRAIN_WS_URL ?? 'ws://localhost:8000'
       const ws = new WebSocket(`${wsBase}/api/v1/copilot/ws/query`)
       wsRef.current = ws
 
       ws.onopen = () => {
         const history = messages.map((m) => ({ role: m.role, content: m.content }))
-        ws.send(JSON.stringify({ query: userMsg.content, token: '', history, mode }))
+        ws.send(JSON.stringify({ query: userMsg.content, token: authToken, history, mode }))
       }
 
       ws.onmessage = (event) => {
@@ -344,17 +348,17 @@ export default function CopilotChat() {
   const suggestions = mode === 'READ' ? READ_SUGGESTIONS : ACTION_SUGGESTIONS
 
   return (
-    <div className="flex flex-col h-full bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+    <div className="flex flex-col h-full">
       {/* Header */}
-      <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 bg-[#F5F5F5]/60 shrink-0">
-        <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#DC2626] shadow-md shrink-0">
-            <Bot size={20} className="text-white" />
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shrink-0 mb-6">
+        <div className="flex items-center gap-4">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#DC2626] shadow-md shrink-0">
+            <Bot size={22} className="text-white" />
           </div>
           <div>
-            <h2 className="text-sm font-bold text-[#1B2340] uppercase tracking-wider">AI Data Copilot</h2>
-            <p className="text-xs text-[#6B7280] mt-0.5">
-              {mode === 'READ' ? 'Ask natural language questions about your data.' : '⚡ Action Mode — I can create, update and delete records.'}
+            <h1 className="text-2xl font-bold text-[#1B2340]">AI Copilot</h1>
+            <p className="text-sm text-[#6B7280] mt-0.5">
+              Talk to your data in plain English — powered by the Brain AI engine
             </p>
           </div>
         </div>
@@ -379,6 +383,8 @@ export default function CopilotChat() {
           </button>
         </div>
       </div>
+
+      <div className="flex flex-col flex-1 bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
 
       {/* Chat area */}
       <div className="flex-1 overflow-y-auto p-6 space-y-5">
@@ -481,6 +487,7 @@ export default function CopilotChat() {
             : 'AI can make mistakes. Verify important information.'}
         </p>
       </div>
+    </div>
     </div>
   )
 }

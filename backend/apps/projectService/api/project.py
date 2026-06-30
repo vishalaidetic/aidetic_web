@@ -10,6 +10,7 @@ from apps.authService.schema.auth import UserGet
 from apps.projectService.schema.project import ProjectCreate, ProjectUpdate
 from apps.shared.responses import ProjectGet
 from apps.projectService.service import project as service
+from apps.projectService.model.project import Project
 
 router = APIRouter(prefix="/projects", tags=["Project Management"])
 
@@ -33,7 +34,8 @@ def list_endpoint(
 ):
     try:
         results = service.get_all_projects(session, skip, limit)
-        return custom_response(results, "Projects retrieved successfully", 200)
+        total = session.query(Project).count()
+        return custom_response(results, "Projects retrieved successfully", 200, total=total)
     except Exception as e:
         return custom_response(None, "Failed to retrieve projects", 500, str(e))
 

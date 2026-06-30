@@ -10,6 +10,7 @@ from apps.authService.schema.auth import UserGet
 from apps.projectService.schema.assignment import AssignmentCreate, AssignmentUpdate
 from apps.shared.responses import AssignmentGet
 from apps.projectService.service import assignment as service
+from apps.projectService.model.assignment import EmployeeProjectAssignment
 
 router = APIRouter(prefix="/assignments", tags=["Project Assignments"])
 
@@ -33,7 +34,8 @@ def list_endpoint(
 ):
     try:
         results = service.get_all_assignments(session, skip, limit)
-        return custom_response(results, "Assignments retrieved successfully", 200)
+        total = session.query(EmployeeProjectAssignment).count()
+        return custom_response(results, "Assignments retrieved successfully", 200, total=total)
     except Exception as e:
         return custom_response(None, "Failed to retrieve assignments", 500, str(e))
 

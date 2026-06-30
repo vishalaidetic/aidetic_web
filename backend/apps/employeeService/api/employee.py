@@ -14,6 +14,7 @@ from uuid import UUID
 
 from apps.shared.security import verify_token
 from apps.authService.schema.auth import UserGet
+from apps.employeeService.model.employee import Employee
 
 router = APIRouter(prefix="/employees", tags=["Employees"])
 
@@ -46,7 +47,8 @@ def get_all_endpoint(
 ):
     try:
         results = get_all_employees(session, skip, limit)
-        return custom_response(results, "Employees retrieved successfully", 200)
+        total = session.query(Employee).count()
+        return custom_response(results, "Employees retrieved successfully", 200, total=total)
     except Exception as e:
         return custom_response(None, "Employee retrieval failed", 500, str(e))
 

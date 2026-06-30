@@ -5,6 +5,5 @@
  * Falls back to /admin if UUID is not configured.
  */
 export function getAdminBasePath(): string {
-  const uuid = process.env.NEXT_PUBLIC_ADMIN_ROUTE_UUID
-  return uuid ? `/admin/${uuid}` : '/admin'
+  return '/admin'
 }

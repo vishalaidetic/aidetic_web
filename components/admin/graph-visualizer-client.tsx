@@ -12,6 +12,10 @@ const NODE_COLORS: Record<string, string> = {
   Designation: '#8b5cf6',
   Client:      '#ec4899',
   Vendor:      '#f97316',
+  Invoice:     '#ef4444',
+  Reimbursement: '#06b6d4',
+  ProjectCost: '#704e4e',
+  ProjectRevenue: '#3c1818ff',
 }
 const DEFAULT_NODE_COLOR = '#6366f1'
 
@@ -37,11 +41,17 @@ interface SelectedNode {
 export default function GraphVisualizerClient({ initialData }: Props) {
   const containerRef = useRef<HTMLDivElement>(null)
   const graphRef = useRef<unknown>(null)
+  const [rawGraphData, setRawGraphData] = useState<GraphData>(initialData)
   const [graphData, setGraphData] = useState<GraphData>(initialData)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [selected, setSelected] = useState<SelectedNode | null>(null)
   const [stats, setStats] = useState({ nodes: initialData.nodes.length, links: initialData.links.length })
+  
+  // Extract all unique labels present in the raw data
+  const uniqueLabels = Array.from(new Set(rawGraphData.nodes.map(n => n.label)))
+  // Keep track of which labels are toggled ON
+  const [activeLabels, setActiveLabels] = useState<Set<string>>(new Set(['Department', 'Employee', 'Project']))
   const [ForceGraph, setForceGraph] = useState<React.ComponentType<Record<string, unknown>> | null>(null)
   const [dims, setDims] = useState({ w: 800, h: 600 })
 
@@ -63,14 +73,45 @@ export default function GraphVisualizerClient({ initialData }: Props) {
     return () => ro.disconnect()
   }, [])
 
-  // Pre-process: add degree-based sizing
   const preprocess = useCallback((data: GraphData): GraphData => {
     const nodes = data.nodes.map((n) => {
-      const degree = data.links.filter((l) => l.source === n.id || l.target === n.id).length
+      const degree = data.links.filter((l) => {
+        const sourceId = typeof l.source === 'object' ? (l.source as any).id : l.source
+        const targetId = typeof l.target === 'object' ? (l.target as any).id : l.target
+        return sourceId === n.id || targetId === n.id
+      }).length
       return { ...n, val: Math.max(degree * 1.5, 4) }
     })
-    return { nodes, links: data.links }
+    
+    // ForceGraph mutates link.source and link.target into objects. 
+    // We must clone the links and revert them to strings so ForceGraph reconnects them to the new node objects!
+    const links = data.links.map(l => ({
+      ...l,
+      source: typeof l.source === 'object' ? (l.source as any).id : l.source,
+      target: typeof l.target === 'object' ? (l.target as any).id : l.target
+    }))
+    
+    return { nodes, links }
   }, [])
+
+
+
+  // Process data whenever rawGraphData or activeLabels change
+  useEffect(() => {
+    const filteredNodes = rawGraphData.nodes.filter(n => activeLabels.has(n.label))
+    const filteredNodeIds = new Set(filteredNodes.map(n => n.id))
+    
+    const filteredLinks = rawGraphData.links.filter(l => {
+      // ForceGraph mutates links to replace id strings with objects, so handle both
+      const sourceId = typeof l.source === 'object' ? (l.source as any).id : l.source
+      const targetId = typeof l.target === 'object' ? (l.target as any).id : l.target
+      return filteredNodeIds.has(sourceId) && filteredNodeIds.has(targetId)
+    })
+    
+    const processed = preprocess({ nodes: filteredNodes, links: filteredLinks })
+    setGraphData(processed)
+    setStats({ nodes: processed.nodes.length, links: processed.links.length })
+  }, [rawGraphData, activeLabels, preprocess])
 
   const refresh = async () => {
     setLoading(true)
@@ -79,9 +120,9 @@ export default function GraphVisualizerClient({ initialData }: Props) {
       const res = await fetch('/api/brain/analytics/graph-data')
       if (!res.ok) throw new Error(`HTTP ${res.status}`)
       const json = await res.json()
-      const processed = preprocess(json)
-      setGraphData(processed)
-      setStats({ nodes: processed.nodes.length, links: processed.links.length })
+      // Handle both unwrapped and wrapped responses seamlessly
+      const graphPayload = json.nodes ? json : (json.data && json.data.nodes ? json.data : { nodes: [], links: [] })
+      setRawGraphData(graphPayload)
     } catch (e: unknown) {
       setError(e instanceof Error ? e.message : 'Failed to refresh graph')
     } finally {
@@ -90,8 +131,20 @@ export default function GraphVisualizerClient({ initialData }: Props) {
   }
 
   useEffect(() => {
-    setGraphData(preprocess(initialData))
-  }, [initialData, preprocess])
+    setRawGraphData(initialData)
+  }, [initialData])
+
+  const toggleLabel = (label: string) => {
+    setActiveLabels(prev => {
+      const next = new Set(prev)
+      if (next.has(label)) {
+        next.delete(label)
+      } else {
+        next.add(label)
+      }
+      return next
+    })
+  }
 
   const labelColors = Object.entries(NODE_COLORS)
 
@@ -100,14 +153,29 @@ export default function GraphVisualizerClient({ initialData }: Props) {
       {/* Controls bar */}
       <div className="flex flex-wrap items-center justify-between gap-4 bg-white border border-slate-200 rounded-xl px-5 py-3 shadow-sm">
         <div className="flex items-center gap-4 flex-wrap">
-          {/* Legend */}
+          {/* Filter Toggles */}
           <div className="flex flex-wrap gap-2">
-            {labelColors.map(([label, color]) => (
-              <span key={label} className="flex items-center gap-1.5 text-xs text-[#6B7280] font-medium">
-                <span className="w-3 h-3 rounded-full inline-block shrink-0" style={{ backgroundColor: color }} />
-                {label}
-              </span>
-            ))}
+            {uniqueLabels.map(label => {
+              const isActive = activeLabels.has(label)
+              const color = nodeColor(label)
+              return (
+                <button
+                  key={label}
+                  onClick={() => toggleLabel(label)}
+                  className={`flex items-center gap-1.5 text-xs font-medium px-2.5 py-1.5 rounded-full border transition-all ${
+                    isActive 
+                      ? 'bg-white text-[#1B2340] shadow-sm border-slate-200 hover:bg-slate-50' 
+                      : 'bg-slate-50 text-slate-400 border-transparent hover:bg-slate-100 opacity-60'
+                  }`}
+                >
+                  <span 
+                    className="w-2.5 h-2.5 rounded-full inline-block shrink-0 transition-opacity" 
+                    style={{ backgroundColor: color, opacity: isActive ? 1 : 0.4 }} 
+                  />
+                  {label}
+                </button>
+              )
+            })}
           </div>
         </div>
 
@@ -185,6 +253,10 @@ export default function GraphVisualizerClient({ initialData }: Props) {
               if (l.type === 'WORKS_IN') return '#3b82f655'
               if (l.type === 'BELONGS_TO') return '#10b98155'
               if (l.type === 'ASSIGNED_TO') return '#f59e0b55'
+              if (l.type === 'OWNS') return '#ef444455'
+              if (l.type === 'SPONSORED_BY') return '#ec489955'
+              if (l.type === 'HAS_COST') return '#f9731655'
+              if (l.type === 'BILLED_TO') return '#8b5cf655'
               return '#6b728055'
             }}
             linkWidth={(link: unknown) => (link as GraphLink).type === 'WORKS_IN' ? 2 : 1}

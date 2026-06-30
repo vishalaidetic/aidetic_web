@@ -14,6 +14,7 @@ interface BrainResponse<T> {
   message: string
   status: number
   error?: string
+  total?: number
 }
 
 // ─── Schema Types (mirrored from Python) ──────────────────────────────────────
@@ -174,12 +175,8 @@ export interface ProjectCostCreate {
 
 export interface Client {
   id: string
-  name?: string
-  email?: string
-  contact_person?: string
-  contact_number?: string
-  billing_address?: string
-  status?: string
+  company_name?: string
+  industry?: string
   created_at?: string
 }
 
@@ -194,13 +191,10 @@ export interface ClientCreate {
 
 export interface Invoice {
   id: string
-  client_id: string
+  client_id?: string
   project_id?: string
-  invoice_number?: string
   amount: number
-  status?: string
   due_date?: string
-  issued_date?: string
   created_at?: string
 }
 
@@ -216,10 +210,11 @@ export interface InvoiceCreate {
 
 export interface Revenue {
   id: string
-  project_id: string
-  amount: number
-  revenue_date?: string
-  notes?: string
+  project_id?: string
+  client_id?: string
+  invoice_id?: string
+  revenue_amount: number
+  recognized_date?: string
   created_at?: string
 }
 
@@ -233,12 +228,10 @@ export interface RevenueCreate {
 export interface Reimbursement {
   id: string
   employee_id: string
-  amount: number
-  category?: string
-  description?: string
+  expense_id: string
+  claim_amount: number
   status?: string
-  submitted_date?: string
-  approved_date?: string
+  description?: string
   created_at?: string
 }
 
@@ -293,7 +286,7 @@ async function brainFetch<T>(
 // ─── Employees ────────────────────────────────────────────────────────────────
 
 export const employeeApi = {
-  list: (token?: string) => brainFetch<Employee[]>('/employees/', 'GET', undefined, token),
+  list: (skip = 0, limit = 100, token?: string) => brainFetch<Employee[]>(`/employees/?skip=${skip}&limit=${limit}`, 'GET', undefined, token),
   get: (id: string, token?: string) => brainFetch<Employee>(`/employees/${id}`, 'GET', undefined, token),
   create: (data: EmployeeCreate, token?: string) => brainFetch<Employee>('/employees/', 'POST', data, token),
   update: (id: string, data: Partial<EmployeeCreate>, token?: string) => brainFetch<Employee>(`/employees/${id}`, 'PATCH', data, token),
@@ -303,7 +296,7 @@ export const employeeApi = {
 // ─── Departments ──────────────────────────────────────────────────────────────
 
 export const departmentApi = {
-  list: (token?: string) => brainFetch<Department[]>('/departments/', 'GET', undefined, token),
+  list: (skip = 0, limit = 100, token?: string) => brainFetch<Department[]>(`/departments/?skip=${skip}&limit=${limit}`, 'GET', undefined, token),
   get: (id: string, token?: string) => brainFetch<Department>(`/departments/${id}`, 'GET', undefined, token),
   create: (data: DepartmentCreate, token?: string) => brainFetch<Department>('/departments/', 'POST', data, token),
   update: (id: string, data: Partial<DepartmentCreate>, token?: string) => brainFetch<Department>(`/departments/${id}`, 'PATCH', data, token),
@@ -313,7 +306,7 @@ export const departmentApi = {
 // ─── Designations ─────────────────────────────────────────────────────────────
 
 export const designationApi = {
-  list: (token?: string) => brainFetch<Designation[]>('/designations/', 'GET', undefined, token),
+  list: (skip = 0, limit = 100, token?: string) => brainFetch<Designation[]>(`/designations/?skip=${skip}&limit=${limit}`, 'GET', undefined, token),
   get: (id: string, token?: string) => brainFetch<Designation>(`/designations/${id}`, 'GET', undefined, token),
   create: (data: DesignationCreate, token?: string) => brainFetch<Designation>('/designations/', 'POST', data, token),
   update: (id: string, data: Partial<DesignationCreate>, token?: string) => brainFetch<Designation>(`/designations/${id}`, 'PATCH', data, token),
@@ -323,7 +316,7 @@ export const designationApi = {
 // ─── Software Tools ───────────────────────────────────────────────────────────
 
 export const softwareToolApi = {
-  list: (token?: string) => brainFetch<SoftwareTool[]>('/software-tools/', 'GET', undefined, token),
+  list: (skip = 0, limit = 100, token?: string) => brainFetch<SoftwareTool[]>(`/software-tools/?skip=${skip}&limit=${limit}`, 'GET', undefined, token),
   get: (id: string, token?: string) => brainFetch<SoftwareTool>(`/software-tools/${id}`, 'GET', undefined, token),
   create: (data: SoftwareToolCreate, token?: string) => brainFetch<SoftwareTool>('/software-tools/', 'POST', data, token),
   update: (id: string, data: Partial<SoftwareToolCreate>, token?: string) => brainFetch<SoftwareTool>(`/software-tools/${id}`, 'PATCH', data, token),
@@ -333,7 +326,7 @@ export const softwareToolApi = {
 // ─── Projects ─────────────────────────────────────────────────────────────────
 
 export const projectApi = {
-  list: (token?: string) => brainFetch<Project[]>('/projects/', 'GET', undefined, token),
+  list: (skip = 0, limit = 100, token?: string) => brainFetch<Project[]>(`/projects/?skip=${skip}&limit=${limit}`, 'GET', undefined, token),
   get: (id: string, token?: string) => brainFetch<Project>(`/projects/${id}`, 'GET', undefined, token),
   create: (data: ProjectCreate, token?: string) => brainFetch<Project>('/projects/', 'POST', data, token),
   update: (id: string, data: Partial<ProjectCreate>, token?: string) => brainFetch<Project>(`/projects/${id}`, 'PATCH', data, token),
@@ -343,7 +336,7 @@ export const projectApi = {
 // ─── Assignments ──────────────────────────────────────────────────────────────
 
 export const assignmentApi = {
-  list: (token?: string) => brainFetch<Assignment[]>('/assignments/', 'GET', undefined, token),
+  list: (skip = 0, limit = 100, token?: string) => brainFetch<Assignment[]>(`/assignments/?skip=${skip}&limit=${limit}`, 'GET', undefined, token),
   get: (id: string, token?: string) => brainFetch<Assignment>(`/assignments/${id}`, 'GET', undefined, token),
   byEmployee: (empId: string, token?: string) => brainFetch<Assignment[]>(`/assignments/employee/${empId}`, 'GET', undefined, token),
   create: (data: AssignmentCreate, token?: string) => brainFetch<Assignment>('/assignments/', 'POST', data, token),
@@ -354,7 +347,7 @@ export const assignmentApi = {
 // ─── Vendors ──────────────────────────────────────────────────────────────────
 
 export const vendorApi = {
-  list: (token?: string) => brainFetch<Vendor[]>('/vendors/', 'GET', undefined, token),
+  list: (skip = 0, limit = 100, token?: string) => brainFetch<Vendor[]>(`/vendors/?skip=${skip}&limit=${limit}`, 'GET', undefined, token),
   get: (id: string, token?: string) => brainFetch<Vendor>(`/vendors/${id}`, 'GET', undefined, token),
   create: (data: VendorCreate, token?: string) => brainFetch<Vendor>('/vendors/', 'POST', data, token),
   update: (id: string, data: Partial<VendorCreate>, token?: string) => brainFetch<Vendor>(`/vendors/${id}`, 'PATCH', data, token),
@@ -364,7 +357,7 @@ export const vendorApi = {
 // ─── Costs ────────────────────────────────────────────────────────────────────
 
 export const costApi = {
-  list: (token?: string) => brainFetch<ProjectCost[]>('/costs/', 'GET', undefined, token),
+  list: (skip = 0, limit = 100, token?: string) => brainFetch<ProjectCost[]>(`/costs/?skip=${skip}&limit=${limit}`, 'GET', undefined, token),
   create: (data: ProjectCostCreate, token?: string) => brainFetch<ProjectCost>('/costs/', 'POST', data, token),
   delete: (id: string, token?: string) => brainFetch<null>(`/costs/${id}`, 'DELETE', undefined, token),
 }
@@ -372,7 +365,7 @@ export const costApi = {
 // ─── Clients ──────────────────────────────────────────────────────────────────
 
 export const clientApi = {
-  list: (token?: string) => brainFetch<Client[]>('/clients/', 'GET', undefined, token),
+  list: (skip = 0, limit = 100, token?: string) => brainFetch<Client[]>(`/clients/?skip=${skip}&limit=${limit}`, 'GET', undefined, token),
   get: (id: string, token?: string) => brainFetch<Client>(`/clients/${id}`, 'GET', undefined, token),
   create: (data: ClientCreate, token?: string) => brainFetch<Client>('/clients/', 'POST', data, token),
   update: (id: string, data: Partial<ClientCreate>, token?: string) => brainFetch<Client>(`/clients/${id}`, 'PATCH', data, token),
@@ -382,7 +375,7 @@ export const clientApi = {
 // ─── Invoices ─────────────────────────────────────────────────────────────────
 
 export const invoiceApi = {
-  list: (token?: string) => brainFetch<Invoice[]>('/invoices/', 'GET', undefined, token),
+  list: (skip = 0, limit = 100, token?: string) => brainFetch<Invoice[]>(`/invoices/?skip=${skip}&limit=${limit}`, 'GET', undefined, token),
   create: (data: InvoiceCreate, token?: string) => brainFetch<Invoice>('/invoices/', 'POST', data, token),
   delete: (id: string, token?: string) => brainFetch<null>(`/invoices/${id}`, 'DELETE', undefined, token),
 }
@@ -390,7 +383,7 @@ export const invoiceApi = {
 // ─── Revenues ─────────────────────────────────────────────────────────────────
 
 export const revenueApi = {
-  list: (token?: string) => brainFetch<Revenue[]>('/revenues/', 'GET', undefined, token),
+  list: (skip = 0, limit = 100, token?: string) => brainFetch<Revenue[]>(`/revenues/?skip=${skip}&limit=${limit}`, 'GET', undefined, token),
   create: (data: RevenueCreate, token?: string) => brainFetch<Revenue>('/revenues/', 'POST', data, token),
   delete: (id: string, token?: string) => brainFetch<null>(`/revenues/${id}`, 'DELETE', undefined, token),
 }
@@ -398,7 +391,7 @@ export const revenueApi = {
 // ─── Reimbursements ───────────────────────────────────────────────────────────
 
 export const reimbursementApi = {
-  list: (token?: string) => brainFetch<Reimbursement[]>('/reimbursements/', 'GET', undefined, token),
+  list: (skip = 0, limit = 100, token?: string) => brainFetch<Reimbursement[]>(`/reimbursements/?skip=${skip}&limit=${limit}`, 'GET', undefined, token),
   get: (id: string, token?: string) => brainFetch<Reimbursement>(`/reimbursements/${id}`, 'GET', undefined, token),
   byEmployee: (empId: string, token?: string) => brainFetch<Reimbursement[]>(`/reimbursements/employee/${empId}`, 'GET', undefined, token),
   create: (data: ReimbursementCreate, token?: string) => brainFetch<Reimbursement>('/reimbursements/', 'POST', data, token),
@@ -432,6 +425,20 @@ export const graphApi = {
 }
 
 // ─── Analytics / Rules ───────────────────────────────────────────────────────
+
+export interface AttributionGet {
+  id: string
+  employee_id: string
+  project_id: string
+  attributed_revenue: number
+  roi_percentage: number
+  utilization_percentage: number
+  calculated_at: string
+}
+
+export const attributionApi = {
+  list: (skip = 0, limit = 100, token?: string) => brainFetch<AttributionGet[]>(`/analytics/attribution/?skip=${skip}&limit=${limit}`, 'GET', undefined, token),
+}
 
 export interface BusinessRule {
   rule_id: string

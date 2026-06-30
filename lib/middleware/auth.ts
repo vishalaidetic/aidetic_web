@@ -1,15 +1,9 @@
 import { NextRequest } from 'next/server'
 import { UnauthorizedError } from '@/lib/types/api'
+import { ADMIN_SESSION_COOKIE } from '@/lib/auth/session'
 
 /**
- * Admin authentication token from environment
- * In production, use proper JWT or session management
- */
-const ADMIN_TOKEN = process.env.NEXT_PUBLIC_ADMIN_TOKEN || 'admin-token-secret'
-
-
-/**
- * Verify admin authentication from request headers
+ * Verify admin authentication from request cookies
  * Returns null if authenticated, ApiError if not
  */
 export function verifyAdminAuth(request: NextRequest): UnauthorizedError | null {
@@ -18,29 +12,23 @@ export function verifyAdminAuth(request: NextRequest): UnauthorizedError | null 
     return null
   }
 
-  // For protected methods (POST, PATCH, DELETE), verify token
-  const authHeader = request.headers.get('authorization')
+  // For protected methods, verify that the backend session cookie exists
+  const token = request.cookies.get(ADMIN_SESSION_COOKIE)?.value
 
-  if (!authHeader) {
-    return new UnauthorizedError('Missing authorization header')
-  }
-
-  const token = authHeader.replace('Bearer ', '')
-
-  if (token !== ADMIN_TOKEN) {
-    return new UnauthorizedError('Invalid admin token')
+  if (!token) {
+    return new UnauthorizedError('Missing authentication token')
   }
 
   return null
 }
 
 /**
- * Type-safe admin token header for client requests
+ * Type-safe headers for client requests.
+ * Since we now use HTTP-only cookies for authentication, we don't need to pass a Bearer token here.
  */
 export function getAdminHeaders(): HeadersInit {
   return {
     'Content-Type': 'application/json',
-    Authorization: `Bearer ${ADMIN_TOKEN}`,
   }
 }
 

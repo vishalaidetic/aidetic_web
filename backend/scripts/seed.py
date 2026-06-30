@@ -33,6 +33,7 @@ from apps.financeService.model.client         import Client
 from apps.financeService.model.invoice        import Invoice
 from apps.financeService.model.revenue        import ProjectRevenue
 from apps.financeService.model.reimbursement  import Reimbursement
+from apps.analyticsService.model.attribution  import EmployeeRevenueAttribution
 
 
 # ── Helpers ──────────────────────────────────────────────────────────────────
@@ -248,6 +249,18 @@ def seed(db: Session):
         (emp_fin,  "3000.00", "rejected", "Duplicate claim - travel expense",    u_fin.id),
     ]:
         db.add(Reimbursement(id=uid(), employee_id=emp.id, expense_id=uid(), claim_amount=Decimal(amount), status=status, description=desc, created_by=created_by))
+    db.flush()
+
+    # ── 14. EMPLOYEE REVENUE ATTRIBUTION ──────────────────────────────────────
+    print("  [14/14] Employee Revenue Attribution...")
+    for emp, proj, attr_rev, roi, util, calc_at in [
+        (emp_dev1, proj_alpha, "45000.00", "12.50", "80.00", datetime.utcnow()),
+        (emp_dev2, proj_alpha, "35000.00", "9.20", "60.00", datetime.utcnow()),
+        (emp_dev1, proj_beta, "15000.00", "5.10", "20.00", datetime.utcnow()),
+        (emp_dev2, proj_beta, "28000.00", "8.70", "40.00", datetime.utcnow()),
+        (emp_pm, proj_gamma, "40000.00", "15.00", "50.00", datetime.utcnow()),
+    ]:
+        db.add(EmployeeRevenueAttribution(id=uid(), employee_id=emp.id, project_id=proj.id, attributed_revenue=Decimal(attr_rev), roi_percentage=Decimal(roi), utilization_percentage=Decimal(util), calculated_at=calc_at))
     db.flush()
 
     db.commit()
