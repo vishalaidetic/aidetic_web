@@ -22,6 +22,7 @@ from apps.financeService.model.reimbursement import Reimbursement
 from apps.analyticsService.model.business_rule import BusinessRule
 from apps.analyticsService.model.attribution import EmployeeRevenueAttribution
 from apps.analyticsService.model.audit import AuditLog, UserAccess
+from apps.cmsService.model.cms import Blog, CaseStudy, MeetingRequest
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config

@@ -1,25 +1,58 @@
 'use client'
 
-import { useState, useTransition } from 'react'
-import { adminLoginAction } from '@/app/admin/actions'
+import { useState } from 'react'
 import { Eye, EyeOff, Lock, Mail, ShieldCheck } from 'lucide-react'
+
 
 export default function AdminLoginPage() {
   const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [isPending, startTransition] = useTransition()
+  const [isPending, setIsPending] = useState(false)
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setError(null)
+    setIsPending(true)
     const formData = new FormData(e.currentTarget)
+    
+    // Extracted block below
 
-    startTransition(async () => {
-      const result = await adminLoginAction(formData)
-      if (result?.error) {
-        setError(result.error)
+
+    try {
+      const email = formData.get('email')
+      const password = formData.get('password')
+      
+      // Directly hit the Next.js API proxy which forwards to the FastAPI backend
+      const res = await fetch('/api/brain/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+
+      })
+      
+      const data = await res.json()
+      
+      if (!res.ok || (data.status_code && data.status_code !== 200)) {
+        setError(data.message || data.error || 'Invalid email or password.')
+        return
       }
-    })
+      
+      const token = data.data?.session_token || data.data?.token || data.token
+      if (token) {
+        // Set the token as a cookie that the Next.js layout and API proxy can read
+        document.cookie = `x_token=${token}; path=/; max-age=28800; samesite=lax`
+        document.cookie = `admin_hint=${email}; path=/; max-age=28800; samesite=lax`
+        
+        // Force hard navigation to clear any stale client-side cache
+        window.location.href = '/admin'
+      } else {
+        setError('Login successful but no token received.')
+      }
+    } catch (err) {
+      setError('A network error occurred. Please try again.')
+    } finally {
+      setIsPending(false)
+    }
   }
 
   return (

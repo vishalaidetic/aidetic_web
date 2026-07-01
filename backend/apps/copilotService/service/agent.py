@@ -533,26 +533,41 @@ Rules:
 
 
 class UniversalLLMClient:
-    """A scalable, dependency-free wrapper for OpenAI-compatible LLM endpoints."""
-    def __init__(self):
-        self.provider = "huggingface"
-        self.api_key = os.getenv("HUGGINGFACE_API_KEY")
-        self.model_id = os.getenv("LLM_MODEL", "meta-llama/Meta-Llama-3-8B-Instruct")
-        self.base_url = "https://api-inference.huggingface.co/models/"
+    """
+    Scalable, dependency-free LLM wrapper.
 
-        # Fallback to Gemini if provided
-        if os.getenv("GEMINI_KEY"):
+    Provider is selected via LLM_PROVIDER env var (explicit) or auto-detected
+    from which API key is present.
+
+    LLM_PROVIDER options: huggingface | gemini | openai | deepseek
+    """
+    def __init__(self, provider_override: str = None):
+        provider = (provider_override or os.getenv("LLM_PROVIDER", "")).lower()
+
+        if provider == "gemini" or (not provider and os.getenv("GEMINI_KEY")):
             self.provider = "gemini"
-            self.api_key = os.getenv("GEMINI_KEY")
+            self.api_key  = os.getenv("GEMINI_KEY")
             self.model_id = os.getenv("GEMINI_LLM_MODEL", "gemini-1.5-flash")
             self.base_url = "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions"
-        
-        # Fallback to OpenAI if provided
-        elif os.getenv("OPENAI_API_KEY"):
+
+        elif provider == "openai" or (not provider and os.getenv("OPENAI_API_KEY")):
             self.provider = "openai"
-            self.api_key = os.getenv("OPENAI_API_KEY")
+            self.api_key  = os.getenv("OPENAI_API_KEY")
             self.model_id = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
             self.base_url = "https://api.openai.com/v1/chat/completions"
+
+        elif provider == "deepseek" or (not provider and os.getenv("DEEPSEEK_API_KEY")):
+            self.provider = "deepseek"
+            self.api_key  = os.getenv("DEEPSEEK_API_KEY")
+            self.model_id = os.getenv("DEEPSEEK_MODEL", "deepseek-chat")
+            self.base_url = "https://api.deepseek.com"
+
+        else:  # huggingface (default)
+            self.provider = "huggingface"
+            self.api_key  = os.getenv("HUGGINGFACE_API_KEY")
+            self.model_id = os.getenv("LLM_MODEL", "meta-llama/Meta-Llama-3-8B-Instruct")
+            self.base_url = "https://api-inference.huggingface.co/models/"
+
 
     class _ResponseChoice:
         def __init__(self, content, is_stream=False):
@@ -569,8 +584,41 @@ class UniversalLLMClient:
             self.choices = [UniversalLLMClient._ResponseChoice(content, is_stream)]
 
     def chat_completion(self, messages, model=None, max_tokens=512, temperature=0.1, stream=False):
-        import httpx
         model_to_use = model or self.model_id
+
+        if self.provider == "deepseek":
+            # We use ChatOpenAI pointing to DeepSeek's endpoint because the langchain-deepseek
+            # package has a strict version conflict with the current langchain-core installation.
+            # DeepSeek's API is 100% OpenAI compatible, so this works identically.
+            from langchain_openai import ChatOpenAI
+            
+            lc_messages = []
+            for msg in messages:
+                role = msg.get("role", "user")
+                if role == "user": role = "human"
+                elif role == "assistant": role = "ai"
+                lc_messages.append((role, msg.get("content", "")))
+                
+            llm = ChatOpenAI(
+                api_key=self.api_key,
+                base_url="https://api.deepseek.com/v1",
+                model=model_to_use,
+                temperature=temperature,
+                max_tokens=max_tokens,
+                max_retries=2,
+            )
+            
+            if not stream:
+                ai_msg = llm.invoke(lc_messages)
+                return self._ChatResponse(ai_msg.content, is_stream=False)
+            else:
+                def stream_generator():
+                    for chunk in llm.stream(lc_messages):
+                        if chunk.content:
+                            yield self._ChatResponse(chunk.content, is_stream=True)
+                return stream_generator()
+
+        import httpx
         
         headers = {
             "Content-Type": "application/json",

@@ -69,10 +69,7 @@ export function BlogForm({ initialData, isEditing = false }: BlogFormProps) {
     return !BLOG_TAG_TYPES.includes(initialData.tag_type as any)
   })
 
-  const fileInputRef = useRef<HTMLInputElement>(null)
-  const [imagePreview, setImagePreview] = useState<string>(initialData?.featured_image ?? '')
-  const [isUploading, setIsUploading] = useState(false)
-  const [uploadError, setUploadError] = useState<string | null>(null)
+
 
   // ── JSON import / export ──────────────────────────────────────
   const [jsonModal, setJsonModal] = useState<'closed' | 'import' | 'export'>('closed')
@@ -120,6 +117,7 @@ export function BlogForm({ initialData, isEditing = false }: BlogFormProps) {
   })
 
   const content = watch('content')
+  const featuredImage = watch('featured_image')
 
   const handleJsonImport = () => {
     setJsonError(null)
@@ -131,7 +129,6 @@ export function BlogForm({ initialData, isEditing = false }: BlogFormProps) {
       return
     }
     reset(parsed)
-    if (parsed.featured_image) setImagePreview(parsed.featured_image)
     if (parsed.tag_type && !BLOG_TAG_TYPES.includes(parsed.tag_type as any)) setIsCustomCategory(true)
     setJsonModal('closed')
     setJsonText('')
@@ -141,42 +138,7 @@ export function BlogForm({ initialData, isEditing = false }: BlogFormProps) {
     if (!isEditing) setValue('slug', generateSlug(value))
   }
 
-  const handleFileSelect = async (file: File) => {
-    if (!file) return
-    setUploadError(null)
-    setIsUploading(true)
-    setImagePreview(URL.createObjectURL(file))
-    try {
-      const fd = new FormData()
-      fd.append('file', file)
-      const res = await fetch('/api/upload/blog-image', { method: 'POST', body: fd })
-      const json = await res.json()
-      if (!json.success) {
-        setUploadError(json.error ?? 'Upload failed')
-        setImagePreview(initialData?.featured_image ?? '')
-        return
-      }
-      setImagePreview(json.url)
-      setValue('featured_image', json.url, { shouldValidate: true })
-    } catch {
-      setUploadError('Upload failed — please try again')
-      setImagePreview(initialData?.featured_image ?? '')
-    } finally {
-      setIsUploading(false)
-    }
-  }
 
-  const handleDropZoneClick = () => fileInputRef.current?.click()
-  const handleFileDrop = (e: React.DragEvent) => {
-    e.preventDefault()
-    const file = e.dataTransfer.files[0]
-    if (file) handleFileSelect(file)
-  }
-  const clearImage = () => {
-    setImagePreview('')
-    setValue('featured_image', '', { shouldValidate: true })
-    if (fileInputRef.current) fileInputRef.current.value = ''
-  }
 
   const onSubmit = async (data: BlogFormInput) => {
     try {
@@ -231,9 +193,9 @@ export function BlogForm({ initialData, isEditing = false }: BlogFormProps) {
           </div>
         </div>
         <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6 lg:p-10">
-          {imagePreview && (
+          {featuredImage && (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={imagePreview} alt="Featured image" className="w-full max-h-96 object-cover rounded-xl mb-8" />
+            <img src={featuredImage} alt="Featured image" className="w-full max-h-96 object-cover rounded-xl mb-8" />
           )}
           {content ? (
             <div className="prose dark:prose-invert max-w-none">
@@ -249,7 +211,7 @@ export function BlogForm({ initialData, isEditing = false }: BlogFormProps) {
           <div className="flex gap-4 pt-2">
             <Button
               type="submit"
-              disabled={isLoading || isUploading}
+              disabled={isLoading}
               className="bg-black hover:bg-[#DC2626] text-white border-none shadow-sm"
             >
               {isLoading ? (
@@ -260,7 +222,7 @@ export function BlogForm({ initialData, isEditing = false }: BlogFormProps) {
               type="button"
               variant="outline"
               onClick={() => setShowPreview(false)}
-              disabled={isLoading || isUploading}
+              disabled={isLoading}
               className="border-black text-black hover:text-white hover:bg-black"
             >
               Back to Edit
@@ -425,82 +387,14 @@ export function BlogForm({ initialData, isEditing = false }: BlogFormProps) {
 
               {/* Image + Category stack */}
               <div className="space-y-5">
-                {/* Featured Image */}
-                <CollapsibleCard title="Featured Image" defaultOpen={false}>
-                  <Label className="flex items-center gap-1.5 text-sm font-semibold text-[#1B2340]">
-                    <ImageIcon size={14} />
-                    Featured Image <span className="text-[#DC2626]">*</span>
-                  </Label>
-                  {uploadError && (
-                    <Alert variant="destructive" className="py-2">
-                      <AlertTriangle className="h-4 w-4" />
-                      <AlertDescription>{uploadError}</AlertDescription>
-                    </Alert>
-                  )}
-                  {imagePreview ? (
-                    <Card className="overflow-hidden">
-                      <div className="relative group cursor-pointer" onClick={handleDropZoneClick}>
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={imagePreview} alt="Featured image preview" className="w-full max-h-52 object-cover" />
-                        {isUploading && (
-                          <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                            <Loader2 className="h-8 w-8 text-white animate-spin" />
-                            <span className="ml-2 text-white text-sm font-medium">Uploading…</span>
-                          </div>
-                        )}
-                        {!isUploading && (
-                          <button
-                            type="button"
-                            onClick={(e) => { e.stopPropagation(); clearImage() }}
-                            className="absolute top-2 right-2 bg-black/60 hover:bg-black/80 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
-                            aria-label="Remove image"
-                          >
-                            <X size={16} />
-                          </button>
-                        )}
-                      </div>
-                    </Card>
-                  ) : (
-                    <div
-                      role="button"
-                      tabIndex={0}
-                      onClick={handleDropZoneClick}
-                      onKeyDown={(e) => e.key === 'Enter' && handleDropZoneClick()}
-                      onDragOver={(e) => e.preventDefault()}
-                      onDrop={handleFileDrop}
-                      className="border-2 border-dashed border-slate-200 rounded-xl p-8 text-center cursor-pointer hover:border-[#DC2626]/50 hover:bg-[#DC2626]/5 transition-colors"
-                    >
-                      {isUploading ? (
-                        <div className="flex flex-col items-center gap-2">
-                          <Loader2 className="h-8 w-8 text-muted-foreground animate-spin" />
-                          <p className="text-sm text-muted-foreground">Uploading…</p>
-                        </div>
-                      ) : (
-                        <div className="flex flex-col items-center gap-2">
-                          <div className="w-12 h-12 rounded-full bg-[#1B2340]/5 flex items-center justify-center">
-                            <Upload className="h-6 w-6 text-[#1B2340]/40" />
-                          </div>
-                          <p className="text-sm font-medium text-[#1B2340]">Click to upload or drag &amp; drop</p>
-                          <p className="text-xs text-[#9CA3AF]">JPG, PNG, WebP, GIF, SVG — max 5 MB</p>
-                        </div>
-                      )}
-                    </div>
-                  )}
-                  <input
-                    ref={fileInputRef}
-                    type="file"
-                    accept="image/jpeg,image/png,image/webp,image/gif,image/svg+xml"
-                    className="hidden"
-                    onChange={(e) => {
-                      const file = e.target.files?.[0]
-                      if (file) handleFileSelect(file)
-                    }}
-                  />
-                  <input type="hidden" {...register('featured_image')} />
+                {/* Featured Image URL */}
+                <div className="space-y-2">
+                  <Label htmlFor="featured_image" className="text-sm font-semibold text-[#1B2340]">Featured Image URL</Label>
+                  <Input id="featured_image" placeholder="https://..." {...register('featured_image')} className={inputCls(!!errors.featured_image)} />
                   {errors.featured_image && (
                     <p className="text-sm text-[#DC2626]">{errors.featured_image.message}</p>
                   )}
-                </CollapsibleCard>
+                </div>
 
                 {/* Category + Toggles */}
                 <CollapsibleCard title="Category & Settings" defaultOpen={false}>
@@ -612,7 +506,7 @@ export function BlogForm({ initialData, isEditing = false }: BlogFormProps) {
           ) : (
             <button
               type="submit"
-              disabled={isLoading || isUploading}
+              disabled={isLoading}
               className="flex items-center gap-2 px-5 py-2 rounded-lg bg-[#DC2626] text-white text-sm font-semibold hover:bg-black disabled:opacity-60 transition-all shadow-sm"
             >
               {isLoading ? <Loader2 size={15} className="animate-spin" /> : <Save size={15} />}

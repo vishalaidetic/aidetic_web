@@ -15,8 +15,8 @@ import { generateSlug } from '@/lib/utils/formatting'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { AlertTriangle, BookMarked, Building2, CheckCircle2, Code2, Copy, Download, FileText, Loader2, Plus, Save, Target, Trash2, Upload, User, X } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import { useRef, useState } from 'react'
-import { Controller, useFieldArray, useForm } from 'react-hook-form'
+import { useRef, useState, useEffect } from 'react'
+import { Controller, useFieldArray, useForm, FieldErrors } from 'react-hook-form'
 import type { z } from 'zod'
 
 const INDUSTRY_TYPES = ['E-commerce', 'SaaS', 'Healthcare', 'Finance', 'Education', 'Manufacturing', 'Other'] as const
@@ -62,14 +62,7 @@ export function CaseStudyForm({ initialData, isEditing = false }: Props) {
   const [isCustomCategory, setIsCustomCategory] = useState(() =>
     initialData?.tag_type ? !CATEGORY_TYPES.includes(initialData.tag_type as any) : false
   )
-  const fileInputRef = useRef<HTMLInputElement>(null)
-  const logoInputRef = useRef<HTMLInputElement>(null)
-  const [imagePreview, setImagePreview] = useState(initialData?.featured_image ?? '')
-  const [logoPreview, setLogoPreview] = useState(initialData?.company_logo ?? '')
-  const [isUploading, setIsUploading] = useState(false)
-  const [isLogoUploading, setIsLogoUploading] = useState(false)
-  const [uploadError, setUploadError] = useState<string | null>(null)
-  const [logoUploadError, setLogoUploadError] = useState<string | null>(null)
+
 
   // ── JSON import / export ──────────────────────────────────────
   const [jsonModal, setJsonModal] = useState<'closed' | 'import' | 'export'>('closed')
@@ -135,8 +128,7 @@ export function CaseStudyForm({ initialData, isEditing = false }: Props) {
     replaceResultItems(results?.items ?? [])
     replaceMetrics(metrics ?? [])
     // Sync previews
-    if (rest.company_logo) setLogoPreview(rest.company_logo)
-    if (rest.featured_image) setImagePreview(rest.featured_image)
+
     setJsonModal('closed')
     setJsonText('')
   }
@@ -209,37 +201,7 @@ export function CaseStudyForm({ initialData, isEditing = false }: Props) {
 
   const handleTitleChange = (v: string) => { if (!isEditing) setValue('slug', generateSlug(v)) }
 
-  const handleFileSelect = async (file: File) => {
-    if (!file) return
-    setUploadError(null); setIsUploading(true)
-    setImagePreview(URL.createObjectURL(file))
-    try {
-      const fd = new FormData(); fd.append('file', file)
-      const res = await fetch('/api/upload/blog-image', { method: 'POST', body: fd })
-      const json = await res.json()
-      if (!json.success) { setUploadError(json.error ?? 'Upload failed'); setImagePreview(initialData?.featured_image ?? ''); return }
-      setImagePreview(json.url); setValue('featured_image', json.url, { shouldValidate: true })
-    } catch { setUploadError('Upload failed'); setImagePreview(initialData?.featured_image ?? '') }
-    finally { setIsUploading(false) }
-  }
 
-  const handleLogoSelect = async (file: File) => {
-    if (!file) return
-    setLogoUploadError(null); setIsLogoUploading(true)
-    setLogoPreview(URL.createObjectURL(file))
-    try {
-      const fd = new FormData(); fd.append('file', file)
-      const res = await fetch('/api/upload/blog-image', { method: 'POST', body: fd })
-      const json = await res.json()
-      if (!json.success) { setLogoUploadError(json.error ?? 'Upload failed'); setLogoPreview(initialData?.company_logo ?? ''); return }
-      setLogoPreview(json.url); setValue('company_logo', json.url, { shouldValidate: true })
-    } catch { setLogoUploadError('Upload failed'); setLogoPreview(initialData?.company_logo ?? '') }
-    finally { setIsLogoUploading(false) }
-  }
-
-  const handleDropZoneClick = () => fileInputRef.current?.click()
-  const clearImage = () => { setImagePreview(''); setValue('featured_image', '', { shouldValidate: true }); if (fileInputRef.current) fileInputRef.current.value = '' }
-  const clearLogo = () => { setLogoPreview(''); setValue('company_logo', '', { shouldValidate: true }); if (logoInputRef.current) logoInputRef.current.value = '' }
 
   const onSubmit = async (data: CSInput) => {
     try {
@@ -251,6 +213,20 @@ export function CaseStudyForm({ initialData, isEditing = false }: Props) {
       router.push(getAdminBasePath()); router.refresh()
     } catch { setError('An error occurred while saving') }
     finally { setIsLoading(false) }
+  }
+
+  const onError = (formErrors: FieldErrors<CSInput>) => {
+    const errorMessages = Object.entries(formErrors).map(([key, err]) => {
+      let fieldName = key
+      if (key === 'title') fieldName = 'Case Study Title'
+      if (key === 'company_name') fieldName = 'Company Name'
+      if (key === 'author') fieldName = 'Author Name'
+      if (key === 'slug') fieldName = 'Slug'
+      
+      const msg = err?.message as string | undefined
+      return `${fieldName} (${msg || 'Invalid'})`
+    })
+    setError(`Please fix validation errors: ${errorMessages.join(', ')}`)
   }
 
   const { title: sTitle, subtitle: sSubtitle, icon: SIcon } = meta[active]
@@ -276,11 +252,11 @@ export function CaseStudyForm({ initialData, isEditing = false }: Props) {
         <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
           <CaseStudyLayout study={study} isPreview={true} />
         </div>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit, onError)}>
           <div className="flex gap-4 pt-2">
             <Button
               type="submit"
-              disabled={isLoading || isUploading || isLogoUploading}
+              disabled={isLoading}
               className="bg-black hover:bg-[#DC2626] text-white border-none shadow-sm"
             >
               {isLoading ? (
@@ -291,7 +267,7 @@ export function CaseStudyForm({ initialData, isEditing = false }: Props) {
               type="button"
               variant="outline"
               onClick={() => setShowPreview(false)}
-              disabled={isLoading || isUploading || isLogoUploading}
+              disabled={isLoading}
               className="border-black text-black hover:text-white hover:bg-black"
             >
               Back to Edit
@@ -303,7 +279,7 @@ export function CaseStudyForm({ initialData, isEditing = false }: Props) {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="w-full h-full flex -m-6 sm:-m-8 lg:-m-10">
+    <form onSubmit={handleSubmit(onSubmit, onError)} className="w-full h-full flex -m-6 sm:-m-8 lg:-m-10">
       {/* Secondary Sidebar */}
       <aside className="w-56 shrink-0 bg-slate-50/60 border-r border-slate-200 flex flex-col h-screen sticky top-0 overflow-y-auto">
         <div className="p-4 border-b border-slate-200">
@@ -436,31 +412,12 @@ export function CaseStudyForm({ initialData, isEditing = false }: Props) {
                 </div>
               </CollapsibleCard>
 
-              {/* Company Logo Upload */}
-              <CollapsibleCard title="Company Logo" subtitle="Upload a transparent PNG or SVG for best results." defaultOpen={false}>
-                {logoUploadError && <Alert variant="destructive" className="py-2"><AlertTriangle className="h-4 w-4" /><AlertDescription>{logoUploadError}</AlertDescription></Alert>}
-                {logoPreview ? (
-                  <div className="relative inline-flex items-center justify-center border border-slate-200 rounded-xl p-4 bg-slate-50 group">
-                    <img src={logoPreview} alt="company logo" className="h-16 max-w-[200px] object-contain" />
-                    {isLogoUploading && <div className="absolute inset-0 bg-white/80 flex items-center justify-center rounded-xl"><Loader2 className="h-6 w-6 animate-spin text-slate-500" /></div>}
-                    <button type="button" onClick={clearLogo} className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-0.5 opacity-0 group-hover:opacity-100 transition-opacity shadow-md"><X size={12} /></button>
-                  </div>
-                ) : (
-                  <div
-                    role="button" tabIndex={0}
-                    onClick={() => logoInputRef.current?.click()}
-                    onDragOver={e => e.preventDefault()}
-                    onDrop={e => { e.preventDefault(); const f = e.dataTransfer.files[0]; if (f) handleLogoSelect(f) }}
-                    className="border-2 border-dashed border-slate-200 rounded-xl p-6 text-center cursor-pointer hover:border-[#DC2626]/50 hover:bg-[#DC2626]/5 transition-colors"
-                  >
-                    {isLogoUploading
-                      ? <div className="flex flex-col items-center gap-2"><Loader2 className="h-6 w-6 animate-spin text-slate-400" /><p className="text-sm text-slate-500">Uploading…</p></div>
-                      : <div className="flex flex-col items-center gap-2"><div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center"><Upload className="h-5 w-5 text-slate-400" /></div><p className="text-sm font-medium text-[#1B2340]">Click to upload logo</p><p className="text-xs text-slate-400">PNG, SVG, WebP — transparent background preferred</p></div>
-                    }
-                  </div>
-                )}
-                <input ref={logoInputRef} type="file" accept="image/png,image/svg+xml,image/webp,image/jpeg" className="hidden" onChange={e => { const f = e.target.files?.[0]; if (f) handleLogoSelect(f) }} />
-                <input type="hidden" {...register('company_logo')} />
+              {/* Company Logo URL */}
+              <CollapsibleCard title="Company Logo" subtitle="URL for a transparent PNG or SVG for best results." defaultOpen={false}>
+                <div className="space-y-2">
+                  <Label htmlFor="company_logo" className="text-sm font-semibold text-[#1B2340]">Logo URL</Label>
+                  <Input id="company_logo" placeholder="https://..." {...register('company_logo')} className={cls()} />
+                </div>
               </CollapsibleCard>
 
               {/* About Section */}
@@ -488,6 +445,22 @@ export function CaseStudyForm({ initialData, isEditing = false }: Props) {
                 <div className="space-y-2">
                   <Label htmlFor="subtitle" className="text-sm font-semibold text-[#1B2340]">Subtitle / Tagline</Label>
                   <Input id="subtitle" placeholder="One-line description of the engagement" {...register('subtitle')} className={cls()} />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="featured_image" className="text-sm font-semibold text-[#1B2340]">Featured Image URL</Label>
+                  <Input id="featured_image" placeholder="https://..." {...register('featured_image')} className={cls()} />
+                </div>
+              </CollapsibleCard>
+
+              {/* SEO Settings */}
+              <CollapsibleCard title="SEO Settings" defaultOpen={false}>
+                <div className="space-y-2">
+                  <Label htmlFor="seo_title" className="text-sm font-semibold text-[#1B2340]">SEO Title</Label>
+                  <Input id="seo_title" placeholder="SEO optimized title..." {...register('seo_title')} className={cls()} />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="seo_description" className="text-sm font-semibold text-[#1B2340]">SEO Description</Label>
+                  <Textarea id="seo_description" placeholder="Meta description for search engines..." {...register('seo_description')} rows={3} className={cls()} />
                 </div>
               </CollapsibleCard>
 
@@ -857,7 +830,7 @@ export function CaseStudyForm({ initialData, isEditing = false }: Props) {
               Next: {navItems[navItems.findIndex(i => i.key === active) + 1].label} →
             </Button>
           ) : (
-            <button type="submit" disabled={isLoading || isUploading || isLogoUploading}
+            <button type="submit" disabled={isLoading}
               className="flex items-center gap-2 px-5 py-2 rounded-lg bg-[#DC2626] text-white text-sm font-semibold hover:bg-black disabled:opacity-60 transition-all shadow-sm">
               {isLoading ? <Loader2 size={15} className="animate-spin" /> : <Save size={15} />}
               {isLoading ? 'Saving…' : isEditing ? 'Update Study' : 'Save Study'}

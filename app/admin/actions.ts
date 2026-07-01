@@ -78,7 +78,7 @@ export async function adminLoginAction(formData: FormData) {
     return { error: 'An error occurred during login. Please try again.' }
   }
 
-  redirect(adminBasePath)
+  return { success: true }
 }
 
 /**

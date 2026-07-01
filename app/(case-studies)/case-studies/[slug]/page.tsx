@@ -11,7 +11,13 @@ export async function generateMetadata({ params }: CaseStudyPageProps): Promise<
   const { slug } = await params
   try {
     const repository = getCaseStudyRepository()
-    const study = await repository.getCaseStudyBySlugFull(slug)
+    const study : any = await repository.getCaseStudyBySlug(slug)
+    
+    if (!study) {
+      return {
+        title: 'Case Study Not Found',
+      }
+    }
 
     return {
       title: `${study.title} | Case Study`,
@@ -35,7 +41,8 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
 
   try {
     const repository = getCaseStudyRepository()
-    study = await repository.getCaseStudyBySlugFull(slug)
+    study = await repository.getCaseStudyBySlug(slug)
+    if (!study) throw new Error('Not found')
   } catch (error) {
     notFound()
   }

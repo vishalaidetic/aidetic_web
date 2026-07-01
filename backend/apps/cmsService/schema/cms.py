@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Optional
+from typing import Optional, Any
 from datetime import datetime
 import uuid
 
@@ -12,9 +12,12 @@ class BlogCreate(BaseModel):
     description: Optional[str] = None
     content: str
     author: str
+    featured_image: Optional[str] = None
     published: bool = False
     is_featured: bool = False
     tag_type: Optional[str] = None
+    seo_title: Optional[str] = None
+    seo_description: Optional[str] = None
     created_by: Optional[str] = None
     updated_by: Optional[str] = None
 
@@ -25,22 +28,28 @@ class BlogUpdate(BaseModel):
     description: Optional[str] = None
     content: Optional[str] = None
     author: Optional[str] = None
+    featured_image: Optional[str] = None
     published: Optional[bool] = None
     is_featured: Optional[bool] = None
     tag_type: Optional[str] = None
+    seo_title: Optional[str] = None
+    seo_description: Optional[str] = None
     updated_by: Optional[str] = None
 
 
 class BlogResponse(BaseModel):
-    id: str
+    id: uuid.UUID
     title: str
     slug: str
     description: Optional[str] = None
     content: str
     author: str
+    featured_image: Optional[str] = None
     published: bool
     is_featured: bool
     tag_type: Optional[str] = None
+    seo_title: Optional[str] = None
+    seo_description: Optional[str] = None
     created_by: Optional[str] = None
     updated_by: Optional[str] = None
     created_at: Optional[datetime] = None
@@ -57,9 +66,18 @@ class CaseStudyCreate(BaseModel):
     slug: str
     subtitle: Optional[str] = None
     company_name: str = ""
+    company_logo: Optional[str] = None
     industry: Optional[str] = None
+    featured_image: Optional[str] = None
     author: Optional[str] = None
     content: Optional[str] = None
+    
+    problem: Optional[Any] = None
+    solution: Optional[Any] = None
+    results: Optional[Any] = None
+    metrics: Optional[Any] = None
+    testimonial: Optional[Any] = None
+    
     published: bool = False
     is_featured: bool = False
     tag_type: Optional[str] = None
@@ -74,9 +92,18 @@ class CaseStudyUpdate(BaseModel):
     slug: Optional[str] = None
     subtitle: Optional[str] = None
     company_name: Optional[str] = None
+    company_logo: Optional[str] = None
     industry: Optional[str] = None
+    featured_image: Optional[str] = None
     author: Optional[str] = None
     content: Optional[str] = None
+    
+    problem: Optional[Any] = None
+    solution: Optional[Any] = None
+    results: Optional[Any] = None
+    metrics: Optional[Any] = None
+    testimonial: Optional[Any] = None
+    
     published: Optional[bool] = None
     is_featured: Optional[bool] = None
     tag_type: Optional[str] = None
@@ -86,14 +113,23 @@ class CaseStudyUpdate(BaseModel):
 
 
 class CaseStudyResponse(BaseModel):
-    id: str
+    id: uuid.UUID
     title: str
     slug: str
     subtitle: Optional[str] = None
     company_name: str
+    company_logo: Optional[str] = None
     industry: Optional[str] = None
+    featured_image: Optional[str] = None
     author: Optional[str] = None
     content: Optional[str] = None
+    
+    problem: Optional[Any] = None
+    solution: Optional[Any] = None
+    results: Optional[Any] = None
+    metrics: Optional[Any] = None
+    testimonial: Optional[Any] = None
+    
     published: bool
     is_featured: bool
     tag_type: Optional[str] = None
@@ -119,7 +155,7 @@ class MeetingRequestCreate(BaseModel):
 
 
 class MeetingRequestResponse(BaseModel):
-    id: str
+    id: uuid.UUID
     name: str
     email: str
     phone: Optional[str] = None

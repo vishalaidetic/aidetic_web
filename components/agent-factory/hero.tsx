@@ -2,11 +2,10 @@
 
 import { BookCallDialog } from '@/components/shared/book-call-dialog';
 import { motion } from 'framer-motion';
-import { BarChart3, LineChart, MousePointer2, PieChart, Sparkles } from 'lucide-react';
 
 export function Hero({ content }: { content?: any }) {
   return (
-    <section className="relative overflow-hidden flex flex-col justify-start bg-white pt-20 pb-10 min-h-screen">
+    <section className="relative overflow-hidden flex flex-col justify-start bg-white pt-30 pb-10 min-h-screen">
 
       {/* ── Half-circle: center above top edge, left side fades to transparent ── */}
       <div
@@ -30,23 +29,6 @@ export function Hero({ content }: { content?: any }) {
 
           {/* ── Left: Copy ── */}
           <div className="flex flex-col lg:col-span-7">
-
-            {/* Eyebrow */}
-            {/* <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="mb-2"
-            >
-              <Image
-                src={content?.logo_url}
-                alt="Agent Factory Logo"
-                width={180}
-                height={60}
-                className="h-12 sm:h-14 w-auto object-contain object-left"
-                priority
-              />
-            </motion.div> */}
 
             {/* Headline */}
             <motion.div
@@ -111,12 +93,12 @@ export function Hero({ content }: { content?: any }) {
           >
             {/* New Video Player */}
             <div className="relative w-full max-w-[600px] aspect-video rounded-2xl overflow-hidden shadow-2xl bg-slate-900 border border-slate-100 flex items-center justify-center">
-              <video 
-                src="/PixVerse_V6_Image_Text_360P_Generate_a_Ai_Chat.mp4" 
-                autoPlay 
-                loop 
-                muted 
-                playsInline 
+              <video
+                src="/PixVerse_V6_Image_Text_360P_Generate_a_Ai_Chat.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
                 className="w-full h-full object-cover"
               />
             </div>

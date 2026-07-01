@@ -118,7 +118,7 @@ export function getCaseStudyRepository() {
     async listCaseStudies({ published }: { page?: number; limit?: number; published?: 'true' | 'false' } = {}) {
       const qs = published !== undefined ? `?published=${published === 'true'}` : ''
       const case_studies: CaseStudy[] = (await cmsGet(`/cms/case-studies${qs}`)) ?? []
-      return { case_studies }
+      return { case_studies, total: case_studies.length }
     },
 
     /** Get all case studies */
@@ -140,6 +140,14 @@ export function getCaseStudyRepository() {
     /** Create a case study */
     async createCaseStudy(data: CaseStudyCreate): Promise<CaseStudy> {
       return cmsMutate('/cms/case-studies', 'POST', data)
+    },
+
+    /** Check if a slug is unique */
+    async isSlugUnique(slug: string, excludeId?: string): Promise<boolean> {
+      const caseStudy = await cmsGet(`/cms/case-studies/slug/${slug}`)
+      if (!caseStudy) return true
+      if (excludeId && caseStudy.id === excludeId) return true
+      return false
     },
 
     /** Update a case study */

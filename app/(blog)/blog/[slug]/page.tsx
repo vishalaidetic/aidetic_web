@@ -8,24 +8,17 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
+export const dynamic = 'force-dynamic'
+
 interface BlogDetailPageProps {
   params: Promise<{ slug: string }>
 }
 
-export async function generateStaticParams() {
-  try {
-    const repository = getBlogRepository()
-    const { blogs } = await repository.listBlogs({ page: 1, limit: 100, published: 'true' })
-    return blogs.map((blog) => ({ slug: blog.slug }))
-  } catch {
-    return []
-  }
-}
 
 export async function generateMetadata({ params }: BlogDetailPageProps): Promise<Metadata> {
   try {
     const { slug } = await params
-    const blog = await getBlogRepository().getBlogBySlug(slug)
+    const blog : any = await getBlogRepository().getBlogBySlug(slug)
     const { summary } = MarkdownService.getMetadata(blog.content)
     return {
       title: blog.title,
@@ -49,7 +42,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
 
   try {
     const repository = getBlogRepository()
-    const blog = await repository.getBlogBySlug(slug)
+    const blog : any = await repository.getBlogBySlug(slug)
     const { readingTimeMinutes } = MarkdownService.getMetadata(blog.content)
     const toc = MarkdownService.generateTableOfContents(blog.content)
 

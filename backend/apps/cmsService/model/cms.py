@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Boolean, Text, DateTime
+from sqlalchemy import Column, String, Boolean, Text, DateTime, JSON
 from sqlalchemy.dialects.postgresql import UUID
 import uuid
 from datetime import datetime, timezone
@@ -18,9 +18,12 @@ class Blog(Base):
     description = Column(Text)
     content = Column(Text, nullable=False)
     author = Column(Text, nullable=False)
+    featured_image = Column(Text)
     published = Column(Boolean, default=False, index=True)
     is_featured = Column(Boolean, default=False)
     tag_type = Column(Text, index=True)
+    seo_title = Column(Text)
+    seo_description = Column(Text)
     created_by = Column(Text)
     updated_by = Column(Text)
     created_at = Column(DateTime(timezone=True), default=get_utc_now, index=True)
@@ -35,9 +38,19 @@ class CaseStudy(Base):
     slug = Column(Text, nullable=False, unique=True, index=True)
     subtitle = Column(Text)
     company_name = Column(Text, nullable=False, default="", index=True)
+    company_logo = Column(Text)
     industry = Column(Text)
+    featured_image = Column(Text)
     author = Column(Text)
     content = Column(Text)
+    
+    # JSON structured data
+    problem = Column(JSON)
+    solution = Column(JSON)
+    results = Column(JSON)
+    metrics = Column(JSON)
+    testimonial = Column(JSON)
+    
     published = Column(Boolean, default=False, index=True)
     is_featured = Column(Boolean, default=False)
     tag_type = Column(Text, index=True)

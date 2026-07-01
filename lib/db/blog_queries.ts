@@ -141,5 +141,13 @@ export function getBlogRepository() {
     async deleteBlog(id: string): Promise<void> {
       await cmsMutate(`/cms/blogs/${id}`, 'DELETE')
     },
+
+    /** Check if a slug is unique */
+    async isSlugUnique(slug: string, excludeId?: string): Promise<boolean> {
+      const blog = await cmsGet(`/cms/blogs/slug/${slug}`)
+      if (!blog) return true
+      if (excludeId && blog.id === excludeId) return true
+      return false
+    },
   }
 }

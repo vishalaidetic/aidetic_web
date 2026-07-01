@@ -3,70 +3,78 @@ import secrets
 from datetime import datetime, timedelta
 from typing import List, Optional
 from sqlalchemy.orm import Session
-from passlib.context import CryptContext
-
-from apps.authService.model.auth import User, Role, Permission, Session as AuthSession
-from apps.authService.schema.auth import (
-    UserCreate, UserGet, UserUpdate, UserLogin, TokenResponse,
-    RoleCreate, RoleGet, RoleUpdate,
-    PermissionCreate, PermissionGet
-)
-from apps.authService.repository import auth as repo
 
 import bcrypt
 
-# Password hashing configuration
-# pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+from apps.authService.model.auth import User, Role, Permission, Session as AuthSession
+from apps.authService.schema.auth import (
+    UserCreate, UserGet, UserUpdate, UserLogin, LoginResponse,
+    TokenResponse, RoleCreate, RoleGet, RoleUpdate,
+    PermissionCreate, PermissionGet,
+)
+from apps.authService.repository import auth as repo
 
-# ==================== AUTH Logic ====================
+# ==================== Password helpers ====================
 def hash_password(password: str) -> str:
-    salt = bcrypt.gensalt()
-    return bcrypt.hashpw(password.encode('utf-8'), salt).decode('utf-8')
+    # cost=10 is ~3x faster than default 12 while still being secure
+    salt = bcrypt.gensalt(rounds=10)
+    return bcrypt.hashpw(password.encode("utf-8"), salt).decode("utf-8")
 
-def verify_password(plain_password: str, hashed_password: str) -> bool:
-    return bcrypt.checkpw(plain_password.encode('utf-8'), hashed_password.encode('utf-8'))
+def verify_password(plain: str, hashed: str) -> bool:
+    return bcrypt.checkpw(plain.encode("utf-8"), hashed.encode("utf-8"))
 
-def generate_session_token() -> str:
+def generate_token() -> str:
     return secrets.token_urlsafe(32)
 
-# ==================== USER Service ====================
+
+# ==================== AUTH Logic ====================
 def register_user(session: Session, data: UserCreate) -> UserGet:
-    if repo.get_user_by_username(session, data.username):
-        raise ValueError(f"Username {data.username} already taken")
     if repo.get_user_by_email(session, data.email):
-        raise ValueError(f"Email {data.email} already registered")
+        raise ValueError(f"Email {data.email} is already registered.")
+    if repo.get_user_by_username(session, data.username):
+        raise ValueError(f"Username {data.username} is already taken.")
 
     user = User(
         username=data.username,
         email=data.email,
-        hashed_password=hash_password(data.password)
+        hashed_password=hash_password(data.password),
     )
     created = repo.create_user(session, user)
     return UserGet.model_validate(created)
 
-def authenticate_user(session: Session, data: UserLogin) -> TokenResponse:
-    user = repo.get_user_by_username(session, data.username)
-    if not user:
-        # Fallback: try finding user by email instead
-        user = repo.get_user_by_email(session, data.username)
-        
+
+def authenticate_user(session: Session, data: UserLogin) -> LoginResponse:
+    """
+    Fast login:
+      1. Single DB query by email (indexed).
+      2. bcrypt verify (cost=10).
+      3. Insert session row — no Kafka blocking (fire-and-forget in kafka_producer).
+      4. Return a lightweight LoginResponse — no joinedloading roles/permissions.
+    """
+    # Support both email field and legacy username-as-email callers
+    email = data.email or data.username
+    user = repo.get_user_by_email(session, email)
     if not user or not verify_password(data.password, user.hashed_password):
-        raise ValueError("Invalid username or password")
+        raise ValueError("Invalid email or password.")
 
     expires_at = datetime.utcnow() + timedelta(hours=24)
     auth_session = AuthSession(
         user_id=user.id,
-        session_token=generate_session_token(),
-        expires_at=expires_at
+        session_token=generate_token(),
+        expires_at=expires_at,
     )
     repo.create_session(session, auth_session)
 
-    return TokenResponse(
+    return LoginResponse(
         session_token=auth_session.session_token,
-        user=UserGet.model_validate(user),
-        expires_at=expires_at
+        user_id=str(user.id),
+        email=user.email,
+        username=user.username,
+        expires_at=expires_at,
     )
 
+
+# ==================== USER Service ====================
 def get_all_users(session: Session, skip: int = 0, limit: int = 100) -> List[UserGet]:
     users = repo.get_all_users(session, skip, limit)
     return [UserGet.model_validate(u) for u in users]
@@ -90,6 +98,7 @@ def remove_user_role(session: Session, user_id: uuid.UUID, role_id: uuid.UUID) -
 
 def remove_user_roles_bulk(session: Session, user_id: uuid.UUID, role_ids: List[uuid.UUID]) -> bool:
     return repo.remove_bulk_role_to_user(session, user_id, role_ids)
+
 
 # ==================== ROLE Service ====================
 def create_role(session: Session, data: RoleCreate) -> RoleGet:
@@ -116,6 +125,7 @@ def remove_role_permissions_bulk(session: Session, role_id: uuid.UUID, perm_ids:
 
 def delete_role(session: Session, role_id: uuid.UUID) -> bool:
     return repo.delete_role(session, role_id)
+
 
 # ==================== PERMISSION Service ====================
 def create_permission(session: Session, data: PermissionCreate) -> PermissionGet:

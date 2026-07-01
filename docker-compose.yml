@@ -78,6 +78,7 @@ services:
       NEO4J_USER: "neo4j"
       NEO4J_PASSWORD: "password"
       CHROMA_HOST: chromadb
+      KAFKA_SERVERS: "kafka:9092"
     depends_on:
       db:
         condition: service_healthy
